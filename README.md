@@ -11,3 +11,11 @@ This project is an assignment for the [Software Architecture course](https://arq
 The app is deployed at [https://arquisoft.github.io/viade_es2b/](https://arquisoft.github.io/viade_es2b/) which also contains a [technical documentation](https://arquisoft.github.io/viade_es2b/docs).
 
 More information about how this project has been setup is available [in the wiki](https://github.com/Arquisoft/viade_es2b/wiki).
+
+## Team Members
+ 
+1. Ángela López López [UO270318](https://github.com/Ainiall)
+2. Carla Santos Carrio [UO259047](https://github.com/carlafw)
+3. Daniel Fernández Aller[](https://github.com/daniferna)
+4. Diego Fernández [](https://github.com/UO263662)
+5. [](https://github.com/uo265349)
