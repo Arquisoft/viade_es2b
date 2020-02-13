@@ -7,6 +7,21 @@
 .Contents
 Any requirement that constrains software architects in their freedom of design and implementation decisions or decision about the development process. These constraints sometimes go beyond individual systems and are valid for whole organizations and companies.
 
+[cols=2*,options="header"]
+.Technical Constraints
+|===
+|Constraint
+|Explanation
+
+|Descentralized architecture
+|The project architecture will be descentralized, which means user data is separated from the application and users are the one who control the flow of information.In order to achieve that,we will use SOLID specifications.
+
+|Javascript libray 
+|The project interface will be develop with React. This library will desing and update effectively the proper components when the data changed.
+
+|===
+
+
 .Motivation
 Architects should know exactly where they are free in their design decisions and where they must adhere to constraints.
 Constraints must always be dealt with; they may be negotiable, though.
