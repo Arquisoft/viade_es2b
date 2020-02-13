@@ -4,8 +4,8 @@
 
 [role="arc42help"]
 ****
-.Contents
-Any requirement that constrains software architects in their freedom of design and implementation decisions or decision about the development process. These constraints sometimes go beyond individual systems and are valid for whole organizations and companies.
+.Introduction
+There are some constraints in the development of our application. These constraints are technical, organitazional and conventional. The following tables detail these constraints.
 
 [cols=2*,options="header"]
 .Technical Constraints
@@ -21,14 +21,35 @@ Any requirement that constrains software architects in their freedom of design a
 
 |===
 
+[cols=2*,options="header"]
+.Organitazional and political constraints
+|===
+|Constraint
+|Explanation
 
-.Motivation
-Architects should know exactly where they are free in their design decisions and where they must adhere to constraints.
-Constraints must always be dealt with; they may be negotiable, though.
+|Git
+| Git is a control version system.
+It will allow us to lead a colaborative development and simplify the sharing and reviewing of it.
 
-.Form
-Simple tables of constraints with explanations.
-If needed you can subdivide them into
-technical constraints, organizational and political constraints and
-conventions (e.g. programming or versioning guidelines, documentation or naming conventions)
+|GitHub
+|Our project will be managed using GitHub, a configuration management system that will facilitate us working together.
+
+|Continuous delivery
+|The project will have several deliveries throughout its development to be review by teachers.
+
+|===
+
+[cols=2*,options="header"]
+.Conventions
+|===
+|Constraint
+|Explanation
+
+|arc42
+|As a template for documentation, we must use arc42 in order to make clean and useful for future readers.
+
+|===
+
+
+
 ****
