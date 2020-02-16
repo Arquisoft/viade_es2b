@@ -19,6 +19,13 @@ There are some constraints in the development of our application. These constrai
 |Javascript libray 
 |The project interface will be develop with React. This library will desing and update effectively the proper components when the data changed.
 
+|Programming language
+|JavaScript will be used to develop this project. This programming language is friendly to user experience.
+
+|Compatibility and adaptability
+|This project can be used at any major web browser (Mozilla Firefox, Google Chrome, Opera, Safari...) and Operating Systems in
+order to fullfill maximum market coverage.
+
 |===
 
 [cols=2*,options="header"]
@@ -28,7 +35,7 @@ There are some constraints in the development of our application. These constrai
 |Explanation
 
 |Git
-| Git is a control version system.
+|Git is a control version system.
 It will allow us to lead a colaborative development and simplify the sharing and reviewing of it.
 
 |GitHub
@@ -37,6 +44,18 @@ It will allow us to lead a colaborative development and simplify the sharing and
 |Continuous delivery
 |The project will have several deliveries throughout its development to be review by teachers.
 
+|Team
+|This project will be developed by a random development group, with the difficulties of adaptation that this implies.
+
+|Project budget
+|This project will be developed by students without a source of income available to improve its development.
+For that reason only free development tools were used.
+
+|License
+|This is an Open Source project published under de MIT License.
+	
+
+All the contents included in the project should be Open Source published under the MIT license.
 |===
 
 [cols=2*,options="header"]
@@ -46,8 +65,16 @@ It will allow us to lead a colaborative development and simplify the sharing and
 |Explanation
 
 |arc42
-|As a template for documentation, we must use arc42 in order to make clean and useful for future readers.
+|As a template for documentation, we must use arc42 in order to make it clean and useful for future readers.
 
+|AsciiDoctor
+|Our project will be using AsciiDoctor to convert AsciiDoc documentation into HTML5 content.
+
+|Project Development Language
+|This project will be entirely developed in English in order to achieve some international recognition.
+
+|IDE
+|All team members will be using Visual Studio Code to keep convenctions on point.
 |===
 
 
