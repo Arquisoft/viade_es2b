@@ -47,29 +47,12 @@ A table with quality goals and concrete scenarios, ordered by priorities
 
 === Stakeholders
 
-[role="arc42help"]
-****
-.Contents
-Explicit overview of stakeholders of the system, i.e. all person, roles or organizations that
-
-* should know the architecture
-* have to be convinced of the architecture
-* have to work with the architecture or with code
-* need the documentation of the architecture for their work
-* have to come up with decisions about the system or its development
-
-.Motivation
-You should know all parties involved in development of the system or affected by the system.
-Otherwise, you may get nasty surprises later in the development process.
-These stakeholders determine the extent and the level of detail of your work and its results.
-
-.Form
-Table with role names, person names, and their expectations with respect to the architecture and its documentation.
-****
+The table below contains information about the potential users of the application.
 
 [options="header",cols="1,2,2"]
 |===
 |Role/Name|Contact|Expectations
-| _<Role-1>_ | _<Contact-1>_ | _<Expectation-1>_
-| _<Role-2>_ | _<Contact-2>_ | _<Expectation-2>_
+| End Users | The people expected to use the app in a daily basis. The app should be build in a way that they understand how the app works and their data is stored. | They will exepect the app to be simple and efficient. They will also want their personal data to be stored wherever they want because the use of SOLID.
+| Developers | These are the people in charge of the develop of the app, so they should understand all the components of the app and the technologies used. | They are expected to develop a secure, simple and usable application.
+| SOLID Developers | They are in charge of defining the SOLID standards. Therefore, they will have a great impact in the design and way of work of the application. | They will mark some constrains to the project but they will also help with the documenatation and guidelines of the SOLID standard. They will also provied the SOLID code.
 |===
