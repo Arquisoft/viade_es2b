@@ -24,6 +24,6 @@ image::images/03_businessContext.png[Business context diagram]
 === Technical Context
 
 ****
-image::images/03_technicalContext.png[Business context diagram]
+image::images/03_technicalContext.png[Technical context diagram]
 
 ****
