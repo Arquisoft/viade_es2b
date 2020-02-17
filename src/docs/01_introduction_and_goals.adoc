@@ -1,7 +1,6 @@
 [[section-introduction-and-goals]]
 == Introduction and Goals
 
-[role="arc42help"]
 ****
 Describes the relevant requirements and the driving forces that software architects and development team must consider. These include
 
@@ -12,64 +11,40 @@ Describes the relevant requirements and the driving forces that software archite
 
 === Requirements Overview
 
-[role="arc42help"]
 ****
-.Contents
-Short description of the functional requirements, driving forces, extract (or abstract)
-of requirements. Link to (hopefully existing) requirements documents
-(with version number and information where to find it).
 
-.Motivation
-From the point of view of the end users a system is created or modified to
-improve support of a business activity and/or improve the quality.
+* System will use a descentralized architecture, being the data independent from the system.
 
-.Form
-Short textual description, probably in tabular use-case format.
-If requirements documents exist this overview should refer to these documents.
+* System will let users to share info to other users, using a friendly-style. In addition, users can have a group of that "friends" for share instantly routes with them. 
 
-Keep these excerpts as short as possible. Balance readability of this document with potential redundancy w.r.t to requirements documents.
+* Registred users can store their map routes in their own devices.
+
+* Same way, registred users can see all routes on the entire available map.
+
+* System will recognize routed stored by other programs.
+
 ****
 
 === Quality Goals
 
-[role="arc42help"]
-****
-.Contents
-The top three (max five) quality goals for the architecture whose fulfillment is of highest importance to the major stakeholders. We really mean quality goals for the architecture. Don't confuse them with project goals. They are not necessarily identical.
+System objectives are as follows:
 
-.Motivation
-You should know the quality goals of your most important stakeholders, since they will influence fundamental architectural decisions. Make sure to be very concrete about these qualities, avoid buzzwords.
-If you as an architect do not know how the quality of your work will be judged …
-
-.Form
-A table with quality goals and concrete scenarios, ordered by priorities
-****
+[options="header",cols="1,2,2"]
+|===
+|Priority|Objective|Detail
+| 1 | Usability | System will be intuitive for all kind of users, needing a short time for them to get acquainted with it.
+| 2 | Security | System will be secure, being the data protected against malicious users.
+| 3 | Functionality | System will fulfill all the user needs, and accomplish the other objectives.
+|===
 
 === Stakeholders
 
-[role="arc42help"]
-****
-.Contents
-Explicit overview of stakeholders of the system, i.e. all person, roles or organizations that
-
-* should know the architecture
-* have to be convinced of the architecture
-* have to work with the architecture or with code
-* need the documentation of the architecture for their work
-* have to come up with decisions about the system or its development
-
-.Motivation
-You should know all parties involved in development of the system or affected by the system.
-Otherwise, you may get nasty surprises later in the development process.
-These stakeholders determine the extent and the level of detail of your work and its results.
-
-.Form
-Table with role names, person names, and their expectations with respect to the architecture and its documentation.
-****
+The table below contains information about the potential users of the application.
 
 [options="header",cols="1,2,2"]
 |===
 |Role/Name|Contact|Expectations
-| _<Role-1>_ | _<Contact-1>_ | _<Expectation-1>_
-| _<Role-2>_ | _<Contact-2>_ | _<Expectation-2>_
+| End Users | The people expected to use the app in a daily basis. The app should be build in a way that they understand how the app works and their data is stored. | They will expect the app to be simple and efficient. They will also want their personal data to be stored wherever they want because the use of SOLID.
+| Developers | These are the people in charge of the develop of the app, so they should understand all the components of the app and the technologies used. | They are expected to develop a secure, simple and usable application.
+| SOLID Developers | They are in charge of defining the SOLID standards. Therefore, they will have a great impact in the design and way of work of the application. | They will mark some constrains to the project but they will also help with the documenatation and guidelines of the SOLID standard. They will also provied the SOLID code.
 |===
