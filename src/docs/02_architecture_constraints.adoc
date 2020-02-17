@@ -1,8 +1,6 @@
 [[section-architecture-constraints]]
 == Architecture Constraints
 
-
-[role="arc42help"]
 ****
 .Introduction
 There are some constraints in the development of our application. These constraints are technical, organitazional and conventional. The following tables detail these constraints.
