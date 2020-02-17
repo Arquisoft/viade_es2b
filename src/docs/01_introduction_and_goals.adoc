@@ -34,8 +34,8 @@ System objectives are as follows:
 [options="header",cols="1,2,2"]
 |===
 |Priority|Objective|Detail
-| 1 | Usability | System will be intuitive for all kind users, needing a short time for them to get acquainted with it.
-| 2 | Security | System will be secure, being the data protected from against malicious users.
+| 1 | Usability | System will be intuitive for all kind of users, needing a short time for them to get acquainted with it.
+| 2 | Security | System will be secure, being the data protected against malicious users.
 | 3 | Functionality | System will fulfill all the user needs, and accomplish the other objectives.
 |===
 
