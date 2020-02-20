@@ -19,17 +19,21 @@ Once the user is logged in, the app will allow him to visualize routes, share ru
 
 User can visualize routes.
 
-*To implement*
+*To do*
 
-=== Third Scenario: Create group
+=== Third Scenario: Add routes
+
+*To do*
+
+=== Fourth Scenario: Create group
 
 The user can create a group of friends to share routes or multimedia.
 
 User will click a create group button. A list of his friends will be displayed to add them and a textbox to enter the group name.
 
 
-=== Fourth Scenario: Sharing 
+=== Fifth Scenario: Sharing 
 
 The user can share routes or media with his friends.
 
-*To implement*
+*To do*
