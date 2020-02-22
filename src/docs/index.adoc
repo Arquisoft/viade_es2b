@@ -3,7 +3,7 @@
 //
 // ====================================
 
-= image:LogoASW.png[arc42] ViaDe 0
+= image:LogoASW.png[arc42] ViaDe 2b
 // toc-title definition MUST follow document title without blank line!
 :toc: left
 :toc-title: Table of Contents
@@ -91,6 +91,6 @@ include::11_technical_risks.adoc[]
 // 12. Glossary
 include::12_glossary.adoc[]
 
-<<<<
+//<<<<
 // About
-include::about-arc42.adoc[]
+//include::about-arc42.adoc[]
