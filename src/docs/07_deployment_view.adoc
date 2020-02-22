@@ -9,6 +9,7 @@ Because these reasons, the use of the local resources and the use of SOLID stand
 We are developing this application using Google Chrome, so is the recommended web browser, but it should work in almost every modern browser due to the use of widely-used standards.
 
 === Performance
+[performance]
 
 The expected perfomance relies mainly in three things:
 
@@ -18,5 +19,6 @@ The expected perfomance relies mainly in three things:
 
 
 === Infrastructure
+[infrastructure]
 
 image::07_deployment_viade_es2b.png[Deployment view diagram]
