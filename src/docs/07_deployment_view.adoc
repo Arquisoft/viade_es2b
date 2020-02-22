@@ -19,3 +19,4 @@ The expected perfomance relies mainly in three things:
 
 === Infrastructure
 
+image::07_deployment_viade_es2b.png[Deployment view diagram]
