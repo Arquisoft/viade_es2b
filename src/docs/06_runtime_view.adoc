@@ -17,11 +17,14 @@ Once the user is logged in, the app will allow him to visualize routes, share ru
 
 === Second Scenario: Visualize routes
 
-User can visualize routes.
+Once the user is logged in, the app will allow the user to visualize routes.
 
 *To do*
 
 === Third Scenario: Add routes
+
+
+Once the user is logged in, the app will allow the user to load routes in kml format. 
 
 *To do*
 
