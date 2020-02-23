@@ -61,14 +61,14 @@ _**<Overview Diagram>**_
 
 Motivation::
 
-_<text explanation>_
+At the moment, the project is basically a black box, we receive an input and return the output, but we have no implementation yet
 
 
 Contained Building Blocks::
-_<Description of contained building block (black boxes)>_
+<Description of contained building block (black boxes)> WIP
 
 Important Interfaces::
-_<Description of important interfaces>_
+<Description of important interfaces> WIP
 
 [role="arc42help"]
 ****
