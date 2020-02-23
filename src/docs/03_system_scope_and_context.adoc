@@ -25,5 +25,4 @@ image::03_businessContext.jpg[Business context diagram]
 
 ****
 image::03_technicalContext.jpg[Technical context diagram]
-
 ****
