@@ -21,10 +21,10 @@ image::010_QualityTree.png[Quality tree diagram]
 [options="header",cols="1,2,2"]
 |===
 |Quality Attributes|Scenarios|Priority
-| Security | Require each user to identify in order to use the application and let them full control about their own data | High
-| Suitability | The application meet the requirements for a successful performance | Medium/High
-| Efficiency | Short times for work and save/load data | Medium
-| Usability | Easy-to-learn and satisfy user requirements and motivations | High
-| Maintainable | Easy to improve the code and makes changes to it | High
-| Testability | Should pass unit & integration test without any problems | Medium
+| Security | Require each user to identify in order to use the application and let them full control about their own data | High, High
+| Suitability | The application meet the requirements for a successful performance | Medium, High
+| Efficiency | Short times for work and save/load data | Medium, High
+| Usability | Easy-to-learn and satisfy user requirements and motivations | High, High
+| Maintainable | Easy to improve the code and makes changes to it | High, Medium
+| Testability | Should pass unit & integration test without any problems | Medium, Medium
 |===
