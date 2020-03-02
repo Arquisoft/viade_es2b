@@ -7,7 +7,7 @@ async function login(url = "https://inrupt.net") {
     if (!session)
         await auth.login(url);
     else
-        alert(`Logged in as ${session.webId}`);
+        alert(`Already logged in as ${session.webId}`);
 
 }
 
@@ -17,7 +17,10 @@ async function logout() {
     if (!session)
         alert('Anyone is logged');
     else
-        await auth.logout();
+        auth.logout().then(
+            () => alert("Logged out"),
+            () => alert("Error logging out")
+        );  
 }
 
 exports.login = login;
