@@ -22,6 +22,7 @@ function App() {
         </a>
         <button onClick={() => gestorPODS.login()}>Login</button>
         <button onClick={() => gestorPODS.logout()}>Log Out</button>
+        <button onClick= {() => gestorPODS.showPerson()}>Show person (Console)</button>
       </header>
     </div>
   );
