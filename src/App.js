@@ -2,6 +2,8 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+const gestorPODS = require('./persistanceManagement');
+
 function App() {
   return (
     <div className="App">
@@ -18,6 +20,9 @@ function App() {
         >
           Learn React. Developed using Docker.
         </a>
+        <button onClick={() => gestorPODS.login()}>Login</button>
+        <button onClick={() => gestorPODS.logout()}>Log Out</button>
+        <button onClick= {() => gestorPODS.showPerson()}>Show person (Console)</button>
       </header>
     </div>
   );
