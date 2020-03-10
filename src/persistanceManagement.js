@@ -1,37 +1,16 @@
+//Class Route
+const Route = require('./Route');
+
 //Library for authentication
 const auth = require('solid-auth-client');
 
-//Library to manage Linked Data (PODs content)
-const { PathFactory } = require('ldflex');
-const { default: ComunicaEngine } = require('ldflex-comunica');
-const { namedNode } = require('@rdfjs/data-model');
-
-// The JSON-LD context for resolving properties
-const context = {
-    "@context": {
-        "@vocab": "http://xmlns.com/foaf/0.1/",
-        "friends": "knows",
-        "label": "http://www.w3.org/2000/01/rdf-schema#label",
-    }
-};
-// The query engine and its source
-var queryEngine;
-// The object that can create new paths
-var path;
+//Library to manage files and data in PODs
+const FC   = require('solid-file-client')
+var fc;
 
 module.exports = {
 
-    initLDflex: async function () {
-        this.activeSession = await auth.currentSession();
-
-        if (!this.activeSession)
-            return alert("You have to log in first.");
-
-        queryEngine = new ComunicaEngine(this.activeSession.webId);
-        path = new PathFactory({ context, queryEngine });
-    },
-
-    login: async function (url = "https://inrupt.net") {
+    login: async function (url = "https://solid.community") {
 
         this.activeSession = await auth.currentSession();
 
@@ -39,6 +18,8 @@ module.exports = {
             await auth.login(url);
         else
             alert(`Already logged in as ${this.activeSession.webId}`);
+
+        fc = new FC(auth);
         
     },
 
@@ -54,20 +35,59 @@ module.exports = {
             );
     },
 
-    showPerson: async function () {
-        await this.initLDflex();
+    isLoggedIn: async function () {
+        if (await auth.currentSession() == null || (await auth.currentSession()).webId == null)
+                return false;
+        return true;
+    },
 
-        let person = path.create({ subject: namedNode(this.activeSession.webId) });
+    saveRoute: async function(route = new Route(-1, "Prueba", "Ruta de prueba", null, [])) { //Valor default para test
+        fc = new FC(auth);
 
-        console.log(`This person is ${await person.name}`);
+        var jsonData = JSON.stringify(route);
 
-        console.log(`${await person.givenName} is interested in:`);
-        for await (const name of person.interest.label)
-            console.log(`- ${name}`);
+        let tempUrlUser = ((await auth.currentSession()).webId).toString();
+        var urlUser = tempUrlUser.slice(0, -16) + "/public/routes/";
 
-        console.log(`${await person.givenName} is friends with:`);
-        for await (const name of person.friends.givenName)
-            console.log(`- ${name}`);
+        await fc.createFile(urlUser + "/" + route.id + ".json", jsonData, "application/json");
+    },
+
+    seeRoute: async function(idRoute = -1) { //Valor default para test
+        let tempUrlUser = ((await auth.currentSession()).webId).toString();
+        var urlUser = tempUrlUser.slice(0, -16) + "/public/routes/";
+
+        var route = await fc.readFile(urlUser + idRoute + ".json");
+
+        console.log(route);
+
+        return route;
+    },
+
+    seeRoutes: async function() { //Valor default para test
+        let tempUrlUser = ((await auth.currentSession()).webId).toString();
+        var urlUser = tempUrlUser.slice(0, -16) + "/public/routes/";
+
+        let folder = await fc.readFolder(urlUser);
+        var arrayJSONs = [];
+
+        for (var i=0; i < folder.files.length; i++) {
+            var file = folder.files[i];
+            arrayJSONs.push(await fc.readFile(file.url));
+        }
+
+        var routes = [];
+
+        for (i=0; i < arrayJSONs.length; i++) {
+            routes.push(JSON.parse(arrayJSONs[i]))
+        }
+
+        console.log(routes);
+
+        return routes;
+    },
+
+    test: async function() {
+        console.log(await auth.currentSession())
     }
 
 }
