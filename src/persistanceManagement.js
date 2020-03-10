@@ -10,6 +10,10 @@ var fc;
 
 module.exports = {
 
+    /**
+     * Method to do login
+     * @param {url para realizar la autenticación. Solid community por defecto} url 
+     */
     login: async function (url = "https://solid.community") {
 
         this.activeSession = await auth.currentSession();
@@ -23,6 +27,9 @@ module.exports = {
         
     },
 
+    /**
+     * Method to do logout.
+     */
     logout: async function () {
        this.activeSession = await auth.currentSession();
 
@@ -35,12 +42,20 @@ module.exports = {
             );
     },
 
+    /**
+     * Method that check if the user is logged in or not.
+     * It return true if it's logged in and false otherwise.
+     */
     isLoggedIn: async function () {
         if (await auth.currentSession() == null || (await auth.currentSession()).webId == null)
                 return false;
         return true;
     },
 
+    /**
+     * Method to save the route passed by parameter in the current user pod.
+     * @param {Route to be saved. it should follow the Route class format.} route 
+     */
     saveRoute: async function(route = new Route(-1, "Prueba", "Ruta de prueba", null, [])) { //Valor default para test
         fc = new FC(auth);
 
@@ -52,7 +67,13 @@ module.exports = {
         await fc.createFile(urlUser + "/" + route.id + ".json", jsonData, "application/json");
     },
 
+    /**
+     * Method that returns the route saved in the user's pod, if exist. Null otherwise.
+     * @param {ID of the route to be showed.} idRoute 
+     */
     seeRoute: async function(idRoute = -1) { //Valor default para test
+        fc = new FC(auth);
+
         let tempUrlUser = ((await auth.currentSession()).webId).toString();
         var urlUser = tempUrlUser.slice(0, -16) + "/public/routes/";
 
@@ -63,7 +84,13 @@ module.exports = {
         return route;
     },
 
-    seeRoutes: async function() { //Valor default para test
+    /**
+     * Method which looks in the user pods for all the saved routes.
+     * Return an array containing them.
+     */
+    seeRoutes: async function() {
+        fc = new FC(auth);
+
         let tempUrlUser = ((await auth.currentSession()).webId).toString();
         var urlUser = tempUrlUser.slice(0, -16) + "/public/routes/";
 
