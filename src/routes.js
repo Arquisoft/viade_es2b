@@ -9,11 +9,6 @@ import {
   Welcome,
   RegistrationSuccess,
   Profile,
-  GameList,
-  GamePage,
-  FormModelConverter,
-  FormModelRenderer,
-  TextEditor
 } from './containers';
 
 const privateRoutes = [
@@ -27,35 +22,11 @@ const privateRoutes = [
     path: '/profile',
     component: Profile
   },
-  {
-    id: 'tictactoe',
-    path: '/tictactoe',
-    component: GameList
-  },
-  {
-    id: 'tictactoegame',
-    path: '/tictactoe/:gameId',
-    component: GamePage
-  },
-  {
-    id: 'text-editor',
-    path: '/text-editor',
-    component: TextEditor
-  },
-  {
-    id: 'formmodelconverter',
-    path: '/formmodel/converter',
-    component: FormModelConverter
-  },
-  {
-    id: 'formmodelrenderer',
-    path: '/formmodel/renderer',
-    component: FormModelRenderer
-  }
+
 ];
 
-const Routes = () => (
-  <Router>
+const Routes = () => {
+  return (<Router>
     <Fragment>
       <Switch>
         <NotLoggedInLayout component={Login} path="/login" exact />
@@ -67,7 +38,7 @@ const Routes = () => (
         <Redirect to="/404" />
       </Switch>
     </Fragment>
-  </Router>
-);
+  </Router>);
+};
 
 export default Routes;
