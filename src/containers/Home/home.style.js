@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { media } from '../../utils';
 
-export const WelcomeWrapper = styled.section`
+export const HomeWrapper = styled.section`
   width: 100%;
   background-image: url('/img/concentric-hex-pattern_2x.png');
   background-repeat: repeat;
@@ -18,7 +18,7 @@ export const WelcomeWrapper = styled.section`
   }
 `;
 
-export const WelcomeCard = styled.div`
+export const HomeCard = styled.div`
   background-color: #fff;
   margin: 30px auto;
 
@@ -41,7 +41,7 @@ export const WelcomeCard = styled.div`
   }
 `;
 
-export const WelcomeLogo = styled.div`
+export const HomeLogo = styled.div`
   width: 50%;
   height: 100%;
 
@@ -52,7 +52,7 @@ export const WelcomeLogo = styled.div`
   }
 `;
 
-export const WelcomeProfile = styled.div`
+export const HomeProfile = styled.div`
   height: 100%;
   text-align: center;
   position: relative;
@@ -102,7 +102,7 @@ export const ImageContainer = styled.div`
   height: 128px;
 `;
 
-export const WelcomeDetail = styled.div`
+export const HomeDetail = styled.div`
   padding: 1rem 3.5rem;
 
   p,
@@ -115,7 +115,7 @@ export const WelcomeDetail = styled.div`
   }
 `;
 
-export const WelcomeName = styled.span`
+export const HomeName = styled.span`
   overflow-wrap: break-word;
   word-break: break-word;
 `;

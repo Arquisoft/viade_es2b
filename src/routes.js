@@ -6,16 +6,16 @@ import {
   Login,
   Register,
   PageNotFound,
-  Welcome,
+  Home,
   RegistrationSuccess,
   Profile,
 } from './containers';
 
 const privateRoutes = [
   {
-    id: 'welcome',
-    path: '/welcome',
-    component: Welcome
+    id: 'home',
+    path: '/home',
+    component: Home
   },
   {
     id: 'profile',
@@ -33,7 +33,7 @@ const Routes = () => {
         <NotLoggedInLayout component={Register} path="/register" exact />
         <NotLoggedInLayout path="/register/success" component={RegistrationSuccess} exact />
         <PublicLayout path="/404" component={PageNotFound} exact />
-        <Redirect from="/" to="/welcome" exact />
+        <Redirect from="/" to="/home" exact />
         <PrivateLayout path="/" routes={privateRoutes} />
         <Redirect to="/404" />
       </Switch>

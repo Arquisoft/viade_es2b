@@ -3,10 +3,10 @@
  */
 export const NavigationItems = [
   {
-    id: 'welcome',
+    id: 'home',
     icon: '/img/icon/apps.svg',
-    label: 'navBar.welcome',
-    to: '/welcome'
+    label: 'navBar.home',
+    to: '/home'
   }
 ];
 

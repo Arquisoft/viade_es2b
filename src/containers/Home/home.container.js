@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import data from '@solid/query-ldflex';
 import { namedNode } from '@rdfjs/data-model';
-import { WelcomePageContent } from './welcome.component';
+import { HomePageContent } from './home.component';
 import { successToaster, errorToaster } from '@utils';
 
 const defaultProfilePhoto = '/img/icon/empty-profile.svg';
 
 /**
- * Container component for the Welcome Page, containing example of how to fetch data from a POD
+ * Container component for the Home Page, containing example of how to fetch data from a POD
  */
-export class WelcomeComponent extends Component<Props> {
+export class HomeComponent extends Component<Props> {
   constructor(props) {
     super(props);
 
@@ -94,7 +94,7 @@ export class WelcomeComponent extends Component<Props> {
     const { name, image, isLoading } = this.state;
     const { webId } = this.props;
     return (
-      <WelcomePageContent {...{ name, image, isLoading, webId, updatePhoto: this.updatePhoto }} />
+      <HomePageContent {...{ name, image, isLoading, webId, updatePhoto: this.updatePhoto }} />
     );
   }
 }

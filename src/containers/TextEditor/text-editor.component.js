@@ -213,7 +213,7 @@ export const Editor = ({ webId }: Props) => {
 
 /**
  * A React component page that is displayed when there's no valid route. Users can click the button
- * to get back to the home/welcome page.
+ * to get back to the home/home page.
  */
 const TextEditor = ({ webId }: Props) => {
   const { t } = useTranslation();

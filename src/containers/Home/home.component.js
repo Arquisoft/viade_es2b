@@ -2,35 +2,35 @@ import React from 'react';
 import { Uploader } from '@inrupt/solid-react-components';
 import { Trans, useTranslation } from 'react-i18next';
 import {
-  WelcomeWrapper,
-  WelcomeCard,
-  WelcomeLogo,
-  WelcomeProfile,
-  WelcomeDetail,
-  WelcomeName,
+  HomeWrapper,
+  HomeCard,
+  HomeLogo,
+  HomeProfile,
+  HomeDetail,
+  HomeName,
   ImageWrapper
-} from './welcome.style';
+} from './home.style';
 import { ImageProfile } from '@components';
 import { errorToaster } from '@utils';
 
 /**
- * Welcome Page UI component, containing the styled components for the Welcome Page
+ * Hom Page UI component, containing the styled components for the Hom Page
  * Image component will get theimage context and resolve the value to render.
  * @param props
  */
-export const WelcomePageContent = props => {
+export const HomePageContent = props => {
   const { webId, image, updatePhoto, name } = props;
   const { t } = useTranslation();
   const limit = 2100000;
   return (
-    <WelcomeWrapper data-testid="welcome-wrapper">
-      <WelcomeCard className="card">
-        <WelcomeLogo data-testid="welcome-logo">
+    <HomeWrapper data-testid="home-wrapper">
+      <HomeCard className="card">
+        <HomeLogo data-testid="home-logo">
           <img src="/img/logo.svg" alt="Inrupt" />
-        </WelcomeLogo>
-        <WelcomeProfile data-testid="welcome-profile">
+        </HomeLogo>
+        <HomeProfile data-testid="home-profile">
           <h3>
-            {t('welcome.welcome')}, <WelcomeName>{name}</WelcomeName>
+            {t('home.home')}, <HomeName>{name}</HomeName>
           </h3>
           <ImageWrapper>
             <Uploader
@@ -40,22 +40,22 @@ export const WelcomePageContent = props => {
                 limitSize: limit,
                 accept: 'jpg,jpeg,png',
                 errorsText: {
-                  sizeLimit: t('welcome.errors.sizeLimit', {
+                  sizeLimit: t('home.errors.sizeLimit', {
                     limit: `${limit / 1000000}Mbs`
                   }),
-                  unsupported: t('welcome.errors.unsupported'),
-                  maximumFiles: t('welcome.errors.maximumFiles')
+                  unsupported: t('home.errors.unsupported'),
+                  maximumFiles: t('home.errors.maximumFiles')
                 },
                 onError: error => {
                   if (error && error.statusText) {
-                    errorToaster(error.statusText, t('welcome.errorTitle'));
+                    errorToaster(error.statusText, t('home.errorTitle'));
                   }
                 },
                 onComplete: uploadedFiles => {
                   updatePhoto(
                     uploadedFiles[uploadedFiles.length - 1].uri,
-                    t('welcome.uploadSuccess'),
-                    t('welcome.successTitle')
+                    t('Hom.uploadSuccess'),
+                    t('Hom.successTitle')
                   );
                 },
                 render: props => (
@@ -64,19 +64,19 @@ export const WelcomePageContent = props => {
                       ...props,
                       webId,
                       photo: image,
-                      text: t('welcome.upload'),
-                      uploadingText: t('welcome.uploadingText')
+                      text: t('home.upload'),
+                      uploadingText: t('home.uploadingText')
                     }}
                   />
                 )
               }}
             />
           </ImageWrapper>
-        </WelcomeProfile>
-      </WelcomeCard>
-      <WelcomeCard className="card">
-        <WelcomeDetail data-testid="welcome-detail">
-          <Trans i18nKey="welcome.title">
+        </HomeProfile>
+      </HomeCard>
+      <HomeCard className="card">
+        <HomeDetail data-testid="home-detail">
+          <Trans i18nKey="home.title">
             <h3>
               title
               <a
@@ -88,7 +88,7 @@ export const WelcomePageContent = props => {
               </a>
             </h3>
           </Trans>
-          <Trans i18nKey="welcome.description">
+          <Trans i18nKey="home.description">
             <p>
               text
               <a
@@ -101,7 +101,7 @@ export const WelcomePageContent = props => {
               text
             </p>
           </Trans>
-          <Trans i18nKey="welcome.libraryList">
+          <Trans i18nKey="home.libraryList">
             <ul>
               <li>
                 <a
@@ -133,7 +133,7 @@ export const WelcomePageContent = props => {
             </ul>
           </Trans>
 
-          <Trans i18nKey="welcome.evolvingMessage">
+          <Trans i18nKey="home.evolvingMessage">
             <p>
               The SDK is continually evolving. Take a look at the
               <a
@@ -147,10 +147,10 @@ export const WelcomePageContent = props => {
               planned.
             </p>
           </Trans>
-          <p>{t('welcome.version050')}</p>
-          <h3>{t('welcome.fairUsageTitle')}</h3>
-          <p>{t('welcome.fairUsageText')}</p>
-          <Trans i18nKey="welcome.fairUsageExamples">
+          <p>{t('home.version050')}</p>
+          <h3>{t('home.fairUsageTitle')}</h3>
+          <p>{t('home.fairUsageText')}</p>
+          <Trans i18nKey="Hom.fairUsageExamples">
             <ul>
               <li>
                 If your application is Solid compatible, you can use the Solid logo to indicate
@@ -168,17 +168,17 @@ export const WelcomePageContent = props => {
               </li>
             </ul>
           </Trans>
-          <p>{t('welcome.fairUsageSummary')}</p>
-          <h3>{t('welcome.contactUsTitle')}</h3>
-          <Trans i18nKey="welcome.contactUsText">
+          <p>{t('home.fairUsageSummary')}</p>
+          <h3>{t('home.contactUsTitle')}</h3>
+          <Trans i18nKey="home.contactUsText">
             <p>
               If you have additional questions about the use of the React SDK for Solid, the
               Application Generator, or inrupt’s brand, please contact
               <a href="mailto:support@inrupt.com">support@inrupt.com</a>.
             </p>
           </Trans>
-        </WelcomeDetail>
-      </WelcomeCard>
-    </WelcomeWrapper>
+        </HomeDetail>
+      </HomeCard>
+    </HomeWrapper>
   );
 };

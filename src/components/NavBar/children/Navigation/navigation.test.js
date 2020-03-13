@@ -10,10 +10,10 @@ afterAll(cleanup);
 describe.only('Navigation', () => {
   const navigation = [
     {
-      id: 'welcome',
+      id: 'home',
       icon: 'img/icon/apps.svg',
-      label: 'Welcome',
-      to: '/welcome'
+      label: 'home',
+      to: '/home'
     }
   ];
 
@@ -31,6 +31,6 @@ describe.only('Navigation', () => {
     const item = getByTestId('item');
 
     expect(item.children.length).toBe(1);
-    expect(item).toHaveTextContent('Welcome');
+    expect(item).toHaveTextContent('Home');
   });
 });
