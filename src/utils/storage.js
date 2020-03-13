@@ -64,7 +64,7 @@ export const createInitialFiles = async webId => {
     const settingsFilePath = `${gameUrl}settings.ttl`;
 
     // Check if the tictactoe folder exists, if not then create it. This is where game files, the game inbox, and settings files are created by default
-    const gameFolderExists = await resourceExists(gameUrl);
+   /*  const gameFolderExists = await resourceExists(gameUrl);
     if (!gameFolderExists) {
       await createDoc(data, {
         method: 'PUT',
@@ -72,7 +72,7 @@ export const createInitialFiles = async webId => {
           'Content-Type': 'text/turtle'
         }
       });
-    }
+    } */
 
     // Check if data file exists, if not then create it. This file holds links to other people's games
     const dataFileExists = await resourceExists(dataFilePath);

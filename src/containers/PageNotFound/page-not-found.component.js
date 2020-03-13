@@ -6,7 +6,7 @@ import { PageNotFoundWrapper, PageNotFoundContent } from './page-not-found.style
 
 /**
  * A React component page that is displayed when there's no valid route. Users can click the button
- * to get back to the home/welcome page.
+ * to get back to the home/home page.
  */
 const PageNotFound = () => {
   const { t } = useTranslation();

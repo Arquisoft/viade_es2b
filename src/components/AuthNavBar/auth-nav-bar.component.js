@@ -42,12 +42,12 @@ const AuthNavBar = React.memo((props: Props) => {
       /**
        * create an inbox object to send over notification component
        */
-      if (appInbox) {
+/*       if (appInbox) {
         inboxes = [
           ...inboxes,
           { path: appInbox, inboxName: t('navBar.notifications.tictactoe'), shape: 'default' }
         ];
-      }
+      } */
       /**
        * If user doesn't has inbox in his pod will show an error and link to
        * know how fix it.
