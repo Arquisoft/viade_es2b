@@ -16,7 +16,7 @@ More information about how this project has been setup is available [in the wiki
  
 1. Ángela López López [UO270318](https://github.com/Ainiall)
 2. Carla Santos Carrio [UO259047](https://github.com/carlafw)
-3. Daniel Fernández Aller[UO257977](https://github.com/daniferna)
+3. Daniel Fernández Aller [UO257977](https://github.com/daniferna)
 4. Diego Fernández Suárez [UO263662](https://github.com/UO263662)
 5. Iván Fernández López [UO265349](https://github.com/uo265349)
 5. Noé Fernández Moro [UO251683](https://github.com/uo265349)

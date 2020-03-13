@@ -18,7 +18,7 @@ export default class Provider {
         image: '/img/inrupt.svg',
         value: 'https://inrupt.net/auth',
         registerLink: 'https://inrupt.net/register',
-        description: 'Lorem ipsum dolor sit amet non ipsom dolor'
+        description: 'Inrupt POD provider'
       },
       {
         id: 'solid-community',
@@ -26,7 +26,7 @@ export default class Provider {
         image: '/img/Solid.png',
         value: 'https://solid.community',
         registerLink: 'https://solid.community/register',
-        description: 'Lorem ipsum dolor sit non consectetur'
+        description: 'SOLID community POD provider'
       }
     ];
   }
