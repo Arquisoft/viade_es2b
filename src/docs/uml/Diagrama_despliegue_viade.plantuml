@@ -1,0 +1,13 @@
+@startuml Deployment_viade_es2b
+left to right direction
+
+actor User
+agent GUI
+node Viade
+database POD
+
+User --> GUI : View my routes
+GUI --> Viade : Load all data (images, map, etc)
+Viade --> POD : Ask for user routes
+
+@enduml
