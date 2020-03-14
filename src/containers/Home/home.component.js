@@ -16,7 +16,7 @@ import {
  * @param props
  */
 export const HomePageContent = props => {
-  const { t } = useTranslation(); /* se puede pasar un mensaje prefefinido a Trans o usar t */
+ // const { t } = useTranslation(); /* se puede pasar un mensaje prefefinido a Trans o usar t */
   return (
     <HomeWrapper data-testid="home-wrapper">
       <HomeSidenav className="home-sidebar">
