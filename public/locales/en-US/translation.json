@@ -21,7 +21,7 @@
     "notSharable": "(log in and load a doc on your own pod to give others access)"
   },
   "login": {
-    "title": "Hi! Welcome to Solid.",
+    "title": "A decentralized route application",
     "loginTitle": "Log in",
     "register": "Register for a solid identity",
     "solidHelp": "What is a Solid Identity?",
@@ -47,6 +47,8 @@
   },
   "navBar": {
     "home": "Home",
+    "about": "About us",
+    "documentation": "Documentation",
     "formModel": "Form Model",
     "logOut": "Log out",
     "profile": "Profile",
