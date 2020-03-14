@@ -3,6 +3,8 @@ import Register, { RegistrationSuccess } from './Register';
 import PageNotFound from './PageNotFound';
 import Home from './Home';
 import Profile from './Profile';
+import TextEditor from './TextEditor';
+import { FormModelConverter, FormModelRenderer } from './FormModel';
 
 export {
   Login,
@@ -11,4 +13,7 @@ export {
   PageNotFound,
   Home,
   Profile,
+  FormModelConverter,
+  FormModelRenderer,
+  TextEditor
 };

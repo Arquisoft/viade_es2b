@@ -31,6 +31,6 @@ describe.only('Navigation', () => {
     const item = getByTestId('item');
 
     expect(item.children.length).toBe(1);
-    expect(item).toHaveTextContent('home');
+    expect(item).toHaveTextContent('Home');
   });
 });

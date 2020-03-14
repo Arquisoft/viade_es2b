@@ -12,14 +12,10 @@ const Container = styled.div`
 `;
 
 const FooterContainer = styled.div`
-  position: relative;
+  position: absolute;
   bottom: 0;
   width: 100%;
-
-  a {
-    color: #074166; 
-  } 
-  `;
+`;
 
 const PublicLayout = props => {
   const webId = useWebId();
@@ -30,7 +26,6 @@ const PublicLayout = props => {
     height: 100%;
     padding-top: 60px;
   `;
-  
   return (
     <Route
       {...rest}

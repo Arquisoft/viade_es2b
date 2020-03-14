@@ -1,14 +1,17 @@
 import styled from 'styled-components';
-import { GradientBackground, Panel } from '@util-components';
+import { Panel } from '@util-components';
 
-export const RegisterWrapper =  styled(GradientBackground)`
-  padding-top: 4%;
-  padding-bottom: 4%;
+export const RegisterWrapper = styled.section`
+  h1 {
+    color: #ffffff;
+  }
+
+  //Todo: figure out why this is necessary
+  margin-top: 100px;
 `;
 
 export const RegisterPanel = styled(Panel)`
   justify-content: space-between;
-  margin-top: 30px;
 `;
 
 export const PanelHeader = styled.div`
@@ -17,7 +20,7 @@ export const PanelHeader = styled.div`
   h2 {
     position: relative;
     padding: 0;
-    color: #074166;
+    color: #5361fd;
     font-family: Raleway;
     font-size: 20px;
     font-weight: bold;
@@ -32,7 +35,7 @@ export const PanelHeader = styled.div`
     position: absolute;
     height: 1px;
     width: 100%;
-    background: #074166;
+    background: #5361fd;
     top: 30px;
   }
 `;
@@ -43,7 +46,7 @@ export const PanelBody = styled.div`
 
   a {
     display: block;
-    color: #074166;
+    color: #449df5;
     font-family: Raleway;
     font-size: 12px;
     font-weight: 500;
@@ -85,18 +88,18 @@ export const Actions = styled.div`
     line-height: 11px;
     text-align: center;
     text-transform: uppercase;
-    border: solid 2px #074166;
+    border: solid 2px #449df5;
     box-sizing: border-box;
   }
 
   .btn-solid {
-    background-color: #074166;
+    background-color: #449df5;
     color: #ffffff;
   }
 
   .btn-outlined {
     background-color: #ffffff;
-    color: #074166;
+    color: #449df5;
     filter: opacity(40%);
   }
 `;

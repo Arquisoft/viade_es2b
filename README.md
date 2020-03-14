@@ -20,6 +20,3 @@ More information about how this project has been setup is available [in the wiki
 4. Diego Fernández Suárez [UO263662](https://github.com/UO263662)
 5. Iván Fernández López [UO265349](https://github.com/uo265349)
 5. Noé Fernández Moro [UO251683](https://github.com/uo265349)
-
-
-Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>

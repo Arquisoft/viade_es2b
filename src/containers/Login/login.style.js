@@ -4,34 +4,16 @@ import { GradientBackground, Panel } from '@util-components';
 export const LoginWrapper = styled(GradientBackground)`
   h1 {
     color: #ffffff;
-    font-size:250%;
   }
-
+  margin-top: 60px;
 `;
 
-export const LoginPanel = styled(Panel)`
-  width: 45%;
-  float: left;
-  margin-left:10%;
-  margin-bottom:10%;
-  
-`;
+export const LoginPanel = styled(Panel)``;
 
 export const PanelBody = styled.div`
   display: grid;
   flex-direction: column;
 
-  //TODO tiene que haber una manera mejor de cambiarlo
-
-  .ids-button-filled--primary, .ids-link-filled--primary {
-    background:#074166;
-    color: #fff;
-  }
-  .ids-button-filled--primary:hover, .ids-link-filled--primary:hover {
-    background:#fff;
-    border: 2px solid #074166;
-    color:#074166;
-  }
   .provider-login-component {
     div[role='option'] {
       text-align: left !important;
@@ -41,7 +23,7 @@ export const PanelBody = styled.div`
 `;
 
 export const LoginTitle = styled.span`
-  color:#074166;
+  color: #656e75;
   font-family: Raleway;
   font-size: 16px;
   font-weight: 500;
@@ -60,7 +42,7 @@ export const LoginTitle = styled.span`
   &::after {
     width: 32%;
     content: '';
-    background: #074166;
+    background: #656e75;
     height: 1px;
     box-sizing: border-box;
     top: 50%;

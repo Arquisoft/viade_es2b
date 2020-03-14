@@ -22,16 +22,6 @@ const Content = styled.div`
   overflow-x: hidden;
 `;
 
-const FooterContainer = styled.div`
-  position: relative;
-  bottom: 0;
-  width: 100%;
-
-  a {
-    color: #074166; 
-  } 
-  `;
-
 const PrivateLayout = ({ routes, webId, location, history, ...rest }) => {
   const { t } = useTranslation();
   const errorMessages = {
@@ -40,7 +30,6 @@ const PrivateLayout = ({ routes, webId, location, history, ...rest }) => {
     label: t('appPermission.link.label'),
     href: t('appPermission.link.href')
   };
-
   useEffect(() => {
     if (webId) {
       permissionHelper.checkPermissions(webId, errorMessages);
@@ -73,9 +62,7 @@ const PrivateLayout = ({ routes, webId, location, history, ...rest }) => {
             </Content>
           )}
         />
-        <FooterContainer>
-          <Footer />
-        </FooterContainer>
+        <Footer />
       </Container>
     </React.Fragment>
   );

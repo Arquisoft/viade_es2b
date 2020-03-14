@@ -28,6 +28,9 @@ describe.only('Home', () => {
 
   test('renders with styled components', () => {
     expect(getByTestId('home-wrapper')).toBeTruthy();
+    expect(getByTestId('home-logo')).toBeTruthy();
+    expect(getByTestId('home-profile')).toBeTruthy();
+    expect(getByTestId('home-detail')).toBeTruthy();
     expect(document.querySelector('.card')).toBeTruthy();
   });
 });

@@ -1,61 +1,33 @@
 import styled from 'styled-components';
+import { media } from '../../utils';
 
 export const HomeWrapper = styled.section`
   width: 100%;
   background-image: url('/img/concentric-hex-pattern_2x.png');
   background-repeat: repeat;
-  display: flex;
+  padding: 50px 0;
 
   h3 {
-    color: #000;
+    color: #666666;
     span {
       font-weight: bold;
     }
     a {
       font-size: 1.9rem;
     }
-    a :hover,
-    a.active{
-      font-size: 1.9rem;
-      background:rgba(7, 65, 102, 0.3); 
-    }
   }
-`;
-
-export const HomeSidenav = styled.div`
-  background-color: #fff;
-  max-width:20% !important;
-  padding: 2%;
-  
-  a {
-    padding: 6px 8px 6px 16px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-  }
-  p,
-  li {
-    color: #000;
-  }
-  ul {
-    list-style: disc;
-    margin: 0 18px;
-  }
-`;
-
-export const HomeBody = styled.div`
-  display: inline-block;
-  box-sizing: border-box;
-  width:100%;
 `;
 
 export const HomeCard = styled.div`
-  justify-content: center;
-  align-items: center;
   background-color: #fff;
-  max-width: 95%;
-  margin: 2% auto;
+  margin: 30px auto;
+
+  //Overriding the style guide card flexbox settings
+  max-width: 80% !important;
+  flex-direction: row !important;
+  padding: 50px 0 !important; //temporary fix to a style guide bug
+
+  align-items: center;
 
   a {
     text-decoration: none;
@@ -63,19 +35,87 @@ export const HomeCard = styled.div`
       text-decoration: underline;
     }
   }
+
+  button {
+    margin-left: 8px;
+  }
 `;
 
-export const RouteMap = styled.div`
-  height: 300px;
-  margin: 2%;
-  background-color: #ddd;
-  line-height: 300px;
+export const HomeLogo = styled.div`
+  width: 50%;
+  height: 100%;
+
+  img {
+    width: 60%;
+    display: block;
+    margin: 0 auto;
+  }
+`;
+
+export const HomeProfile = styled.div`
+  height: 100%;
   text-align: center;
-  width:95%;
+  position: relative;
+
+  img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+  }
+
+  h1,
+  img {
+    margin: 0 10px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  ${media.tablet`
+    width: 50%;
+    &:after {
+      display: block;
+      content: "";
+      position: absolute;
+      height: 100%;
+      width: 1px;
+      background-color:#D0D0D0;
+      top:0;
+    }
+  `}
 `;
 
-export const RouteInfo = styled.div`
-  margin: 2%;
-  width:95%;
+export const ImageWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    margin-left: 0px;
+  }
 `;
 
+export const ImageContainer = styled.div`
+  background-image: ${({ image }) => (image ? `url(${image})` : '#cccccc')};
+  background-size: cover;
+  border-radius: 50%;
+  width: 128px;
+  height: 128px;
+`;
+
+export const HomeDetail = styled.div`
+  padding: 1rem 3.5rem;
+
+  p,
+  li {
+    color: #666666;
+  }
+  ul {
+    list-style: disc;
+    margin: 0 18px;
+  }
+`;
+
+export const HomeName = styled.span`
+  overflow-wrap: break-word;
+  word-break: break-word;
+`;
