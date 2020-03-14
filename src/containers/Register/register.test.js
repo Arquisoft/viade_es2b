@@ -17,7 +17,6 @@ describe.only('Register', () => {
   });
 
   test('renders with styled components', () => {
-    expect(getByTestId('register-wrapper')).toBeTruthy();
     expect(getByTestId('panel-header')).toBeTruthy();
     expect(document.querySelector('.register-panel')).toBeTruthy();
     expect(document.querySelector('.panel-body')).toBeTruthy();
