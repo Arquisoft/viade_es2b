@@ -132,15 +132,17 @@ form-group .select-role {
 
 .nav.nav > ul {
   padding: 20px;
+  height: 60px;
 }
 
-.nav.nav> ul > li > a, .nav.nav > ul > li > button {
+.nav.nav__toolbar > ul > li > a, .nav.nav__toolbar  > ul > li > button {
   color: #074166; 
-  display: table-cell; /* Add this */
-  vertical-align: middle; /* Add this */
 }
 
-.nav.nav> ul > li > a:hover, .nav.nav> ul > li > button:hover {
+.nav.nav > ul > li > a:hover, 
+.nav.nav > ul > li > a.active, 
+.nav.nav > ul > li > button:hover,
+.nav.nav > ul > li > button.active {
   color: #074166; 
   background: rgba(7, 65, 102, 0.3);
 }
@@ -152,3 +154,15 @@ form-group .select-role {
   transition: all 0.5s ease-in-out;
   border-left: 1px solid rgba(8, 53, 117, 0.1); 
 }
+
+/*boton notificaciones*/
+  .fUwLnT:active,.fUwLnT:focus,.fUwLnT:hover,.fUwLnT.active{ 
+    background:rgba(7, 65, 102, 0.3); 
+    outline:none;
+  }
+/* menu dropdown sobre el icono perfil*/
+  .jOLVKi button:hover{
+    background:rgba(7, 65, 102, 0.3); 
+    transition:all 0.5s ease-in-out;
+    color:#083575;
+  } 
