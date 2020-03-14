@@ -21,8 +21,7 @@ const privateRoutes = [
     id: 'profile',
     path: '/profile',
     component: Profile
-  },
-
+  }
 ];
 
 const Routes = () => {
