@@ -23,7 +23,5 @@ describe.only('Register', () => {
     expect(document.querySelector('.actions')).toBeTruthy();
   });
 
-  test('renders title properly', () => {
-    expect(getByTestId('title')).toBeTruthy();
-  });
+
 });
