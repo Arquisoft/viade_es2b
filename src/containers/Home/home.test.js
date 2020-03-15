@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { HomeComponent } from './home.container';
+import { Trans} from 'react-i18next';
 
 library.add(fas);
 
