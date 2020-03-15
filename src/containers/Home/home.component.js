@@ -9,7 +9,6 @@ import {
   RouteMap,
   RouteInfo
 } from './home.style';
-import {Slider} from './components/index'
 
 /**
  * Hom Page UI component, containing the styled components for the Hom Page
