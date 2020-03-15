@@ -1,6 +1,6 @@
 import React from 'react';
 //import { Uploader } from '@inrupt/solid-react-components';
-import { Trans, useTranslation } from 'react-i18next';
+import { Trans } from 'react-i18next';
 import {
   HomeWrapper,
   HomeCard,
