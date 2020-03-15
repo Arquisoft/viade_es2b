@@ -1,42 +1,54 @@
 [[section-runtime-view]]
 == Runtime View
 
-===  First Scenario: Login
 
-When the user access to the webpage, there are to cases:
+[role="arc42help"]
+****
+.Contents
+The runtime view describes concrete behavior and interactions of the system’s building blocks in form of scenarios from the following areas:
 
-    * User is logged in: 
-    
-In this case, the user can click the login button and start using the app.
+* important use cases or features: how do building blocks execute them?
+* interactions at critical external interfaces: how do building blocks cooperate with users and neighboring systems?
+* operation and administration: launch, start-up, stop
+* error and exception scenarios
 
-    * User is not logged in:
-    
-In this case, user will also click  the login button. A popup window will appeared asking for credentials.The user can either enter his Solid credentials or create an account.
+Remark: The main criterion for the choice of possible scenarios (sequences, workflows) is their *architectural relevance*. It is *not* important to describe a large number of scenarios. You should rather document a representative selection.
 
-Once the user is logged in, the app will allow him to visualize routes, share rutes, images, videos or files with one or multiple friends.The app loads all the data necessary including the user’s friends, routes and notifications.
+.Motivation
+You should understand how (instances of) building blocks of your system perform their job and communicate at runtime.
+You will mainly capture scenarios in your documentation to communicate your architecture to stakeholders that are less willing or able to read and understand the static models (building block view, deployment view).
 
-=== Second Scenario: Visualize routes
+.Form
+There are many notations for describing scenarios, e.g.
 
-Once the user is logged in, the app will allow the user to visualize routes.
+* numbered list of steps (in natural language)
+* activity diagrams or flow charts
+* sequence diagrams
+* BPMN or EPCs (event process chains)
+* state machines
+* ...
 
-*To do*
+****
 
-=== Third Scenario: Add routes
-
-
-Once the user is logged in, the app will allow the user to load routes in kml format. 
-
-*To do*
-
-=== Fourth Scenario: Create group
-
-The user can create a group of friends to share routes or multimedia.
-
-User will click a create group button. A list of his friends will be displayed to add them and a textbox to enter the group name.
+=== <Runtime Scenario 1>
 
 
-=== Fifth Scenario: Sharing 
+* _<insert runtime diagram or textual description of the scenario>_
+* _<insert description of the notable aspects of the interactions between the
+building block instances depicted in this diagram.>_
 
-The user can share routes or media with his friends.
+It is possible to use a sequence diagram:
 
-*To do*
+[plantuml,"Sequence diagram",png]
+----
+Alice -> Bob: Authentication Request
+Bob --> Alice: Authentication Response
+
+Alice -> Bob: Another authentication Request
+Alice <-- Bob: another authentication Response
+----
+=== <Runtime Scenario 2>
+
+=== ...
+
+=== <Runtime Scenario n>

@@ -1,16 +1,21 @@
 {
-<<<<<<< HEAD
-  "short_name": "Viade 2b",
-  "name": "Viade 2b: Decentralized routes",
-=======
-  "short_name": "Viade2b App",
-  "name": "Viade 2b: Rutas descentralizadas",
->>>>>>> af37ac2a44e313f55f26f61480b07909a6f9baec
+  "short_name": "React App",
+  "name": "Create React App Sample",
   "icons": [
     {
-      "src": "favicon.png",
+      "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
+    },
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ],
   "start_url": ".",
