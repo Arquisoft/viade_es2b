@@ -1,6 +1,12 @@
 [[section-runtime-view]]
 == Runtime View
 
+Next image will show screen prototypes of our application, starting with Login screen, main screen and some information about how they will work: buttons, components, ...
+
+We will base our explanation in this prototypes.
+
+image:PrototiposAppViade.jpg["Screen prototype of entire application"]
+
 ===  First Scenario: Login
 
 When the user access to the webpage, there are to cases:
@@ -24,7 +30,7 @@ Once the user is logged in, the app will allow the user to visualize routes.
 === Third Scenario: Add routes
 
 
-Once the user is logged in, the app will allow the user to load routes in kml format. 
+Once the user is logged in, the app will allow the user to load routes in .gpx format. 
 
 *To do*
 
