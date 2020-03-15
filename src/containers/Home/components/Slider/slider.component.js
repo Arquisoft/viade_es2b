@@ -7,10 +7,11 @@ import {
 
 export const Slider = props => {
     var actualIndex = 0;
+    var actualLength = props.elements.length;
 
     const goToPrevSlide = () => {
         let index = actualIndex;
-        let length = 5;
+        let length = actualLength;
         if(index < 1) {
             index = length - 1;
         }
@@ -22,7 +23,7 @@ export const Slider = props => {
     
     const goToNextSlide = () => {
         let index = actualIndex;
-        let length = 5;
+        let length = actualLength;
         if(index === length - 1) {
             index = 0
         }
@@ -37,7 +38,8 @@ export const Slider = props => {
         <Left goToPrevSlide={() => goToPrevSlide()}></Left>
         <div className='slider-text'>
           <Slide
-            activeIndex={actualIndex}
+            activeIndex = {actualIndex}
+            title = {props.elements[1].title}
           />
         </div>
         <Right goToNextSlide={() => goToNextSlide()}></Right>

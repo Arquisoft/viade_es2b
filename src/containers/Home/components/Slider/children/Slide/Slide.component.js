@@ -1,13 +1,11 @@
 import React from 'react'
 
-export const Slide = (props, s, index) => {
+export const Slide = (props, index) => {
     return(
         <section>
             <div className={
-              index === props.activeIndex ? 'active' : 'slide'}
-              key={index}>
-                <h1>{s.title}</h1>
-                <p>{s.description}</p>
+            index === props.activeIndex ? 'active' : 'slide'}>
+                <h1>{props.title}</h1>
             </div>
           </section>
       )
