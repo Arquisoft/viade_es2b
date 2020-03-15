@@ -24,6 +24,10 @@ image::03_businessContext.jpg[Business context diagram]
 === Technical Context
 
 ****
+<<<<<<< HEAD
 image::03_technicalContext.jpg[Technical context diagram]
 
+=======
+image::03_technicalContext.png[Technical context diagram]
+>>>>>>> develop
 ****
