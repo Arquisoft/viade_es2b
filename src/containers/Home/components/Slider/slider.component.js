@@ -1,7 +1,8 @@
 import React from 'react'
 import {
     Left,
-    Right
+    Right,
+    Slide
 } from './children'
 
 export const Slider = props => {
@@ -34,6 +35,11 @@ export const Slider = props => {
     return (
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <Left goToPrevSlide={() => goToPrevSlide()}></Left>
+        <div className='slider-text'>
+          <Slide
+            activeIndex={actualIndex}
+          />
+        </div>
         <Right goToNextSlide={() => goToNextSlide()}></Right>
     </div>
     );
