@@ -17,17 +17,13 @@ The stakeholders will be every person who wants to save some routes in order to 
 
 ****
 
-image::03_businessContext.jpg[Business context diagram]
+image::03_businessContext.png[Business context diagram]
 
 ****
 
 === Technical Context
 
 ****
-<<<<<<< HEAD
-image::03_technicalContext.jpg[Technical context diagram]
-
-=======
 image::03_technicalContext.png[Technical context diagram]
->>>>>>> develop
+
 ****
