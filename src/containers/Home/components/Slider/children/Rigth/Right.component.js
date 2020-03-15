@@ -1,9 +1,9 @@
 import React from 'react'
 
-export const Right = () => {
+export const Right = props => {
     return (
         <div>
-            <button>&#62;</button>
+            <button onClick={props.goToNextSlide}>&#62;</button>
         </div>
     );
 };
