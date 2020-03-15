@@ -56,7 +56,6 @@ export const HomePageContent = props => {
                text
               </p>
             </Trans>  
-            <Slider elements={[{title: 'hola'}, {title: 'adios'}]}/>
           </RouteInfo>
         </HomeCard>
       </HomeBody>
