@@ -19,6 +19,7 @@ export const Slider = props => {
             index--;
         }
         actualIndex = index;
+        window.alert(actualIndex);
     }
     
     const goToNextSlide = () => {
@@ -31,6 +32,7 @@ export const Slider = props => {
             index++;
         }
         actualIndex = index;
+        window.alert(actualIndex);
     }
 
     return (
@@ -39,7 +41,7 @@ export const Slider = props => {
         <div className='slider-text'>
           <Slide
             activeIndex = {actualIndex}
-            title = {props.elements[1].title}
+            title = {props.elements[actualIndex].title}
           />
         </div>
         <Right goToNextSlide={() => goToNextSlide()}></Right>
