@@ -35,7 +35,7 @@ const NotLoggedInLayout = props => {
               {...matchProps}
               toolbar={[             {
                 component: () => 
-                <Link to="/viade_es2b/docs/">
+                <Link to="/docs/">
                     {t('navBar.documentation')}
                 </Link>
                 },
