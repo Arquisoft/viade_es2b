@@ -1,6 +1,6 @@
 import React from 'react';
-// import { Uploader } from '@inrupt/solid-react-components';
-import { Trans} from 'react-i18next';
+//import { Uploader } from '@inrupt/solid-react-components';
+import { Trans } from 'react-i18next';
 import {
   HomeWrapper,
   HomeCard,
@@ -9,6 +9,8 @@ import {
   RouteMap,
   RouteInfo
 } from './home.style';
+import manejador from	
+	'../../persistanceManagement';
 
 /**
  * Hom Page UI component, containing the styled components for the Hom Page
@@ -17,18 +19,15 @@ import {
  */
 export const HomePageContent = props => {
  // const { t } = useTranslation(); /* se puede pasar un mensaje prefefinido a Trans o usar t */
+  const arrayRutas = manejador.seeRoutes();
   return (
     <HomeWrapper data-testid="home-wrapper">
       <HomeSidenav className="home-sidebar">
-        <p> Menu donde se deberia mostrar la coleccion de rutas</p>
-        <p>No me queda muy claro si se cargan todas las rutas en la misma pantalla y 
-          el link redirecciona a esa seccion (/home/#ruta1) o si cada una tiene su propia 
-          pagina (/home/ruta1)
-        </p>
-          <a href="#route1">Route1</a>
-          <a href="#route2">Route2</a>
-          <a href="#route3">Route3</a>
-          <a href="#route4">Route4</a>
+        <p> Menu donde se muestra la coleccion de rutas</p>
+        {Array.from(arrayRutas).map((ruta)=>
+		<a 
+			href="#routes" key={ruta.name}>{ruta.name}
+		</a>)}
       </HomeSidenav>
       <HomeBody className="home-body">
         <HomeCard className="card">

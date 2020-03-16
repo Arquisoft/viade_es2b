@@ -8,7 +8,7 @@ const auth = require('solid-auth-client');
 const FC   = require('solid-file-client')
 var fc;
 
-module.exports = {
+export default {
 
     /**
      * Method to do login
