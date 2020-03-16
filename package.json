@@ -62,6 +62,8 @@
     "test": "node scripts/test.js --coverage --watchAll=false",
     "docs": "shx rm -rf build/docs && asciidoctor -D build/docs -a imagesdir=./images -r asciidoctor-diagram src/docs/index.adoc && shx cp -R src/docs/images build/docs",
     "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "flow": "flow"
   },
   "eslintConfig": {
@@ -103,6 +105,7 @@
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-react": "7.11.1",
     "file-loader": "2.0.0",
+    "gh-pages": "^2.2.0",
     "html-webpack-include-assets-plugin": "^1.0.6",
     "html-webpack-plugin": "4.0.0-alpha.2",
     "jest": "^24.1.0",
