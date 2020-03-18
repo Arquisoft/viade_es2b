@@ -1,4 +1,4 @@
-class Route {
+export default class Route {
     constructor(id, name, description, kml, images) {
       this.id = id;
       this.name = name;
@@ -7,5 +7,3 @@ class Route {
       this.images = images;
     }
   };
-
-  module.exports = Route;
