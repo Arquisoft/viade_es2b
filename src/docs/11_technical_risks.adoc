@@ -1,17 +1,31 @@
 [[section-technical-risks]]
 == Risks and Technical Debts
 
-
-[role="arc42help"]
 ****
-.Contents
-A list of identified technical risks or technical debts, ordered by priority
-
-.Motivation
-“Risk management is project management for grown-ups” (Tim Lister, Atlantic Systems Guild.) 
-
-This should be your motto for systematic detection and evaluation of risks and technical debts in the architecture, which will be needed by management stakeholders (e.g. project managers, product owners) as part of the overall risk analysis and measurement planning.
-
-.Form
-List of risks and/or technical debts, probably including suggested measures to minimize, mitigate or avoid risks or reduce technical debts.
+List of risks and thechnical debts we might face throughout the developing of the project.
 ****
+
+=== Risks faced
+
+* *Solid* is a totally *new* concept to us, so it might take us _some time_ to get used to it. 
+
+* *JavaScript* is _not our main_ programming field. Eventhough we used it in the past, it's still hard to us to adapt to it as we only know the basics.
+
+* *React* is the JS UI (User Interface) library chosen to develop this app. It's the _first time_ we are using this library and it can lead to having some mistakes.
+
+* *Security* and *condifentiality* are a main concern at a decentralized app. Data should be encrypted in order to ensure these criteria and we are not experts at security just yet.
+
+* *Libraries* might be used during the development of the app. As we do not own the code we might experience some trouble with the understanding of their use.
+
+* *Documentation* should be written in Engish to ease it's internationallity. As it's not our main language we take the risk to explain something wrongly or not as nicely as we intend.
+
+'''
+_WIP_: What about testing tools? TDD?BDD?
+
+'''''
+
+=== Measures to minimize risks
+ * Deep research on Solid before starting developing the app.
+ * Research about available libraries that might help the developing process.
+ * Verify the English text is properly written and it's a good representation of what we intend to tell.
+
