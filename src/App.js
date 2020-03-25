@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import logo from './logo.svg';
 import './App.css';
+
+const RouteForm = React.lazy(() => import('./FormRoute'));
 
 const gestorPODS = require('./persistanceManagement');
 
@@ -28,6 +30,11 @@ function App() {
         <button onClick= {() => gestorPODS.seeRoutes()}>See routes (Console)</button>
         <button onClick= {() => gestorPODS.test()}>TEST (Console)</button>
       </header>
+      <div>
+        <Suspense fallback={<div>Loading form...</div>}>
+          <RouteForm></RouteForm>
+        </Suspense>
+      </div>
     </div>
   );
 }

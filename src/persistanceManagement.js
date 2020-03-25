@@ -53,10 +53,22 @@ export default {
     },
 
     /**
+     * Method used to load a file from the local storage of the client.
+     */
+    askForAFile: function() {
+        // Check for the various File API support.
+        if (window.File && window.FileReader && window.FileList && window.Blob) {
+
+        } else {
+            alert('The File APIs are not fully supported in this browser.');
+        }
+    },
+
+    /**
      * Method to save the route passed by parameter in the current user pod.
      * @param {Route to be saved. it should follow the Route class format.} route 
      */
-    saveRoute: async function(route = new Route(-1, "Prueba", "Ruta de prueba", null, [])) { //Valor default para test
+    saveRoute: async function(route) {
         fc = new FC(auth);
 
         var jsonData = JSON.stringify(route);

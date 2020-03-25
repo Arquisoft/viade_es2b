@@ -1,9 +1,9 @@
 export default class Route {
-    constructor(id, name, description, kml, images) {
+    constructor(id, name, description, gpx, images) {
       this.id = id;
       this.name = name;
       this.description = description;
-      this.kml = kml;
+      this.gpx = gpx;
       this.images = images;
     }
   };
