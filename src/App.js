@@ -1,10 +1,9 @@
 import React, { Suspense } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import gestorPODS from './persistanceManagement';
 
 const RouteForm = React.lazy(() => import('./FormRoute'));
-
-const gestorPODS = require('./persistanceManagement');
 
 function App() {
   return (
