@@ -71,12 +71,18 @@ export default {
     saveRoute: async function(route) {
         fc = new FC(auth);
 
-        var jsonData = JSON.stringify(route);
+        var basicData = {id: route.id, name: route.name, description: route.description};
+        var basicDataJson = JSON.stringify(basicData);
+
+        let id_noSpaces = route.id.replace( /\s/g, '');
 
         let tempUrlUser = ((await auth.currentSession()).webId).toString();
-        var urlUser = tempUrlUser.slice(0, -16) + "/public/routes/";
+        var urlUser = tempUrlUser.slice(0, -16) + "/public/routes/" + id_noSpaces;
 
-        await fc.createFile(urlUser + "/" + route.id + ".json", jsonData, "application/json");
+        await fc.createFile(urlUser + "/" + id_noSpaces + ".json", basicDataJson, "application/json");
+        await fc.createFile(urlUser + "/" + id_noSpaces + ".gpx", route.gpx, "application/gpx+xml");
+
+        //TO-DO: Save images
     },
 
     /**
