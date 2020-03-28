@@ -71,6 +71,7 @@ export default class RouteForm extends React.Component {
               id="gpx-file"
               label="Load gpx file"
               name="gpx"
+              accept=".gpx"
               custom
               onChange={this.handleChangeFiles}
             >
@@ -84,6 +85,7 @@ export default class RouteForm extends React.Component {
               label="Load images"
               name="images"
               custom
+              accept="image/*"
               multiple
               onChange={this.handleChangeFiles}
             >

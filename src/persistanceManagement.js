@@ -77,23 +77,27 @@ export default {
         let id_noSpaces = route.id.replace( /\s/g, '_');
 
         let tempUrlUser = ((await auth.currentSession()).webId).toString();
-        var urlUser = tempUrlUser.slice(0, -16) + "/public/routes/" + id_noSpaces;
+        var urlUser = tempUrlUser.slice(0, -16) + "/private/routes/" + id_noSpaces;
 
         await fc.createFile(urlUser + "/" + id_noSpaces + ".json", basicDataJson, "application/json");
         await fc.createFile(urlUser + "/" + id_noSpaces + ".gpx", route.gpx, "application/gpx+xml");
 
-        //TO-DO: Save images
+        for (var i=0; i < route.images.length; i++) {
+            var image = route.images.item(i);
+            await fc.createFile(urlUser + "/" + id_noSpaces + "_" + i + "." + image.name.split(".").pop(), image, image.type);
+        }
+
     },
 
     /**
      * Method that returns the route saved in the user's pod, if exist. Null otherwise.
      * @param {ID of the route to be showed.} idRoute 
      */
-    seeRoute: async function(idRoute = -1) { //Valor default para test
+    seeRoute: async function(idRoute) {
         fc = new FC(auth);
 
         let tempUrlUser = ((await auth.currentSession()).webId).toString();
-        var urlUser = tempUrlUser.slice(0, -16) + "/public/routes/";
+        var urlUser = tempUrlUser.slice(0, -16) + "/private/routes/";
 
         var route = await fc.readFile(urlUser + idRoute + ".json");
 
@@ -110,7 +114,7 @@ export default {
         fc = new FC(auth);
 
         let tempUrlUser = ((await auth.currentSession()).webId).toString();
-        var urlUser = tempUrlUser.slice(0, -16) + "/public/routes/";
+        var urlUser = tempUrlUser.slice(0, -16) + "/private/routes/";
 
         let folder = await fc.readFolder(urlUser);
         var arrayRoutesFolders = [];
@@ -139,11 +143,9 @@ export default {
         fc = new FC(auth);
 
         let tempUrlUser = ((await auth.currentSession()).webId).toString();
-        var urlUser = tempUrlUser.slice(0, -16) + "/public/routes/";
+        var urlUser = tempUrlUser.slice(0, -16) + "/private/routes/";
 
-        await fc.deleteFolder(urlUser);
-
-        console.log("All routes deleted");
+        await fc.deleteFolder(urlUser).then((content) => console.log("Deleted all routes")).catch(err => console.log(err))
         
     },
 
