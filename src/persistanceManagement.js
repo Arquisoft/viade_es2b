@@ -84,7 +84,7 @@ export default {
 
         for (var i=0; i < route.images.length; i++) {
             var image = route.images.item(i);
-            await fc.createFile(urlUser + "/" + id_noSpaces + "_" + i + "." + image.name.split(".").pop(), image, image.type);
+            await fc.createFile(urlUser + "/" + id_noSpaces + "_" + i , image, image.type);
         }
 
     },
@@ -122,15 +122,24 @@ export default {
 
         for (var i=0; i < folder.folders.length; i++) {
             var route_folder = folder.folders[i];
-            arrayRoutesFolders.push(route_folder.name);
+            arrayRoutesFolders.push(route_folder);
         }
 
         for (i=0; i < arrayRoutesFolders.length; i++) {
-            let gpx = await fc.readFile(urlUser + "/" + arrayRoutesFolders[i] + "/" + arrayRoutesFolders[i] + ".gpx");
-            let basicDataJson = await fc.readFile(urlUser + "/" + arrayRoutesFolders[i] + "/" + arrayRoutesFolders[i] + ".json");
+            let gpx = await fc.readFile(urlUser + arrayRoutesFolders[i].name + "/" + arrayRoutesFolders[i].name + ".gpx");
+            let basicDataJson = await fc.readFile(urlUser + arrayRoutesFolders[i].name + "/" + arrayRoutesFolders[i].name + ".json");
             let basicData = JSON.parse(basicDataJson);
 
-            let route = new Route(basicData.id, basicData.name, basicData.description, gpx, null); //TO-DO add images
+            let filesInFolder = (await fc.readFolder(arrayRoutesFolders[i].url)).files
+            if (filesInFolder.length > 2) {
+                var images = [];
+                for (var j=0; j < filesInFolder.length - 2; j++) {
+                    let image = await fc.readFile(urlUser + arrayRoutesFolders[i].name + "/" + arrayRoutesFolders[i].name + "_" + j);
+                    images.push(image);
+                }
+            }
+
+            let route = new Route(basicData.id, basicData.name, basicData.description, gpx, images);
             routes.push(route);
         }
 
