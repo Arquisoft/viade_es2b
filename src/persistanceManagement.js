@@ -121,7 +121,7 @@ export default {
             arrayRoutesFolders.push(route_folder.name);
         }
 
-        for (var i=0; i < arrayRoutesFolders.length; i++) {
+        for (i=0; i < arrayRoutesFolders.length; i++) {
             let gpx = await fc.readFile(urlUser + "/" + arrayRoutesFolders[i] + "/" + arrayRoutesFolders[i] + ".gpx");
             let basicDataJson = await fc.readFile(urlUser + "/" + arrayRoutesFolders[i] + "/" + arrayRoutesFolders[i] + ".json");
             let basicData = JSON.parse(basicDataJson);
