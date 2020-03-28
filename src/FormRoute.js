@@ -5,6 +5,8 @@ import Button from 'react-bootstrap/Button'
 import bsCustomFileInput from 'bs-custom-file-input'
 import Route from './Route';
 
+import gestorPOD from './persistanceManagement';
+
 export default class RouteForm extends React.Component {
   constructor(props) {
     super(props);
@@ -37,11 +39,11 @@ export default class RouteForm extends React.Component {
     let description = this.state.form.description;
     let gpx = this.state.form.gpx;
     let images = this.state.form.images;
-    let id = name + "-" + Date.now().toLocaleString();
+    let id = name + "-" + Date.now().toString();
 
     var route = new Route(id, name, description, gpx, images);
 
-    //TO-DO Upload Route to POD
+    gestorPOD.saveRoute(route);
 
     event.preventDefault();
   }

@@ -1,5 +1,5 @@
 //Class Route
-const Route = require('./Route');
+import Route from './Route';
 
 //Library for authentication
 const auth = require('solid-auth-client');
@@ -74,7 +74,7 @@ export default {
         var basicData = {id: route.id, name: route.name, description: route.description};
         var basicDataJson = JSON.stringify(basicData);
 
-        let id_noSpaces = route.id.replace( /\s/g, '');
+        let id_noSpaces = route.id.replace( /\s/g, '_');
 
         let tempUrlUser = ((await auth.currentSession()).webId).toString();
         var urlUser = tempUrlUser.slice(0, -16) + "/public/routes/" + id_noSpaces;
@@ -113,17 +113,21 @@ export default {
         var urlUser = tempUrlUser.slice(0, -16) + "/public/routes/";
 
         let folder = await fc.readFolder(urlUser);
-        var arrayJSONs = [];
-
-        for (var i=0; i < folder.files.length; i++) {
-            var file = folder.files[i];
-            arrayJSONs.push(await fc.readFile(file.url));
-        }
-
+        var arrayRoutesFolders = [];
         var routes = [];
 
-        for (i=0; i < arrayJSONs.length; i++) {
-            routes.push(JSON.parse(arrayJSONs[i]))
+        for (var i=0; i < folder.folders.length; i++) {
+            var route_folder = folder.folders[i];
+            arrayRoutesFolders.push(route_folder.name);
+        }
+
+        for (var i=0; i < arrayRoutesFolders.length; i++) {
+            let gpx = await fc.readFile(urlUser + "/" + arrayRoutesFolders[i] + "/" + arrayRoutesFolders[i] + ".gpx");
+            let basicDataJson = await fc.readFile(urlUser + "/" + arrayRoutesFolders[i] + "/" + arrayRoutesFolders[i] + ".json");
+            let basicData = JSON.parse(basicDataJson);
+
+            let route = new Route(basicData.id, basicData.name, basicData.description, gpx, null); //TO-DO add images
+            routes.push(route);
         }
 
         console.log(routes);
