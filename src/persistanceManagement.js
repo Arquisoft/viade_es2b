@@ -134,6 +134,18 @@ export default {
 
         return routes;
     },
+    
+    deleteRoutes: async function() {
+        fc = new FC(auth);
+
+        let tempUrlUser = ((await auth.currentSession()).webId).toString();
+        var urlUser = tempUrlUser.slice(0, -16) + "/public/routes/";
+
+        await fc.deleteFolder(urlUser);
+
+        console.log("All routes deleted");
+        
+    },
 
     test: async function() {
         console.log(await auth.currentSession())

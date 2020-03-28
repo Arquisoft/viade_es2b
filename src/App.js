@@ -26,7 +26,7 @@ function App() {
         <button onClick={() => gestorPODS.logout()}>Log Out</button>
         <button onClick={() => gestorPODS.showPerson()}>Show person (Console)</button>
         <button onClick={() => gestorPODS.saveRoute()}>Save test route (Console)</button>
-        <button onClick={() => gestorPODS.seeRoute()}>See test route (Console)</button>
+        <button onClick={() => gestorPODS.deleteRoutes()}>Delete all user routes</button>
         <button onClick={() => gestorPODS.seeRoutes()}>See routes (Console)</button>
         <button onClick={() => gestorPODS.test()}>TEST (Console)</button>
       </header>
