@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Gradient = styled.div`
-  background-image: url('/img/login_background.gif');
+  background-image: url('img/login_background.gif');
   background-size:     cover;                      /* <------ */
   background-repeat:   no-repeat;
   background-position: center center;  
