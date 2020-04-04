@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-const gestorPODS = require('./persistanceManagement');
+import gestorPODS from './persistanceManagement';
+
+const RouteForm = React.lazy(() => import('./FormRoute'));
 
 function App() {
   return (
@@ -22,12 +24,17 @@ function App() {
         </a>
         <button onClick={() => gestorPODS.login()}>Login</button>
         <button onClick={() => gestorPODS.logout()}>Log Out</button>
-        <button onClick= {() => gestorPODS.showPerson()}>Show person (Console)</button>
-        <button onClick= {() => gestorPODS.saveRoute()}>Save test route (Console)</button>
-        <button onClick= {() => gestorPODS.seeRoute()}>See test route (Console)</button>
-        <button onClick= {() => gestorPODS.seeRoutes()}>See routes (Console)</button>
-        <button onClick= {() => gestorPODS.test()}>TEST (Console)</button>
+        <button onClick={() => gestorPODS.showPerson()}>Show person (Console)</button>
+        <button onClick={() => gestorPODS.saveRoute()}>Save test route (Console)</button>
+        <button onClick={() => gestorPODS.deleteRoutes()}>Delete all user routes</button>
+        <button onClick={() => gestorPODS.seeRoutes()}>See routes (Console)</button>
+        <button onClick={() => gestorPODS.test()}>TEST (Console)</button>
       </header>
+      <div>
+        <Suspense fallback={<div>Loading form...</div>}>
+          <RouteForm></RouteForm>
+        </Suspense>
+      </div>
     </div>
   );
 }
