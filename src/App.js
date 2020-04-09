@@ -3,6 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 
 import gestorPODS from './persistanceManagement';
+import parser from './parserGPX';
+import 'leaflet/dist/leaflet.css';
 
 const RouteForm = React.lazy(() => import('./FormRoute'));
 
@@ -29,11 +31,15 @@ function App() {
         <button onClick={() => gestorPODS.deleteRoutes()}>Delete all user routes</button>
         <button onClick={() => gestorPODS.seeRoutes()}>See routes (Console)</button>
         <button onClick={() => gestorPODS.test()}>TEST (Console)</button>
+        <button onClick={async () => parser.parse(Array.from(await gestorPODS.seeRoutes())[0].gpx)}>Ver ruta</button>
+        <button onClick={async () => parser.parse(Array.from(await gestorPODS.seeRoutes())[1].gpx)}>Ver ruta 2</button>
       </header>
       <div>
         <Suspense fallback={<div>Loading form...</div>}>
           <RouteForm></RouteForm>
         </Suspense>
+      </div>
+      <div id = "map">
       </div>
     </div>
   );
