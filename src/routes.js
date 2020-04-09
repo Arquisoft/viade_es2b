@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import { PrivateLayout, PublicLayout, NotLoggedInLayout } from '@layouts';
 import { HashRouter as Router, Switch, Redirect } from 'react-router-dom';
-import { BrowserRouter } from 'react-router-dom';
 
 import {
   Login,
