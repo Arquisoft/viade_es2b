@@ -35,9 +35,9 @@ const NotLoggedInLayout = props => {
               {...matchProps}
               toolbar={[             {
                 component: () => 
-                <Link to="/docs/">
+                <a href="https://arquisoft.github.io/viade_es2b/docs">
                     {t('navBar.documentation')}
-                </Link>
+                </a>
                 },
                 {
                   component: () => 

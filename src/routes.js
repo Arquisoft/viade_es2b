@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { PrivateLayout, PublicLayout, NotLoggedInLayout } from '@layouts';
 import { HashRouter as Router, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 import {
   Login,
@@ -25,7 +26,8 @@ const privateRoutes = [
 ];
 
 const Routes = () => {
-  return (<Router>
+  return (
+  <Router basename="/">
     <Fragment>
       <Switch>
         <NotLoggedInLayout component={Login} path="/login" exact />
@@ -37,7 +39,8 @@ const Routes = () => {
         <Redirect to="/404" />
       </Switch>
     </Fragment>
-  </Router>);
+  </Router>
+  );
 };
 
 export default Routes;
