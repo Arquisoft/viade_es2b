@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 //import { Uploader } from '@inrupt/solid-react-components';
 import { useTranslation } from 'react-i18next';
 import {
@@ -9,8 +9,7 @@ import {
   RouteMap,
   RouteInfo
 } from './home.style';
-import manejador from
-  '../../persistanceManagement';
+import RouteList from './components/RouteList'
 
 /**
  * Hom Page UI component, containing the styled components for the Hom Page
@@ -19,16 +18,14 @@ import manejador from
  */
 
 export const HomePageContent = props => {
-  const arrayRutas = manejador.seeRoutes();
   const { t } = useTranslation(); /* se puede pasar un mensaje prefefinido a Trans o usar t */
   return (
     <HomeWrapper data-testid="home-wrapper">
       <HomeSidenav className="home-sidebar">
         <p> Menu donde se muestra la coleccion de rutas</p>
-        {Array.from(arrayRutas).map((ruta) =>
-          <a
-            href="#routes" key={ruta.name}>{ruta.name}
-          </a>)}
+        <Suspense fallback={<div>{t('home.loading_routes')}</div>}>
+          <RouteList></RouteList>
+        </Suspense>
       </HomeSidenav>
       <HomeBody className="home-body">
         <HomeCard className="card">
