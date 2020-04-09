@@ -1,35 +1,45 @@
 import L from 'leaflet-gpx';
-import triangle from './img/triangle.png';
-import circle from './img/circle.png';
-import square from './img/square.png';
-import pin from './img/pin.png';
-import flag from './img/flag.png';
+/*
+import triangle from '../img/triangle.png';
+import circle from '../img/circle.png';
+import square from '../img/square.png';
+import pin from '../img/pin.png';
+import flag from '../img/flag.png';
+*/
 
 var mapInstance;
 
 export default {
 
+    initialize() {
+        var map = L.map('map');
+        L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+        map.dragging.disable();
+        map.dragging.enable();
+        mapInstance = map;
+    },
+
     parse: function (filePath) {
 
-        if (mapInstance != null)
+        if (mapInstance !== null)
           mapInstance.remove();
 
         var xmlDoc = new DOMParser().parseFromString(filePath,'text/xml');
         var contador = 0;
         var points = null;
-        if (xmlDoc.getElementsByTagName('rtept').length != 0) {
+        if (xmlDoc.getElementsByTagName('rtept').length !== 0) {
           points = xmlDoc.getElementsByTagName('rtept');
-          if (xmlDoc.getElementsByTagName('wpt').length != 0)
+          if (xmlDoc.getElementsByTagName('wpt').length !== 0)
             contador = contador - xmlDoc.getElementsByTagName('wpt').length;
         }
-        else if (xmlDoc.getElementsByTagName('trkpt').length != 0) {
+        else if (xmlDoc.getElementsByTagName('trkpt').length !== 0) {
           points = xmlDoc.getElementsByTagName('trkpt');
-          if (xmlDoc.getElementsByTagName('wpt').length != 0)
+          if (xmlDoc.getElementsByTagName('wpt').length !== 0)
             contador = contador - xmlDoc.getElementsByTagName('wpt').length;
         }
 
         var container = L.DomUtil.get('map');
-        if (container != null) {
+        if (container !== null) {
           container._leaflet_id = null;
         }
 
@@ -47,26 +57,26 @@ export default {
             marker_options: {
               wptIcons: {
                   'Triangle': new L.Icon({
-                    iconUrl: triangle
+                    iconUrl: '../img/triangle.png'
                   }),
                   'Circle': new L.Icon({
-                    iconUrl: circle
+                    iconUrl: '../img/circle.png'
                   }),
                   'Square': new L.Icon({
-                    iconUrl: square
+                    iconUrl: '../img/square.png'
                   }),
                   'Pin': new L.Icon({
-                    iconUrl: pin
+                    iconUrl: '../img/pin.png'
                   }),
                   'Flag': new L.Icon({
-                    iconUrl: flag
+                    iconUrl: '../img/flag.png'
                   })
               },
               pointMatchers: [
                 {
                   regex: /.\*?/,
                   icon: new L.Icon({
-                    iconUrl: pin
+                    iconUrl: '../img/pin.png'
                   })
                 }
               ],

@@ -1,6 +1,10 @@
 [[section-glossary]]
 == Glossary
 
+[cols=2*,options="header"]
 
+|===
+|Term
+|Definition
 
 *Work in progress*
