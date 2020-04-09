@@ -13,32 +13,56 @@ import 'normalize.css';
 import './index.css';
 import '@inrupt/solid-style-guide';
 import { Toaster } from './App.styled';
+import i18n from 'i18next';
+import XHR from 'i18next-xhr-backend';
+import LanguageDetector from 'i18next-browser-languagedetector';
+import { initReactI18next } from 'react-i18next';
+
 
 library.add(fas);
 library.add(faGithub);
 
-const App = () => (
-  <Suspense fallback={<Loader />}>
-    <ThemeProvider theme={theme}>
-      <Fragment>
-        <Routes />
-        <Toaster
-          {...{
-            autoClose: 3000,
-            position: toast.POSITION.TOP_CENTER,
-            newestOnTop: true,
-            closeOnClick: true,
-            pauseOnVisibilityChange: true,
-            draggable: true,
-            className: 'solid-toaster-container',
-            toastClassName: 'solid-toaster',
-            bodyClassName: 'solid-toaster-body',
-            transition: Slide
-          }}
-        />
-      </Fragment>
-    </ThemeProvider>
-  </Suspense>
-);
+function App() {
+
+  /*
+  This code fragment is used to initialize the translate system.
+  */
+ i18n
+ .use(XHR)
+ .use(LanguageDetector)
+ .use(initReactI18next) // bind react-i18next to the instance
+ .init({
+   fallbackLng: 'es',
+   debug: true,
+
+   interpolation: {
+     escapeValue: false, // not needed for react!!
+   },
+  });
+  
+  return (
+    <Suspense fallback={<Loader />}>
+      <ThemeProvider theme={theme}>
+        <Fragment>
+          <Routes />
+          <Toaster
+            {...{
+              autoClose: 3000,
+              position: toast.POSITION.TOP_CENTER,
+              newestOnTop: true,
+              closeOnClick: true,
+              pauseOnVisibilityChange: true,
+              draggable: true,
+              className: 'solid-toaster-container',
+              toastClassName: 'solid-toaster',
+              bodyClassName: 'solid-toaster-body',
+              transition: Slide
+            }}
+          />
+        </Fragment>
+      </ThemeProvider>
+    </Suspense>
+  )
+};
 
 export default App;

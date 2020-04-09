@@ -12,7 +12,7 @@ export const LoginWrapper = styled(GradientBackground)`
 export const LoginPanel = styled(Panel)`
   width: 45%;
   float: left;
-  margin-left:10%;
+  margin-left: 20%;
   margin-bottom:10%;
   
 `;

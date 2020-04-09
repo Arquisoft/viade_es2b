@@ -75,7 +75,7 @@
   "home": {
     "home": "Bienvenido",
     "information": "Información",
-    "ej_information": "<0> Esto es un ejemplo de información. Los links se ponen de <1> esta manera</1>.</0>"
+    "ej_information": "Esto es un ejemplo de información. Los links se ponen de esta manera."
   },
   "profile": {
     "successCallback": "Pod actualizado satisfactoriamente",
