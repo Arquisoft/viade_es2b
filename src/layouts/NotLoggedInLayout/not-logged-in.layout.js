@@ -3,17 +3,21 @@ import { Route, Redirect } from 'react-router-dom';
 import { withTranslation, useTranslation } from 'react-i18next';
 import { NavBar, Footer } from '@components';
 import { withWebId } from '@inrupt/solid-react-components';
-import { LanguageDropdown } from '@util-components';
+import { GradientBackground, LanguageDropdown } from '@util-components';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-const Container = styled.div`
+const Container = styled(GradientBackground)`
+
+height: 100%;
+height: -webkit-fill-available;
+
   position: relative;
   padding-top: 4%;
 `;
 
 const FooterContainer = styled.div`
-  position: relative;
+  position: absolute;
   bottom: 0;
   width: 100%;
 

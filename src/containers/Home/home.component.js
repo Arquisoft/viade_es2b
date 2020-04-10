@@ -24,7 +24,7 @@ export const HomePageContent = props => {
   return (
     <HomeWrapper data-testid="home-wrapper">
       <HomeSidenav className="home-sidebar">
-        <p> Menu donde se muestra la coleccion de rutas</p>
+        <h2>Rutas</h2>
         <Suspense fallback={<div>{t('home.loading_routes')}</div>}>
           <RouteList></RouteList>
         </Suspense>

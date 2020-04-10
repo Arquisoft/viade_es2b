@@ -59,7 +59,6 @@ const NavBar = (props: Props) => {
         <div className="logo-block">
           <Link to="/home">
             <img src="../img/viade.png" alt="Viade 2b" />
-            {console.log(window.location.pathname)}
           </Link>
         </div>
 

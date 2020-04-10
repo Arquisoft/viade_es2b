@@ -4,7 +4,7 @@ export const Gradient = styled.div`
   background-image: url('../img/login_background.gif');
   background-size:     cover;                      /* <------ */
   background-repeat:   no-repeat;
-  background-position: center center;  
+  background-position: bottom;  
 
   &::before {
     content: '';
