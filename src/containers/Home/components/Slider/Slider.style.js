@@ -20,9 +20,21 @@ export const SliderWrapper = styled.div`
     }
 `;
 
-export const ImageWrapper = styled.img`
-    width: 250px;
+export const ImageContainer = styled.div`
     height: 250px;
-    padding-left: 10px;
-    padding-right: 10px;
+    width: 260px;
+    position: relative;
+    border-left: solid;
+`;
+
+export const ImageWrapper = styled.img`
+    max-width: 100%;
+    max-heigth: 100%;
+    display: block;
+    position: absolute;  
+    top: 0;  
+    bottom: 0;  
+    left: 0;  
+    right: 0;  
+    margin: auto;
 `;

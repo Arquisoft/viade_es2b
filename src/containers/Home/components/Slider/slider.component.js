@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SliderWrapper, ImageWrapper } from './Slider.style';
+import { SliderWrapper, ImageWrapper, ImageContainer } from './Slider.style';
 
 const Slider = props => {
     const [count, setCount] = useState(0);
@@ -20,7 +20,9 @@ const Slider = props => {
         <SliderWrapper>
             <button id="left" onClick={clickLeft}>&lt;</button>
             {images.slice(count, count+5).map(image => 
-                    <ImageWrapper src={image.src} alt="imagen"/>
+                    <ImageContainer>
+                        <ImageWrapper src={image.src} alt="imagen"/>
+                    </ImageContainer>
                 )
             }
             <button id="right" onClick={clickRight}>&gt;</button>

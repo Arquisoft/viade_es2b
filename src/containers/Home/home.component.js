@@ -11,7 +11,6 @@ import {
 } from './home.style';
 import RouteList from './components/RouteList';
 import Slider from './components/Slider'
-import parser from '../../parserGPX';
 import 'leaflet/dist/leaflet.css';
 const Map = React.lazy(() => import('../../Map'));
 
