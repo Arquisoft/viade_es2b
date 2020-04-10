@@ -31,14 +31,16 @@ export const HomePageContent = props => {
       </HomeSidenav>
       <HomeBody className="home-body">
         <HomeCard className="card">
-          <RouteMap id = "map">
-            <Map></Map>
+          <RouteMap id="map">
+            <Suspense fallback={<div>{t('home.loading_routes')}</div>}>
+              <Map></Map>
+            </Suspense>
           </RouteMap>
           <RouteInfo>
             <h2> {t('home.information')} </h2>
             <p>
-              { t('home.ej_information') }
-              </p>
+              {t('home.ej_information')}
+            </p>
           </RouteInfo>
         </HomeCard>
       </HomeBody>
