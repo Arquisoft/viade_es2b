@@ -13,18 +13,19 @@ The stakeholders will be every person who wants to save some routes in order to 
 ****
 
 
-=== Business Context
+=== Business and Technical Context
 
 ****
 
-image::03_businessContext.png[Business context diagram]
+image::03_technicalAndBusinessContext.png[Business and technical context diagram]
 
-****
-
-=== Technical Context
-
-****
-
-image::03_technicalContext.png[Technical context diagram]
+[options="header",cols="1,2"]
+|===
+|Entity|Context
+| User | It represents every potential user of our app, which will interact with it to perform the different options offered by Viade
+| Viade | It's our app, the center of the system. All the information and processes related with the routes will pass through it
+| SOLID Pod | There is one for each user and it's where they will keep all their routes and other information like friends, etc..
+| Routes | GPX format files (which could be extended to KML or GeoJSON in a future) that users upload in order to see them later or share them with their friends
+|===
 
 ****
