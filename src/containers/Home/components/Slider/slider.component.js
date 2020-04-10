@@ -12,15 +12,14 @@ const Slider = props => {
     }
 
     const clickRight = () => {
-        if(count < nElements-1)
+        if(count < nElements-5)
             setCount(count + 1);
-        console.log(nElements);
     }
 
     return (
         <SliderWrapper>
             <button id="left" onClick={clickLeft}>&lt;</button>
-            {images.slice(count,count+5 < nElements-1 ? count+5 : nElements-1).map(image => 
+            {images.slice(count, count+5).map(image => 
                     <ImageWrapper src={image.src} alt="imagen"/>
                 )
             }

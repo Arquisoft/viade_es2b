@@ -26,10 +26,10 @@ export const HomePageContent = props => {
   const images = [
     {src: '/img/pin.png'},
     {src: '/img/triangle.png'},
-    {src: '/img/triangle.png'},
-    {src: '/img/triangle.png'},
-    {src: '/img/triangle.png'},
-    {src: '/img/triangle.png'},
+    {src: '/img/circle.png'},
+    {src: '/img/flag.png'},
+    {src: '/img/Solid.png'},
+    {src: '/img/pattern-geo.png'},
     {src: '/img/triangle.png'}
   ];
   return (
