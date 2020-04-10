@@ -13,6 +13,7 @@ export const SliderWrapper = styled.div`
         font-weight: bold;
         font-size: large;
         border-style: none;
+        border-radius: 0px;
     }
 
     #right{
@@ -24,7 +25,9 @@ export const ImageContainer = styled.div`
     height: 250px;
     width: 260px;
     position: relative;
-    border-left: solid;
+    border-style: none solid none solid;
+    border-color: gray;
+    border-width: 1px;
 `;
 
 export const ImageWrapper = styled.img`
