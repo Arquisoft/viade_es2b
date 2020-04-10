@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 //import { Uploader } from '@inrupt/solid-react-components';
 import { useTranslation } from 'react-i18next';
+import manejadorPODs from '../../persistanceManagement'
 import {
   HomeWrapper,
   HomeCard,
@@ -10,7 +11,6 @@ import {
   RouteInfo
 } from './home.style';
 import RouteList from './components/RouteList';
-import parser from '../../parserGPX';
 import 'leaflet/dist/leaflet.css';
 const Map = React.lazy(() => import('../../Map'));
 
@@ -25,21 +25,26 @@ export const HomePageContent = props => {
   return (
     <HomeWrapper data-testid="home-wrapper">
       <HomeSidenav className="home-sidebar">
-        <p> Menu donde se muestra la coleccion de rutas</p>
+        <h2>Rutas</h2>
         <Suspense fallback={<div>{t('home.loading_routes')}</div>}>
           <RouteList></RouteList>
         </Suspense>
+        <button onClick={() => manejadorPODs.deleteRoutes()}>
+          Eliminar rutas
+        </button>
       </HomeSidenav>
       <HomeBody className="home-body">
         <HomeCard className="card">
-          <RouteMap id = "map">
-            <Map></Map>
+          <RouteMap id="map">
+            <Suspense fallback={<div>{t('home.loading_routes')}</div>}>
+              <Map></Map>
+            </Suspense>
           </RouteMap>
           <RouteInfo>
             <h2> {t('home.information')} </h2>
             <p>
-              { t('home.ej_information') }
-              </p>
+              {t('home.ej_information')}
+            </p>
           </RouteInfo>
         </HomeCard>
       </HomeBody>

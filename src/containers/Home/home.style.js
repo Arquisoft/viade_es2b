@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const HomeWrapper = styled.section`
   width: 100%;
-  background-image: url('../img/concentric-hex-pattern_2x.png');
+  background-image: url('./img/concentric-hex-pattern_2x.png');
   background-repeat: repeat;
   display: flex;
 
@@ -24,9 +24,14 @@ export const HomeWrapper = styled.section`
 
 export const HomeSidenav = styled.div`
   background-color: #fff;
+  min-width:20% !important;
   max-width:20% !important;
   padding: 2%;
-  
+
+  justify-content: space-between;
+  flex-direction: column;
+  display: flex;
+
   a {
     padding: 6px 8px 6px 16px;
     text-decoration: none;

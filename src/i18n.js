@@ -4,7 +4,7 @@ import Backend from 'i18next-xhr-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
 
-const be = new Backend(null, { loadPath: "locales/{{lng}}/{{ns}}.json" });
+const be = new Backend(null, { loadPath: "./locales/{{lng}}/{{ns}}.json" });
 
 i18n
   // load translation using xhr -> see /public/locales
@@ -17,13 +17,16 @@ i18n
   // Alternative use the I18nextProvider: https://react.i18next.com/components/i18nextprovider
   .use(initReactI18next)
   .init({
-    fallbackLng: 'en',
-    debug: false,
-    whitelist: ['en', 'es'],
+    fallbackLng: 'es',
+    debug: true,
+    whitelist: ['es', 'en'],
     // special options for react-i18next
     // learn more: https://react.i18next.com/components/i18next-instance
     react: {
       wait: true
+    },
+    interpolation: {
+      escapeValue: false // react already safes from xss
     }
   });
 
