@@ -18,8 +18,6 @@ import XHR from 'i18next-xhr-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
 
-import gestorPODS from './persistanceManagement';
-import parser from './parserGPX';
 import 'leaflet/dist/leaflet.css';
 
 library.add(fas);
