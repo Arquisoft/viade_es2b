@@ -24,6 +24,7 @@ export const HomeWrapper = styled.section`
 
 export const HomeSidenav = styled.div`
   background-color: #fff;
+  min-width:20% !important;
   max-width:20% !important;
   padding: 2%;
   
