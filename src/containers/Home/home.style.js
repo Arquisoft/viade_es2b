@@ -27,7 +27,11 @@ export const HomeSidenav = styled.div`
   min-width:20% !important;
   max-width:20% !important;
   padding: 2%;
-  
+
+  justify-content: space-between;
+  flex-direction: column;
+  display: flex;
+
   a {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
