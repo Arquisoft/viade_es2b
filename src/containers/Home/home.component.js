@@ -10,6 +10,7 @@ import {
   RouteInfo
 } from './home.style';
 import RouteList from './components/RouteList';
+import Slider from './components/Slider'
 import parser from '../../parserGPX';
 import 'leaflet/dist/leaflet.css';
 const Map = React.lazy(() => import('../../Map'));
@@ -22,6 +23,15 @@ const Map = React.lazy(() => import('../../Map'));
 
 export const HomePageContent = props => {
   const { t } = useTranslation(); /* se puede pasar un mensaje prefefinido a Trans o usar t */
+  const images = [
+    {src: '/img/pin.png'},
+    {src: '/img/triangle.png'},
+    {src: '/img/triangle.png'},
+    {src: '/img/triangle.png'},
+    {src: '/img/triangle.png'},
+    {src: '/img/triangle.png'},
+    {src: '/img/triangle.png'}
+  ];
   return (
     <HomeWrapper data-testid="home-wrapper">
       <HomeSidenav className="home-sidebar">
@@ -37,9 +47,7 @@ export const HomePageContent = props => {
           </RouteMap>
           <RouteInfo>
             <h2> {t('home.information')} </h2>
-            <p>
-              { t('home.ej_information') }
-              </p>
+            <Slider imgs={images}></Slider>
           </RouteInfo>
         </HomeCard>
       </HomeBody>

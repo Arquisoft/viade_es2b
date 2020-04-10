@@ -1,3 +1,3 @@
-import { Slider } from './slider.component';
+import Slider from './Slider.component';
 
 export default Slider;

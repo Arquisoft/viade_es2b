@@ -1,50 +1,32 @@
-import React from 'react'
-import {
-    Left,
-    Right,
-    Slide
-} from './children'
+import React, { useState } from 'react';
+import { SliderWrapper, ImageWrapper } from './Slider.style';
 
-export const Slider = props => {
-    var actualIndex = 0;
-    var actualLength = props.elements.length;
+const Slider = props => {
+    const [count, setCount] = useState(0);
+    const images = props.imgs;
+    const [nElements] = useState(images.length);
 
-    const goToPrevSlide = () => {
-        let index = actualIndex;
-        let length = actualLength;
-        if(index < 1) {
-            index = length - 1;
-        }
-        else {
-            index--;
-        }
-        actualIndex = index;
-        window.alert(actualIndex);
+    const clickLeft = () => {
+        if(count > 0)
+            setCount(count - 1)
     }
-    
-    const goToNextSlide = () => {
-        let index = actualIndex;
-        let length = actualLength;
-        if(index === length - 1) {
-            index = 0
-        }
-        else {
-            index++;
-        }
-        actualIndex = index;
-        window.alert(actualIndex);
+
+    const clickRight = () => {
+        if(count < nElements-1)
+            setCount(count + 1);
+        console.log(nElements);
     }
 
     return (
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <Left goToPrevSlide={() => goToPrevSlide()}></Left>
-        <div className='slider-text'>
-          <Slide
-            activeIndex = {actualIndex}
-            title = {props.elements[actualIndex].title}
-          />
-        </div>
-        <Right goToNextSlide={() => goToNextSlide()}></Right>
-    </div>
+        <SliderWrapper>
+            <button id="left" onClick={clickLeft}>&lt;</button>
+            {images.slice(count,count+5 < nElements-1 ? count+5 : nElements-1).map(image => 
+                    <ImageWrapper src={image.src} alt="imagen"/>
+                )
+            }
+            <button id="right" onClick={clickRight}>&gt;</button>
+        </SliderWrapper>
     );
 };
+
+export default Slider;
