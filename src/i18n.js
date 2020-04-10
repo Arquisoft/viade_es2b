@@ -17,13 +17,16 @@ i18n
   // Alternative use the I18nextProvider: https://react.i18next.com/components/i18nextprovider
   .use(initReactI18next)
   .init({
-    fallbackLng: 'en',
-    debug: false,
-    whitelist: ['en', 'es'],
+    fallbackLng: 'es',
+    debug: true,
+    whitelist: ['es', 'en'],
     // special options for react-i18next
     // learn more: https://react.i18next.com/components/i18next-instance
     react: {
       wait: true
+    },
+    interpolation: {
+      escapeValue: false // react already safes from xss
     }
   });
 
