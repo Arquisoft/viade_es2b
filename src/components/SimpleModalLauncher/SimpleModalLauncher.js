@@ -39,3 +39,15 @@ class SimpleModalLauncher extends Component {
     );
   }
 }
+
+SimpleModalLauncher.propTypes = {
+  buttonLabel: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]),
+  sheet: PropTypes.object,
+  classes: PropTypes.object
+};
+
+export default injectSheet(styles)(SimpleModalLauncher);
