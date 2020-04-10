@@ -49,26 +49,26 @@ export default class RouteMap extends React.Component {
         marker_options: {
           wptIcons: {
               'Triangle': new L.Icon({
-                iconUrl: '../img/triangle.png'
+                iconUrl: 'img/triangle.png'
               }),
               'Circle': new L.Icon({
-                iconUrl: '../img/circle.png'
+                iconUrl: 'img/circle.png'
               }),
               'Square': new L.Icon({
-                iconUrl: '../img/square.png'
+                iconUrl: 'img/square.png'
               }),
               'Pin': new L.Icon({
-                iconUrl: '../img/pin.png'
+                iconUrl: 'img/pin.png'
               }),
               'Flag': new L.Icon({
-                iconUrl: '../img/flag.png'
+                iconUrl: 'img/flag.png'
               })
           },
           pointMatchers: [
             {
               regex: /.\*?/,
               icon: new L.Icon({
-                iconUrl: '../img/pin.png'
+                iconUrl: 'img/pin.png'
               })
             }
           ],
