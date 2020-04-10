@@ -66,3 +66,15 @@ class SimpleModal extends Component {
     );
   }
 }
+
+SimpleModal.propTypes = {
+  onCloseRequest: PropTypes.func,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]),
+  sheet: PropTypes.object,
+  classes: PropTypes.object
+};
+
+export default injectSheet(styles)(SimpleModal);
