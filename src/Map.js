@@ -11,7 +11,6 @@ export default class RouteMap extends React.Component {
       lng: -0.09,
       zoom: 13
     }
-    this.mapInstance = null
   }
 
   componentDidUpdate(prevProps) {
@@ -21,7 +20,7 @@ export default class RouteMap extends React.Component {
   }
 
   updateMap() {
-    //this.parse(this.props.gpx);
+    this.parse(this.props.gpx);
 
     //IMPLEMENTAR CARGA DEL MAPA
 
@@ -29,27 +28,11 @@ export default class RouteMap extends React.Component {
   
   parse (filePath) {
 
-    if (this.mapInstance !== null) {
-      this.mapInstance.eachLayer(function(layer){
-        this.mapInstance.removeLayer(layer);
-      });
+    if (this.refs.mapInstance.leafletElement !== null) {
+      this.refs.mapInstance.leafletElement.eachLayer((layer) => {this.refs.mapInstance.leafletElement.removeLayer(layer);});
     }
 
-    var xmlDoc = new DOMParser().parseFromString(filePath,'text/xml');
-    var contador = 0;
-    var points = null;
-    if (xmlDoc.getElementsByTagName('rtept').length !== 0) {
-      points = xmlDoc.getElementsByTagName('rtept');
-      if (xmlDoc.getElementsByTagName('wpt').length !== 0)
-        contador = contador - xmlDoc.getElementsByTagName('wpt').length;
-    }
-    else if (xmlDoc.getElementsByTagName('trkpt').length !== 0) {
-      points = xmlDoc.getElementsByTagName('trkpt');
-      if (xmlDoc.getElementsByTagName('wpt').length !== 0)
-        contador = contador - xmlDoc.getElementsByTagName('wpt').length;
-    }
-
-    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.mapInstance);
+    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.refs.mapInstance.leafletElement);
 
     var track = new L.GPX(filePath, {
         async: true,
@@ -96,25 +79,21 @@ export default class RouteMap extends React.Component {
         
       }).on('addpoint', function(e) {
         var marker = e.point;
-        if (points != null && contador >= 0 && contador < points.length) {
-          console.log(points[contador].getElementsByTagName('name')[0].innerHTML);
-          marker.bindPopup("Nombre del punto: " + points[contador].getElementsByTagName('name')[0].innerHTML);
-        }
-        contador++;
-      }).on('loaded', function(e) {
-        var gpx = e.target;
-        this.mapInstance.fitBounds(gpx.getBounds());
-    }).addTo(this.mapInstance);
+        marker.bindPopup(e.element.getElementsByTagName('name')[0].innerHTML);
+        console.log(e.element.getElementsByTagName('name')[0].innerHTML)
+      }).on('loaded', ((e) => {var gpx = e.target;
+                               this.refs.mapInstance.leafletElement.fitBounds(gpx.getBounds());}))
+                               .addTo(this.refs.mapInstance.leafletElement);
 
-    L.control.layers({}, {'GPX':track}).addTo(this.mapInstance);
-    this.mapInstance.dragging.disable();
-    this.mapInstance.dragging.enable();
+    L.control.layers({}, {'GPX':track}).addTo(this.refs.mapInstance.leafletElement);
+    this.refs.mapInstance.leafletElement.dragging.disable();
+    this.refs.mapInstance.leafletElement.dragging.enable();
 }
 
   render() {
     const position = [this.state.lat, this.state.lng];
     return (
-      <Map center={position} zoom={this.state.zoom} ref = {(ref) => { this.mapInstance = ref; }}>
+      <Map center={position} zoom={this.state.zoom} ref = 'mapInstance'>
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'
