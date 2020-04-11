@@ -78,7 +78,8 @@
     "ej_information": "Esto es un ejemplo de información. Los links se ponen de esta manera.",
     "loading_routes": "Cargando rutas...",
     "loading_map": "Cargando mapa...",
-    "delete_routes":"Eliminar rutas"
+    "delete_routes":"Eliminar rutas",
+    "add_route": "Añadir ruta"
   },
   "profile": {
     "successCallback": "Pod actualizado satisfactoriamente",
