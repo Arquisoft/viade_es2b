@@ -67,7 +67,7 @@ Ends temporary react/fontawesome fix
 .link,
 .link-button {
   color: #074166;
-  font-family: 'Baloo 2', cursive;
+  font-family: 'Roboto', cursive;
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.75px;
@@ -85,7 +85,7 @@ Ends temporary react/fontawesome fix
 }
 
 * {
-  font-family: 'Baloo 2', sans-serif;
+  font-family: sans-serif, "Roboto", "Segoe UI";
 }
 
 .form-group {
@@ -99,7 +99,7 @@ Ends temporary react/fontawesome fix
 
 .form-group > label {
   color: #074166;
-  font-family: 'Baloo 2';
+  font-family: 'Roboto';
   font-size: 11px;
   font-weight: bold;
   letter-spacing: 0.75px;
