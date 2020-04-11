@@ -27,7 +27,7 @@ export const HomePageContent = props => {
       <HomeSidenav className="home-sidebar">
         <h2>Rutas</h2>
         <Suspense fallback={<div>{t('home.loading_routes')}</div>}>
-          <RouteList></RouteList>
+          <RouteList setRoute = {props.setRoute} ></RouteList>
         </Suspense>
         <button onClick={() => manejadorPODs.deleteRoutes()}>
           Eliminar rutas
@@ -43,7 +43,7 @@ export const HomePageContent = props => {
           <RouteInfo>
             <h2> {t('home.information')} </h2>
             <p>
-              {t('home.ej_information')}
+              {props.routeDescription}
             </p>
           </RouteInfo>
         </HomeCard>
