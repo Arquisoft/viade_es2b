@@ -79,7 +79,15 @@
     "loading_routes": "Cargando rutas...",
     "loading_map": "Cargando mapa...",
     "delete_routes":"Eliminar rutas",
-    "add_route": "Añadir ruta"
+    "add_route": "Añadir ruta",
+    "routes": "Rutas"
+  },
+  "route-form":{
+    "name":"Nombre de la ruta:",
+    "enter-name":"Escribe el nombre...",
+    "description":"Descripción de la ruta:",
+    "enter-description":"Escribe la descripción...",
+    "gpx":"Fichero GPX"
   },
   "profile": {
     "successCallback": "Pod actualizado satisfactoriamente",

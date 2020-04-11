@@ -3,9 +3,9 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
 import bsCustomFileInput from 'bs-custom-file-input'
-import Route from './Route';
+import Route from './containers/RouteForm/Route';
 
-import gestorPOD from './persistanceManagement';
+import gestorPOD from './containers/RouteForm/persistanceManagement';
 
 export default class RouteForm extends React.Component {
   constructor(props) {

@@ -26,8 +26,8 @@ export const HomePageContent = props => {
   return (
     <HomeWrapper data-testid="home-wrapper">
       <HomeSidenav className="home-sidebar">
-        <h2>Rutas</h2>
-        <Link className="add_route" to="/route_form">
+        <h2> {t('home.routes')}</h2>
+        <Link className="add_route" to="/route-form">
               {t('home.add_route')}
         </Link>
         <Suspense fallback={<div>{t('home.loading_routes')}</div>}>

@@ -78,7 +78,15 @@
     "loading_routes": "Loading routes...",
     "loading_map": "Loading map...",
     "delete_routes":"Delete routes",
-    "add_route": "Add route"
+    "add_route": "Add route",
+    "routes": "Routes"
+  },
+  "route-form":{
+    "name":"Route name:",
+    "enter-name":"Enter name...",
+    "description":"Route description:",
+    "enter-description":"Enter description...",
+    "gpx":"GPX file"
   },
   "profile": {
     "successCallback": "Pod updated successfully",

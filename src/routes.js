@@ -8,7 +8,7 @@ import {
   PageNotFound,
   Home,
   RegistrationSuccess,
-  Profile,
+  Profile
 } from './containers';
 
 const privateRoutes = [

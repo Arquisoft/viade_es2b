@@ -3,7 +3,6 @@ import Register, { RegistrationSuccess } from './Register';
 import PageNotFound from './PageNotFound';
 import Home from './Home';
 import Profile from './Profile';
-import RouteForm from './RouteForm';
 
 export {
   Login,
@@ -12,5 +11,4 @@ export {
   PageNotFound,
   Home,
   Profile,
-  RouteForm
 };
