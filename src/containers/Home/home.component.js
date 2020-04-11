@@ -11,7 +11,7 @@ import {
   RouteMap,
   RouteInfo
 } from './home.style';
-
+import Slider from './components/Slider'
 const Map = React.lazy(() => import('../../Map'));
 const RouteList = React.lazy(() => import('./components/RouteList'))
 
@@ -50,6 +50,7 @@ export const HomePageContent = props => {
             <p>
               {props.routeDescription}
             </p>
+            <Slider imgs={props.routeImages}></Slider>
           </RouteInfo>
         </HomeCard>
       </HomeBody>

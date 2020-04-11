@@ -42,7 +42,7 @@ export class HomeComponent extends Component<Props> {
 
     let route = this.state.route;
 
-    this.setState({ routeDescription: route.description, routeGPX: route.gpx, isLoading: false});
+    this.setState({ routeDescription: route.description, routeGPX: route.gpx, isLoading: false, routeImages: route.images});
 
   }
 
@@ -112,11 +112,11 @@ export class HomeComponent extends Component<Props> {
   };
 
   render() {
-    const { name, image, isLoading, routeDescription, routeGPX } = this.state;
+    const { name, image, isLoading, routeDescription, routeGPX, routeImages } = this.state;
     const { webId } = this.props;
 
     return (
-      <HomePageContent {...{ name, image, isLoading, webId, updatePhoto: this.updatePhoto, setRoute: this.setRoute, routeDescription, routeGPX}} />
+      <HomePageContent {...{ name, image, isLoading, webId, updatePhoto: this.updatePhoto, setRoute: this.setRoute, routeDescription, routeGPX, routeImages}} />
     );
   }
 }
