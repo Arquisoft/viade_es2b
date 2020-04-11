@@ -116,7 +116,14 @@ export default {
         let tempUrlUser = ((await auth.currentSession()).webId).toString();
         var urlUser = tempUrlUser.slice(0, -16) + "/private/routes/";
 
-        let folder = await fc.readFolder(urlUser);
+        var err = "";
+        let folder = await fc.readFolder(urlUser).catch(error => err = error);
+
+        if (err !== "") {
+            console.log(err);
+            return [];
+        }
+
         var arrayRoutesFolders = [];
         var routes = [];
 
@@ -156,6 +163,37 @@ export default {
 
         await fc.deleteFolder(urlUser).then((content) => console.log("Deleted all routes")).catch(err => console.log(err))
         
+    },
+
+    deleteRoute: async function(id) {
+        fc = new FC(auth);
+
+        let id_noSpaces = id.replace( /\s/g, '_');
+
+        let tempUrlUser = ((await auth.currentSession()).webId).toString();
+        var urlUser = tempUrlUser.slice(0, -16) + "/private/routes/";
+
+        let folder = await fc.readFolder(urlUser);
+        var arrayRoutesFolders = [];
+        var promise = null;
+
+        for (var i=0; i < folder.folders.length; i++) {
+            var route_folder = folder.folders[i];
+            arrayRoutesFolders.push(route_folder);
+        }
+
+        for (i=0; i < arrayRoutesFolders.length; i++) {
+            
+            if (arrayRoutesFolders[i].name === id_noSpaces) {
+
+                promise = fc.deleteFolder(arrayRoutesFolders[i].url);
+
+            }
+
+        }
+
+        return promise;
+
     },
 
     test: async function() {

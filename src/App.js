@@ -11,38 +11,14 @@ import 'react-toastify/dist/ReactToastify.css';
 import 'flag-icon-css/css/flag-icon.min.css';
 import 'normalize.css';
 import './index.css';
+import 'leaflet/dist/leaflet.css';
 import '@inrupt/solid-style-guide';
 import { Toaster } from './App.styled';
-import i18n from 'i18next';
-import XHR from 'i18next-xhr-backend';
-import LanguageDetector from 'i18next-browser-languagedetector';
-import { initReactI18next } from 'react-i18next';
-
-import gestorPODS from './persistanceManagement';
-import parser from './parserGPX';
-import 'leaflet/dist/leaflet.css';
 
 library.add(fas);
 library.add(faGithub);
 
-function App() {
-
-  /*
-  This code fragment is used to initialize the translate system.
-  */
- i18n
- .use(XHR)
- .use(LanguageDetector)
- .use(initReactI18next) // bind react-i18next to the instance
- .init({
-   fallbackLng: 'es',
-   debug: true,
-
-   interpolation: {
-     escapeValue: false, // not needed for react!!
-   },
-  });
-  
+function App() {  
   return (
     <Suspense fallback={<Loader />}>
       <ThemeProvider theme={theme}>
