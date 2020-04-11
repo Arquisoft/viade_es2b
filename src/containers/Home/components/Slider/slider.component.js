@@ -4,7 +4,7 @@ import { SliderWrapper, ImageWrapper, ImageContainer } from './Slider.style';
 const Slider = props => {
     const [count, setCount] = useState(0);
     const images = props.imgs;
-    const [nElements] = useState(images.length);
+    const [nElements] = useState(images === undefined ? 0 : images.length);
 
     const clickLeft = () => {
         if(count > 0)
@@ -16,7 +16,7 @@ const Slider = props => {
             setCount(count + 1);
     }
 
-    return (
+    return (images === undefined ? <SliderWrapper></SliderWrapper> :
         <SliderWrapper>
             <button id="left" onClick={clickLeft}>&lt;</button>
             {images.slice(count, count+5).map(image => 
