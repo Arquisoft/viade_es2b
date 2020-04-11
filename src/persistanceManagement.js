@@ -116,7 +116,14 @@ export default {
         let tempUrlUser = ((await auth.currentSession()).webId).toString();
         var urlUser = tempUrlUser.slice(0, -16) + "/private/routes/";
 
-        let folder = await fc.readFolder(urlUser);
+        var err = "";
+        let folder = await fc.readFolder(urlUser).catch(error => err = error);
+
+        if (err !== "") {
+            console.log(err);
+            return [];
+        }
+
         var arrayRoutesFolders = [];
         var routes = [];
 

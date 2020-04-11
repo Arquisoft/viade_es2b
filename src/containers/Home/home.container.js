@@ -10,6 +10,7 @@ const defaultProfilePhoto = './img/icon/empty-profile.svg';
  * Container component for the Home Page, containing example of how to fetch data from a POD
  */
 export class HomeComponent extends Component<Props> {
+
   constructor(props) {
     super(props);
 
@@ -19,6 +20,7 @@ export class HomeComponent extends Component<Props> {
       isLoading: false,
       hasImage: false
     };
+
   }
 
   componentDidMount() {
@@ -29,6 +31,19 @@ export class HomeComponent extends Component<Props> {
   componentDidUpdate(prevProps) {
     const { webId } = this.props;
     if (webId && webId !== prevProps.webId) this.getProfileData();
+
+    if (this.state.route && this.state.route.description !== this.state.routeDescription)
+      this.updateRouteData();
+  }
+
+  updateRouteData = async () => {
+
+    this.setState({ isLoading: true });
+
+    let route = this.state.route;
+
+    this.setState({ routeDescription: route.description, routeGPX: route.gpx, isLoading: false});
+
   }
 
   /**
@@ -72,6 +87,12 @@ export class HomeComponent extends Component<Props> {
     this.setState({ name, image, isLoading: false, hasImage });
   };
 
+  setRoute = (route) => {
+
+    this.setState({route: route});
+
+  }
+
   /**
    * updatedPhoto will update the photo url on vcard file
    * this function will check if user has image or hasPhoto node if not
@@ -91,10 +112,11 @@ export class HomeComponent extends Component<Props> {
   };
 
   render() {
-    const { name, image, isLoading } = this.state;
+    const { name, image, isLoading, routeDescription, routeGPX } = this.state;
     const { webId } = this.props;
+
     return (
-      <HomePageContent {...{ name, image, isLoading, webId, updatePhoto: this.updatePhoto }} />
+      <HomePageContent {...{ name, image, isLoading, webId, updatePhoto: this.updatePhoto, setRoute: this.setRoute, routeDescription, routeGPX}} />
     );
   }
 }

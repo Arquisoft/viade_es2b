@@ -31,7 +31,7 @@ export const HomePageContent = props => {
               {t('home.add_route')}
         </Link>
         <Suspense fallback={<div>{t('home.loading_routes')}</div>}>
-          <RouteList></RouteList>
+          <RouteList setRoute = {props.setRoute} ></RouteList>
         </Suspense>
         <button onClick={() => manejadorPODs.deleteRoutes()}>
           {t('home.delete_routes')}
@@ -40,14 +40,14 @@ export const HomePageContent = props => {
       <HomeBody className="home-body">
         <HomeCard className="card">
           <RouteMap id="map">
-            <Suspense fallback={<div>{t('home.loading_routes')}</div>}> 
-              <Map></Map>
+            <Suspense fallback={<div>{t('home.loading_routes')}</div>}>
+              <Map gpx = { props.routeGPX }></Map>
             </Suspense>
           </RouteMap>
           <RouteInfo>
             <h2> {t('home.information')} </h2>
             <p>
-              {t('home.ej_information')}
+              {props.routeDescription}
             </p>
           </RouteInfo>
         </HomeCard>

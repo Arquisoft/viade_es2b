@@ -13,6 +13,19 @@ export default class RouteMap extends React.Component {
     }
     this.mapInstance = null
   }
+
+  componentDidUpdate(prevProps) {
+
+    if (this.props.gpx && this.props.gpx !== prevProps.gpx) this.updateMap();
+
+  }
+
+  updateMap() {
+    //this.parse(this.props.gpx);
+
+    //IMPLEMENTAR CARGA DEL MAPA
+
+  }
   
   parse (filePath) {
 
