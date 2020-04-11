@@ -2,9 +2,9 @@ import styled from 'styled-components';
 
 export const Gradient = styled.div`
   background-image: url('./img/login_background.gif');
-  background-size:     cover;                      /* <------ */
+  background-size:     cover;     /* to adjust screen size*/
   background-repeat:   no-repeat;
-  background-position: bottom;  
+
 
   &::before {
     content: '';
@@ -15,3 +15,4 @@ export const Gradient = styled.div`
     height: 100%;
   }
 `;
+

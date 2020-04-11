@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 //import { Uploader } from '@inrupt/solid-react-components';
 import { useTranslation } from 'react-i18next';
 import manejadorPODs from '../../persistanceManagement'
+import { Link } from 'react-router-dom';
 import {
   HomeWrapper,
   HomeCard,
@@ -26,17 +27,20 @@ export const HomePageContent = props => {
     <HomeWrapper data-testid="home-wrapper">
       <HomeSidenav className="home-sidebar">
         <h2>Rutas</h2>
+        <Link className="ids-link-filled ids-link-filled--primary" to="/register">
+              {t('login.register')}
+        </Link>
         <Suspense fallback={<div>{t('home.loading_routes')}</div>}>
           <RouteList></RouteList>
         </Suspense>
         <button onClick={() => manejadorPODs.deleteRoutes()}>
-          Eliminar rutas
+          {t('home.delete_routes')}
         </button>
       </HomeSidenav>
       <HomeBody className="home-body">
         <HomeCard className="card">
           <RouteMap id="map">
-            <Suspense fallback={<div>{t('home.loading_routes')}</div>}>
+            <Suspense fallback={<div>{t('home.loading_routes')}</div>}> 
               <Map></Map>
             </Suspense>
           </RouteMap>
