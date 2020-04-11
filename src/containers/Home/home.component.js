@@ -11,7 +11,6 @@ import {
   RouteMap,
   RouteInfo
 } from './home.style';
-import 'leaflet/dist/leaflet.css';
 
 const Map = React.lazy(() => import('../../Map'));
 const RouteList = React.lazy(() => import('./components/RouteList'))
