@@ -37,7 +37,7 @@ export const HomePageContent = props => {
         <HomeCard className="card">
           <RouteMap id="map">
             <Suspense fallback={<div>{t('home.loading_routes')}</div>}>
-              <Map></Map>
+              <Map gpx = { props.routeGPX }></Map>
             </Suspense>
           </RouteMap>
           <RouteInfo>
