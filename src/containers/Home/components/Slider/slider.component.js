@@ -21,7 +21,7 @@ const Slider = props => {
             <button id="left" onClick={clickLeft}>&lt;</button>
             {images.slice(count, count+5).map(image => 
                     <ImageContainer>
-                        <ImageWrapper src={image.src} alt="imagen"/>
+                        <ImageWrapper src={URL.createObjectURL(image)} alt="imagen"/>
                     </ImageContainer>
                 )
             }

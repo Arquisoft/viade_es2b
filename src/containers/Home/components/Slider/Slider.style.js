@@ -32,7 +32,7 @@ export const ImageContainer = styled.div`
 
 export const ImageWrapper = styled.img`
     max-width: 100%;
-    max-heigth: 100%;
+    max-height: 100%;
     display: block;
     position: absolute;  
     top: 0;  
