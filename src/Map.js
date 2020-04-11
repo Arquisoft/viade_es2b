@@ -21,7 +21,10 @@ export default class RouteMap extends React.Component {
   }
 
   updateMap() {
-    this.parse(this.props.gpx);
+    //this.parse(this.props.gpx);
+
+    //IMPLEMENTAR CARGA DEL MAPA
+
   }
   
   parse (filePath) {
