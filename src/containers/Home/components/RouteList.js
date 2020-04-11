@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconButton } from '@material-ui/core';
+import { Button, IconButton, CircularProgress } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 import gestorPOD from '../../../persistanceManagement';
@@ -8,30 +8,44 @@ export default class RouteList extends React.Component {
 
     constructor() {
         super();
-        this.state = { routes: [] };
+        this.state = { loading: true };
     }
-
-
 
     async componentDidMount() {
-        const routes = Array.from(await gestorPOD.seeRoutes());
-        this.setState({ routes: routes });
+        this.setState( {loading: true }, () => {
+            gestorPOD.seeRoutes().then((routes) => this.setState( { loading: false, routes: Array.from(routes)}) )
+        });
     }
 
-    render() {
+    loading() {
         return (
-            <div>
+        <div>
+            <h2>{this.props.loadingText}</h2>
+            <CircularProgress></CircularProgress>
+        </div>
+        );
+    }
+
+    loadFinished() {
+        return (<div>
                 <ul>
                     {this.state.routes.map(route => (
                         <li id="container_route" key={route.id}>
-                            <a href="#routes"> {route.name} </a>
+                            <Button color="primary" onClick={() => this.props.setRoute(route)}> {route.name} </Button>
                             <IconButton onClick={() => { Promise.resolve(gestorPOD.deleteRoute(route.id)).then(() => window.location.reload) }} aria-label="delete">
                                 <DeleteIcon fontSize="small" />
                             </IconButton>
                         </li>
                     ))}
                 </ul>
-            </div>
+            </div>);
+    }
+
+    render() {
+        const { loading } = this.state;
+
+        return (
+            loading ? this.loading() : this.loadFinished()
         );
     }
 }

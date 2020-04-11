@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 //import { Uploader } from '@inrupt/solid-react-components';
 import { useTranslation } from 'react-i18next';
+import { Button } from '@material-ui/core';
 import manejadorPODs from '../../persistanceManagement'
 import {
   HomeWrapper,
@@ -10,9 +11,10 @@ import {
   RouteMap,
   RouteInfo
 } from './home.style';
-import RouteList from './components/RouteList';
 import 'leaflet/dist/leaflet.css';
+
 const Map = React.lazy(() => import('../../Map'));
+const RouteList = React.lazy(() => import('./components/RouteList'))
 
 /**
  * Hom Page UI component, containing the styled components for the Hom Page
@@ -26,24 +28,28 @@ export const HomePageContent = props => {
     <HomeWrapper data-testid="home-wrapper">
       <HomeSidenav className="home-sidebar">
         <h2>Rutas</h2>
-        <Suspense fallback={<div>{t('home.loading_routes')}</div>}>
-          <RouteList></RouteList>
-        </Suspense>
-        <button onClick={() => manejadorPODs.deleteRoutes()}>
-          Eliminar rutas
-        </button>
+        <RouteList loadingText={t("home.loading_routes")} setRoute={props.setRoute} ></RouteList>
+        <div id="Manage buttons">
+          <Button variant="contained" color="primary" onClick={() => ""}>
+            Añadir ruta
+          </Button>
+          <span>   </span>
+          <Button variant="contained" color="secondary" onClick={() => manejadorPODs.deleteRoutes()}>
+            Eliminar rutas
+        </Button>
+        </div>
       </HomeSidenav>
       <HomeBody className="home-body">
         <HomeCard className="card">
           <RouteMap id="map">
             <Suspense fallback={<div>{t('home.loading_routes')}</div>}>
-              <Map></Map>
+              <Map gpx={props.routeGPX}></Map>
             </Suspense>
           </RouteMap>
           <RouteInfo>
             <h2> {t('home.information')} </h2>
             <p>
-              {t('home.ej_information')}
+              {props.routeDescription}
             </p>
           </RouteInfo>
         </HomeCard>
