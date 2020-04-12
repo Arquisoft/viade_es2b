@@ -6,8 +6,8 @@ In this section we are going to explain the ideas, concepts and regulations that
 [domain-concepts]
 === Domain Concepts
 ****
-* Route: KML file containing the user's routes, which can be stored and consulted by that user.
-* Pod: this will be the repository and will follow the SOLID specification. This is where all the routes will be stored.
+* Route: GPX file containing the user's routes, which can be stored and consulted by that user.
+* Pod: this will be the repository and will follow the SOLID specification. This is where all the routes and other information such as friends will be stored.
 * Client: this is the app that will run in the user's browser. It will provide a friendly, intuitive interface and all the app's functionality, but it won't store the data (we use the POD for that)
 ****
 
@@ -43,7 +43,7 @@ As we are going to use the React framework in this project, we will base our app
 [development-concepts]
 === Development concepts
 ****
-* Building: we will use the Node.js package manages, npm, to build the app
+* Building: we will use the Node.js package manager, npm, to build the app by using different plugins or tools in order to accomplish the goals we want to reach
 * Testing: this is a key part in our app, and we will put a lot of our efforts on ensuring that the app works the way it has to. For accomplishing this, we will use several frameworks such as Cucumber.js or Mocha
 ****
 
@@ -52,5 +52,5 @@ As we are going to use the React framework in this project, we will base our app
 ****
 * Disaster recovery: the user's data are stored in his own POD, which is independent from the app, so they won't be at risk if something wrong happens with the app. As for the app itself, it depends on GitHub, so if GitHub is down, the app will be too until the problem is solved
 * High availability: once a new version of the app is finished, it will be available for the user as soon as the changes included in the development branch are merged with the master branch
-* Administration: as we are a team, we divide the administration of the project equally between all the team members
+* Administration: as we are a team, we divide the administration of the project equally between all the team members, as well as we might help others with the problems they have
 ****

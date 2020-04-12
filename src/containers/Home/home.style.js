@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const HomeWrapper = styled.section`
   width: 100%;
+  height: 100%;
   background-image: url('./img/concentric-hex-pattern_2x.png');
   background-repeat: repeat;
   display: flex;
@@ -67,3 +68,9 @@ export const RouteInfo = styled.div`
   width:95%;
 `;
 
+export const CenteredDiv = styled.div`
+  padding: 5%;
+  bottom: 0;
+  display:inline-block;
+  text-align: center;
+`;
