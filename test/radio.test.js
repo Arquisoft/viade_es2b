@@ -1,12 +1,12 @@
 import React from 'react';
 import { render, cleanup } from 'react-testing-library';
-import Panel from './panel.component';
+import Radio from '../src/components/Utils/Radiobutton/radio.component';
 
 afterAll(cleanup);
 
-const { container } = render(<Panel />);
+const { container } = render(<Radio />);
 
-describe('Panel', () => {
+describe('Radio', () => {
   it('renders without crashing', () => {
     expect(container).toBeTruthy();
   });

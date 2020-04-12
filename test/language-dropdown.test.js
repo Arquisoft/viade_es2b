@@ -1,12 +1,12 @@
 import React from 'react';
 import { render, cleanup } from 'react-testing-library';
-import Radio from './radio.component';
+import Language from '../src/components/Utils/LanguageDropdown/language-dropdown.component';
 
 afterAll(cleanup);
 
-const { container } = render(<Radio />);
+const { container } = render(<Language t={key => key} />);
 
-describe('Radio', () => {
+describe('Language', () => {
   it('renders without crashing', () => {
     expect(container).toBeTruthy();
   });

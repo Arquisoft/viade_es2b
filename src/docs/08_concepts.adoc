@@ -44,7 +44,7 @@ As we are going to use the React framework in this project, we will base our app
 === Development concepts
 ****
 * Building: we will use the Node.js package manager, npm, to build the app by using different plugins or tools in order to accomplish the goals we want to reach
-* Testing: this is a key part in our app, and we will put a lot of our efforts on ensuring that the app works the way it has to. For accomplishing this, we will use several frameworks such as Cucumber.js or Mocha
+* Testing: this is a key part in our app, and we will put a lot of our efforts on ensuring that the app works the way it has to. For accomplishing this, we will use several frameworks such as Cucumber.js or Mocha, as well as React's own testing library
 ****
 
 [operational-concepts]

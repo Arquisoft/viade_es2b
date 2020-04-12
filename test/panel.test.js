@@ -1,12 +1,12 @@
 import React from 'react';
 import { render, cleanup } from 'react-testing-library';
-import GradientBackground from './gradient-background.component';
+import Panel from '../src/components/Utils/Panel/panel.component';
 
 afterAll(cleanup);
 
-const { container } = render(<GradientBackground />);
+const { container } = render(<Panel />);
 
-describe('GradientBackground', () => {
+describe('Panel', () => {
   it('renders without crashing', () => {
     expect(container).toBeTruthy();
   });

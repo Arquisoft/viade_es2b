@@ -1,18 +1,18 @@
 import React from 'react';
 import { render, cleanup } from 'react-testing-library';
 import { BrowserRouter as Router } from 'react-router-dom';
-import Footer from './footer.component';
+import AuthNavBar from '../src/components/AuthNavBar/auth-nav-bar.component';
 
-afterAll(cleanup);
+describe.only('AuthNavBar', () => {
+  afterAll(cleanup);
 
-describe.only('Nav Bar', () => {
   const { container } = render(
     <Router>
-      <Footer />
+      <AuthNavBar t={key => key} />
     </Router>
   );
 
-  it('renders without crashing', () => {
+  test('renders without crashing', () => {
     expect(container).toBeTruthy();
   });
 });
