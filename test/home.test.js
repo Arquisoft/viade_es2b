@@ -3,7 +3,7 @@ import { render, cleanup } from 'react-testing-library';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
-import { HomeComponent } from './home.container';
+import { HomeComponent } from '../src/containers/Home/home.container';
 // import { Trans, useTranslation } from 'react-i18next';
 
 library.add(fas);
