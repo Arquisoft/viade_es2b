@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, cleanup } from 'react-testing-library';
 import { BrowserRouter as Router } from 'react-router-dom';
-import Footer from './footer.component';
+import Footer from '../src/components/Footer/footer.component';
 
 afterAll(cleanup);
 
