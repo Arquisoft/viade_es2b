@@ -5,7 +5,7 @@ Next image will show screen prototypes of our application, starting with Login s
 
 We will base our explanation in this prototypes.
 
-image:PrototiposAppViade.jpg["Screen prototype of entire application"]
+image::images/PrototiposAppViade.jpg["Screen prototype of entire application"]
 
 ===  First Scenario: Login
 

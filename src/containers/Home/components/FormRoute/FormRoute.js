@@ -1,11 +1,13 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
+import { Button } from '@material-ui/core'
 
 import bsCustomFileInput from 'bs-custom-file-input'
-import Route from './containers/RouteForm/Route';
+import Route from '../../../../Route';
 
-import gestorPOD from './containers/RouteForm/persistanceManagement';
+import i18n from '../../../../i18n'
+
+import gestorPOD from '../../../../persistanceManagement';
 
 export default class RouteForm extends React.Component {
   constructor(props) {
@@ -34,7 +36,10 @@ export default class RouteForm extends React.Component {
     this.setState({ form: { ...this.state.form, [fieldName]: fieldVal } });
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
+
+    event.preventDefault();
+
     let name = this.state.form.name;
     let description = this.state.form.description;
     let gpx = this.state.form.gpx;
@@ -43,9 +48,10 @@ export default class RouteForm extends React.Component {
 
     var route = new Route(id, name, description, gpx, images);
 
-    gestorPOD.saveRoute(route);
+    await gestorPOD.saveRoute(route);
 
-    event.preventDefault();
+    window.location.reload();
+
   }
 
   render() {
@@ -54,37 +60,33 @@ export default class RouteForm extends React.Component {
         <Form onSubmit={this.handleSubmit}>
 
           <Form.Group controlId="formNameRoute">
-            <Form.Label>Route name</Form.Label>
-            <Form.Control type="text" name="name" placeholder="Enter name"
+            <Form.Label>{i18n.t("form.name")}</Form.Label>
+            <Form.Control type="text" name="name" placeholder={i18n.t("form.enter_name")}
               defaultValue={this.state.form.name} onChange={this.handleChange} />
           </Form.Group>
 
           <Form.Group controlId="formDescriptionRoute">
-            <Form.Label>Route description</Form.Label>
-            <Form.Control type="text" name="description" placeholder="Enter route description"
+            <Form.Label>{i18n.t("form.description")}</Form.Label>
+            <Form.Control type="text" name="description" placeholder={i18n.t("form.enter_description")}
               defaultValue={this.state.form.description} onChange={this.handleChange} />
           </Form.Group>
 
           <Form.Group controlId="formGpxFile">
-            <Form.Label>GPX file</Form.Label>
+          <Form.Label>{i18n.t("form.gpx")}</Form.Label>
             <Form.File
               id="gpx-file"
-              label="Load gpx file"
               name="gpx"
               accept=".gpx"
-              custom
               onChange={this.handleChangeFiles}
             >
             </Form.File>
           </Form.Group>
 
           <Form.Group controlId="formImages">
-            <Form.Label>Route images</Form.Label>
+          <Form.Label>{i18n.t("form.images")}</Form.Label>
             <Form.File
               id="images-list"
-              label="Load images"
               name="images"
-              custom
               accept="image/*"
               multiple
               onChange={this.handleChangeFiles}
@@ -92,8 +94,8 @@ export default class RouteForm extends React.Component {
             </Form.File>
           </Form.Group>
 
-          <Button variant="primary" type="submit">
-            Submit
+          <Button variant="contained" type="submit">
+          {i18n.t("form.submit")}
         </Button>
         </Form>
         <script>

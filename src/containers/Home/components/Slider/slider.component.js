@@ -1,50 +1,36 @@
-import React from 'react'
-import {
-    Left,
-    Right,
-    Slide
-} from './children'
+import React, { useState } from 'react';
+import { SliderWrapper, ImageWrapper, ImageContainer } from './Slider.style';
 
-export const Slider = props => {
-    var actualIndex = 0;
-    var actualLength = props.elements.length;
+const Slider = props => {
+    const [count, setCount] = useState(0);
+    const images = props.imgs;
 
-    const goToPrevSlide = () => {
-        let index = actualIndex;
-        let length = actualLength;
-        if(index < 1) {
-            index = length - 1;
-        }
-        else {
-            index--;
-        }
-        actualIndex = index;
-        window.alert(actualIndex);
-    }
-    
-    const goToNextSlide = () => {
-        let index = actualIndex;
-        let length = actualLength;
-        if(index === length - 1) {
-            index = 0
-        }
-        else {
-            index++;
-        }
-        actualIndex = index;
-        window.alert(actualIndex);
+    const clickLeft = () => {
+        if(count > 0)
+            setCount(count - 1)
     }
 
-    return (
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <Left goToPrevSlide={() => goToPrevSlide()}></Left>
-        <div className='slider-text'>
-          <Slide
-            activeIndex = {actualIndex}
-            title = {props.elements[actualIndex].title}
-          />
-        </div>
-        <Right goToNextSlide={() => goToNextSlide()}></Right>
-    </div>
+    const clickRight = () => {
+        if(count < images.length-5)
+            setCount(count + 1);
+    }
+
+    return (images === undefined ? <SliderWrapper></SliderWrapper> :
+        <SliderWrapper>
+            {images.length > 5 &&
+                <button id="left" onClick={clickLeft}>&lt;</button>
+            }
+            {images.slice(count, count+5).map(image => 
+                    <ImageContainer>
+                        <ImageWrapper src={URL.createObjectURL(image)} alt="imagen"/>
+                    </ImageContainer>
+                )
+            }
+            {images.length > 5 &&
+                <button id="right" onClick={clickRight}>&gt;</button>
+            }
+        </SliderWrapper>
     );
 };
+
+export default Slider;

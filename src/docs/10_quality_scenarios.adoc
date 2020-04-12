@@ -12,7 +12,7 @@ Quality goals are explained in section 1.2.
 
 ****
 
-image::010_QualityTree.png[Quality tree diagram]
+image::images/010_QualityTree.png[Quality tree diagram]
 
 ****
 
