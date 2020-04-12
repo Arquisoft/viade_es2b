@@ -37,7 +37,7 @@ function loadMap(props, t) {
 
 }
 
-function loadForm(props) {
+function loadForm() {
 
   return (
     <HomeCard className="card">
@@ -58,23 +58,23 @@ export const HomePageContent = props => {
   return (
     <HomeWrapper data-testid="home-wrapper">
       <HomeSidenav className="home-sidebar">
-        <h2>Rutas</h2>
+        <h2>{t("home.routes")}</h2>
         <RouteList loadingText={t("home.loading_routes")} setRoute={props.setRoute} ></RouteList>
         <div id="Manage buttons">
           <Button variant="contained" color="primary" onClick={() => props.changeForm()}>
-            Añadir ruta
+          {t("home.add_route")}
           </Button>
           <span>   </span>
           <Button variant="contained" color="secondary" onClick={async () => {
             await manejadorPODs.deleteRoutes();
             window.location.reload();
           }}>
-            Eliminar rutas
+            {t("home.delete_route")}
         </Button>
         </div>
       </HomeSidenav>
       <HomeBody className="home-body">
-        {props.needForm ? loadForm(props) : loadMap(props, t)}
+        {props.needForm ? loadForm() : loadMap(props, t)}
 
       </HomeBody>
     </HomeWrapper>

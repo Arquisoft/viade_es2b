@@ -5,6 +5,8 @@ import { Button } from '@material-ui/core'
 import bsCustomFileInput from 'bs-custom-file-input'
 import Route from '../../../../Route';
 
+import i18n from '../../../../i18n'
+
 import gestorPOD from '../../../../persistanceManagement';
 
 export default class RouteForm extends React.Component {
@@ -58,21 +60,21 @@ export default class RouteForm extends React.Component {
         <Form onSubmit={this.handleSubmit}>
 
           <Form.Group controlId="formNameRoute">
-            <Form.Label>Route name</Form.Label>
-            <Form.Control type="text" name="name" placeholder="Enter name"
+            <Form.Label>{i18n.t("form.name")}</Form.Label>
+            <Form.Control type="text" name="name" placeholder={i18n.t("form.enter_name")}
               defaultValue={this.state.form.name} onChange={this.handleChange} />
           </Form.Group>
 
           <Form.Group controlId="formDescriptionRoute">
-            <Form.Label>Route description</Form.Label>
-            <Form.Control type="text" name="description" placeholder="Enter route description"
+            <Form.Label>{i18n.t("form.description")}</Form.Label>
+            <Form.Control type="text" name="description" placeholder={i18n.t("form.enter_description")}
               defaultValue={this.state.form.description} onChange={this.handleChange} />
           </Form.Group>
 
           <Form.Group controlId="formGpxFile">
+          <Form.Label>{i18n.t("form.gpx")}</Form.Label>
             <Form.File
               id="gpx-file"
-              label="Load gpx file"
               name="gpx"
               accept=".gpx"
               onChange={this.handleChangeFiles}
@@ -81,9 +83,9 @@ export default class RouteForm extends React.Component {
           </Form.Group>
 
           <Form.Group controlId="formImages">
+          <Form.Label>{i18n.t("form.images")}</Form.Label>
             <Form.File
               id="images-list"
-              label="Load images"
               name="images"
               accept="image/*"
               multiple
@@ -93,7 +95,7 @@ export default class RouteForm extends React.Component {
           </Form.Group>
 
           <Button variant="contained" type="submit">
-            Submit
+          {i18n.t("form.submit")}
         </Button>
         </Form>
         <script>

@@ -77,7 +77,19 @@
     "information": "Información",
     "ej_information": "Esto es un ejemplo de información. Los links se ponen de esta manera.",
     "loading_routes": "Cargando rutas...",
-    "loading_map": "Cargando mapa..."
+    "loading_map": "Cargando mapa...",
+    "routes" : "Rutas",
+    "add_route": "Añadir ruta",
+    "delete_route": "Eliminar ruta"
+  },
+  "form": {
+    "name": "Nombre de la ruta",
+    "enter_name": "Introduce el nombre de la ruta",
+    "description": "Descripción de la ruta",
+    "enter_description": "Introduce la descripción de la ruta",
+    "gpx": "Cargar gpx",
+    "images" : "Cargar imagenes",
+    "submit": "Enviar"
   },
   "profile": {
     "successCallback": "Pod actualizado satisfactoriamente",
