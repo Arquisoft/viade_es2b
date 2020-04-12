@@ -5,7 +5,7 @@ This block shows the decomposition of the system into building blocks and their 
 
 === Whitebox Overall System
 
-image::images/05_building_block_view.png[Building block view diagram]
+image::05_building_block_view.png[Building block view diagram]
 
 Contained Building Blocks::
 [options="header",cols="1,2"]
