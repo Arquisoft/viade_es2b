@@ -80,7 +80,7 @@
     "loading_map": "Cargando mapa...",
     "routes" : "Rutas",
     "add_route": "Añadir ruta",
-    "delete_route": "Eliminar ruta"
+    "delete_route": "Eliminar rutas"
   },
   "form": {
     "name": "Nombre de la ruta",
