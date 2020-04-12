@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const SliderWrapper = styled.div`
     display: flex;
-    width: 100%;
+    width: 95%;
 
     button{
         height: 250px;

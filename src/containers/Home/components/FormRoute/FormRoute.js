@@ -1,6 +1,5 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form'
-import { Button } from '@material-ui/core'
 
 import bsCustomFileInput from 'bs-custom-file-input'
 import Route from '../../../../Route';
@@ -57,22 +56,22 @@ export default class RouteForm extends React.Component {
   render() {
     return (
       <div className="RouteForm">
-        <Form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit}>
 
-          <Form.Group controlId="formNameRoute">
-            <Form.Label>{i18n.t("form.name")}</Form.Label>
-            <Form.Control type="text" name="name" placeholder={i18n.t("form.enter_name")}
+          <group controlId="formNameRoute">
+            <label>{i18n.t("form.name")}</label>
+            <input type="text" name="name" placeholder={i18n.t("form.enter_name")}
               defaultValue={this.state.form.name} onChange={this.handleChange} />
-          </Form.Group>
+          </group>
 
-          <Form.Group controlId="formDescriptionRoute">
-            <Form.Label>{i18n.t("form.description")}</Form.Label>
-            <Form.Control type="text" name="description" placeholder={i18n.t("form.enter_description")}
+          <group controlId="formDescriptionRoute">
+            <label>{i18n.t("form.description")}</label>
+            <input type="text" name="description" placeholder={i18n.t("form.enter_description")}
               defaultValue={this.state.form.description} onChange={this.handleChange} />
-          </Form.Group>
+          </group>
 
-          <Form.Group controlId="formGpxFile">
-          <Form.Label>{i18n.t("form.gpx")}</Form.Label>
+          <group controlId="formGpxFile">
+          <label>{i18n.t("form.gpx")}</label>
             <Form.File
               id="gpx-file"
               name="gpx"
@@ -80,10 +79,10 @@ export default class RouteForm extends React.Component {
               onChange={this.handleChangeFiles}
             >
             </Form.File>
-          </Form.Group>
+          </group>
 
-          <Form.Group controlId="formImages">
-          <Form.Label>{i18n.t("form.images")}</Form.Label>
+          <group controlId="formImages">
+          <label>{i18n.t("form.images")}</label>
             <Form.File
               id="images-list"
               name="images"
@@ -92,12 +91,12 @@ export default class RouteForm extends React.Component {
               onChange={this.handleChangeFiles}
             >
             </Form.File>
-          </Form.Group>
+          </group>
 
-          <Button variant="contained" type="submit">
+          <button variant="contained" type="submit">
           {i18n.t("form.submit")}
-        </Button>
-        </Form>
+        </button>
+        </form>
         <script>
           $(document).ready(function () {
             bsCustomFileInput.init()

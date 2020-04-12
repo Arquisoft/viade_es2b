@@ -32,7 +32,7 @@ export default class RouteList extends React.Component {
                     {this.state.routes.map(route => (
                         <li id="container_route" key={route.id}>
                             <Button color="primary" onClick={() => this.props.setRoute(route)}> {route.name} </Button>
-                            <IconButton onClick={async () => { await gestorPOD.deleteRoute(route.id); window.location.reload(false) }} aria-label="delete">
+                            <IconButton onClick={() => { Promise.resolve(gestorPOD.deleteRoute(route.id)).then(() => window.location.reload) }} aria-label="delete">
                                 <DeleteIcon fontSize="small" />
                             </IconButton>
                         </li>
