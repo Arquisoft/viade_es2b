@@ -3,6 +3,8 @@ import React, { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@material-ui/core';
 import manejadorPODs from '../../persistanceManagement'
+import RouteList from './components/RouteList'
+import FormRoute from './components/FormRoute/FormRoute'
 import {
   HomeWrapper,
   HomeCard,
@@ -13,7 +15,38 @@ import {
 } from './home.style';
 import Slider from './components/Slider'
 const Map = React.lazy(() => import('../../Map'));
-const RouteList = React.lazy(() => import('./components/RouteList'))
+
+
+function loadMap(props, t) {
+
+  return (
+    <HomeCard className="card">
+      <RouteMap id="map">
+        <Suspense fallback={<div>{t('home.loading_routes')}</div>}>
+          <Map gpx={props.routeGPX}></Map>
+        </Suspense>
+      </RouteMap>
+      <RouteInfo>
+        <h2> {t('home.information')} </h2>
+        <p>
+          {props.routeDescription}
+        </p>
+        <Slider imgs={props.routeImages}></Slider>
+      </RouteInfo>
+    </HomeCard>
+  );
+
+}
+
+function loadForm(props) {
+
+  return (
+    <HomeCard className="card">
+      <FormRoute></FormRoute>
+    </HomeCard>
+  );
+
+}
 
 /**
  * Hom Page UI component, containing the styled components for the Hom Page
@@ -29,7 +62,7 @@ export const HomePageContent = props => {
         <h2>Rutas</h2>
         <RouteList loadingText={t("home.loading_routes")} setRoute={props.setRoute} ></RouteList>
         <div id="Manage buttons">
-          <Button variant="contained" color="primary" onClick={() => ""}>
+          <Button variant="contained" color="primary" onClick={() => props.changeForm()}>
             Añadir ruta
           </Button>
           <span>   </span>
@@ -39,20 +72,8 @@ export const HomePageContent = props => {
         </div>
       </HomeSidenav>
       <HomeBody className="home-body">
-        <HomeCard className="card">
-          <RouteMap id="map">
-            <Suspense fallback={<div>{t('home.loading_routes')}</div>}>
-              <Map gpx={props.routeGPX}></Map>
-            </Suspense>
-          </RouteMap>
-          <RouteInfo>
-            <h2> {t('home.information')} </h2>
-            <p>
-              {props.routeDescription}
-            </p>
-            <Slider imgs={props.routeImages}></Slider>
-          </RouteInfo>
-        </HomeCard>
+        {props.needForm ? loadForm(props) : loadMap(props, t)}
+
       </HomeBody>
     </HomeWrapper>
   );
