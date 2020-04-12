@@ -16,7 +16,6 @@ import {
 import Slider from './components/Slider'
 const Map = React.lazy(() => import('../../Map'));
 
-
 function loadMap(props, t) {
 
   return (
@@ -66,7 +65,10 @@ export const HomePageContent = props => {
             Añadir ruta
           </Button>
           <span>   </span>
-          <Button variant="contained" color="secondary" onClick={() => manejadorPODs.deleteRoutes()}>
+          <Button variant="contained" color="secondary" onClick={async () => {
+            await manejadorPODs.deleteRoutes();
+            window.location.reload();
+          }}>
             Eliminar rutas
         </Button>
         </div>
