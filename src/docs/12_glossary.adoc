@@ -24,3 +24,4 @@
 
 |Git
 |Version control system used to *keep track* of different versions of the project and to improve teamwork.
+|===
