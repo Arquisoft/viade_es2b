@@ -32,9 +32,10 @@ System objectives are as follows:
 [options="header",cols="1,2,2"]
 |===
 |Priority|Objective|Detail
-| 1 | Usability | System will be intuitive for all kind of users, needing a short time for them to get acquainted with it.
+| 1 | Performance | The system must be effective and fast, with short loading times for the users.
 | 2 | Security | System will be secure, being the data protected against malicious users.
-| 3 | Functionality | System will fulfill all the user needs, and accomplish the other objectives.
+| 3 | Testability | Tests must be carried out to verify the correct operation of the system.
+| 4 | Usability | System will be intuitive for all kind of users, needing a short time for them to get acquainted with it.
 |===
 
 === Stakeholders
