@@ -6,6 +6,7 @@ import {
   } from '../home.style';
 import gestorPOD from '../../../persistanceManagement';
 import { useTranslation } from 'react-i18next';
+
 const Map = React.lazy(() => import('../../../Map'));
 export default class RouteComponent extends React.Component {
 

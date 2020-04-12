@@ -43,7 +43,7 @@ export const HomePageContent = props => {
 
       <HomeBody className="home-body">
       {/* content shoud change according to state*/}
-      {/* {form ? loadForm() : loadCard()} */}
+
       <HomeCard className="card">
           <RouteMap id="map">
             <Suspense fallback={<div>{t('home.loading_routes')}</div>}>
