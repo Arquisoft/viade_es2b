@@ -17,7 +17,7 @@ The stakeholders will be every person who wants to save some routes in order to 
 
 ****
 
-image::03_technicalAndBusinessContext.png[Business and technical context diagram]
+image::images/03_technicalAndBusinessContext.png[Business and technical context diagram]
 
 [options="header",cols="1,2"]
 |===
