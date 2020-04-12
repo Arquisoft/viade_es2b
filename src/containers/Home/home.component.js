@@ -1,4 +1,5 @@
 import React, { Suspense } from 'react';
+import { Button } from '@material-ui/core';
 //import { Uploader } from '@inrupt/solid-react-components';
 import { useTranslation } from 'react-i18next';
 import manejadorPODs from '../../persistanceManagement'
@@ -61,16 +62,16 @@ export const HomePageContent = props => {
         <h2>{t("home.routes")}</h2>
         <RouteList loadingText={t("home.loading_routes")} setRoute={props.setRoute} ></RouteList>
         <div id="Manage buttons">
-          <button variant="contained" color="primary" onClick={() => props.changeForm()}>
+          <Button variant="contained" color="primary" onClick={() => props.changeForm()}>
           {t("home.add_route")}
-          </button>
+          </Button>
           <span>   </span>
-          <button variant="contained" color="secondary" onClick={async () => {
+          <Button variant="contained" color="secondary" onClick={async () => {
             await manejadorPODs.deleteRoutes();
             window.location.reload();
           }}>
             {t("home.delete_route")}
-        </button>
+        </Button>
         </div>
       </HomeSidenav>
 
