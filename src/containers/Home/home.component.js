@@ -11,10 +11,8 @@ import {
   HomeBody,
   RouteMap,
   RouteInfo,
-  CenteredDiv
 } from './home.style';
 import Slider from './components/Slider'
-
 const Map = React.lazy(() => import('../../Map'));
 
 function loadMap(props, t) {
@@ -39,6 +37,7 @@ function loadMap(props, t) {
 }
 
 function loadForm() {
+
   return (
     <HomeCard className="card">
       <FormRoute></FormRoute>
@@ -61,21 +60,17 @@ export const HomePageContent = props => {
       <HomeSidenav className="home-sidebar">
         <h2>{t("home.routes")}</h2>
         <RouteList loadingText={t("home.loading_routes")} setRoute={props.setRoute} ></RouteList>
-
-        <CenteredDiv >
-          <button id= "btn_add" onClick={() => props.changeForm()}>
-            {t("home.add_route")}
-            </button>
-            <span>   </span>
-            <button onClick={async () => {
-              await manejadorPODs.deleteRoutes();
-              window.location.reload();
-            }}>
-              {t("home.delete_route")}
-          </button>
-        </CenteredDiv>
         <div id="Manage buttons">
-         
+          <button variant="contained" color="primary" onClick={() => props.changeForm()}>
+          {t("home.add_route")}
+          </button>
+          <span>   </span>
+          <button variant="contained" color="secondary" onClick={async () => {
+            await manejadorPODs.deleteRoutes();
+            window.location.reload();
+          }}>
+            {t("home.delete_route")}
+        </button>
         </div>
       </HomeSidenav>
 
