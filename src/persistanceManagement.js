@@ -1,5 +1,5 @@
 //Class Route
-const Route = require('./Route');
+import Route from './Route';
 
 //Library for authentication
 const auth = require('solid-auth-client');
@@ -53,29 +53,51 @@ export default {
     },
 
     /**
+     * Method used to load a file from the local storage of the client.
+     */
+    askForAFile: function() {
+        // Check for the various File API support.
+        if (window.File && window.FileReader && window.FileList && window.Blob) {
+
+        } else {
+            alert('The File APIs are not fully supported in this browser.');
+        }
+    },
+
+    /**
      * Method to save the route passed by parameter in the current user pod.
      * @param {Route to be saved. it should follow the Route class format.} route 
      */
-    saveRoute: async function(route = new Route(-1, "Prueba", "Ruta de prueba", null, [])) { //Valor default para test
+    saveRoute: async function(route) {
         fc = new FC(auth);
 
-        var jsonData = JSON.stringify(route);
+        var basicData = {id: route.id, name: route.name, description: route.description};
+        var basicDataJson = JSON.stringify(basicData);
+
+        let id_noSpaces = route.id.replace( /\s/g, '_');
 
         let tempUrlUser = ((await auth.currentSession()).webId).toString();
-        var urlUser = tempUrlUser.slice(0, -16) + "/public/routes/";
+        var urlUser = tempUrlUser.slice(0, -16) + "/private/routes/" + id_noSpaces;
 
-        await fc.createFile(urlUser + "/" + route.id + ".json", jsonData, "application/json");
+        await fc.createFile(urlUser + "/" + id_noSpaces + ".json", basicDataJson, "application/json");
+        await fc.createFile(urlUser + "/" + id_noSpaces + ".gpx", route.gpx, "application/gpx+xml");
+
+        for (var i=0; i < route.images.length; i++) {
+            var image = route.images.item(i);
+            await fc.createFile(urlUser + "/" + id_noSpaces + "_" + i , image, image.type);
+        }
+
     },
 
     /**
      * Method that returns the route saved in the user's pod, if exist. Null otherwise.
      * @param {ID of the route to be showed.} idRoute 
      */
-    seeRoute: async function(idRoute = -1) { //Valor default para test
+    seeRoute: async function(idRoute) {
         fc = new FC(auth);
 
         let tempUrlUser = ((await auth.currentSession()).webId).toString();
-        var urlUser = tempUrlUser.slice(0, -16) + "/public/routes/";
+        var urlUser = tempUrlUser.slice(0, -16) + "/private/routes/";
 
         var route = await fc.readFile(urlUser + idRoute + ".json");
 
@@ -92,25 +114,86 @@ export default {
         fc = new FC(auth);
 
         let tempUrlUser = ((await auth.currentSession()).webId).toString();
-        var urlUser = tempUrlUser.slice(0, -16) + "/public/routes/";
+        var urlUser = tempUrlUser.slice(0, -16) + "/private/routes/";
 
-        let folder = await fc.readFolder(urlUser);
-        var arrayJSONs = [];
+        var err = "";
+        let folder = await fc.readFolder(urlUser).catch(error => err = error);
 
-        for (var i=0; i < folder.files.length; i++) {
-            var file = folder.files[i];
-            arrayJSONs.push(await fc.readFile(file.url));
+        if (err !== "") {
+            console.log(err);
+            return [];
         }
 
+        var arrayRoutesFolders = [];
         var routes = [];
 
-        for (i=0; i < arrayJSONs.length; i++) {
-            routes.push(JSON.parse(arrayJSONs[i]))
+        for (var i=0; i < folder.folders.length; i++) {
+            var route_folder = folder.folders[i];
+            arrayRoutesFolders.push(route_folder);
+        }
+
+        for (i=0; i < arrayRoutesFolders.length; i++) {
+            let gpx = await fc.readFile(urlUser + arrayRoutesFolders[i].name + "/" + arrayRoutesFolders[i].name + ".gpx");
+            let basicDataJson = await fc.readFile(urlUser + arrayRoutesFolders[i].name + "/" + arrayRoutesFolders[i].name + ".json");
+            let basicData = JSON.parse(basicDataJson);
+
+            let filesInFolder = (await fc.readFolder(arrayRoutesFolders[i].url)).files
+            if (filesInFolder.length > 2) {
+                var images = [];
+                for (var j=0; j < filesInFolder.length - 2; j++) {
+                    let image = await fc.readFile(urlUser + arrayRoutesFolders[i].name + "/" + arrayRoutesFolders[i].name + "_" + j);
+                    images.push(image);
+                }
+            }
+
+            let route = new Route(basicData.id, basicData.name, basicData.description, gpx, images);
+            routes.push(route);
         }
 
         console.log(routes);
 
         return routes;
+    },
+    
+    deleteRoutes: async function() {
+        fc = new FC(auth);
+
+        let tempUrlUser = ((await auth.currentSession()).webId).toString();
+        var urlUser = tempUrlUser.slice(0, -16) + "/private/routes/";
+
+        await fc.deleteFolder(urlUser).then((content) => console.log("Deleted all routes")).catch(err => console.log(err))
+        
+    },
+
+    deleteRoute: async function(id) {
+        fc = new FC(auth);
+
+        let id_noSpaces = id.replace( /\s/g, '_');
+
+        let tempUrlUser = ((await auth.currentSession()).webId).toString();
+        var urlUser = tempUrlUser.slice(0, -16) + "/private/routes/";
+
+        let folder = await fc.readFolder(urlUser);
+        var arrayRoutesFolders = [];
+        var promise = null;
+
+        for (var i=0; i < folder.folders.length; i++) {
+            var route_folder = folder.folders[i];
+            arrayRoutesFolders.push(route_folder);
+        }
+
+        for (i=0; i < arrayRoutesFolders.length; i++) {
+            
+            if (arrayRoutesFolders[i].name === id_noSpaces) {
+
+                promise = fc.deleteFolder(arrayRoutesFolders[i].url);
+
+            }
+
+        }
+
+        return promise;
+
     },
 
     test: async function() {

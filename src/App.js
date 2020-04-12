@@ -1,35 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment, Suspense } from 'react';
+import { toast, Slide } from 'react-toastify';
+import { Loader } from '@util-components';
+import { ThemeProvider } from 'styled-components';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import Routes from './routes';
+import theme from './utils/theme';
+import 'react-toastify/dist/ReactToastify.css';
+import 'flag-icon-css/css/flag-icon.min.css';
+import 'normalize.css';
+import './index.css';
+import 'leaflet/dist/leaflet.css';
+import '@inrupt/solid-style-guide';
+import { Toaster } from './App.styled';
 
-const gestorPODS = require('./persistanceManagement');
+library.add(fas);
+library.add(faGithub);
 
-function App() {
+function App() {  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React. Developed using Docker.
-        </a>
-        <button onClick={() => gestorPODS.login()}>Login</button>
-        <button onClick={() => gestorPODS.logout()}>Log Out</button>
-        <button onClick= {() => gestorPODS.showPerson()}>Show person (Console)</button>
-        <button onClick= {() => gestorPODS.saveRoute()}>Save test route (Console)</button>
-        <button onClick= {() => gestorPODS.seeRoute()}>See test route (Console)</button>
-        <button onClick= {() => gestorPODS.seeRoutes()}>See routes (Console)</button>
-        <button onClick= {() => gestorPODS.test()}>TEST (Console)</button>
-      </header>
-    </div>
-  );
-}
-
+    <Suspense fallback={<Loader />}>
+      <ThemeProvider theme={theme}>
+        <Fragment>
+          <Routes />
+          <Toaster
+            {...{
+              autoClose: 3000,
+              position: toast.POSITION.TOP_CENTER,
+              newestOnTop: true,
+              closeOnClick: true,
+              pauseOnVisibilityChange: true,
+              draggable: true,
+              className: 'solid-toaster-container',
+              toastClassName: 'solid-toaster',
+              bodyClassName: 'solid-toaster-body',
+              transition: Slide
+            }}
+          />
+        </Fragment>
+      </ThemeProvider>
+    </Suspense>
+  )
+};
 export default App;

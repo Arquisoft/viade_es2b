@@ -15,7 +15,7 @@ There are some constraints in the development of our application. These constrai
 |The project architecture will be descentralized, which means user data is separated from the application and users are the one who control the flow of information.In order to achieve that,we will use SOLID specifications.
 
 |Javascript libray 
-|The project interface will be develop with React. This library will desing and update effectively the proper components when the data changed.
+|The project interface will be develop with React. This library will desing and update effectively the proper components when the data changed. It's mandatory to have some knowdledge at HTML5, CSS3 and JavaScript for using React.
 
 |Programming language
 |JavaScript will be used to develop this project. This programming language is friendly to user experience.
