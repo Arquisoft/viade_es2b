@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { FormModel } from '@inrupt/solid-react-components';
+//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+//import { FormModel } from '@inrupt/solid-react-components';
 import { successToaster, errorToaster } from '@utils';
 import { Loader } from '@util-components';
 import {Value,List} from '@solid/react';
@@ -14,8 +14,8 @@ import {
   WebId
 } from './profile.style';
 import { Image } from './components';
-import { AutoSaveSpinner } from '@components';
-import data from "@solid/query-ldflex";
+//import { AutoSaveSpinner } from '@components';
+//import data from "@solid/query-ldflex";
 
 
 const defaultProfilePhoto = './img/icon/empty-profile.svg';
@@ -31,8 +31,8 @@ type Props = { webId: String };
 
 const Profile = ({ webId }: Props) => {
   const { t } = useTranslation();
-  const [isLoading, setIsLoading] = useState(false);
-
+  const [isLoading/*, setIsLoading*/] = useState(false);
+/*
   const onError = e => {
     if (e.message.toString().indexOf('Validation failed') < 0) {
       errorToaster(t('formLanguage.renderer.formNotLoaded'), t('notifications.error'), {
@@ -49,7 +49,7 @@ const Profile = ({ webId }: Props) => {
   const onAddNewField = () => {
     successToaster(t('formLanguage.renderer.fieldAdded'), t('notifications.success'));
   };
-
+*/
 
   return (
     <ProfileWrapper data-testid="profile-component">
