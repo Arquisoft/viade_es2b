@@ -20,6 +20,12 @@ export const NavigationItems = [
     label: 'navBar.friends',
     to: '/friends'
   },
+  {
+    id: 'groups',
+    icon: './img/icon/grpups.svg',
+    label: 'navBar.groups',
+    to: '/groups'
+  }
 ];
 
 export const ProfileOptions = [

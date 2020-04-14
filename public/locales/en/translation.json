@@ -120,6 +120,14 @@
     "minMaxString": "Error: Min and max should be ",
     "defaultError": "Error: Field value has wrong format"
   },
+  "friends":{
+    "title": "Friends",
+    "content": "Text for friends window"
+  },
+  "groups":{
+    "title": "Grups",
+    "content": "Text for groups window"
+  },
   "noInboxOpponent": {
     "message": "Your opponent does not have an inbox in their Pod",
     "link": {

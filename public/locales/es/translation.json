@@ -121,6 +121,14 @@
     "minMaxString": "Error: Mínimo y máximo debería ser ",
     "defaultError": "Error: Formato incorrecto"
   },
+  "friends":{
+    "title": "Amigos",
+    "content": "Texto de prueba para la ventana de amigos"
+  },
+  "groups":{
+    "title": "Grupos",
+    "content": "Texto de prueba para la ventana de grupos"
+  },
   "noInboxOpponent": {
     "message": "No se encontró un inbox para su oponente",
     "link": {

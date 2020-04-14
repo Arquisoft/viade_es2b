@@ -3,6 +3,8 @@ import Register, { RegistrationSuccess } from './Register';
 import PageNotFound from './PageNotFound';
 import Home from './Home';
 import Profile from './Profile';
+import Friends from './Friends';
+import Groups from './Groups';
 
 export {
   Login,
@@ -11,4 +13,6 @@ export {
   PageNotFound,
   Home,
   Profile,
+  Friends,
+  Groups
 };
