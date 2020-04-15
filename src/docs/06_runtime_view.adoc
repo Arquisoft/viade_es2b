@@ -5,7 +5,7 @@ Next image will show screen prototypes of our application, starting with Login s
 
 We will base our explanation in this prototypes.
 
-image::images/PrototiposAppViade.jpg["Screen prototype of entire application"]
+image::PrototiposAppViade.jpg["Screen prototype of entire application"]
 
 ===  First Scenario: Login
 
@@ -25,14 +25,14 @@ Once the user is logged in, the app will allow him to visualize routes, share ru
 
 Once the user is logged in, the app will allow the user to visualize routes.
 
-*To do*
+image::06_visualizeRoutes.PNG[Map and route list]
 
 === Third Scenario: Add routes
 
 
 Once the user is logged in, the app will allow the user to load routes in .gpx format. 
 
-*To do*
+image::06_addRoutesForm.PNG[Form for adding routes to the POD]
 
 === Fourth Scenario: Create group
 

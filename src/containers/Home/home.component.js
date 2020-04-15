@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
+import { Button } from '@material-ui/core';
 //import { Uploader } from '@inrupt/solid-react-components';
 import { useTranslation } from 'react-i18next';
-import { Button } from '@material-ui/core';
 import manejadorPODs from '../../persistanceManagement'
 import RouteList from './components/RouteList'
 import FormRoute from './components/FormRoute/FormRoute'
@@ -11,7 +11,7 @@ import {
   HomeSidenav,
   HomeBody,
   RouteMap,
-  RouteInfo
+  RouteInfo,
 } from './home.style';
 import Slider from './components/Slider'
 const Map = React.lazy(() => import('../../Map'));
@@ -53,6 +53,7 @@ function loadForm() {
  * @param props
  */
 
+
 export const HomePageContent = props => {
   const { t } = useTranslation(); /* se puede pasar un mensaje prefefinido a Trans o usar t */
   return (
@@ -73,6 +74,7 @@ export const HomePageContent = props => {
         </Button>
         </div>
       </HomeSidenav>
+
       <HomeBody className="home-body">
         {props.needForm ? loadForm() : loadMap(props, t)}
 

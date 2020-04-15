@@ -8,12 +8,12 @@ export default class RouteList extends React.Component {
 
     constructor() {
         super();
-        this.state = { loading: true };
+        this.state = { loading: true};
     }
 
     async componentDidMount() {
         this.setState( {loading: true }, () => {
-            gestorPOD.seeRoutes().then((routes) => this.setState( { loading: false, routes: Array.from(routes)}) )
+            gestorPOD.seeRoutes().then((routes) => this.setState( {loading: false, routes: Array.from(routes)}) )
         });
     }
 

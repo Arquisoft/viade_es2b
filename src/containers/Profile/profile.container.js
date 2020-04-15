@@ -1,9 +1,10 @@
 import React, { Fragment, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { FormModel } from '@inrupt/solid-react-components';
-import { successToaster, errorToaster } from '@utils';
+//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+//import { FormModel } from '@inrupt/solid-react-components';
+//import { successToaster, errorToaster } from '@utils';
 import { Loader } from '@util-components';
+import {Value,List} from '@solid/react';
 import {
   Header,
   ProfileContainer,
@@ -13,7 +14,9 @@ import {
   WebId
 } from './profile.style';
 import { Image } from './components';
-import { AutoSaveSpinner } from '@components';
+//import { AutoSaveSpinner } from '@components';
+//import data from "@solid/query-ldflex";
+
 
 const defaultProfilePhoto = './img/icon/empty-profile.svg';
 
@@ -28,15 +31,14 @@ type Props = { webId: String };
 
 const Profile = ({ webId }: Props) => {
   const { t } = useTranslation();
-  const [isLoading, setIsLoading] = useState(false);
-
+  const [isLoading/*, setIsLoading*/] = useState(false);
+/*
   const onError = e => {
     if (e.message.toString().indexOf('Validation failed') < 0) {
       errorToaster(t('formLanguage.renderer.formNotLoaded'), t('notifications.error'), {
         label: t('errorFormRender.link.label'),
         href: t('errorFormRender.link.href')
       });
-      setIsLoading(false);
     }
   };
 
@@ -47,12 +49,14 @@ const Profile = ({ webId }: Props) => {
   const onAddNewField = () => {
     successToaster(t('formLanguage.renderer.fieldAdded'), t('notifications.success'));
   };
+*/
 
   return (
     <ProfileWrapper data-testid="profile-component">
       <ProfileContainer>
         {webId && (
           <Fragment>
+            
             <Header>
               <Image
                 {...{
@@ -60,6 +64,7 @@ const Profile = ({ webId }: Props) => {
                   defaultProfilePhoto
                 }}
               />
+              
             </Header>
 
             <AutoSaveNotification className="banner-wrap--warning banner">
@@ -70,40 +75,19 @@ const Profile = ({ webId }: Props) => {
             </AutoSaveNotification>
 
             <FormRenderContainer>
+            <h2><Value src="user.name"></Value></h2>
               <WebId>
-                <FontAwesomeIcon icon="id-card" />
-                <a href={webId} target="_blank" rel="noopener noreferrer">
+                <p>Profile:<a href={webId} target="_blank" rel="noopener noreferrer">
                   {webId}
-                </a>
+                </a></p>
               </WebId>
-              <FormModel
-                {...{
-                  modelPath: 'https://solidsdk.inrupt.net/sdk/userprofile.ttl#formRoot',
-                  podPath: webId,
-                  viewer: false,
-                  onInit: () => setIsLoading(true),
-                  onLoaded: () => setIsLoading(false),
-                  onSuccess: () => {},
-                  onSave: () => {},
-                  onError: error => {
-                    onError(error);
-                  },
-                  onAddNewField: response => onAddNewField(response),
-                  onDelete: response => onDelete(response),
-                  settings: {
-                    theme: {
-                      inputText: 'input-wrap',
-                      inputCheckbox: 'sdk-checkbox checkbox',
-                      form: 'inrupt-sdk-form',
-                      childGroup: 'inrupt-form-group'
-                    },
-                    savingComponent: AutoSaveSpinner
-                  }
-                }}
-                autoSave
-              />
             </FormRenderContainer>
+            <h2>Friends list</h2>
+            <List src="user.friends">
+              {(friend)=><a href={`${friend}`} target="_blank" rel="noopener noreferrer">{`${friend}`}<br/></a>}
+            </List>
           </Fragment>
+          
         )}
         {isLoading && <Loader absolute />}
       </ProfileContainer>

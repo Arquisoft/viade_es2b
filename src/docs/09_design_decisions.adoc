@@ -1,26 +1,44 @@
 [[section-design-decisions]]
 == Design Decisions
-****
+
 Brief description of all the decisions we took in order to develop the app.
-****
 
-=== Design Architecture
-As Solid is a W3C endorsed linked data personal data store (PDS) that puts control into the hands of the user, we'll be using P2p (Peer to peer) design architecture.
-Also, we will be following MVC (model view controller) architectual pattern.
+[cols=4*,options="header"]
 
-=== Programming language
-We are using JavaScript family language for building the app as it's the common way to develop some Solid app.
+|===
+| Our decisions
+| Description
+| Pros
+| Cons
 
-=== Front End 
-We will be using *React* for UI as it's server free.
-It's mandatory to have some knowdledge at HTML5, CSS3 and JavaScript for using React.
+| Design Architecture
+| As Solid is a W3C endorsed linked data personal data store (PDS) that puts control into the hands of the user, we'll be using P2P (Peer to peer) design architecture. Also, we will be following MVC (model view controller) architectual pattern.
+| Already known code distribution.
+| 
 
-=== Control System
-We will be using Git as a control system and GitHub as source code manager to keep track of different app versions.
+| Programming language
+| We are using JavaScript family language for building the app as it's the common way to develop some Solid app.
+| Easy to use with Solid
+| we are inexperienced working with JavaScript.
 
-=== Data Storage
-There won't be any database in this project as we will be storing user data using private POD's.
+| Front End 
+| We decided to use Bootstrap with React to be able to integrate a responsive design easily.
+| Simpler to create a fancy interface.
+| First time using it.
 
-=== Testing
-_WIP_
+| Control System
+| We will be using Git as a control system and GitHub as source code manager to keep track of different app versions. We decided to create one main develop branch and subbranches per person. The main branch should only be updated before deliveries.
+| It's a great way to keep a backup of the code. It also allows us to work on the project at the same time without risk of overwriting the work
+| We are still not used to working with git and we do not know how to use all the commands yet.
 
+| Data Storage
+| There won't be any database in this project as we will be storing user data using private POD's.
+| The user will have control over his data.
+| It's the first time we work with data like that.
+
+| Testing
+|
+|
+|
+
+|===

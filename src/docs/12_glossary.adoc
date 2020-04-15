@@ -7,4 +7,21 @@
 |Term
 |Definition
 
-*Work in progress*
+|SOLID
+|*So* cial *Li* nked *D* ata is a group of conventions and tools for building decentralized Web applications based on Linked Data principles.
+
+|Inrupt
+|The *company* that’s helping to fuel Solid’s success.
+
+|React
+|JavaScript library used to *build user interfaces*.
+
+|arc42
+|Documentation template used mainly in Europe. It's divided into *12 sections* that offer a simple and effective structure to document and communicate the project's software system. 
+
+|POD
+|*P* ersonal *O* nline *D* ata Stores, used to store data. The user *owns* the data stored here and gives *permission* to use it.
+
+|Git
+|Version control system used to *keep track* of different versions of the project and to improve teamwork.
+|===

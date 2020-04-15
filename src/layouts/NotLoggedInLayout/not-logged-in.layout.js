@@ -17,7 +17,7 @@ height: -webkit-fill-available;
 `;
 
 const FooterContainer = styled.div`
-  position: absolute;
+  position: relative;
   bottom: 0;
   width: 100%;
 
@@ -27,6 +27,12 @@ const FooterContainer = styled.div`
   
 `;
 
+const BodyContainer = styled.div`
+  position: absolute;
+  height: 100%;
+  width: 100%;
+`;
+
 const NotLoggedInLayout = props => {
   const { component: Component, webId, ...rest } = props;
   const { t } = useTranslation();
@@ -34,7 +40,7 @@ const NotLoggedInLayout = props => {
     <Route
       {...rest}
       component={matchProps => (
-        <body>
+        <BodyContainer>
             <NavBar 
               {...matchProps}
               toolbar={[             {
@@ -61,7 +67,7 @@ const NotLoggedInLayout = props => {
             <FooterContainer>
               <Footer />
             </FooterContainer>
-        </body>
+        </BodyContainer>
       )}
     />
   ) : (

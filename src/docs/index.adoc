@@ -7,7 +7,7 @@
 // toc-title definition MUST follow document title without blank line!
 :toc: left
 :toc-title: Table of Contents
-:imagesdir: ./images
+:imagesdir: .
 
 
 //additional style for arc42 help callouts

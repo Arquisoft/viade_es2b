@@ -2,24 +2,10 @@ import styled from 'styled-components';
 
 export const HomeWrapper = styled.section`
   width: 100%;
+  height: 100%;
   background-image: url('./img/concentric-hex-pattern_2x.png');
   background-repeat: repeat;
   display: flex;
-
-  h3 {
-    color: #000;
-    span {
-      font-weight: bold;
-    }
-    a {
-      font-size: 1.9rem;
-    }
-    a :hover,
-    a.active{
-      font-size: 1.9rem;
-      background:rgba(7, 65, 102, 0.3); 
-    }
-  }
 `;
 
 export const HomeSidenav = styled.div`
@@ -39,13 +25,8 @@ export const HomeSidenav = styled.div`
     color: #818181;
     display: block;
   }
-  p,
-  li {
+  p {
     color: #000;
-  }
-  ul {
-    list-style: disc;
-    margin: 0 18px;
   }
 `;
 
@@ -73,7 +54,6 @@ export const HomeCard = styled.div`
 export const RouteMap = styled.div`
   height: 300px;
   margin: 2%;
-  background-color: #ddd;
   line-height: 300px;
   text-align: center;
   width:95%;
@@ -88,3 +68,9 @@ export const RouteInfo = styled.div`
   width:95%;
 `;
 
+export const CenteredDiv = styled.div`
+  padding: 5%;
+  bottom: 0;
+  display:inline-block;
+  text-align: center;
+`;
