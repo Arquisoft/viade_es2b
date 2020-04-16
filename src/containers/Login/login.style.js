@@ -1,7 +1,13 @@
 import styled from 'styled-components';
-import { Panel } from '@util-components';
+import { Panel, GradientBackground } from '@util-components';
 
-export const LoginWrapper = styled.div`
+export const LoginWrapper = styled(GradientBackground)`
+  height: 100%;
+
+
+  position: relative;
+  padding-top: 4%;
+
   h1 {
     color: #ffffff;
     font-size:250%;
@@ -14,14 +20,11 @@ export const LoginPanel = styled(Panel)`
   float: left;
   margin-left: 20%;
   margin-bottom:10%;
-  
 `;
 
 export const PanelBody = styled.div`
   display: grid;
   flex-direction: column;
-
-  //TODO tiene que haber una manera mejor de cambiarlo
 
   .ids-button-filled--primary, .ids-link-filled--primary {
     background:#074166;
@@ -77,4 +80,27 @@ export const LoginTitle = styled.span`
   &::after {
     left: 0;
   }
+`;
+
+export const AboutWrapper = styled.div`
+  width: 100%;
+  background-image: url('./img/concentric-hex-pattern_2x.png');
+  background-repeat: repeat;
+  display: flex;
+`;
+
+export const AboutPanel = styled(Panel)`
+  width: 90%;
+  margin-top:5%;
+  margin-bottom:5%;
+  display: flex;
+  position:relative;
+`;
+
+export const TeamCard = styled.div`
+  display: grid;
+  flex-direction: column;
+  padding: 5%,
+  margin-bottom: 5%;
+  text-align:center;
 `;

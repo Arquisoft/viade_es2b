@@ -3,18 +3,8 @@ import { Route, Redirect } from 'react-router-dom';
 import { withTranslation, useTranslation } from 'react-i18next';
 import { NavBar, Footer } from '@components';
 import { withWebId } from '@inrupt/solid-react-components';
-import { GradientBackground, LanguageDropdown } from '@util-components';
+import {LanguageDropdown } from '@util-components';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-
-const Container = styled(GradientBackground)`
-
-height: 100%;
-height: -webkit-fill-available;
-
-  position: relative;
-  padding-top: 4%;
-`;
 
 const FooterContainer = styled.div`
   position: relative;
@@ -28,14 +18,14 @@ const FooterContainer = styled.div`
 `;
 
 const BodyContainer = styled.div`
-  position: absolute;
-  height: 100%;
+  position: relatives;
   width: 100%;
 `;
 
 const NotLoggedInLayout = props => {
   const { component: Component, webId, ...rest } = props;
   const { t } = useTranslation();
+  // If user has webId redirects to /home, otherwise 
   return !webId ? (
     <Route
       {...rest}
@@ -45,15 +35,18 @@ const NotLoggedInLayout = props => {
               {...matchProps}
               toolbar={[             {
                 component: () => 
-                <a href="https://arquisoft.github.io/viade_es2b/docs">
+                <a href="https://arquisoft.github.io/viade_es2b/docs"> 
                     {t('navBar.documentation')}
-                </a>
+                </a> 
                 },
                 {
                   component: () => 
-                  <Link to="/about" className="about-us">
+                  /*<Link to="/about" className="about-us">
                       {t('navBar.about')}
-                  </Link>
+                  </Link>*/
+                  <a href="#about"> 
+                    {t('navBar.about')}
+                </a> 
                 },
                 {
                   component: () => <LanguageDropdown {...{ t, ...props }} />,
@@ -61,9 +54,9 @@ const NotLoggedInLayout = props => {
                 }
               ]}
             />
-            <Container>
+            <div>
               <Component {...matchProps} />
-            </Container>
+            </div>
             <FooterContainer>
               <Footer />
             </FooterContainer>

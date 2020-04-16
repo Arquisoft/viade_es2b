@@ -45,6 +45,29 @@
     "alreadySolid": "Ya tengo una identidad Solid",
     "next": "Siguiente"
   },
+  "about":{
+    "team": "<0>Somos un grupo de estudiantes que desarrollamos una aplicación de rutas descentralizadas como tarea para <1> la asignatura Arquitectura Software </1>  impartida en la Universidad de Oviedo</0>",
+    "dani":{
+      "rol":  "DESARROLLADOR BACKEND",
+      "description": "edita esto y escribe algo sobre ti"
+    },
+    "angela":{
+      "rol":  "DESARROLLADOR BACKEND",
+      "description": "Me encanta el diseño. Por ello he tratado el tema estético de esta aplicación. Mi trabajo es proporcionar una interfaz intuitiva al usuario."
+    },
+    "ivan":{
+      "rol":  "DESARROLLADOR BACKEND",
+      "description": "edita esto y escribe algo sobre ti"
+    },
+    "diego":{
+      "rol":  "DESARROLLADOR BACKEND",
+      "description": "edita esto y escribe algo sobre ti"
+    },
+    "noe":{
+      "rol":  "DESARROLLADOR BACKEND",
+      "description": "edita esto y escribe algo sobre ti"
+    }
+  },
   "navBar": {
     "home": "Rutas",
     "about": "Sobre nosotros",

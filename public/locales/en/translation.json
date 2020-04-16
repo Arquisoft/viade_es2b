@@ -45,6 +45,29 @@
     "alreadySolid": "I already have a Solid identity",
     "next": "Next"
   },
+  "about":{
+    "team": "<0>We are a group of students who developed a decentralizedroute app as an asignment for <1> Software Architecture course </1>  which takes place at University of Oviedo.</0>",
+    "dani":{
+      "rol":  "BACKEND DEVELOPER",
+      "description": "edit this and write whatever you want to say about yourself"
+    },
+    "angela":{
+      "rol":  "UI/UX DEVELOPER",
+      "description": "I love the design. For this reason I've worked on the interface of this application. My job is to provide an intuitive user interface."
+    },
+    "ivan":{
+      "rol":  "BACKEND DEVELOPER",
+      "description": "edit this and write whatever you want to say about yourself"
+    },
+    "diego":{
+      "rol":  "BACKEND DEVELOPER",
+      "description": "edit this and write whatever you want to say about yourself"
+    },
+    "noe":{
+      "rol":  "BACKEND DEVELOPER",
+      "description": "edit this and write whatever you want to say about yourself"
+    }
+  },
   "navBar": {
     "home": "Routes",
     "about": "About us",
