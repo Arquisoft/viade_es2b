@@ -1,4 +1,4 @@
-import GradientBackground from './GradientBackground';
+import ImageBackground from './ImageBackground';
 import CenterContainer from './CenterContainer';
 import Panel from './Panel';
 import Dropdown from './Dropdown';
@@ -14,7 +14,7 @@ import ConfirmationDialog from './ConfirmationDialog';
 import Labeled from './Labeled';
 
 export {
-  GradientBackground,
+  ImageBackground,
   CenterContainer,
   ConfirmationDialog,
   ToasterNotification,

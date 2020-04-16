@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { GradientBackground, Panel } from '@util-components';
+import { ImageBackground, Panel } from '@util-components';
 
-export const RegisterWrapper =  styled(GradientBackground)`
+export const RegisterWrapper =  styled(ImageBackground)`
   padding-top: 4%;
   padding-bottom: 4%;
 `;

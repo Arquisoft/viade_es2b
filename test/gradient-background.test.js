@@ -1,12 +1,12 @@
 import React from 'react';
 import { render, cleanup } from 'react-testing-library';
-import GradientBackground from '../src/components/Utils/GradientBackground/gradient-background.component';
+import ImageBackground from '../src/components/Utils/ImageBackground/image-background.component';
 
 afterAll(cleanup);
 
-const { container } = render(<GradientBackground />);
+const { container } = render(<ImageBackground />);
 
-describe('GradientBackground', () => {
+describe('ImageBackground', () => {
   it('renders without crashing', () => {
     expect(container).toBeTruthy();
   });

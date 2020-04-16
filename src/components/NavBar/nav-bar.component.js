@@ -1,5 +1,5 @@
 import React, { useEffect, useState, Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import { HashLink as Link } from 'react-router-hash-link';
 import { Navigation, Toolbar, HamburgerButton, MobileNavigation } from './children';
 
 type Props = {
@@ -57,8 +57,8 @@ const NavBar = (props: Props) => {
     <header role="navigation" className="header header__desktop fixed" ref={componentElement}>
       <section className="header-wrap">
         <div className="logo-block">
-          <Link to="/home">
-            <img src="./img/viade.png" alt="Viade 2b" />
+          <Link to="/home#login">
+            <img src="./favicon.png" alt="Viade 2b" />
           </Link>
         </div>
 

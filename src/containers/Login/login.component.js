@@ -14,7 +14,7 @@ const LoginComponent = () => {
   return (
     <React.Fragment>
        {/*HERE STARTS THE LOGIN SUBCATEGORY OF THE LANDING PAGE */}
-      <LoginWrapper data-testid="login-wrapper">
+      <LoginWrapper data-testid="login-wrapper" id="login">
           <CenterContainer>
             <h1 data-testid="title">{t('login.title')}</h1>
             <LoginPanel className="login-panel">

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Gradient = styled.div`
+export const Image = styled.div`
   background-image: url('./img/login_background.gif');
   background-size:     cover;     /* to adjust screen size*/
   background-repeat:   no-repeat;
