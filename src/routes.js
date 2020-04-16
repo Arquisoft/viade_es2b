@@ -8,6 +8,7 @@ import {
   PageNotFound,
   Home,
   RegistrationSuccess,
+  Friends,
   Profile
 } from './containers';
 
@@ -21,9 +22,16 @@ const privateRoutes = [
     id: 'profile',
     path: '/profile',
     component: Profile
+  },
+  {
+    id: 'friends',
+    path: '/friends',
+    component: Friends
   }
 ];
 
+/* 
+ */
 const Routes = () => {
   return (
   <Router basename="/">

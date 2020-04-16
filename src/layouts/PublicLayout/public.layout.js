@@ -25,11 +25,6 @@ const PublicLayout = props => {
   const webId = useWebId();
   const { component: Component, ...rest } = props;
   const { t, i18n } = useTranslation();
-  const ComponentWrapper = styled(Component)`
-    padding-bottom: 60px;
-    height: 100%;
-    padding-top: 60px;
-  `;
   
   return (
     <Route
@@ -54,7 +49,7 @@ const PublicLayout = props => {
               ]}
             />
           )}
-          <ComponentWrapper {...{ history, location, match }} />
+          <container {...{ history, location, match }} />
           <FooterContainer>
             <Footer />
           </FooterContainer>

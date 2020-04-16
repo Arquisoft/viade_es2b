@@ -9,17 +9,11 @@ export const NavigationItems = [
     to: '/home'
   },
   {
-    id: 'profile',
-    icon: './img/icon/user.svg',
-    label: 'navBar.profile',
-    to: '/profile'
-  },
-  {
     id: 'friends',
     icon: './img/icon/friends.svg',
     label: 'navBar.friends',
     to: '/friends'
-  },
+  }
 ];
 
 export const ProfileOptions = [
