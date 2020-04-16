@@ -12,8 +12,10 @@ import {
   HomeBody,
   RouteMap,
   RouteInfo,
+  RouteHead
 } from './home.style';
 import Slider from './components/Slider'
+import ShareComponent from './components/ShareComponent/ShareComponent'
 const Map = React.lazy(() => import('../../Map'));
 
 function loadMap(props, t) {
@@ -26,7 +28,10 @@ function loadMap(props, t) {
         </Suspense>
       </RouteMap>
       <RouteInfo>
-        <h2> {t('home.information')} </h2>
+        <RouteHead>
+          <h2> {t('home.information')} </h2>
+          <ShareComponent route = {props.routeGPX}></ShareComponent>
+        </RouteHead>
         <p>
           {props.routeDescription}
         </p>
