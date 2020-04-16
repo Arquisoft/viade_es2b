@@ -8,9 +8,8 @@ import {
   PageNotFound,
   Home,
   RegistrationSuccess,
-  Profile,
   Friends,
-  Groups
+  Profile
 } from './containers';
 
 const privateRoutes = [
@@ -29,14 +28,10 @@ const privateRoutes = [
     path: '/friends',
     component: Friends
   }
-  ,
-  {
-    id: 'groups',
-    path: '/groups',
-    component: Groups
-  }
 ];
 
+/* 
+ */
 const Routes = () => {
   return (
   <Router basename="/">
