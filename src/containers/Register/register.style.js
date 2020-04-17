@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { ImageBackground, Panel } from '@util-components';
+import styled from "styled-components";
+import { ImageBackground, Panel } from "@util-components";
 
 export const RegisterWrapper =  styled(ImageBackground)`
   padding-top: 4%;
@@ -38,7 +38,7 @@ export const PanelHeader = styled.div`
 `;
 
 export const PanelBody = styled.div`
-  height: 100% !important;
+  height: 100%;
   animation: fadeIn 0.2s ease-in;
 
   a {

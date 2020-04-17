@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import { Image } from './image-background.style';
+import { Image } from "./image-background.style";
 
 type Props = {
   children: React.Node,

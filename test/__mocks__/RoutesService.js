@@ -1,4 +1,4 @@
-import Route from '../src/Route';
+import Route from "../src/Route";
 
 class RoutesService {
     constructor(){

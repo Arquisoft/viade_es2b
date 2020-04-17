@@ -6,4 +6,4 @@ export default class Route {
       this.gpx = gpx;
       this.images = images;
     }
-  };
+  }

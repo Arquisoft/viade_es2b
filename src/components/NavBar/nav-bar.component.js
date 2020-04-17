@@ -1,6 +1,6 @@
-import React, { useEffect, useState, Fragment } from 'react';
-import { HashLink as Link } from 'react-router-hash-link';
-import { Navigation, Toolbar, HamburgerButton, MobileNavigation } from './children';
+import React, { useEffect, useState, Fragment } from "react";
+import { HashLink as Link } from "react-router-hash-link";
+import { Navigation, Toolbar, HamburgerButton, MobileNavigation } from "./children";
 
 type Props = {
   t: Function,
@@ -18,16 +18,16 @@ const NavBar = (props: Props) => {
   const setNavFixed = () => {
     if (componentElement) {
       const navHeight = componentElement.clientHeight;
-      const content = document.getElementsByClassName('contentApp');
+      const content = document.getElementsByClassName("contentApp");
       if (content.length > 0) {
-        content[0].style['padding-top'] = `${navHeight}px`;
+        content[0].style["padding-top"] = `${navHeight}px`;
       }
     }
   };
 
   const onComponentResize = () => {
     setNavFixed();
-    window.addEventListener('resize', () => {
+    window.addEventListener("resize", () => {
       setNavFixed();
 
       if (window.innerWidth >= 1024 && isOpenMobile) {
@@ -37,7 +37,7 @@ const NavBar = (props: Props) => {
   };
 
   const getUserProfileOptions = () => {
-    const profile = toolbar ? toolbar.filter(bar => bar.id !== 'language') : [];
+    const profile = toolbar ? toolbar.filter((bar) => bar.id !== "language") : [];
     setProfileOption(profile);
   };
 

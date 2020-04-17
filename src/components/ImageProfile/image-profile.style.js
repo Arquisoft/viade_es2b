@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const ImageProfileWrapper = styled.div`
   width: 128px;
@@ -14,11 +14,7 @@ export const ImageProfileWrapper = styled.div`
     width: 100%;
     height: 128px;
   }
-  &:hover {
-    button {
-      opacity: 1;
-    }
-  }
+
   .upload-icon {
     display: block;
     margin: 0 auto 10px auto;
