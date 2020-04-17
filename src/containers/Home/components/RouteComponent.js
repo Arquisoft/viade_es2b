@@ -1,13 +1,13 @@
-import {React, Suspense} from 'react';
+import {React, Suspense} from "react";
 import {
     HomeCard,
     RouteMap,
     RouteInfo
-  } from '../home.style';
-import gestorPOD from '../../../persistanceManagement';
-import { useTranslation } from 'react-i18next';
+  } from "../home.style";
+import gestorPOD from "../../../persistanceManagement";
+import { useTranslation } from "react-i18next";
 
-const Map = React.lazy(() => import('../../../Map'));
+const Map = React.lazy(() => import("../../../Map"));
 export default class RouteComponent extends React.Component {
 
     constructor() {
@@ -17,7 +17,7 @@ export default class RouteComponent extends React.Component {
 
     async componentDidMount() {
         this.setState( {form: false }, () => {
-            gestorPOD.seeRoutes().then((routes) => this.setState( { loading: false, routes: Array.from(routes)}) )
+            gestorPOD.seeRoutes().then((routes) => this.setState( { loading: false, routes: Array.from(routes)}) );
             
         });
     }
@@ -35,12 +35,12 @@ export default class RouteComponent extends React.Component {
         
         <HomeCard className="card">
           <RouteMap id="map">
-            <Suspense fallback={<div>{t('home.loading_routes')}</div>}>
+            <Suspense fallback={<div>{t("home.loading_routes")}</div>}>
               <Map gpx={props.routeGPX}></Map>
             </Suspense>
           </RouteMap>
           <RouteInfo>
-            <h2> {t('home.information')} </h2>
+            <h2> {t("home.information")} </h2>
             <p>
               {props.routeDescription}
             </p>

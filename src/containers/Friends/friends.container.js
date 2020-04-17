@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { FriendsPageContent } from './friends.component';
+import React, { Component } from "react";
+import { FriendsPageContent } from "./friends.component";
 
 
 /**

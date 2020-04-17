@@ -1,13 +1,13 @@
-import React from 'react';
-import Form from 'react-bootstrap/Form'
-import { Button } from '@material-ui/core'
+import React from "react";
+import Form from "react-bootstrap/Form";
+import { Button } from "@material-ui/core";
 
-import bsCustomFileInput from 'bs-custom-file-input'
-import Route from '../../../../Route';
+import bsCustomFileInput from "bs-custom-file-input";
+import Route from "../../../../Route";
 
-import i18n from '../../../../i18n'
+import i18n from "../../../../i18n";
 
-import gestorPOD from '../../../../persistanceManagement';
+import gestorPOD from "../../../../persistanceManagement";
 
 export default class RouteForm extends React.Component {
   constructor(props) {
@@ -28,11 +28,13 @@ export default class RouteForm extends React.Component {
   handleChangeFiles(event) {
     let fieldName = event.target.name;
     let fieldVal;
-    if (fieldName === "gpx")
+    if (fieldName === "gpx"){
       fieldVal = event.target.files[0];
-    else
+    }
+    else{
       fieldVal = event.target.files;
-
+    }
+     
     this.setState({ form: { ...this.state.form, [fieldName]: fieldVal } });
   }
 

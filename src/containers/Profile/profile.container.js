@@ -1,10 +1,10 @@
-import React, { Fragment, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-//import { FormModel } from '@inrupt/solid-react-components';
-//import { successToaster, errorToaster } from '@utils';
-import { Loader } from '@util-components';
-import {Value,List} from '@solid/react';
+import React, { Fragment, useState } from "react";
+import { useTranslation } from "react-i18next";
+//import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+//import { FormModel } from "@inrupt/solid-react-components";
+//import { successToaster, errorToaster } from "@utils";
+import { Loader } from "@util-components";
+import {Value,List} from "@solid/react";
 import {
   Header,
   ProfileContainer,
@@ -12,13 +12,13 @@ import {
   FormRenderContainer,
   AutoSaveNotification,
   WebId
-} from './profile.style';
-import { Image } from './components';
-//import { AutoSaveSpinner } from '@components';
+} from "./profile.style";
+import { Image } from "./components";
+//import { AutoSaveSpinner } from "@components";
 //import data from "@solid/query-ldflex";
 
 
-const defaultProfilePhoto = './img/icon/empty-profile.svg';
+const defaultProfilePhoto = "./img/icon/empty-profile.svg";
 
 /**
  * We are using ldflex to fetch profile data from a solid pod.
@@ -34,20 +34,20 @@ const Profile = ({ webId }: Props) => {
   const [isLoading/*, setIsLoading*/] = useState(false);
 /*
   const onError = e => {
-    if (e.message.toString().indexOf('Validation failed') < 0) {
-      errorToaster(t('formLanguage.renderer.formNotLoaded'), t('notifications.error'), {
-        label: t('errorFormRender.link.label'),
-        href: t('errorFormRender.link.href')
+    if (e.message.toString().indexOf("Validation failed") < 0) {
+      errorToaster(t("formLanguage.renderer.formNotLoaded"), t("notifications.error"), {
+        label: t("errorFormRender.link.label"),
+        href: t("errorFormRender.link.href")
       });
     }
   };
 
   const onDelete = () => {
-    successToaster(t('formLanguage.renderer.fieldDeleted'), t('notifications.success'));
+    successToaster(t("formLanguage.renderer.fieldDeleted"), t("notifications.success"));
   };
 
   const onAddNewField = () => {
-    successToaster(t('formLanguage.renderer.fieldAdded'), t('notifications.success'));
+    successToaster(t("formLanguage.renderer.fieldAdded"), t("notifications.success"));
   };
 */
 
@@ -70,7 +70,7 @@ const Profile = ({ webId }: Props) => {
             <AutoSaveNotification className="banner-wrap--warning banner">
               <div className="banner-wrap__content">
                 <i className="icon fa fa-exclamation-circle" />
-                {t('profile.autosaveNotification')}
+                {t("profile.autosaveNotification")}
               </div>
             </AutoSaveNotification>
 
@@ -84,7 +84,7 @@ const Profile = ({ webId }: Props) => {
             </FormRenderContainer>
             <h2>Friends list</h2>
             <List src="user.friends">
-              {(friend)=><a href={`${friend}`} target="_blank" rel="noopener noreferrer">{`${friend}`}<br/></a>}
+              {(friend)=> <a href={`${friend}`} target="_blank" rel="noopener noreferrer">{`${friend}`}<br/></a>}
             </List>
           </Fragment>
           

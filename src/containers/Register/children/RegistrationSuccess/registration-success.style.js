@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { ImageBackground } from '@util-components';
+import styled from "styled-components";
+import { ImageBackground } from "@util-components";
 
 export const RegistrationPage = styled(ImageBackground)`
   text-align: center;

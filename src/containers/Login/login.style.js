@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { Panel, ImageBackground } from '@util-components';
+import styled from "styled-components";
+import { Panel, ImageBackground } from "@util-components";
 
 export const LoginWrapper = styled(ImageBackground)`
   height: 100%;
@@ -36,8 +36,8 @@ export const PanelBody = styled.div`
     color:#074166;
   }
   .provider-login-component {
-    div[role='option'] {
-      text-align: left !important;
+    div[role="option"] {
+      text-align: left;
       padding-left: 20px;
     }
   }
@@ -62,7 +62,7 @@ export const LoginTitle = styled.span`
   &::before,
   &::after {
     width: 32%;
-    content: '';
+    content: "";
     background: #074166;
     height: 1px;
     box-sizing: border-box;
@@ -84,7 +84,7 @@ export const LoginTitle = styled.span`
 
 export const AboutWrapper = styled.div`
   width: 100%;
-  background-image: url('./img/concentric-hex-pattern_2x.png');
+  background-image: url("./img/concentric-hex-pattern_2x.png");
   background-repeat: repeat;
   display: flex;
 `;

@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { CenterContainer } from '@util-components';
+import React, { Component } from "react";
+import { CenterContainer } from "@util-components";
 // import { NavBar } from "@components";
-import { RegistrationPage } from './registration-success.style';
+import { RegistrationPage } from "./registration-success.style";
 
 type Props = {
   history: Object
@@ -29,13 +29,13 @@ class RegistrationSuccess extends Component<Props, State> {
   redirect = async () => {
     const { history } = this.props;
     await clearInterval(this.interval);
-    history.push('/login');
+    history.push("/login");
   };
 
   countDown = () => {
     const { timeLeft } = this.state;
-    if (timeLeft === 0) this.redirect();
-    this.setState(prevState => ({ timeLeft: prevState.timeLeft - 1 }));
+    if (timeLeft === 0) {this.redirect();}
+    this.setState((prevState) => ({ timeLeft: prevState.timeLeft - 1 }));
   };
 
   render() {
