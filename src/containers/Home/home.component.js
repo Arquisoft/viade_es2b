@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import manejadorPODs from "../../persistanceManagement";
 import RouteList from "./components/RouteList";
 import FormRoute from "./components/FormRoute/FormRoute";
+import FormEditRoute from "./components/FormEditRoute/FormEditRoute"
 import {
   HomeWrapper,
   HomeCard,
@@ -47,6 +48,16 @@ function loadForm() {
 
 }
 
+function loadEditForm() {
+
+  return (
+    <HomeCard className="card">
+      <FormEditRoute></FormEditRoute>
+    </HomeCard>
+  );
+
+} 
+
 /**
  * Hom Page UI component, containing the styled components for the Hom Page
  * Image component will get theimage context and resolve the value to render.
@@ -66,6 +77,10 @@ export const HomePageContent = (props) => {
           {t("home.add_route")}
           </Button>
           <span>   </span>
+          <Button variant="contained" color="primary" onClick={() => props.changeEditForm()}>
+          {t("home.edit_route")}
+          </Button>
+          <span>   </span>
           <Button variant="contained" color="secondary" onClick={async () => {
             await manejadorPODs.deleteRoutes();
             window.location.reload();
@@ -76,9 +91,9 @@ export const HomePageContent = (props) => {
       </HomeSidenav>
 
       <HomeBody className="home-body">
-        {props.needForm ? loadForm() : loadMap(props, t)}
-
+        {(props.needEditForm ? loadEditForm() : props.needForm ? loadForm() : loadMap(props, t))}
       </HomeBody>
+
     </HomeWrapper>
   );
 };

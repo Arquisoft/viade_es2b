@@ -103,13 +103,18 @@
     "loading_map": "Cargando mapa...",
     "routes" : "Rutas",
     "add_route": "Añadir ruta",
+	"edit_route": "Editar ruta",
     "delete_route": "Eliminar rutas"
   },
   "form": {
     "name": "Nombre de la ruta",
+    "name_edit": "Nuevo nombre de la ruta",
     "enter_name": "Introduce el nombre de la ruta",
+    "enter_name_edit": "Introduce el nuevo nombre de la ruta",
     "description": "Descripción de la ruta",
+    "description_edit": "Nueva descripción de la ruta",
     "enter_description": "Introduce la descripción de la ruta",
+    "enter_description": "Introduce la nueva descripción de la ruta",
     "gpx": "Cargar gpx",
     "images" : "Cargar imagenes",
     "submit": "Enviar"

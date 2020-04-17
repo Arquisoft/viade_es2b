@@ -10,7 +10,7 @@ export class HomeComponent extends Component<Props> {
   constructor(props) {
     super(props);
 
-    this.state = { needForm: false };
+    this.state = { needForm: false, needEditForm: false };
 
   }
 
@@ -18,7 +18,7 @@ export class HomeComponent extends Component<Props> {
 
     if (this.state.route && this.state.route.description !== this.state.routeDescription){
       this.updateRouteData();
-    } 
+    }
   }
 
   updateRouteData = async () => {
@@ -41,11 +41,15 @@ export class HomeComponent extends Component<Props> {
     this.setState({ needForm: !this.state.needForm});
   }
 
+  changeEditForm = () => {
+    this.setState({ needEditForm: !this.state.needEditForm});
+  }
+
   render() {
-    const { routeDescription, routeGPX, routeImages, needForm } = this.state;
+    const { routeDescription, routeGPX, routeImages, needForm, needEditForm } = this.state;
 
     return (
-      <HomePageContent {...{ changeForm: this.changeForm, setRoute: this.setRoute, routeDescription, routeGPX, routeImages, needForm}} />
+      <HomePageContent {...{ changeForm: this.changeForm, changeEditForm: this.changeEditForm, setRoute: this.setRoute, routeDescription, routeGPX, routeImages, needForm, needEditForm}} />
     );
   }
 }

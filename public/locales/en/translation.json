@@ -102,13 +102,18 @@
     "loading_map": "Loading map...",
     "routes" : "Routes",
     "add_route": "Add route",
+	"edit_route": "Edit route",
     "delete_route": "Delete routes"
   },
   "form": {
     "name": "Route name",
+    "name_edit": "New route name",
     "enter_name": "Enter route name",
+    "enter_name_edit": "Enter new route name",
     "description": "Route description",
+    "description_edit": "New route description",
     "enter_description": "Enter route description",
+    "enter_description_edit": "Enter new route description",
     "gpx": "Load gpx",
     "images" : "Load images",
     "submit": "Submit"
