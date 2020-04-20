@@ -69,6 +69,20 @@ export const RouteInfo = styled.div`
   width:95%;
 `;
 
+export const RouteHead = styled.div`
+  margin-bottom: 100px;
+ 
+  h2 {
+    float: left;
+    width: 50%
+  }
+
+  #share {
+    float: right;
+    width: 50%
+  }
+`;
+
 export const CenteredDiv = styled.div`
   padding: 5%;
   bottom: 0;

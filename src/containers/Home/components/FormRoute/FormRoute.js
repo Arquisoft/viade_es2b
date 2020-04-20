@@ -1,6 +1,6 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
-import { Button } from "@material-ui/core";
+import { Button, Switch } from "@material-ui/core";
 
 import bsCustomFileInput from "bs-custom-file-input";
 import Route from "../../../../Route";
@@ -12,7 +12,7 @@ import gestorPOD from "../../../../persistanceManagement";
 export default class RouteForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { form: { name: "", description: "", gpx: null, images: [] }};
+    this.state = { form: { name: "", description: "", gpx: null, images: [], priv: true }};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,6 +22,10 @@ export default class RouteForm extends React.Component {
   handleChange(event) {
     let fieldName = event.target.name;
     let fieldVal = event.target.value;
+
+    //In case is the switch from Material library
+    if (fieldName === "priv") {fieldVal = !event.target.checked}
+
     this.setState({ form: { ...this.state.form, [fieldName]: fieldVal } });
   }
 
@@ -47,8 +51,9 @@ export default class RouteForm extends React.Component {
     let gpx = this.state.form.gpx;
     let images = this.state.form.images;
     let id = name + "-" + Date.now().toString();
+    let priv = this.state.form.priv;
 
-    var route = new Route(id, name, description, gpx, images);
+    var route = new Route(id, name, description, gpx, images, priv);
 
     await gestorPOD.saveRoute(route);
 
@@ -71,6 +76,16 @@ export default class RouteForm extends React.Component {
             <Form.Label>{i18n.t("form.description")}</Form.Label>
             <Form.Control type="text" name="description" placeholder={i18n.t("form.enter_description")}
               defaultValue={this.state.form.description} onChange={this.handleChange} />
+          </Form.Group>
+
+          <Form.Group controlId="formPrivacyRoute">
+          <Form.Label>{i18n.t("form.publicRoute")}</Form.Label>
+          <Switch
+            checked={this.state.priv}
+            onChange={this.handleChange}
+            name="priv"
+            inputProps={{ 'aria-label': 'secondary checkbox' }}
+          />
           </Form.Group>
 
           <Form.Group controlId="formGpxFile">
