@@ -38,13 +38,13 @@ export default class RouteMap extends React.Component {
 
     var track = new L.GPX(filePath, {
         async: true,
-        polylineOptions: {
+        polyline_options: {
           color: "green",
           opacity: 0.75,
           weight: 3,
           lineCap: "round"
         },
-        markerOptions: {
+        marker_options: {
           wptIcons: {
               "Triangle": new L.Icon({
                 iconUrl: "img/triangle.png"
@@ -74,7 +74,7 @@ export default class RouteMap extends React.Component {
           endIconUrl:   "http://github.com/mpetazzoni/leaflet-gpx/raw/master/pin-icon-end.png",
           shadowUrl:    "http://github.com/mpetazzoni/leaflet-gpx/raw/master/pin-shadow.png",
         },
-        gpxOptions: {
+        gpx_options: {
           parseElements: ["track", "route", "waypoint"],
           joinTrackSegments: false
         },
