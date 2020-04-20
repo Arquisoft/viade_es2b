@@ -53,12 +53,16 @@ const NavBar = (props: Props) => {
     setOpenMobile(!isOpenMobile);
   };
 
+  const styleImgNavBar = {
+    width: "auto",
+  };
+
   return (
     <header role="navigation" className="header header__desktop fixed" ref={componentElement}>
       <section className="header-wrap">
         <div className="logo-block">
           <Link to="/home#login">
-            <img src="./favicon.png" alt="Viade 2b" />
+            <img style={styleImgNavBar} src="./favicon.png" alt="Viade 2b" />
           </Link>
         </div>
 
