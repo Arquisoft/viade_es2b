@@ -12,7 +12,7 @@ import gestorPOD from "../../../../persistanceManagement";
 export default class RouteForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { form: { name: "", description: "", gpx: null, images: [], priv: false }};
+    this.state = { form: { name: "", description: "", gpx: null, images: [], priv: true }};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
