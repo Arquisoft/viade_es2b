@@ -84,7 +84,7 @@ const Profile = ({ webId }: Props) => {
             </FormRenderContainer>
             <h2>Friends list</h2>
             <List src="user.friends">
-              {(friend)=><a href={`${friend}`} target="_blank" rel="noopener noreferrer">{`${friend}`}</a>}
+              {(friend)=><a href={`${friend}`} target="_blank" rel="noopener noreferrer">{`${friend}`}<br/></a>}
             </List>
           </Fragment>
           
