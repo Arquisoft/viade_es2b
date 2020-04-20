@@ -79,9 +79,7 @@
     "loading_map": "Loading map...",
     "routes" : "Routes",
     "add_route": "Add route",
-    "delete_route": "Delete routes",
-	"share_route": "Share route",
-	"share_text": "Choose a single friend or group to share this route with"
+    "delete_route": "Delete routes"
   },
   "form": {
     "name": "Route name",

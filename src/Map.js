@@ -78,10 +78,9 @@ export default class RouteMap extends React.Component {
         },
         
       }).on('addpoint', function(e) {
-        if (e.element.getElementsByTagName('name')[0] != null) {
-          var marker = e.point;
-          marker.bindPopup(e.element.getElementsByTagName('name')[0].innerHTML);
-        }
+        var marker = e.point;
+        marker.bindPopup(e.element.getElementsByTagName('name')[0].innerHTML);
+        console.log(e.element.getElementsByTagName('name')[0].innerHTML)
       }).on('loaded', ((e) => {var gpx = e.target;
                                this.refs.mapInstance.leafletElement.fitBounds(gpx.getBounds());}))
                                .addTo(this.refs.mapInstance.leafletElement);
