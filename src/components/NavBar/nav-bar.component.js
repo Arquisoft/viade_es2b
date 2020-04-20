@@ -1,7 +1,6 @@
 import React, { useEffect, useState, Fragment } from "react";
 import { HashLink as Link } from "react-router-hash-link";
 import { Navigation, Toolbar, HamburgerButton, MobileNavigation } from "./children";
-import { noAuto } from "@fortawesome/fontawesome-svg-core";
 
 type Props = {
   t: Function,
