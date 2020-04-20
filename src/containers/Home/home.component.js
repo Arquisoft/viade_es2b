@@ -71,14 +71,10 @@ export const HomePageContent = (props) => {
     <HomeWrapper data-testid="home-wrapper">
       <HomeSidenav className="home-sidebar">
         <h2>{t("home.routes")}</h2>
-        <RouteList loadingText={t("home.loading_routes")} setRoute={props.setRoute} ></RouteList>
+        <RouteList loadingText={t("home.loading_routes")} setRoute={props.setRoute} changeEditForm={props.changeEditForm} ></RouteList>
         <div id="Manage buttons">
           <Button variant="contained" color="primary" onClick={() => props.changeForm()}>
           {t("home.add_route")}
-          </Button>
-          <span>   </span>
-          <Button variant="contained" color="primary" onClick={() => props.changeEditForm()}>
-          {t("home.edit_route")}
           </Button>
           <span>   </span>
           <Button variant="contained" color="secondary" onClick={async () => {

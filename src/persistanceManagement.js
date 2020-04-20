@@ -1,4 +1,4 @@
-//Class Route
+﻿//Class Route
 import Route from "./Route";
 
 //Library for authentication
@@ -7,6 +7,7 @@ const auth = require("solid-auth-client");
 //Library to manage files and data in PODs
 const FC   = require("solid-file-client");
 var fc;
+var routeId;
 
 export default {
 
@@ -163,7 +164,7 @@ export default {
     async deleteRoute(id) {
         fc = new FC(auth);
 
-        let idNoSpaces = id.replace( /\s/g, "_");
+        let idNoSpaces = id.toString().replace( /\s/g, "_");
 
         let tempUrlUser = ((await auth.currentSession()).webId).toString();
         var urlUser = tempUrlUser.slice(0, -16) + "/private/routes/";
@@ -189,6 +190,40 @@ export default {
 
         return promise;
 
-    }
+    },
+
+    async saveID(id){
+        routeId = id;
+    },
+   
+    async getID(){
+	return routeId;
+    },
+
+	async getGPX(route){
+		return route.gpx;	
+	},
+
+	async editRoute(route){
+		 fc = new FC(auth);
+
+       		 var basicData = {id: route.id, name: route.name, description: route.description};
+        	 var basicDataJson = JSON.stringify(basicData);
+
+ 	         let idNoSpaces = route.id.replace( /\s/g, "_");
+
+    		 let tempUrlUser = ((await auth.currentSession()).webId).toString();
+	       	 var urlUser = tempUrlUser.slice(0, -16) + "/private/routes/" + idNoSpaces;
+
+       		await fc.createFile(urlUser + "/" + idNoSpaces + ".json", basicDataJson, "application/json");
+        	await fc.createFile(urlUser + "/" + idNoSpaces + ".gpx", route.gpx, "application/gpx+xml");
+
+     		   for (var i=0; i < route.images.length; i++) {
+        		    var image = route.images.item(i);
+            		await fc.createFile(urlUser + "/" + idNoSpaces + "_" + i , image, image.type);
+          	   }
+		let idOld = this.getID();
+		await this.deleteRoute(idOld.toString());
+    	}
 };
 
