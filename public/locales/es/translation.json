@@ -103,7 +103,9 @@
     "loading_map": "Cargando mapa...",
     "routes" : "Rutas",
     "add_route": "Añadir ruta",
-    "delete_route": "Eliminar rutas"
+    "delete_route": "Eliminar rutas",
+	"share_route": "Compartir ruta",
+	"share_text": "Elige un amigo o un grupo para compartir tu ruta"
   },
   "form": {
     "name": "Nombre de la ruta",
