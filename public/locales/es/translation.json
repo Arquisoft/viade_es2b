@@ -45,6 +45,29 @@
     "alreadySolid": "Ya tengo una identidad Solid",
     "next": "Siguiente"
   },
+  "about":{
+    "team": "<0>Somos un grupo de estudiantes que desarrollamos una aplicación de rutas descentralizadas como tarea para <1> la asignatura Arquitectura Software </1>  impartida en la Universidad de Oviedo</0>",
+    "dani":{
+      "rol":  "DESARROLLADOR FULL-STACK",
+      "description": "A cargo de los métodos de persistencia. También arreglo y ajusto algunas cosas aquí y allá y me encargo de la planificación del trabajo junto con mis compañeros."
+    },
+    "angela":{
+      "rol":  "DESARROLLADOR BACKEND",
+      "description": "Me encanta el diseño. Por ello he tratado el tema estético de esta aplicación. Mi trabajo es proporcionar una interfaz intuitiva al usuario."
+    },
+    "ivan":{
+      "rol":  "DESARROLLADOR BACKEND",
+      "description": "edita esto y escribe algo sobre ti"
+    },
+    "diego":{
+      "rol":  "DESARROLLADOR BACKEND",
+      "description": "edita esto y escribe algo sobre ti"
+    },
+    "noe":{
+      "rol":  "DESARROLLADOR BACKEND",
+      "description": "edita esto y escribe algo sobre ti"
+    }
+  },
   "navBar": {
     "home": "Rutas",
     "about": "Sobre nosotros",
@@ -91,7 +114,8 @@
     "enter_description": "Introduce la descripción de la ruta",
     "gpx": "Cargar gpx",
     "images" : "Cargar imagenes",
-    "submit": "Enviar"
+    "submit": "Enviar",
+    "publicRoute": "Ruta pública"
   },
   "profile": {
     "successCallback": "Pod actualizado satisfactoriamente",
@@ -122,6 +146,14 @@
     "minMxNumberExclusive": "Error: Mínimo y máximo debería ser ",
     "minMaxString": "Error: Mínimo y máximo debería ser ",
     "defaultError": "Error: Formato incorrecto"
+  },
+  "friends":{
+    "title": "Amigos",
+    "content": "Texto de prueba para la ventana de amigos"
+  },
+  "groups":{
+    "title": "Grupos",
+    "content": "Texto de prueba para la ventana de grupos"
   },
   "noInboxOpponent": {
     "message": "No se encontró un inbox para su oponente",

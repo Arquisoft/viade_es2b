@@ -1,9 +1,9 @@
-import { AccessControlList, AppPermission } from '@inrupt/solid-react-components';
-import { errorToaster } from '@utils';
+import { AccessControlList, AppPermission } from "@inrupt/solid-react-components";
+import { errorToaster } from "@utils";
 
 // Check that all permissions we need are set. If any are missing, this returns false
 const checkAppPermissions = (userAppPermissions, appPermissions) =>
-  appPermissions.every(permission => userAppPermissions.includes(permission));
+  appPermissions.every((permission) => userAppPermissions.includes(permission));
 
 // Function to check for a specific permission included in the app
 export const checkSpecificAppPermission = async (webId, permission) => {
@@ -12,7 +12,7 @@ export const checkSpecificAppPermission = async (webId, permission) => {
 };
 /**
  * SDK app will need all the permissions by the user pod so we check these permissions to work without any issues.
- * Error Message object is to hold the title, message, etc strings, as we can't use i18n libraries in this non-React file
+ * Error Message object is to hold the title, message, etc strings, as we can"t use i18n libraries in this non-React file
  */
 export const checkPermissions = async (webId, errorMessage) => {
   /**
@@ -49,9 +49,9 @@ export const checkOrSetInboxAppendPermissions = async (inboxPath, webId) => {
   // Fetch app permissions for the inbox and see if Append is there
   const inboxAcls = new AccessControlList(webId, inboxPath);
   const permissions = await inboxAcls.getPermissions();
-  const inboxPublicPermissions = permissions.filter(perm => perm.agents === null);
+  const inboxPublicPermissions = permissions.filter( (perm) => perm.agents === null);
 
-  const appendPermission = inboxPublicPermissions.filter(perm =>
+  const appendPermission = inboxPublicPermissions.filter( (perm) =>
     perm.modes.includes(AccessControlList.MODES.APPEND)
   );
 

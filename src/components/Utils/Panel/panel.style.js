@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { media } from '../../../utils';
+import { media } from "../../../utils";
 
 export const PanelWrapper = styled.div`
   display: flex;
@@ -16,6 +16,10 @@ export const PanelWrapper = styled.div`
   padding: 40px;
   text-align: center;
 
+  a{
+    color: #074166;
+    text-decoration: none;
+  }
   & > h1,
   & > h2 {
     padding: 0;

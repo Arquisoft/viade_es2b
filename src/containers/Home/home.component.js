@@ -1,10 +1,10 @@
-import React, { Suspense } from 'react';
-import { Button } from '@material-ui/core';
-//import { Uploader } from '@inrupt/solid-react-components';
-import { useTranslation } from 'react-i18next';
-import manejadorPODs from '../../persistanceManagement'
-import RouteList from './components/RouteList'
-import FormRoute from './components/FormRoute/FormRoute'
+import React, { Suspense } from "react";
+import { Button } from "@material-ui/core";
+//import { Uploader } from "@inrupt/solid-react-components";
+import { useTranslation } from "react-i18next";
+import manejadorPODs from "../../persistanceManagement";
+import RouteList from "./components/RouteList";
+import FormRoute from "./components/FormRoute/FormRoute";
 import {
   HomeWrapper,
   HomeCard,
@@ -23,7 +23,7 @@ function loadMap(props, t) {
   return (
     <HomeCard className="card">
       <RouteMap id="map">
-        <Suspense fallback={<div>{t('home.loading_routes')}</div>}>
+        <Suspense fallback={<div>{t("home.loading_routes")}</div>}>
           <Map gpx={props.routeGPX}></Map>
         </Suspense>
       </RouteMap>
@@ -59,7 +59,7 @@ function loadForm() {
  */
 
 
-export const HomePageContent = props => {
+export const HomePageContent = (props) => {
   const { t } = useTranslation(); /* se puede pasar un mensaje prefefinido a Trans o usar t */
   return (
     <HomeWrapper data-testid="home-wrapper">

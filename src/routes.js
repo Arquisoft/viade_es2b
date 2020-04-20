@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react';
-import { PrivateLayout, PublicLayout, NotLoggedInLayout } from '@layouts';
-import { HashRouter as Router, Switch, Redirect } from 'react-router-dom';
+import React, { Fragment } from "react";
+import { PrivateLayout, PublicLayout, NotLoggedInLayout } from "@layouts";
+import { HashRouter as Router, Switch, Redirect } from "react-router-dom";
 
 import {
   Login,
@@ -8,22 +8,30 @@ import {
   PageNotFound,
   Home,
   RegistrationSuccess,
+  Friends,
   Profile
-} from './containers';
+} from "./containers";
 
 const privateRoutes = [
   {
-    id: 'home',
-    path: '/home',
+    id: "home",
+    path: "/home",
     component: Home
   },
   {
-    id: 'profile',
-    path: '/profile',
+    id: "profile",
+    path: "/profile",
     component: Profile
+  },
+  {
+    id: "friends",
+    path: "/friends",
+    component: Friends
   }
 ];
 
+/* 
+ */
 const Routes = () => {
   return (
   <Router basename="/">

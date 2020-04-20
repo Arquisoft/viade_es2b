@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { HomePageContent } from './home.component';
+import React, { Component } from "react";
+import { HomePageContent } from "./home.component";
 
 
 /**
@@ -16,8 +16,9 @@ export class HomeComponent extends Component<Props> {
 
   componentDidUpdate(prevProps) {
 
-    if (this.state.route && this.state.route.description !== this.state.routeDescription)
+    if (this.state.route && this.state.route.description !== this.state.routeDescription){
       this.updateRouteData();
+    } 
   }
 
   updateRouteData = async () => {
@@ -32,7 +33,7 @@ export class HomeComponent extends Component<Props> {
 
   setRoute = (route) => {
 
-    this.setState({route: route});
+    this.setState({route});
 
   }
 

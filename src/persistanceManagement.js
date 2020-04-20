@@ -1,11 +1,11 @@
 //Class Route
-import Route from './Route';
+import Route from "./Route";
 
 //Library for authentication
-const auth = require('solid-auth-client');
+const auth = require("solid-auth-client");
 
 //Library to manage files and data in PODs
-const FC   = require('solid-file-client')
+const FC   = require("solid-file-client");
 var fc;
 
 export default {
@@ -14,15 +14,15 @@ export default {
      * Method to do login
      * @param {url para realizar la autenticación. Solid community por defecto} url 
      */
-    login: async function (url = "https://solid.community") {
+     async login (url = "https://solid.community") {
 
         this.activeSession = await auth.currentSession();
 
-        if (!this.activeSession)
+        if (!this.activeSession){
             await auth.login(url);
-        else
+         } else{
             alert(`Already logged in as ${this.activeSession.webId}`);
-
+        }
         fc = new FC(auth);
         
     },
@@ -30,37 +30,37 @@ export default {
     /**
      * Method to do logout.
      */
-    logout: async function () {
+    async logout () {
        this.activeSession = await auth.currentSession();
 
-        if (!this.activeSession)
-            alert('No one is logged');
-        else
+        if (!this.activeSession){
+            alert("No one is logged");
+        }else{
             auth.logout().then(
                 () => alert("Logged out"),
                 () => alert("Error logging out")
             );
+        }      
     },
 
     /**
      * Method that check if the user is logged in or not.
-     * It return true if it's logged in and false otherwise.
+     * It return true if it"s logged in and false otherwise.
      */
-    isLoggedIn: async function () {
-        if (await auth.currentSession() == null || (await auth.currentSession()).webId == null)
-                return false;
+    async isLoggedIn () {
+        if (await auth.currentSession() === null || (await auth.currentSession()).webId === null){
+            return false;
+        }      
         return true;
     },
 
     /**
      * Method used to load a file from the local storage of the client.
      */
-    askForAFile: function() {
+    askForAFile() {
         // Check for the various File API support.
-        if (window.File && window.FileReader && window.FileList && window.Blob) {
-
-        } else {
-            alert('The File APIs are not fully supported in this browser.');
+        if (!window.File && !window.FileReader && !window.FileList && !window.Blob) {
+            alert("The File APIs are not fully supported in this browser.");
         }
     },
 
@@ -68,40 +68,49 @@ export default {
      * Method to save the route passed by parameter in the current user pod.
      * @param {Route to be saved. it should follow the Route class format.} route 
      */
-    saveRoute: async function(route) {
+    async saveRoute(route) {
         fc = new FC(auth);
 
-        var basicData = {id: route.id, name: route.name, description: route.description};
+        var basicData = {id: route.id, name: route.name, description: route.description, priv: route.priv};
         var basicDataJson = JSON.stringify(basicData);
 
-        let id_noSpaces = route.id.replace( /\s/g, '_');
+        let idNoSpaces = route.id.replace( /\s/g, "_");
 
         let tempUrlUser = ((await auth.currentSession()).webId).toString();
-        var urlUser = tempUrlUser.slice(0, -16) + "/private/routes/" + id_noSpaces;
+        
+        // Here we check if the route is private to decide where to save it. By default is private.
+        var urlUser = "";
+        if (route.priv === true) {urlUser = tempUrlUser.slice(0, -16) + "/private/routes/" + idNoSpaces;}
+        else {urlUser = tempUrlUser.slice(0, -16) + "/public/routes/" + idNoSpaces;}
 
-        await fc.createFile(urlUser + "/" + id_noSpaces + ".json", basicDataJson, "application/json");
-        await fc.createFile(urlUser + "/" + id_noSpaces + ".gpx", route.gpx, "application/gpx+xml");
+        await fc.createFile(urlUser + "/" + idNoSpaces + ".json", basicDataJson, "application/json");
+        await fc.createFile(urlUser + "/" + idNoSpaces + ".gpx", route.gpx, "application/gpx+xml");
 
         for (var i=0; i < route.images.length; i++) {
             var image = route.images.item(i);
-            await fc.createFile(urlUser + "/" + id_noSpaces + "_" + i , image, image.type);
+            await fc.createFile(urlUser + "/" + idNoSpaces + "_" + i , image, image.type);
         }
 
     },
 
     /**
-     * Method that returns the route saved in the user's pod, if exist. Null otherwise.
+     * Method that returns the route saved in the user"s pod, if exist. Null otherwise.
      * @param {ID of the route to be showed.} idRoute 
+     * @param {Privacy of the route to be showed. By default is private.} priv 
      */
-    seeRoute: async function(idRoute) {
+    async seeRoute(idRoute, priv = true) {
         fc = new FC(auth);
 
         let tempUrlUser = ((await auth.currentSession()).webId).toString();
-        var urlUser = tempUrlUser.slice(0, -16) + "/private/routes/";
+        var urlUser = "";
 
-        var route = await fc.readFile(urlUser + idRoute + ".json");
+        // Here we check the privacy of the route
+        if (priv === true) {urlUser = tempUrlUser.slice(0, -16) + "/private/routes/"}
+        else {urlUser = tempUrlUser.slice(0, -16) + "/public/routes/"}
 
-        console.log(route);
+        var route = await fc.readFile(urlUser + idRoute + ".json").catch(err => "The route is public, searching in public routes to see it.")
+        route = await fc.readFile(tempUrlUser.slice(0, -16) + "/public/routes/" + idRoute + ".json").catch("There was a problem searching for the route.")
+
 
         return route;
     },
@@ -109,18 +118,22 @@ export default {
     /**
      * Method which looks in the user pods for all the saved routes.
      * Return an array containing them.
+     * @param {The privacy of the routes you want to see. By default you look for the private ones.} priv 
      */
-    seeRoutes: async function() {
+    async seeRoutes(priv = true) {
         fc = new FC(auth);
 
         let tempUrlUser = ((await auth.currentSession()).webId).toString();
-        var urlUser = tempUrlUser.slice(0, -16) + "/private/routes/";
+
+        // Here we check for the privacy of the routes to see.
+        var urlUser = "";
+        if (priv === true) {urlUser = tempUrlUser.slice(0, -16) + "/private/routes/";}
+        else {urlUser = tempUrlUser.slice(0, -16) + "/public/routes/";}
 
         var err = "";
-        let folder = await fc.readFolder(urlUser).catch(error => err = error);
+        let folder = await fc.readFolder(urlUser).catch( (error) => err = error);
 
         if (err !== "") {
-            console.log(err);
             return [];
         }
 
@@ -128,20 +141,20 @@ export default {
         var routes = [];
 
         for (var i=0; i < folder.folders.length; i++) {
-            var route_folder = folder.folders[i];
-            arrayRoutesFolders.push(route_folder);
+            var routeFolder = folder.folders[i];
+            arrayRoutesFolders.push(routeFolder);
         }
 
-        for (i=0; i < arrayRoutesFolders.length; i++) {
-            let gpx = await fc.readFile(urlUser + arrayRoutesFolders[i].name + "/" + arrayRoutesFolders[i].name + ".gpx");
-            let basicDataJson = await fc.readFile(urlUser + arrayRoutesFolders[i].name + "/" + arrayRoutesFolders[i].name + ".json");
+        for (var j=0; j < arrayRoutesFolders.length; j++) {
+            let gpx = await fc.readFile(urlUser + arrayRoutesFolders[j].name + "/" + arrayRoutesFolders[j].name + ".gpx");
+            let basicDataJson = await fc.readFile(urlUser + arrayRoutesFolders[j].name + "/" + arrayRoutesFolders[j].name + ".json");
             let basicData = JSON.parse(basicDataJson);
 
-            let filesInFolder = (await fc.readFolder(arrayRoutesFolders[i].url)).files
+            let filesInFolder = (await fc.readFolder(arrayRoutesFolders[j].url)).files;
+            var images = [];
             if (filesInFolder.length > 2) {
-                var images = [];
-                for (var j=0; j < filesInFolder.length - 2; j++) {
-                    let image = await fc.readFile(urlUser + arrayRoutesFolders[i].name + "/" + arrayRoutesFolders[i].name + "_" + j);
+                for (var k=0; k < filesInFolder.length - 2; k++) {
+                    let image = await fc.readFile(urlUser + arrayRoutesFolders[j].name + "/" + arrayRoutesFolders[j].name + "_" + k);
                     images.push(image);
                 }
             }
@@ -150,43 +163,58 @@ export default {
             routes.push(route);
         }
 
-        console.log(routes);
-
         return routes;
     },
     
-    deleteRoutes: async function() {
+    /**
+     * Method which delete all the routes with the privacy you give in the params.
+     * @param {The privacy of the routes to be deleted. By default is private.} priv 
+     */
+    async deleteRoutes(priv = true) {
         fc = new FC(auth);
 
         let tempUrlUser = ((await auth.currentSession()).webId).toString();
-        var urlUser = tempUrlUser.slice(0, -16) + "/private/routes/";
 
-        await fc.deleteFolder(urlUser).then((content) => console.log("Deleted all routes")).catch(err => console.log(err))
+        // Here we check the privacy of the routes to be deleted.
+        var urlUser = "";
+        if (priv === true) {urlUser = tempUrlUser.slice(0, -16) + "/private/routes/";}
+        else {urlUser = tempUrlUser.slice(0, -16) + "/piublic/routes/";}
+
+        await fc.deleteFolder(urlUser);
         
     },
 
-    deleteRoute: async function(id) {
+    /**
+     * Method that delete de route with the id and the privacy passed by params.
+     * @param {ID of the route to be showed.} idRoute 
+     * @param {Privacy of the route to be showed. By default is private.} priv 
+     */
+    async deleteRoute(id, priv = true) {
         fc = new FC(auth);
 
-        let id_noSpaces = id.replace( /\s/g, '_');
+        let idNoSpaces = id.replace( /\s/g, "_");
 
         let tempUrlUser = ((await auth.currentSession()).webId).toString();
-        var urlUser = tempUrlUser.slice(0, -16) + "/private/routes/";
+
+        // Here we check the privacy of the route to be deleted.
+        var urlUser = "";
+        if (priv === true) {urlUser = tempUrlUser.slice(0, -16) + "/private/routes/";}
+        else {urlUser = tempUrlUser.slice(0, -16) + "/public/routes/";}
 
         let folder = await fc.readFolder(urlUser);
         var arrayRoutesFolders = [];
         var promise = null;
 
         for (var i=0; i < folder.folders.length; i++) {
-            var route_folder = folder.folders[i];
-            arrayRoutesFolders.push(route_folder);
+            var routeFolder = folder.folders[i];
+            arrayRoutesFolders.push(routeFolder);
         }
 
-        for (i=0; i < arrayRoutesFolders.length; i++) {
+        for (var j=0; j < arrayRoutesFolders.length; j++) {
             
-            if (arrayRoutesFolders[i].name === id_noSpaces) {
+            if (arrayRoutesFolders[j].name === idNoSpaces) {
 
-                promise = fc.deleteFolder(arrayRoutesFolders[i].url);
+                promise = fc.deleteFolder(arrayRoutesFolders[j].url);
 
             }
 
@@ -194,11 +222,6 @@ export default {
 
         return promise;
 
-    },
-
-    test: async function() {
-        console.log(await auth.currentSession())
     }
-
-}
+};
 

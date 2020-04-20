@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.org/Arquisoft/viade_es2b.svg?branch=master)](https://travis-ci.org/Arquisoft/viade_es2b)
 [![codecov](https://codecov.io/gh/Arquisoft/viade_es2b/branch/master/graph/badge.svg)](https://codecov.io/gh/Arquisoft/viade_es2b)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a51341bb04f849ed8fec4356591860e7)](https://www.codacy.com/gh/Arquisoft/viade_es2b?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Arquisoft/viade_es2b&amp;utm_campaign=Badge_Grade)
+[![codecov](https://codecov.io/gh/Arquisoft/viade_es2b/branch/develop_UO270318/graph/badge.svg)](https://codecov.io/gh/Arquisoft/viade_es2b)
 
 # VIADE ES2B
 
@@ -14,12 +15,10 @@ More information about how this project has been setup is available [in the wiki
 
 ## Team Members
  
-1. Ángela López López [UO270318](https://github.com/Ainiall)
-2. Carla Santos Carrio [UO259047](https://github.com/carlafw)
-3. Daniel Fernández Aller [UO257977](https://github.com/daniferna)
-4. Diego Fernández Suárez [UO263662](https://github.com/UO263662)
-5. Iván Fernández López [UO265349](https://github.com/uo265349)
-5. Noé Fernández Moro [UO251683](https://github.com/uo265349)
-
+-   Ángela López López [UO270318](https://github.com/Ainiall)
+-   Daniel Fernández Aller [UO257977](https://github.com/daniferna)
+-   Diego Fernández Suárez [UO263662](https://github.com/UO263662)
+-   Iván Fernández López [UO265349](https://github.com/uo265349)
+-   Noé Fernández Moro [UO251683](https://github.com/UO251683)
 
 Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
