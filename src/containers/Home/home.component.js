@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import manejadorPODs from "../../persistanceManagement";
 import RouteList from "./components/RouteList";
 import FormRoute from "./components/FormRoute/FormRoute";
-import FormEditRoute from "./components/FormEditRoute/FormEditRoute"
+import FormEditRoute from "./components/FormEditRoute/FormEditRoute";
 import {
   HomeWrapper,
   HomeCard,
@@ -13,9 +13,11 @@ import {
   HomeBody,
   RouteMap,
   RouteInfo,
-} from "./home.style";
-import Slider from "./components/Slider";
-const Map = React.lazy(() => import("../../Map"));
+  RouteHead
+} from './home.style';
+import Slider from './components/Slider'
+import ShareComponent from './components/ShareComponent/ShareComponent'
+const Map = React.lazy(() => import('../../Map'));
 
 function loadMap(props, t) {
 
@@ -27,7 +29,10 @@ function loadMap(props, t) {
         </Suspense>
       </RouteMap>
       <RouteInfo>
-        <h2> {t("home.information")} </h2>
+        <RouteHead>
+          <h2> {t('home.information')} </h2>
+          <ShareComponent route = {props.routeGPX}></ShareComponent>
+        </RouteHead>
         <p>
           {props.routeDescription}
         </p>
@@ -61,7 +66,7 @@ function loadEditForm() {
 /**
  * Hom Page UI component, containing the styled components for the Hom Page
  * Image component will get theimage context and resolve the value to render.
- * @param props
+ * @param props 
  */
 
 
@@ -71,7 +76,7 @@ export const HomePageContent = (props) => {
     <HomeWrapper data-testid="home-wrapper">
       <HomeSidenav className="home-sidebar">
         <h2>{t("home.routes")}</h2>
-        <RouteList loadingText={t("home.loading_routes")} setRoute={props.setRoute} changeEditForm={props.changeEditForm} ></RouteList>
+        <RouteList loadingText={t("home.loading_routes")} setRoute={props.setRoute} changeEditForm={props.changeEditForm}></RouteList>
         <div id="Manage buttons">
           <Button variant="contained" color="primary" onClick={() => props.changeForm()}>
           {t("home.add_route")}
@@ -87,9 +92,9 @@ export const HomePageContent = (props) => {
       </HomeSidenav>
 
       <HomeBody className="home-body">
-        {(props.needEditForm ? loadEditForm() : props.needForm ? loadForm() : loadMap(props, t))}
-      </HomeBody>
+         {(props.needEditForm ? loadEditForm() : props.needForm ? loadForm() : loadMap(props, t))}
 
+      </HomeBody>
     </HomeWrapper>
   );
 };

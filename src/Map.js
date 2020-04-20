@@ -38,13 +38,13 @@ export default class RouteMap extends React.Component {
 
     var track = new L.GPX(filePath, {
         async: true,
-        polylineOptions: {
+        polyline_options: {
           color: "green",
           opacity: 0.75,
           weight: 3,
           lineCap: "round"
         },
-        markerOptions: {
+        marker_options: {
           wptIcons: {
               "Triangle": new L.Icon({
                 iconUrl: "img/triangle.png"
@@ -74,15 +74,16 @@ export default class RouteMap extends React.Component {
           endIconUrl:   "http://github.com/mpetazzoni/leaflet-gpx/raw/master/pin-icon-end.png",
           shadowUrl:    "http://github.com/mpetazzoni/leaflet-gpx/raw/master/pin-shadow.png",
         },
-        gpxOptions: {
+        gpx_options: {
           parseElements: ["track", "route", "waypoint"],
           joinTrackSegments: false
         },
-        
-      }).on("addpoint", function(e) {
-        var marker = e.point;
-        marker.bindPopup(e.element.getElementsByTagName("name")[0].innerHTML);
-      }).on("loaded", ((e) => {var gpx = e.target;
+      }).on('addpoint', function(e) {
+        if (e.element.getElementsByTagName('name')[0] != null) {
+          var marker = e.point;
+          marker.bindPopup(e.element.getElementsByTagName('name')[0].innerHTML);
+        }
+      }).on('loaded', ((e) => {var gpx = e.target;
                                this.refs.mapInstance.leafletElement.fitBounds(gpx.getBounds());}))
                                .addTo(this.refs.mapInstance.leafletElement);
 

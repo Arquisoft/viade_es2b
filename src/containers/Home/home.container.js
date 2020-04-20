@@ -18,7 +18,7 @@ export class HomeComponent extends Component<Props> {
 
     if (this.state.route && this.state.route.description !== this.state.routeDescription){
       this.updateRouteData();
-    }
+    } 
   }
 
   updateRouteData = async () => {

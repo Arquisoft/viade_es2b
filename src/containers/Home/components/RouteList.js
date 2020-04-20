@@ -37,10 +37,10 @@ export default class RouteList extends React.Component {
                                 await gestorPOD.deleteRoute(route.id); 
                                 window.location.reload(false); 
                             }} aria-label="delete">
-                                <DeleteIcon fontSize="small"/>
+                                <DeleteIcon fontSize="small" />
                             </IconButton>
 
-			                <IconButton onClick={() =>{
+			<IconButton onClick={() =>{
                                 this.props.changeEditForm();
                                 gestorPOD.saveID(route.id);
 				

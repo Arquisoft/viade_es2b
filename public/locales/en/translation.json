@@ -1,4 +1,4 @@
-{
+﻿{
   "appPermission": {
     "message": "The application permissions are not properly set. Please add additional permissions and try again",
     "link": {
@@ -48,8 +48,8 @@
   "about":{
     "team": "<0>We are a group of students who developed a decentralizedroute app as an asignment for <1> Software Architecture course </1>  which takes place at University of Oviedo.</0>",
     "dani":{
-      "rol":  "BACKEND DEVELOPER",
-      "description": "edit this and write whatever you want to say about yourself"
+      "rol":  "FULL-STACK DEVELOPER",
+      "description": "In charge of the persistance management. I also fix and tweak some things here and there and manage the planning of the work together with my colleagues."
     },
     "angela":{
       "rol":  "UI/UX DEVELOPER",
@@ -102,8 +102,10 @@
     "loading_map": "Loading map...",
     "routes" : "Routes",
     "add_route": "Add route",
-	"edit_route": "Edit route",
-    "delete_route": "Delete routes"
+    "delete_route": "Delete routes",
+	"share_route": "Share route",
+	"share_text": "Choose a single friend or group to share this route with",
+    "edit_route": "Edit route"
   },
   "form": {
     "name": "Route name",
@@ -116,7 +118,8 @@
     "enter_description_edit": "Enter new route description",
     "gpx": "Load gpx",
     "images" : "Load images",
-    "submit": "Submit"
+    "submit": "Submit",
+    "publicRoute": "Public route"
   },
   "profile": {
     "successCallback": "Pod updated successfully",
