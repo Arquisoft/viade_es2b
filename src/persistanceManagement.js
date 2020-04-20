@@ -71,13 +71,17 @@ export default {
     async saveRoute(route) {
         fc = new FC(auth);
 
-        var basicData = {id: route.id, name: route.name, description: route.description};
+        var basicData = {id: route.id, name: route.name, description: route.description, priv: route.priv};
         var basicDataJson = JSON.stringify(basicData);
 
         let idNoSpaces = route.id.replace( /\s/g, "_");
 
         let tempUrlUser = ((await auth.currentSession()).webId).toString();
-        var urlUser = tempUrlUser.slice(0, -16) + "/private/routes/" + idNoSpaces;
+        
+        // Here we check if the route is private to decide where to save it. By default is private.
+        var urlUser = "";
+        if (route.priv === true) {urlUser = tempUrlUser.slice(0, -16) + "/private/routes/" + idNoSpaces;}
+        else {urlUser = tempUrlUser.slice(0, -16) + "/public/routes/" + idNoSpaces;}
 
         await fc.createFile(urlUser + "/" + idNoSpaces + ".json", basicDataJson, "application/json");
         await fc.createFile(urlUser + "/" + idNoSpaces + ".gpx", route.gpx, "application/gpx+xml");
@@ -92,14 +96,21 @@ export default {
     /**
      * Method that returns the route saved in the user"s pod, if exist. Null otherwise.
      * @param {ID of the route to be showed.} idRoute 
+     * @param {Privacy of the route to be showed. By default is private.} priv 
      */
-    async seeRoute(idRoute) {
+    async seeRoute(idRoute, priv = true) {
         fc = new FC(auth);
 
         let tempUrlUser = ((await auth.currentSession()).webId).toString();
-        var urlUser = tempUrlUser.slice(0, -16) + "/private/routes/";
+        var urlUser = "";
 
-        var route = await fc.readFile(urlUser + idRoute + ".json");
+        // Here we check the privacy of the route
+        if (priv === true) {urlUser = tempUrlUser.slice(0, -16) + "/private/routes/"}
+        else {urlUser = tempUrlUser.slice(0, -16) + "/public/routes/"}
+
+        var route = await fc.readFile(urlUser + idRoute + ".json").catch(err => "The route is public, searching in public routes to see it.")
+        route = await fc.readFile(tempUrlUser.slice(0, -16) + "/public/routes/" + idRoute + ".json").catch("There was a problem searching for the route.")
+
 
         return route;
     },
@@ -107,12 +118,17 @@ export default {
     /**
      * Method which looks in the user pods for all the saved routes.
      * Return an array containing them.
+     * @param {The privacy of the routes you want to see. By default you look for the private ones.} priv 
      */
-    async seeRoutes() {
+    async seeRoutes(priv = true) {
         fc = new FC(auth);
 
         let tempUrlUser = ((await auth.currentSession()).webId).toString();
-        var urlUser = tempUrlUser.slice(0, -16) + "/private/routes/";
+
+        // Here we check for the privacy of the routes to see.
+        var urlUser = "";
+        if (priv === true) {urlUser = tempUrlUser.slice(0, -16) + "/private/routes/";}
+        else {urlUser = tempUrlUser.slice(0, -16) + "/public/routes/";}
 
         var err = "";
         let folder = await fc.readFolder(urlUser).catch( (error) => err = error);
@@ -150,23 +166,40 @@ export default {
         return routes;
     },
     
-    async deleteRoutes() {
+    /**
+     * Method which delete all the routes with the privacy you give in the params.
+     * @param {The privacy of the routes to be deleted. By default is private.} priv 
+     */
+    async deleteRoutes(priv = true) {
         fc = new FC(auth);
 
         let tempUrlUser = ((await auth.currentSession()).webId).toString();
-        var urlUser = tempUrlUser.slice(0, -16) + "/private/routes/";
+
+        // Here we check the privacy of the routes to be deleted.
+        var urlUser = "";
+        if (priv === true) {urlUser = tempUrlUser.slice(0, -16) + "/private/routes/";}
+        else {urlUser = tempUrlUser.slice(0, -16) + "/piublic/routes/";}
 
         await fc.deleteFolder(urlUser);
         
     },
 
-    async deleteRoute(id) {
+    /**
+     * Method that delete de route with the id and the privacy passed by params.
+     * @param {ID of the route to be showed.} idRoute 
+     * @param {Privacy of the route to be showed. By default is private.} priv 
+     */
+    async deleteRoute(id, priv = true) {
         fc = new FC(auth);
 
         let idNoSpaces = id.replace( /\s/g, "_");
 
         let tempUrlUser = ((await auth.currentSession()).webId).toString();
-        var urlUser = tempUrlUser.slice(0, -16) + "/private/routes/";
+
+        // Here we check the privacy of the route to be deleted.
+        var urlUser = "";
+        if (priv === true) {urlUser = tempUrlUser.slice(0, -16) + "/private/routes/";}
+        else {urlUser = tempUrlUser.slice(0, -16) + "/public/routes/";}
 
         let folder = await fc.readFolder(urlUser);
         var arrayRoutesFolders = [];
