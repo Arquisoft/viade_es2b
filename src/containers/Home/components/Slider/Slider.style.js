@@ -3,41 +3,57 @@ import styled from "styled-components";
 export const SliderWrapper = styled.div`
     display: flex;
     width: 100%;
+    height: 250px;
+    align-items: center;
 
     button{
-        height: 250px;
+        height: 50px;
         width: 50px;
         vertical-align: middle;
-        background: gray;
-        color: white;
+        background: white;
+        color: black;
         font-weight: bold;
         font-size: large;
-        border-style: none;
-        border-radius: 0px;
+        border-style: solid;
+        border-radius: 50px;
+    }
+
+    #left{
+        margin-right: 10px;
     }
 
     #right{
+        margin-left: 10px;
         float: right;
     }
 `;
 
+export const ImageList = styled.div`
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+`
+
 export const ImageContainer = styled.div`
-    height: 250px;
-    width: 260px;
-    position: relative;
-    border-style: none solid none solid;
-    border-color: gray;
-    border-width: 1px;
+    display: flex;
+    width: 100%;
+    height: 95%;
+    align-items: center;
+    margin-left: 2px;
+    margin-right: 2px;
 `;
 
 export const ImageWrapper = styled.img`
-    max-width: 100%;
-    max-height: 100%;
+    width: 90%;
+    max-height: 90%;
     display: block;
-    position: absolute;  
-    top: 0;  
-    bottom: 0;  
-    left: 0;  
-    right: 0;  
-    margin: auto;
+    padding: 5px;
+    padding-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 4px
 `;
