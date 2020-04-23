@@ -255,11 +255,6 @@ export default {
 	       	 else {urlUser = tempUrlUser.slice(0, -16) + "/public/routes" ;}
 	        await fc.createFile(urlUser+"/"+ idNoSpaces + "/" + idNoSpaces+ ".json", basicDataJson, "application/json");
 	        await fc.createFile(urlUser +"/"+ idNoSpaces+ "/" + idNoSpaces +".gpx", route.gpx, "application/gpx+xml");
-/*
-	        for (var i=0; i < route.images.length; i++) {
-        	    var image = route.images.item(i);
-       	     		await fc.createFile(urlUser + "/" + idNoSpaces + "_" + i , image, image.type);
-        	}*/
     	}
 };
 

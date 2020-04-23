@@ -90,18 +90,6 @@ export default class RouteForm extends React.Component {
           />
           </Form.Group>
 
-          <Form.Group controlId="formImages">
-          <Form.Label>{i18n.t("form.images")}</Form.Label>
-            <Form.File
-              id="images-list"
-              name="images"
-              accept="image/*"
-              multiple
-              onChange={this.handleChangeFiles}
-            >
-            </Form.File>
-          </Form.Group>
-
           <Button variant="contained" type="submit">
           {i18n.t("form.submit")}
         </Button>
