@@ -8,6 +8,7 @@ const auth = require("solid-auth-client");
 const FC   = require("solid-file-client");
 var fc;
 var routeId;
+var routeGPX;
 export default {
 
     /**
@@ -237,6 +238,14 @@ export default {
 
 	getPriv(route){
 		return route.priv;
+    },
+    
+    saveGPX(route){
+		routeGPX = route.gpx;
+	},
+
+	loadGPX(){
+		return routeGPX;
 	},
 
 	async editRoute(oldRoute,route){
@@ -255,6 +264,21 @@ export default {
 	       	 else {urlUser = tempUrlUser.slice(0, -16) + "/public/routes" ;}
 	        await fc.createFile(urlUser+"/"+ idNoSpaces + "/" + idNoSpaces+ ".json", basicDataJson, "application/json");
 	        await fc.createFile(urlUser +"/"+ idNoSpaces+ "/" + idNoSpaces +".gpx", route.gpx, "application/gpx+xml");
-    	}
+        },
+        
+        async downloadRoute(){
+            var route = await this.seeRoute(this.getID());
+            var routeFinal = new Route(route.id, route.name, route.description, this.loadGPX(), null);
+            var gpxToDownload = routeFinal.gpx;
+            var b = new Blob([gpxToDownload], {type: "text/plain"});
+            var fileLink = document.createElement("a");
+    
+            fileLink.download = route.id + ".gpx";
+    
+            var url = URL.createObjectURL(b);
+            fileLink.href = url;
+    
+            fileLink.click();
+           }
 };
 
