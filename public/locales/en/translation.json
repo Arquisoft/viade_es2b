@@ -1,4 +1,4 @@
-{
+﻿{
   "appPermission": {
     "message": "The application permissions are not properly set. Please add additional permissions and try again",
     "link": {
@@ -104,13 +104,18 @@
     "add_route": "Add route",
     "delete_route": "Delete routes",
 	"share_route": "Share route",
-	"share_text": "Choose a single friend or group to share this route with"
+	"share_text": "Choose a single friend or group to share this route with",
+    "edit_route": "Edit route"
   },
   "form": {
     "name": "Route name",
+    "name_edit": "New route name",
     "enter_name": "Enter route name",
+    "enter_name_edit": "Enter new route name",
     "description": "Route description",
+    "description_edit": "New route description",
     "enter_description": "Enter route description",
+    "enter_description_edit": "Enter new route description",
     "gpx": "Load gpx",
     "images" : "Load images",
     "submit": "Submit",

@@ -1,4 +1,4 @@
-//Class Route
+﻿//Class Route
 import Route from "./Route";
 
 //Library for authentication
@@ -7,7 +7,7 @@ const auth = require("solid-auth-client");
 //Library to manage files and data in PODs
 const FC   = require("solid-file-client");
 var fc;
-
+var routeId;
 export default {
 
     /**
@@ -105,14 +105,13 @@ export default {
         var urlUser = "";
 
         // Here we check the privacy of the route
-        if (priv === true) {urlUser = tempUrlUser.slice(0, -16) + "/private/routes/"}
-        else {urlUser = tempUrlUser.slice(0, -16) + "/public/routes/"}
+        if (priv) {urlUser = tempUrlUser.slice(0, -16) + "/private/routes/"+idRoute+"/"}
+        else {urlUser = tempUrlUser.slice(0, -16) + "/public/routes/"+idRoute+"/"}
+        
+        var route = await fc.readFile(urlUser + idRoute + ".json").catch(err => "The route is public, searching in public routes to see it.");
+        //route = await fc.readFile(tempUrlUser.slice(0, -16) + "/public/routes/" + idRoute + ".json").catch("There was a problem searching for the route.")
 
-        var route = await fc.readFile(urlUser + idRoute + ".json").catch(err => "The route is public, searching in public routes to see it.")
-        route = await fc.readFile(tempUrlUser.slice(0, -16) + "/public/routes/" + idRoute + ".json").catch("There was a problem searching for the route.")
-
-
-        return route;
+        return JSON.parse(route);
     },
 
     /**
@@ -144,7 +143,6 @@ export default {
             var routeFolder = folder.folders[i];
             arrayRoutesFolders.push(routeFolder);
         }
-
         for (var j=0; j < arrayRoutesFolders.length; j++) {
             let gpx = await fc.readFile(urlUser + arrayRoutesFolders[j].name + "/" + arrayRoutesFolders[j].name + ".gpx");
             let basicDataJson = await fc.readFile(urlUser + arrayRoutesFolders[j].name + "/" + arrayRoutesFolders[j].name + ".json");
@@ -192,7 +190,7 @@ export default {
     async deleteRoute(id, priv = true) {
         fc = new FC(auth);
 
-        let idNoSpaces = id.replace( /\s/g, "_");
+        let idNoSpaces = id.toString().replace( /\s/g, "_");
 
         let tempUrlUser = ((await auth.currentSession()).webId).toString();
 
@@ -222,6 +220,46 @@ export default {
 
         return promise;
 
-    }
+    },
+
+
+    saveID(id){
+        routeId = id;
+    },
+   
+    getID(){
+	return routeId;
+    },
+
+	getGPX(route){
+		return route.gpx;	
+	},
+
+	getPriv(route){
+		return route.priv;
+	},
+
+	async editRoute(oldRoute,route){
+		fc = new FC(auth);
+
+        	var basicData = {id: oldRoute.id, name: route.name, description: route.description, priv: route.priv};
+        	var basicDataJson = JSON.stringify(basicData);
+
+	        let idNoSpaces = oldRoute.id.replace( /\s/g, "_");
+
+	        let tempUrlUser = ((await auth.currentSession()).webId).toString();
+        
+        	// Here we check if the route is private to decide where to save it. By default is private.
+        	var urlUser = "";
+        	if (route.priv === true) {urlUser = tempUrlUser.slice(0, -16) + "/private/routes" ;}
+	       	 else {urlUser = tempUrlUser.slice(0, -16) + "/public/routes" ;}
+	        await fc.createFile(urlUser+"/"+ idNoSpaces + "/" + idNoSpaces+ ".json", basicDataJson, "application/json");
+	        await fc.createFile(urlUser +"/"+ idNoSpaces+ "/" + idNoSpaces +".gpx", route.gpx, "application/gpx+xml");
+/*
+	        for (var i=0; i < route.images.length; i++) {
+        	    var image = route.images.item(i);
+       	     		await fc.createFile(urlUser + "/" + idNoSpaces + "_" + i , image, image.type);
+        	}*/
+    	}
 };
 

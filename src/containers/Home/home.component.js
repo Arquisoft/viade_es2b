@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import manejadorPODs from "../../persistanceManagement";
 import RouteList from "./components/RouteList";
 import FormRoute from "./components/FormRoute/FormRoute";
+import FormEditRoute from "./components/FormEditRoute/FormEditRoute";
 import {
   HomeWrapper,
   HomeCard,
@@ -52,10 +53,20 @@ function loadForm() {
 
 }
 
+function loadEditForm() {
+
+  return (
+    <HomeCard className="card">
+      <FormEditRoute></FormEditRoute>
+    </HomeCard>
+  );
+
+} 
+
 /**
  * Hom Page UI component, containing the styled components for the Hom Page
  * Image component will get theimage context and resolve the value to render.
- * @param props
+ * @param props 
  */
 
 
@@ -65,7 +76,7 @@ export const HomePageContent = (props) => {
     <HomeWrapper data-testid="home-wrapper">
       <HomeSidenav className="home-sidebar">
         <h2>{t("home.routes")}</h2>
-        <RouteList loadingText={t("home.loading_routes")} setRoute={props.setRoute} ></RouteList>
+        <RouteList loadingText={t("home.loading_routes")} setRoute={props.setRoute} changeEditForm={props.changeEditForm}></RouteList>
         <div id="Manage buttons">
           <Button variant="contained" color="primary" onClick={() => props.changeForm()}>
           {t("home.add_route")}
@@ -81,7 +92,7 @@ export const HomePageContent = (props) => {
       </HomeSidenav>
 
       <HomeBody className="home-body">
-        {props.needForm ? loadForm() : loadMap(props, t)}
+         {(props.needEditForm ? loadEditForm() : props.needForm ? loadForm() : loadMap(props, t))}
 
       </HomeBody>
     </HomeWrapper>

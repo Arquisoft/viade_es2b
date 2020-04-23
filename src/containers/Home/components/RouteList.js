@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, IconButton, CircularProgress } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
+import BorderColorIcon from "@material-ui/icons/BorderColor";
 
 import gestorPOD from "../../../persistanceManagement";
 
@@ -37,6 +38,14 @@ export default class RouteList extends React.Component {
                                 window.location.reload(false); 
                             }} aria-label="delete">
                                 <DeleteIcon fontSize="small" />
+                            </IconButton>
+
+			<IconButton onClick={() =>{
+                                this.props.changeEditForm();
+                                gestorPOD.saveID(route.id);
+				
+                            } } aria-label="edit">
+                                <BorderColorIcon fontSize="small"/>
                             </IconButton>
                         </li>
                     ))}
