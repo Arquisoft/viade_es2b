@@ -9,6 +9,9 @@ const FC   = require("solid-file-client");
 var fc;
 var routeId;
 var routeGPX;
+var routeName;
+var routeDescrip;
+var routePriv;
 export default {
 
     /**
@@ -225,7 +228,8 @@ export default {
 
 
     saveID(id){
-        routeId = id;
+        let idNoSpaces = id.replace( /\s/g, "_");
+        routeId = idNoSpaces;
     },
    
     getID(){
@@ -235,17 +239,45 @@ export default {
 	getGPX(route){
 		return route.gpx;	
 	},
-
-	getPriv(route){
-		return route.priv;
-    },
-    
-    saveGPX(route){
+	
+	saveGPX(route){
 		routeGPX = route.gpx;
 	},
 
 	loadGPX(){
 		return routeGPX;
+	},
+
+	getPriv(route){
+		return route.priv;
+	},
+
+	saveName(route){
+		routeName = route.name;
+	},
+
+	loadName(){
+		return routeName;
+	},
+
+	saveDescrip(route){
+		routeDescrip = route.description;
+	},
+
+	loadDescrip(){
+		return routeDescrip;
+	},
+
+	savePriv(route){
+		if (route.priv === true) {
+			routePriv = "priv";
+		} else {
+			routePriv = "publ";  
+		}
+	},
+
+	loadPriv(){
+		return routePriv;
 	},
 
 	async editRoute(oldRoute,route){
@@ -264,21 +296,21 @@ export default {
 	       	 else {urlUser = tempUrlUser.slice(0, -16) + "/public/routes" ;}
 	        await fc.createFile(urlUser+"/"+ idNoSpaces + "/" + idNoSpaces+ ".json", basicDataJson, "application/json");
 	        await fc.createFile(urlUser +"/"+ idNoSpaces+ "/" + idNoSpaces +".gpx", route.gpx, "application/gpx+xml");
-        },
-        
-        async downloadRoute(){
-            var route = await this.seeRoute(this.getID());
-            var routeFinal = new Route(route.id, route.name, route.description, this.loadGPX(), null);
-            var gpxToDownload = routeFinal.gpx;
-            var b = new Blob([gpxToDownload], {type: "text/plain"});
-            var fileLink = document.createElement("a");
-    
-            fileLink.download = route.id + ".gpx";
-    
-            var url = URL.createObjectURL(b);
-            fileLink.href = url;
-    
-            fileLink.click();
-           }
+    	},
+
+	async downloadRoute(){
+		var route = await this.seeRoute(this.getID());
+		var routeFinal = new Route(route.id, route.name, route.description, this.loadGPX(), null);
+		var gpxToDownload = routeFinal.gpx;
+		var b = new Blob([gpxToDownload], {type: "text/plain"});
+		var fileLink = document.createElement("a");
+
+		fileLink.download = route.id + ".gpx";
+
+		var url = URL.createObjectURL(b);
+		fileLink.href = url;
+
+		fileLink.click();
+       }
 };
 

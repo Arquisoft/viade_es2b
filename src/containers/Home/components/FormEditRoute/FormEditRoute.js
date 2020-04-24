@@ -8,12 +8,10 @@ import Route from "../../../../Route";
 import i18n from "../../../../i18n";
 
 import gestorPOD from "../../../../persistanceManagement";
-
 export default class RouteForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = { form: { name: "", description: "", gpx: null, images: [], priv: true }};
-
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChangeFiles = this.handleChangeFiles.bind(this);
@@ -45,11 +43,22 @@ export default class RouteForm extends React.Component {
   async handleSubmit(event) {
 
     event.preventDefault();
-    
     let idOld = gestorPOD.getID();
-    let oldRoute =await gestorPOD.seeRoute(idOld);
-    let name = this.state.form.name;
-    let description = this.state.form.description;
+    let oldRoute = await gestorPOD.seeRoute(idOld);
+    let name;
+    if (this.state.form.name === "") {
+        name = gestorPOD.loadName();
+    } 
+    else {
+        name = this.state.form.name;
+    }
+    let description;
+    if (this.state.form.description === "") {
+        name = gestorPOD.loadDescrip();
+    }
+    else {
+      description = this.state.form.description;
+    }
     let gpx = gestorPOD.getGPX(oldRoute);
     let images = this.state.form.images;
     let id = name + "-" + Date.now().toString();
@@ -65,23 +74,26 @@ export default class RouteForm extends React.Component {
 
   render() {
     return (
-      <div className="RouteForm">
+      <div className="RouteEditForm">
         <Form onSubmit={this.handleSubmit}>
 
           <Form.Group controlId="formNameRoute">
             <Form.Label>{i18n.t("form.name_edit")}</Form.Label>
+            <Form.Label>Actual: {gestorPOD.loadName()}</Form.Label>
             <Form.Control type="text" name="name" placeholder={i18n.t("form.enter_name_edit")}
               defaultValue={this.state.form.name_edit} onChange={this.handleChange} />
           </Form.Group>
 
           <Form.Group controlId="formDescriptionRoute">
             <Form.Label>{i18n.t("form.description_edit")}</Form.Label>
+	    <Form.Label>Actual: {gestorPOD.loadDescrip()}</Form.Label>
             <Form.Control type="text" name="description" placeholder={i18n.t("form.enter_description_edit")}
               defaultValue={this.state.form.description_edit} onChange={this.handleChange} />
           </Form.Group>
 
           <Form.Group controlId="formPrivacyRoute">
           <Form.Label>{i18n.t("form.publicRoute")}</Form.Label>
+	  <Form.Label>Actual: {gestorPOD.loadPriv()}</Form.Label>
           <Switch
             checked={this.state.priv}
             onChange={this.handleChange}

@@ -44,6 +44,9 @@ export default class RouteList extends React.Component {
 			                <IconButton onClick={() =>{
                                 this.props.changeEditForm();
                                 gestorPOD.saveID(route.id);
+				                gestorPOD.saveName(route);
+                		        gestorPOD.saveDescrip(route);
+				                gestorPOD.savePriv(route);   
 				
                             } } aria-label="edit">
                                 <BorderColorIcon fontSize="small"/>
