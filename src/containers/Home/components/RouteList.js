@@ -2,6 +2,7 @@ import React from "react";
 import { Button, IconButton, CircularProgress } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import BorderColorIcon from "@material-ui/icons/BorderColor";
+import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 
 import gestorPOD from "../../../persistanceManagement";
 
@@ -40,12 +41,20 @@ export default class RouteList extends React.Component {
                                 <DeleteIcon fontSize="small" />
                             </IconButton>
 
-			<IconButton onClick={() =>{
+			                <IconButton onClick={() =>{
                                 this.props.changeEditForm();
                                 gestorPOD.saveID(route.id);
 				
                             } } aria-label="edit">
                                 <BorderColorIcon fontSize="small"/>
+                            </IconButton>
+
+                            <IconButton onClick={async () =>{
+                                await gestorPOD.saveID(route.id);
+                                await gestorPOD.saveGPX(route);
+                                await gestorPOD.downloadRoute();
+                            } } aria-label="download">
+                                <ArrowDownwardIcon fontSize="small"/>
                             </IconButton>
                         </li>
                     ))}
