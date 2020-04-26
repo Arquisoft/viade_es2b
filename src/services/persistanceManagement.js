@@ -1,5 +1,5 @@
 ﻿//Class Route
-import Route from "./Route";
+import Route from "../Route";
 
 //Library for authentication
 const auth = require("solid-auth-client");
