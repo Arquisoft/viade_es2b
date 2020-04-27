@@ -31,7 +31,7 @@ function loadMap(props, t) {
       <RouteInfo>
         <RouteHead>
           <h2> {t('home.information')} </h2>
-          <ShareComponent route = {props.routeGPX}></ShareComponent>
+          <ShareComponent route = {props.route}></ShareComponent>
         </RouteHead>
         <p>
           {props.routeDescription}

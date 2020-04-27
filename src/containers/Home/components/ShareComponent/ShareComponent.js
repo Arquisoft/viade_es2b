@@ -4,7 +4,8 @@ import { Button, Select, MenuItem } from '@material-ui/core';
 import { useLDflexList } from '@solid/react';
 import { ShareWrapper } from './ShareComponent.style';
 
-//import gestorPOD from '../../../persistanceManagement';
+import gestorPOD from '../../../../services/persistanceManagement';
+import { toast } from 'react-toastify';
 
 function ListFriends(props) {
 
@@ -36,8 +37,8 @@ const listFriendsStyle = {
 
 export default class ShareComponent extends React.Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = { loading: true, selectedFriend: "" };
 
         this.setSelectedFriend = this.setSelectedFriend.bind(this);
@@ -55,7 +56,12 @@ export default class ShareComponent extends React.Component {
     }
 
     buttonClicked() {
-        console.log(this.state.selectedFriend);
+        let routeToShare = this.props.route;
+        routeToShare.priv = false;
+
+        gestorPOD.saveRoute(routeToShare, this.state.selectedFriend);
+
+        toast.info("Route shared successfully");
     }
 
     render() {

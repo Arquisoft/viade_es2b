@@ -68,7 +68,7 @@ export default {
      * Method to save the route passed by parameter in the current user pod.
      * @param {Route to be saved. it should follow the Route class format.} route 
      */
-    async saveRoute(route) {
+    async saveRoute(route, webId = "") {
         fc = new FC(auth);
 
         var basicData = {id: route.id, name: route.name, description: route.description, priv: route.priv};
@@ -76,7 +76,11 @@ export default {
 
         let idNoSpaces = route.id.replace( /\s/g, "_");
 
-        let tempUrlUser = ((await auth.currentSession()).webId).toString();
+        let tempUrlUser;
+        if (webId === "" || route.priv === true)
+            tempUrlUser = ((await auth.currentSession()).webId).toString();
+        else
+            tempUrlUser = webId;
         
         // Here we check if the route is private to decide where to save it. By default is private.
         var urlUser = "";
@@ -157,7 +161,7 @@ export default {
                 }
             }
 
-            let route = new Route(basicData.id, basicData.name, basicData.description, gpx, images);
+            let route = new Route(basicData.id, basicData.name, basicData.description, gpx, images, basicData.priv);
             routes.push(route);
         }
 
