@@ -55,6 +55,9 @@ export default class RouteForm extends React.Component {
 
     var route = new Route(id, name, description, gpx, images, priv);
 
+    //In order to avoid problems when managin files, we put _ instead of blank spaces
+    route.id.replace( /\s/g, "_");
+
     await gestorPOD.saveRoute(route);
 
     window.location.reload();

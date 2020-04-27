@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import i18n from '../../../../i18n'
 import { Button, Select, MenuItem } from '@material-ui/core';
-import { useLDflexList } from '@solid/react';
+import { useLDflexList, Value } from '@solid/react';
 import { ShareWrapper } from './ShareComponent.style';
 
 import gestorPOD from '../../../../services/persistanceManagement';
@@ -25,7 +25,10 @@ function ListFriends(props) {
 
     return (
         <Select style={listFriendsStyle} value={selectedFriend} onChange={handleChange}>
-            {getFriends().map((friend) => <MenuItem value={`${friend}`} >{friend.value}</MenuItem>)}
+            {getFriends().map((friend) =>
+            <MenuItem key={friend} value={`${friend}`} >
+                 <Value src={`[${friend}].name`}>{`${friend}`}</Value>
+            </MenuItem>)}
         </Select>
     );
 };
@@ -33,7 +36,7 @@ function ListFriends(props) {
 const listFriendsStyle = {
     minWidth: "200px",
     marginRight: '10px',
-  };
+};
 
 export default class ShareComponent extends React.Component {
 
@@ -52,7 +55,7 @@ export default class ShareComponent extends React.Component {
     }
 
     setSelectedFriend(newSelectedFriend) {
-        this.setState({selectedFriend: newSelectedFriend})
+        this.setState({ selectedFriend: newSelectedFriend })
     }
 
     buttonClicked() {
