@@ -38,11 +38,11 @@ export class HomeComponent extends Component<Props> {
   }
 
   changeForm = () => {
-    this.setState({ needForm: !this.state.needForm});
+    this.setState({ needForm: !this.state.needForm,needEditForm: false});
   }
 
   changeEditForm = () => {
-    this.setState({ needEditForm: !this.state.needEditForm});
+    this.setState({ needEditForm: !this.state.needEditForm,needForm: false});
   }
 
   render() {

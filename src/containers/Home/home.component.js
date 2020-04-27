@@ -44,7 +44,6 @@ function loadMap(props, t) {
 }
 
 function loadForm() {
-
   return (
     <HomeCard className="card">
       <FormRoute></FormRoute>
@@ -54,7 +53,6 @@ function loadForm() {
 }
 
 function loadEditForm() {
-
   return (
     <HomeCard className="card">
       <FormEditRoute></FormEditRoute>

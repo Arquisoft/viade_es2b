@@ -269,7 +269,7 @@ export default {
 	},
 
 	savePriv(route){
-		if (route.priv === true) {
+		if (route.priv === false) {
 			routePriv = "priv";
 		} else {
 			routePriv = "publ";  

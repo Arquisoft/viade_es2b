@@ -41,7 +41,7 @@ export default class RouteList extends React.Component {
                                 <DeleteIcon fontSize="small" />
                             </IconButton>
 
-			                <IconButton onClick={() =>{
+			                <IconButton onClick={async () =>{
                                 this.props.changeEditForm();
                                 gestorPOD.saveID(route.id);
 				                gestorPOD.saveName(route);

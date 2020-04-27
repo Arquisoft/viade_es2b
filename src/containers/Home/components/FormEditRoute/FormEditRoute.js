@@ -54,7 +54,7 @@ export default class RouteForm extends React.Component {
     }
     let description;
     if (this.state.form.description === "") {
-        name = gestorPOD.loadDescrip();
+      description = gestorPOD.loadDescrip();
     }
     else {
       description = this.state.form.description;
