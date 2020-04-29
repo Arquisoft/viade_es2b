@@ -10,12 +10,14 @@ export default class RouteList extends React.Component {
 
     constructor() {
         super();
-        this.state = { loading: true};
+        this.state = { loading: true, routes: [], publicRoutes: []};
     }
 
     async componentDidMount() {
-        this.setState( {loading: true }, () => {
-            gestorPOD.seeRoutes().then((routes) => this.setState( {loading: false, routes: Array.from(routes)}) );
+        this.setState( {loading: true }, async () => {
+            await gestorPOD.seeRoutes().then((routes) => this.setState( {routes: Array.from(routes)}) );
+            await gestorPOD.seeRoutes(false).then((routes) => this.setState( {publicRoutes: Array.from(routes)}) );
+            this.setState({loading: false})
         });
     }
 
@@ -29,13 +31,46 @@ export default class RouteList extends React.Component {
     }
 
     loadFinished() {
+        console.log(this.state.routes);
+        console.log(this.state.publicRoutes);
         return (<div>
+                <h3>Rutas privadas</h3>
                 <ul>
                     {this.state.routes.map( (route) => (
                         <li id="container_route" key={route.id}>
                             <Button color="primary" onClick={() => this.props.setRoute(route)}> {route.name} </Button>
                             <IconButton onClick={async () => { 
                                 await gestorPOD.deleteRoute(route.id); 
+                                window.location.reload(false); 
+                            }} aria-label="delete">
+                                <DeleteIcon fontSize="small" />
+                            </IconButton>
+
+			                <IconButton onClick={() =>{
+                                this.props.changeEditForm();
+                                gestorPOD.saveID(route.id);
+				
+                            } } aria-label="edit">
+                                <BorderColorIcon fontSize="small"/>
+                            </IconButton>
+
+                            <IconButton onClick={async () =>{
+                                await gestorPOD.saveID(route.id);
+                                await gestorPOD.saveGPX(route);
+                                await gestorPOD.downloadRoute();
+                            } } aria-label="download">
+                                <ArrowDownwardIcon fontSize="small"/>
+                            </IconButton>
+                        </li>
+                    ))}
+                </ul>
+                <h3>Rutas publicas</h3>
+                <ul>
+                    {this.state.publicRoutes.map( (route) => (
+                        <li id="container_route" key={route.id}>
+                            <Button color="primary" onClick={() => this.props.setRoute(route)}> {route.name} </Button>
+                            <IconButton onClick={async () => { 
+                                await gestorPOD.deleteRoute(route.id, false); 
                                 window.location.reload(false); 
                             }} aria-label="delete">
                                 <DeleteIcon fontSize="small" />
