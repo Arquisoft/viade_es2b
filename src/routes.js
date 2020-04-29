@@ -30,17 +30,15 @@ const privateRoutes = [
   }
 ];
 
-/* 
- */
 const Routes = () => {
   return (
   <Router basename="/">
     <Fragment>
       <Switch>
-        <NotLoggedInLayout component={Login} path="/login" exact />
-        <NotLoggedInLayout component={Register} path="/register" exact />
-        <NotLoggedInLayout path="/register/success" component={RegistrationSuccess} exact />
-        <PublicLayout path="/404" component={PageNotFound} exact />
+        <NotLoggedInLayout path="/" exact component={Login} />
+        <NotLoggedInLayout path="/register" exact component={Register} />
+        <NotLoggedInLayout path="/register/success" exact component={RegistrationSuccess} />
+        <PublicLayout path="/404" exact component={PageNotFound} />
         <Redirect from="/" to="/home" exact />
         <PrivateLayout path="/" routes={privateRoutes} />
         <Redirect to="/404" />

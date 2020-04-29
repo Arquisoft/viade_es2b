@@ -13,7 +13,6 @@ export default class RouteForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = { form: { name: "", description: "", gpx: null, images: [], priv: true }};
-
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChangeFiles = this.handleChangeFiles.bind(this);
@@ -45,20 +44,30 @@ export default class RouteForm extends React.Component {
   async handleSubmit(event) {
 
     event.preventDefault();
-
-    let name = this.state.form.name;
-    let description = this.state.form.description;
-    let gpx = this.state.form.gpx;
+    let idOld = gestorPOD.getID();
+    let oldRoute = await gestorPOD.seeRoute(idOld);
+    let name;
+    if (this.state.form.name === "") {
+        name = gestorPOD.loadName();
+    } 
+    else {
+        name = this.state.form.name;
+    }
+    let description;
+    if (this.state.form.description === "") {
+      description = gestorPOD.loadDescrip();
+    }
+    else {
+      description = this.state.form.description;
+    }
+    let gpx = gestorPOD.getGPX(oldRoute);
     let images = this.state.form.images;
     let id = name + "-" + Date.now().toString();
     let priv = this.state.form.priv;
 
     var route = new Route(id, name, description, gpx, images, priv);
-
-    //In order to avoid problems when managin files, we put _ instead of blank spaces
-    route.id.replace( /\s/g, "_");
-
-    await gestorPOD.saveRoute(route);
+    
+    await gestorPOD.editRoute(oldRoute,route);
 
     window.location.reload();
 
@@ -66,52 +75,32 @@ export default class RouteForm extends React.Component {
 
   render() {
     return (
-      <div className="RouteForm">
+      <div className="RouteEditForm">
         <Form onSubmit={this.handleSubmit}>
 
           <Form.Group controlId="formNameRoute">
-            <Form.Label>{i18n.t("form.name")}</Form.Label>
-            <Form.Control type="text" name="name" placeholder={i18n.t("form.enter_name")}
-              defaultValue={this.state.form.name} onChange={this.handleChange} />
+            <Form.Label>{i18n.t("form.name_edit")}</Form.Label>
+            <Form.Label>Actual: {gestorPOD.loadName()}</Form.Label>
+            <Form.Control type="text" name="name" placeholder={i18n.t("form.enter_name_edit")}
+              defaultValue={this.state.form.name_edit} onChange={this.handleChange} />
           </Form.Group>
 
           <Form.Group controlId="formDescriptionRoute">
-            <Form.Label>{i18n.t("form.description")}</Form.Label>
-            <Form.Control type="text" name="description" placeholder={i18n.t("form.enter_description")}
-              defaultValue={this.state.form.description} onChange={this.handleChange} />
+            <Form.Label>{i18n.t("form.description_edit")}</Form.Label>
+	    <Form.Label>Actual: {gestorPOD.loadDescrip()}</Form.Label>
+            <Form.Control type="text" name="description" placeholder={i18n.t("form.enter_description_edit")}
+              defaultValue={this.state.form.description_edit} onChange={this.handleChange} />
           </Form.Group>
 
           <Form.Group controlId="formPrivacyRoute">
           <Form.Label>{i18n.t("form.publicRoute")}</Form.Label>
+	  <Form.Label>Actual: {gestorPOD.loadPriv()}</Form.Label>
           <Switch
             checked={this.state.priv}
             onChange={this.handleChange}
             name="priv"
             inputProps={{ 'aria-label': 'secondary checkbox' }}
           />
-          </Form.Group>
-
-          <Form.Group controlId="formGpxFile">
-          <Form.Label>{i18n.t("form.gpx")}</Form.Label>
-            <Form.File
-              id="gpx-file"
-              name="gpx"
-              accept=".gpx"
-              onChange={this.handleChangeFiles}
-            >
-            </Form.File>
-          </Form.Group>
-
-          <Form.Group controlId="formImages">
-          <Form.Label>{i18n.t("form.images")}</Form.Label>
-            <Form.File
-              id="images-list"
-              name="images"
-              accept="image/*"
-              multiple
-              onChange={this.handleChangeFiles}
-            >
-            </Form.File>
           </Form.Group>
 
           <Button variant="contained" type="submit">
