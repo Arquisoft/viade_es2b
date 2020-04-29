@@ -103,6 +103,7 @@
     "routes" : "Feed",
     "public_routes" : "Private routes",
     "private_routes" : "Public routes",
+    "shared_routes" : "Routes shared with me",
     "add_route": "Add route",
     "delete_route": "Delete routes",
 	"share_route": "Share route",

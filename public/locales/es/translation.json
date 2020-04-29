@@ -104,6 +104,7 @@
     "routes" : "Feed",
     "public_routes" : "Rutas públicas",
     "private_routes" : "Rutas privadas",
+    "shared_routes" : "Rutas compatidas conmigo",
     "add_route": "Añadir ruta",
     "delete_route": "Eliminar rutas",
 	"share_route": "Compartir ruta",
