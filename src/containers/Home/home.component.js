@@ -74,7 +74,8 @@ export const HomePageContent = (props) => {
     <HomeWrapper data-testid="home-wrapper">
       <HomeSidenav className="home-sidebar">
         <h2>{t("home.routes")}</h2>
-        <RouteList loadingText={t("home.loading_routes")} setRoute={props.setRoute} changeEditForm={props.changeEditForm}></RouteList>
+        <RouteList privateRoutesText={t("home.private_routes")} publicRoutesText={t("home.public_routes")} sharedRoutesText={t("home.shared_routes")}
+         setRoute={props.setRoute} changeEditForm={props.changeEditForm}></RouteList>
         <div id="Manage buttons">
           <Button variant="contained" color="primary" onClick={() => props.changeForm()}>
           {t("home.add_route")}
