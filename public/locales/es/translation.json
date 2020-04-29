@@ -149,7 +149,9 @@
   },
   "friends":{
     "title": "Amigos",
-    "content": "Texto de prueba para la ventana de amigos"
+    "content": "Texto de prueba para la ventana de amigos",
+    "loading": "Cargando los datos...",
+    "pod": "Pod del usuario"
   },
   "groups":{
     "title": "Grupos",

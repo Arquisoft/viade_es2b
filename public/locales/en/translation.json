@@ -148,7 +148,9 @@
   },
   "friends":{
     "title": "Friends",
-    "content": "Text for friends window"
+    "content": "Text for friends window",
+    "loading": "Loading friend data...",
+    "pod": "User pod"
   },
   "groups":{
     "title": "Grups",

@@ -1,40 +1,26 @@
 import styled from "styled-components";
+import Panel from "/components/Utils/Panel"
 
 /**
  * A styled-component for the Friends Page layout
  */
 export const FriendsWrapper = styled.section`
-  display: flex;
-  flex-direction: row-reverse;
-  background-image: url("img/spaceman.svg");
-  background-repeat: no-repeat;
-  background-position-x: -125px;
-  background-position-y: 100px;
+  width: 100%;
   height: 100%;
-
-  @media only screen and (max-width: 900px) {
-    background-image: url("img/spaceman-mobile.svg");
-    background-position: left -80px bottom -10px;
-    background-size: 70%;
+  background-image: url("./img/concentric-hex-pattern_2x.png");
+  background-repeat: repeat;
+  display: flex;
+  overflow-x:hidden;
+  overflow-y:hidden;
+  h3{
+    text-align: center;
   }
 `;
 
 /**
  * A styled-component for the Friends Page content section
  */
-export const FriendsContent = styled.div`
-  max-width: 54%;
-  margin: 100px 40px 0 50px;
-
-  @media only screen and (max-width: 900px) {
-    max-width: 100%;
-    margin: 20px 40px;
-    text-align: center;
-  }
-
-  @media only screen and (max-width: 600px) {
-    img {
-      width: 100%;
-    }
-  }
+export const FriendsCard = styled(Panel)`
+  width:90%;
+  margin: 5%;
 `;
