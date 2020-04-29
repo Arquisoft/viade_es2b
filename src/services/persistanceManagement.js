@@ -8,7 +8,7 @@ const auth = require("solid-auth-client");
 const FC = require("solid-file-client");
 var fc;
 var routeId;
-
+var routeGPX;
 export default {
 
     /**
@@ -299,9 +299,17 @@ export default {
         return route.gpx;
     },
 
-    getPriv(route) {
-        return route.priv;
+	getPriv(route){
+		return route.priv;
     },
+    
+    saveGPX(route){
+		routeGPX = route.gpx;
+	},
+
+	loadGPX(){
+		return routeGPX;
+	},
 
     async editRoute(oldRoute, route) {
         fc = new FC(auth);
@@ -311,19 +319,29 @@ export default {
 
         let idNoSpaces = oldRoute.id.replace(/\s/g, "_");
 
-        let tempUrlUser = ((await auth.currentSession()).webId).toString();
-
-        // Here we check if the route is private to decide where to save it. By default is private.
-        var urlUser = "";
-        if (route.priv === true) { urlUser = tempUrlUser.slice(0, -16) + "/private/routes"; }
-        else { urlUser = tempUrlUser.slice(0, -16) + "/public/routes"; }
-        await fc.createFile(urlUser + "/" + idNoSpaces + "/" + idNoSpaces + ".json", basicDataJson, "application/json");
-        await fc.createFile(urlUser + "/" + idNoSpaces + "/" + idNoSpaces + ".gpx", route.gpx, "application/gpx+xml");
-        /*
-                    for (var i=0; i < route.images.length; i++) {
-                        var image = route.images.item(i);
-                                        await fc.createFile(urlUser + "/" + idNoSpaces + "_" + i , image, image.type);
-                    }*/
-    }
+	        let tempUrlUser = ((await auth.currentSession()).webId).toString();
+        
+        	// Here we check if the route is private to decide where to save it. By default is private.
+        	var urlUser = "";
+        	if (route.priv === true) {urlUser = tempUrlUser.slice(0, -16) + "/private/routes" ;}
+	       	 else {urlUser = tempUrlUser.slice(0, -16) + "/public/routes" ;}
+	        await fc.createFile(urlUser+"/"+ idNoSpaces + "/" + idNoSpaces+ ".json", basicDataJson, "application/json");
+	        await fc.createFile(urlUser +"/"+ idNoSpaces+ "/" + idNoSpaces +".gpx", route.gpx, "application/gpx+xml");
+        },
+        
+        async downloadRoute(){
+            var route = await this.seeRoute(this.getID());
+            var routeFinal = new Route(route.id, route.name, route.description, this.loadGPX(), null);
+            var gpxToDownload = routeFinal.gpx;
+            var b = new Blob([gpxToDownload], {type: "text/plain"});
+            var fileLink = document.createElement("a");
+    
+            fileLink.download = route.id + ".gpx";
+    
+            var url = URL.createObjectURL(b);
+            fileLink.href = url;
+    
+            fileLink.click();
+           }
 };
 
