@@ -7,7 +7,8 @@ import Route from "../../../../Route";
 
 import i18n from "../../../../i18n";
 
-import gestorPOD from "../../../../persistanceManagement";
+import gestorPOD from "../../../../services/persistanceManagement";
+
 export default class RouteForm extends React.Component {
   constructor(props) {
     super(props);

@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 import { Button } from "@material-ui/core";
 //import { Uploader } from "@inrupt/solid-react-components";
 import { useTranslation } from "react-i18next";
-import manejadorPODs from "../../persistanceManagement";
+import manejadorPODs from "../../services/persistanceManagement";
 import RouteList from "./components/RouteList";
 import FormRoute from "./components/FormRoute/FormRoute";
 import FormEditRoute from "./components/FormEditRoute/FormEditRoute";
@@ -17,10 +17,10 @@ import {
 } from './home.style';
 import Slider from './components/Slider'
 import ShareComponent from './components/ShareComponent/ShareComponent'
+
 const Map = React.lazy(() => import('../../Map'));
 
 function loadMap(props, t) {
-
   return (
     <HomeCard className="card">
       <RouteMap id="map">
@@ -31,7 +31,7 @@ function loadMap(props, t) {
       <RouteInfo>
         <RouteHead>
           <h2> {t('home.information')} </h2>
-          <ShareComponent route = {props.routeGPX}></ShareComponent>
+          <ShareComponent route = {props.route}></ShareComponent>
         </RouteHead>
         <p>
           {props.routeDescription}
@@ -91,7 +91,6 @@ export const HomePageContent = (props) => {
 
       <HomeBody className="home-body">
          {(props.needEditForm ? loadEditForm() : props.needForm ? loadForm() : loadMap(props, t))}
-
       </HomeBody>
     </HomeWrapper>
   );
