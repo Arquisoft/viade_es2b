@@ -80,5 +80,5 @@ const PrivateLayout = ({ routes, webId, location, history, ...rest }) => {
     </React.Fragment>
   );
 };
-
+/*redirect to private if its authenticated, to login otherwise */
 export default withAuthorization(PrivateLayout);

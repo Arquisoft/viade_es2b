@@ -13,7 +13,7 @@
     "@inrupt/solid-style-guide": "^0.1.34",
     "@material-ui/core": "^4.9.11",
     "@material-ui/icons": "^4.9.1",
-    "@material-ui/lab": "^4.0.0-alpha.50",
+    "@material-ui/lab": "^4.0.0-alpha.51",
     "@rdfjs/data-model": "^1.1.1",
     "@shexjs/core": "^1.0.0-alpha.4",
     "@solid/query-ldflex": "^2.10.1",

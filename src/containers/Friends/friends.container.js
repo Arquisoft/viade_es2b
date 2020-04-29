@@ -9,20 +9,24 @@ export class FriendsComponent extends Component<Props> {
 
   constructor(props) {
     super(props);
-
-    this.state = { empty: true };
-
+    this.state = {
+      friend: null
+    };
   }
 
   componentDidUpdate(prevProps) {
     // todo
   }
 
+  setFriend = (friends) => {
+    this.setState({friend:friends});
+  }
+
   render() {
-    const { empty } = this.state;
+    const { friend } = this.state;
 
     return (
-      <FriendsPageContent {...{ empty}} />
+      <FriendsPageContent {...{setFriend: this.setFriend, friend}} />
     );
   }
 }

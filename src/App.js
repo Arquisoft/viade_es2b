@@ -7,9 +7,9 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import Routes from "./routes";
 import theme from "./utils/theme";
-import "react-toastify/dist/ReactToastify.css";
-import "flag-icon-css/css/flag-icon.min.css";
-import "normalize.css";
+import { StylesProvider } from "@material-ui/core/styles";
+// import "react-toastify/dist/ReactToastify.css";
+// import "normalize.css";
 import "./index.css";
 import "leaflet/dist/leaflet.css";
 import "@inrupt/solid-style-guide";
@@ -22,6 +22,7 @@ function App() {
   return (
     <Suspense fallback={<Loader />}>
       <ThemeProvider theme={theme}>
+      <StylesProvider injectFirst>
         <Fragment>
           <Routes />
           <Toaster
@@ -39,6 +40,7 @@ function App() {
             }}
           />
         </Fragment>
+        </StylesProvider>
       </ThemeProvider>
     </Suspense>
   );

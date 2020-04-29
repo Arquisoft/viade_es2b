@@ -30,8 +30,6 @@ const privateRoutes = [
   }
 ];
 
-/* 
- */
 const Routes = () => {
   return (
   <Router basename="/">
