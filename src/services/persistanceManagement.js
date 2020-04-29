@@ -12,41 +12,13 @@ var routeGPX;
 var routeName;
 var routeDescrip;
 var routePriv;
+
 export default {
-
+    
     /**
-     * Method to do login
-     * @param {url para realizar la autenticación. Solid community por defecto} url 
+     * This method set up the folder for shared routes in your pod, and change its permissions to allow
+     * the write and read on it.
      */
-    async login(url = "https://solid.community") {
-
-        this.activeSession = await auth.currentSession();
-
-        if (!this.activeSession) {
-            await auth.login(url);
-        } else {
-            alert(`Already logged in as ${this.activeSession.webId}`);
-        }
-        fc = new FC(auth);
-
-    },
-
-    /**
-     * Method to do logout.
-     */
-    async logout() {
-        this.activeSession = await auth.currentSession();
-
-        if (!this.activeSession) {
-            alert("No one is logged");
-        } else {
-            auth.logout().then(
-                () => alert("Logged out"),
-                () => alert("Error logging out")
-            );
-        }
-    },
-
     async setUpSharedFolder() {
         //We create the shared folder if it dowsn't exist, if it exists we return.
         fc = new FC(auth);
@@ -87,26 +59,11 @@ export default {
     },
 
     /**
-     * Method that check if the user is logged in or not.
-     * It return true if it"s logged in and false otherwise.
+     * This method share the route pased by parameters to the user also passed by parameters.
+     * The user should have use the app at least once. If not, the method will fail.
+     * @param {*} route 
+     * @param {*} webId 
      */
-    async isLoggedIn() {
-        if (await auth.currentSession() === null || (await auth.currentSession()).webId === null) {
-            return false;
-        }
-        return true;
-    },
-
-    /**
-     * Method used to load a file from the local storage of the client.
-     */
-    askForAFile() {
-        // Check for the various File API support.
-        if (!window.File && !window.FileReader && !window.FileList && !window.Blob) {
-            alert("The File APIs are not fully supported in this browser.");
-        }
-    },
-
     async shareRoute(route, webId) {
         fc = new FC(auth);
 
@@ -162,6 +119,7 @@ export default {
 
     /**
      * Method that returns the route saved in the user"s pod, if exist. Null otherwise.
+     * This method only works for owned routes, the shared ones can't be search through this method.
      * @param {ID of the route to be showed.} idRoute 
      * @param {Privacy of the route to be showed. By default is private.} priv 
      */
@@ -181,6 +139,9 @@ export default {
         return JSON.parse(route);
     },
 
+    /**
+     * This method returns the content of the /shared/routes folder, which contains the routes that a friend of you shared with you.
+     */
     async seeSharedRoutes() {
         fc = new FC(auth);
 
@@ -402,4 +363,3 @@ async function extractRoutesFromFile(folder, urlUser) {
     }
     return routes;
 }
-

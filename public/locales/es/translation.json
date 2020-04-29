@@ -105,6 +105,7 @@
     "public_routes" : "Rutas públicas",
     "private_routes" : "Rutas privadas",
     "shared_routes" : "Rutas compatidas conmigo",
+    "help_see_info": "Seleccione una ruta en el menu lateral para ver su información.",
     "add_route": "Añadir ruta",
     "delete_route": "Eliminar rutas",
 	"share_route": "Compartir ruta",
