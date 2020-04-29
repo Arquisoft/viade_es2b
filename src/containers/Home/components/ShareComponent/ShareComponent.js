@@ -62,7 +62,7 @@ export default class ShareComponent extends React.Component {
         let routeToShare = this.props.route;
         routeToShare.priv = false;
 
-        gestorPOD.saveRoute(routeToShare, this.state.selectedFriend);
+        gestorPOD.shareRoute(routeToShare, this.state.selectedFriend);
 
         toast.info("Route shared successfully");
     }

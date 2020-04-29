@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { HomePageContent } from "./home.component";
+import gestorPod from "../../services/persistanceManagement"
 
 
 /**
@@ -13,6 +14,10 @@ export class HomeComponent extends Component<Props> {
     this.state = { needForm: false, needEditForm: false };
 
   }
+  
+  componentDidMount() {
+    gestorPod.setUpSharedFolder();
+ }
 
   componentDidUpdate(prevProps) {
 
