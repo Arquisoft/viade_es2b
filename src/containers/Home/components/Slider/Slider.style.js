@@ -37,6 +37,7 @@ export const ImageList = styled.div`
 
 export const ImageContainer = styled.div`
     display: flex;
+    max-width: 237px;
     width: 100%;
     height: 95%;
     align-items: center;

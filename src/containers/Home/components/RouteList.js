@@ -4,69 +4,122 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import BorderColorIcon from "@material-ui/icons/BorderColor";
 import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 
-import gestorPOD from "../../../persistanceManagement";
+import gestorPOD from "../../../services/persistanceManagement";
 
 export default class RouteList extends React.Component {
 
     constructor() {
         super();
-        this.state = { loading: true};
+        this.state = { loadingPrivate: true, loadingPublic: true, loadingShared: true, routes: [], publicRoutes: [], sharedRoutes: [] };
+
+        //Bind this to the methods of the class to allow access to props and state
+        this.loadingPrivate = this.loadingPrivate.bind(this);
+        this.loadingPublic = this.loadingPublic.bind(this);
+        this.loadingShared = this.loadingShared.bind(this);
+        this.loadingPrivateFinished = this.loadingPrivateFinished.bind(this);
+        this.loadingPublicFinished = this.loadingPublicFinished.bind(this);
+        this.loadingSharedFinished = this.loadingSharedFinished.bind(this);
+        this.generateRoutesCards = this.generateRoutesCards.bind(this);
+
     }
 
     async componentDidMount() {
-        this.setState( {loading: true }, () => {
-            gestorPOD.seeRoutes().then((routes) => this.setState( {loading: false, routes: Array.from(routes)}) );
-        });
+        this.setState({ loadingPrivate: true, loadingPublic: true, loadingShared: true }, async () => {
+            gestorPOD.seeRoutes().then((routes) => this.setState({ routes: Array.from(routes), loadingPrivate: false }));
+            gestorPOD.seeRoutes(false).then((routes) => this.setState({ publicRoutes: Array.from(routes), loadingPublic: false }));
+            gestorPOD.seeSharedRoutes().then((routes) => this.setState({ sharedRoutes: Array.from(routes), loadingShared: false}));
+                });
     }
 
-    loading() {
+    loadingShared() {
         return (
-        <div>
-            <h2>{this.props.loadingText}</h2>
-            <CircularProgress></CircularProgress>
-        </div>
+            <div>
+                <h3>{this.props.sharedRoutesText}</h3>
+                <CircularProgress></CircularProgress>
+            </div>
         );
     }
 
-    loadFinished() {
+    loadingPrivate() {
+        return (
+            <div>
+                <h3>{this.props.privateRoutesText}</h3>
+                <CircularProgress></CircularProgress>
+            </div>
+        );
+    }
+
+    loadingPublic() {
+        return (
+            <div>
+                <h3>{this.props.publicRoutesText}</h3>
+                <CircularProgress></CircularProgress>
+            </div>
+        );
+    }
+
+    loadingPublicFinished() {
+        return (<div><h3>{this.props.publicRoutesText}</h3>
+            <ul>
+                {this.state.publicRoutes.map((route) => this.generateRoutesCards(route))}
+            </ul></div>);
+    }
+
+    loadingSharedFinished() {
         return (<div>
-                <ul>
-                    {this.state.routes.map( (route) => (
-                        <li id="container_route" key={route.id}>
-                            <Button color="primary" onClick={() => this.props.setRoute(route)}> {route.name} </Button>
-                            <IconButton onClick={async () => { 
-                                await gestorPOD.deleteRoute(route.id); 
-                                window.location.reload(false); 
-                            }} aria-label="delete">
-                                <DeleteIcon fontSize="small" />
-                            </IconButton>
-
-			                <IconButton onClick={() =>{
-                                this.props.changeEditForm();
-                                gestorPOD.saveID(route.id);
-				
-                            } } aria-label="edit">
-                                <BorderColorIcon fontSize="small"/>
-                            </IconButton>
-
-                            <IconButton onClick={async () =>{
-                                await gestorPOD.saveID(route.id);
-                                await gestorPOD.saveGPX(route);
-                                await gestorPOD.downloadRoute();
-                            } } aria-label="download">
-                                <ArrowDownwardIcon fontSize="small"/>
-                            </IconButton>
-                        </li>
-                    ))}
-                </ul>
+            <h3>{this.props.sharedRoutesText}</h3>
+            <ul>
+                {this.state.sharedRoutes.map((route) => this.generateRoutesCards(route))}
+            </ul>
             </div>);
     }
 
-    render() {
-        const { loading } = this.state;
+    loadingPrivateFinished() {
+        return (<div>
+            <h3>{this.props.privateRoutesText}</h3>
+            <ul>
+                {this.state.routes.map((route) => this.generateRoutesCards(route))}
+            </ul>
+        </div>);
+    }
 
-        return (
-            loading ? this.loading() : this.loadFinished()
+    generateRoutesCards(route) {
+        return (<li id="container_route" key={route.id}>
+            <Button color="primary" onClick={() => this.props.setRoute(route)}> {route.name} </Button>
+            <IconButton onClick={async () => {
+                await gestorPOD.deleteRoute(route.id, false);
+                window.location.reload(false);
+            } } aria-label="delete">
+                <DeleteIcon fontSize="small" />
+            </IconButton>
+
+            <IconButton onClick={() => {
+                this.props.changeEditForm();
+                gestorPOD.saveID(route.id);
+            } } aria-label="edit">
+                <BorderColorIcon fontSize="small" />
+            </IconButton>
+
+            <IconButton onClick={async () => {
+                await gestorPOD.saveID(route.id);
+                await gestorPOD.saveGPX(route);
+                await gestorPOD.downloadRoute();
+            } } aria-label="download">
+                <ArrowDownwardIcon fontSize="small" />
+            </IconButton>
+        </li>);
+    }
+
+    render() {
+        const { loadingPrivate, loadingPublic, loadingShared } = this.state;
+
+        return(
+            <div>
+                {loadingPrivate ? <this.loadingPrivate/> : <this.loadingPrivateFinished/>}
+                {loadingPublic ? <this.loadingPublic/> : <this.loadingPublicFinished/>}
+                {loadingShared ? <this.loadingShared/> : <this.loadingSharedFinished/>}
+            </div>
         );
+        
     }
 }

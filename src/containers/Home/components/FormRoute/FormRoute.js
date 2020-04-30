@@ -7,7 +7,7 @@ import Route from "../../../../Route";
 
 import i18n from "../../../../i18n";
 
-import gestorPOD from "../../../../persistanceManagement";
+import gestorPOD from "../../../../services/persistanceManagement";
 
 export default class RouteForm extends React.Component {
   constructor(props) {
@@ -54,6 +54,9 @@ export default class RouteForm extends React.Component {
     let priv = this.state.form.priv;
 
     var route = new Route(id, name, description, gpx, images, priv);
+
+    //In order to avoid problems when managin files, we put _ instead of blank spaces
+    route.id.replace( /\s/g, "_");
 
     await gestorPOD.saveRoute(route);
 

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { HomePageContent } from "./home.component";
+import gestorPod from "../../services/persistanceManagement"
+import i18n from "../../i18n";
 
 
 /**
@@ -10,9 +12,13 @@ export class HomeComponent extends Component<Props> {
   constructor(props) {
     super(props);
 
-    this.state = { needForm: false, needEditForm: false };
+    this.state = { needForm: false, needEditForm: false, routeDescription: i18n.t("home.help_see_info") };
 
   }
+  
+  componentDidMount() {
+    gestorPod.setUpSharedFolder();
+ }
 
   componentDidUpdate(prevProps) {
 
@@ -38,18 +44,18 @@ export class HomeComponent extends Component<Props> {
   }
 
   changeForm = () => {
-    this.setState({ needForm: !this.state.needForm});
+    this.setState({ needForm: !this.state.needForm,needEditForm: false});
   }
 
   changeEditForm = () => {
-    this.setState({ needEditForm: !this.state.needEditForm});
+    this.setState({ needEditForm: !this.state.needEditForm,needForm: false});
   }
 
   render() {
     const { routeDescription, routeGPX, routeImages, needForm, needEditForm } = this.state;
 
     return (
-      <HomePageContent {...{ changeForm: this.changeForm, changeEditForm: this.changeEditForm, setRoute: this.setRoute, routeDescription, routeGPX, routeImages, needForm, needEditForm}} />
+      <HomePageContent {...{ changeForm: this.changeForm, changeEditForm: this.changeEditForm, setRoute: this.setRoute, routeDescription, routeGPX, route: this.state.route, routeImages, needForm, needEditForm}} />
     );
   }
 }
