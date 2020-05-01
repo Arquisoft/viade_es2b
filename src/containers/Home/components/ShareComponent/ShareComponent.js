@@ -4,8 +4,53 @@ import { Button, Select, MenuItem } from '@material-ui/core';
 import { useLDflexList, Value } from '@solid/react';
 import { ShareWrapper } from './ShareComponent.style';
 
+import { useNotification, NotificationTypes } from '@inrupt/solid-react-components';
+
 import gestorPOD from '../../../../services/persistanceManagement';
 import { toast } from 'react-toastify';
+
+const ShareButton = (props) => {
+
+    const [webID, setWebID] = useState("");
+
+    const { createNotification, discoverInbox } = useNotification(webID);
+
+    const handleClickButtonShare = async (event) => {
+
+        setWebID(await gestorPOD.getWebID());
+
+        const inboxUrl = await discoverInbox(props.selectedFriend);
+
+        let routeToShare = this.props.route;
+        routeToShare.priv = false;
+
+        gestorPOD.shareRoute(routeToShare, this.state.selectedFriend);
+
+        if (!inboxUrl) {
+            return console.log('Inbox not found');
+        }
+
+        try {
+            createNotification(
+                {
+                    title: "Notification example",
+                    summary: "Alguien ha compartido una ruta contigo :D",
+                    actor: webID
+                },
+                inboxUrl,
+                NotificationTypes.ANNOUNCE
+            );
+        } catch (error) {
+            console.log(error);
+        }
+
+
+        toast.info("Route shared successfully");
+
+    }
+
+    return <Button onClick={handleClickButtonShare} variant="contained" color="primary">{i18n.t('home.share_route')}</Button>
+}
 
 function ListFriends(props) {
 
@@ -26,9 +71,9 @@ function ListFriends(props) {
     return (
         <Select style={listFriendsStyle} value={selectedFriend} onChange={handleChange}>
             {getFriends().map((friend) =>
-            <MenuItem key={friend} value={`${friend}`} >
-                 <Value src={`[${friend}].name`}>{`${friend}`}</Value>
-            </MenuItem>)}
+                <MenuItem key={friend} value={`${friend}`} >
+                    <Value src={`[${friend}].name`}>{`${friend}`}</Value>
+                </MenuItem>)}
         </Select>
     );
 };
@@ -59,10 +104,12 @@ export default class ShareComponent extends React.Component {
     }
 
     buttonClicked() {
-        let routeToShare = this.props.route;
+        /*let routeToShare = this.props.route;
         routeToShare.priv = false;
 
-        gestorPOD.shareRoute(routeToShare, this.state.selectedFriend);
+        gestorPOD.shareRoute(routeToShare, this.state.selectedFriend);*/
+
+        sendNotification(this.state.selectedFriend);
 
         toast.info("Route shared successfully");
     }
@@ -74,7 +121,7 @@ export default class ShareComponent extends React.Component {
                     <div>
                         <p>{i18n.t('home.share_text')}</p>
                         <ListFriends setSelectedFriend={this.setSelectedFriend}></ListFriends>
-                        <Button onClick={this.buttonClicked} variant="contained" color="primary">{i18n.t('home.share_route')}</Button>
+                        <ShareButton selectedFriend={this.state.selectedFriend}></ShareButton>
                     </div>
                 </ShareWrapper>
         );

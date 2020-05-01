@@ -14,6 +14,24 @@ var routeDescrip;
 var routePriv;
 
 export default {
+
+    async getWebID() {
+        return (await auth.currentSession()).webId;
+    },
+
+    async setUpInboxFolder() {
+        //We create the app folder if it dowsn't exist, if it exists we return.
+        fc = new FC(auth);
+
+        let webIdUser = ((await auth.currentSession()).webId).toString();
+        let urlInboxFolder = webIdUser.slice(0, -16) + "/viade_es2b/inbox";
+
+        //Check if it already exists.
+        if (await fc.itemExists(urlInboxFolder)) return;
+
+        //Create it if not
+        await fc.createFolder(urlInboxFolder);
+    },
     
     /**
      * This method set up the folder for shared routes in your pod, and change its permissions to allow
@@ -331,7 +349,12 @@ export default {
 		fileLink.href = url;
 
 		fileLink.click();
-       }
+       },
+
+    async getAppPath() {
+        let tempUrlUser = ((await auth.currentSession()).webId).toString();
+        return tempUrlUser.slice(0, -16) + "/viade_es2b";
+    }
 };
 
 /**
