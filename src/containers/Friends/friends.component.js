@@ -1,5 +1,5 @@
 /* eslint-disable constructor-super */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 // import { Link } from "react-router-dom";
 import { FriendsWrapper, FriendsCard} from "./friends.style";
@@ -10,12 +10,6 @@ import ModalGroupForm from "./components/ModalGroupForm/ModalGroupForm.component
 import gestorPOD from "../../services/persistanceManagement"
 import FriendItem from "./components/FriendItem";
 
-async function getGroups() {
-  var groups = await gestorPOD.seeGroups();
-  console.log(groups);
-  return groups;
-}
-
 /**
  * A React component page that is displayed when the user wants to check his/her friends list and each 
  * friend"s routes.
@@ -23,7 +17,7 @@ async function getGroups() {
 const Friends = (props) => {
   const { t } = useTranslation();
   const [modal, setModal] = useState(false);
-  const [groups, setGroups] = useState(getGroups());
+  const [groups, setGroups] = useState([]);
 
   const showModalForm = (x) => {
     setModal(true);
@@ -32,6 +26,14 @@ const Friends = (props) => {
   const close = () => {
     setModal(false);
   }
+
+  useEffect(async () => {
+    async function getGroups() {
+      const groups = await gestorPOD.seeGroups();
+      setGroups(groups);
+    }
+    getGroups();
+  }, [])
 
   return (
     <FriendsWrapper>
@@ -51,9 +53,8 @@ const Friends = (props) => {
         <Grid item xs={12} md={6}>
         <h3>{t("groups.title")}</h3>
         <FriendsCard>
-          {Array.from(groups).forEach((group) => 
-            console.log(group.name)
-          )}
+          {/* Cambia el codigo para mostrar los grupos como quieras, esto era para ver si se listaban */}
+          {Array.from(groups).map((group) => <p>{group.name}</p>)}
           <Button onClick={e => {showModalForm()}} variant="contained" color="primary">{t('friends.createGroup')}</Button>
         </FriendsCard>
         <ModalGroupForm show={modal} closingFunction={close}></ModalGroupForm>
