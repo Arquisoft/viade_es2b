@@ -124,7 +124,10 @@
     "gpx": "Cargar gpx",
     "images" : "Cargar imagenes",
     "submit": "Enviar",
-    "publicRoute": "Ruta pública"
+    "publicRoute": "Ruta pública",
+	"groupName": "Nombre del grupo",,
+    "enterGroupName": "Introduce el nombre del grupo",
+	"friendsSelect": "Elige los amigos que quieres añadir al grupo"
   },
   "profile": {
     "successCallback": "Pod actualizado satisfactoriamente",
@@ -160,7 +163,8 @@
     "title": "Amigos",
     "content": "Texto de prueba para la ventana de amigos",
     "loading": "Cargando los datos...",
-    "pod": "Pod del usuario"
+    "pod": "Pod del usuario",
+	"createGroup" : "Crear nuevo grupo"
   },
   "groups":{
     "title": "Grupos",

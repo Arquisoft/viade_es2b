@@ -123,7 +123,10 @@
     "gpx": "Load gpx",
     "images" : "Load images",
     "submit": "Submit",
-    "publicRoute": "Public route"
+    "publicRoute": "Public route", 
+	"groupName": "Group name",
+    "enterGroupName": "Enter group name",
+	"friendsSelect": "Choose friends to add them to the group"
   },
   "profile": {
     "successCallback": "Pod updated successfully",
@@ -159,7 +162,8 @@
     "title": "Friends",
     "content": "Text for friends window",
     "loading": "Loading friend data...",
-    "pod": "User pod"
+    "pod": "User pod",
+	"createGroup" : "Create new group"
   },
   "groups":{
     "title": "Grups",
