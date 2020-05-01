@@ -112,6 +112,11 @@
 	"share_text": "Elige un amigo o un grupo para compartir tu ruta",
 	"edit_route": "Editar ruta"
   },
+  "share": {
+    "notification_title": "Ruta nueva!",
+    "notification_content": "Alguien ha compartido una nueva ruta contigo",
+    "notification_sended": "Ruta enviada con éxito"
+  },
   "form": {
      "name": "Nombre de la ruta",
     "name_edit": "Nuevo nombre de la ruta",

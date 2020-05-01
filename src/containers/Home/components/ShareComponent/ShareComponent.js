@@ -15,26 +15,26 @@ const ShareButton = (props) => {
 
     const { createNotification, discoverInbox } = useNotification(webID);
 
-    const handleClickButtonShare = async (event) => {
+    const handleClickButtonShare = async () => {
 
         setWebID(await gestorPOD.getWebID());
 
         const inboxUrl = await discoverInbox(props.selectedFriend);
 
-        let routeToShare = this.props.route;
+        let routeToShare = props.route;
         routeToShare.priv = false;
 
-        gestorPOD.shareRoute(routeToShare, this.state.selectedFriend);
+        gestorPOD.shareRoute(routeToShare, props.selectedFriend);
 
         if (!inboxUrl) {
-            return console.log('Inbox not found');
+            return console.log("Inbox not found");
         }
 
         try {
             createNotification(
                 {
-                    title: "Notification example",
-                    summary: "Alguien ha compartido una ruta contigo :D",
+                    title: i18n.t("share.notification_title"),
+                    summary: i18n.t("share.notification_content"),
                     actor: webID
                 },
                 inboxUrl,
@@ -44,8 +44,7 @@ const ShareButton = (props) => {
             console.log(error);
         }
 
-
-        toast.info("Route shared successfully");
+        toast.info(i18n.t("share.notification_sended"));
 
     }
 
@@ -90,7 +89,6 @@ export default class ShareComponent extends React.Component {
         this.state = { loading: true, selectedFriend: "" };
 
         this.setSelectedFriend = this.setSelectedFriend.bind(this);
-        this.buttonClicked = this.buttonClicked.bind(this);
     }
 
     async componentDidMount() {
@@ -103,17 +101,6 @@ export default class ShareComponent extends React.Component {
         this.setState({ selectedFriend: newSelectedFriend })
     }
 
-    buttonClicked() {
-        /*let routeToShare = this.props.route;
-        routeToShare.priv = false;
-
-        gestorPOD.shareRoute(routeToShare, this.state.selectedFriend);*/
-
-        sendNotification(this.state.selectedFriend);
-
-        toast.info("Route shared successfully");
-    }
-
     render() {
         return (
             this.props.route === undefined ? <ShareWrapper id="share"></ShareWrapper> :
@@ -121,7 +108,7 @@ export default class ShareComponent extends React.Component {
                     <div>
                         <p>{i18n.t('home.share_text')}</p>
                         <ListFriends setSelectedFriend={this.setSelectedFriend}></ListFriends>
-                        <ShareButton selectedFriend={this.state.selectedFriend}></ShareButton>
+                        <ShareButton route={this.props.route} selectedFriend={this.state.selectedFriend}></ShareButton>
                     </div>
                 </ShareWrapper>
         );
