@@ -21,7 +21,6 @@ import ShareComponent from './components/ShareComponent/ShareComponent'
 const Map = React.lazy(() => import('../../Map'));
 
 function loadMap(props, t) {
-  console.log(props.route)
   return (
     <HomeCard className="card">
       <RouteMap id="map">
@@ -53,10 +52,10 @@ function loadForm() {
 
 }
 
-function loadEditForm() {
+function loadEditForm(route) {
   return (
     <HomeCard className="card">
-      <FormEditRoute></FormEditRoute>
+      <FormEditRoute route={route}></FormEditRoute>
     </HomeCard>
   );
 
@@ -93,7 +92,7 @@ export const HomePageContent = (props) => {
       </HomeSidenav>
 
       <HomeBody className="home-body">
-         {(props.needEditForm ? loadEditForm() : props.needForm ? loadForm() : loadMap(props, t))}
+         {(props.needEditForm ? loadEditForm(props.route) : props.needForm ? loadForm() : loadMap(props, t))}
       </HomeBody>
     </HomeWrapper>
   );

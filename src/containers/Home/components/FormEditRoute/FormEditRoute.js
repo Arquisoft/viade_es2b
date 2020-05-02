@@ -2,7 +2,6 @@ import React from "react";
 import Form from "react-bootstrap/Form";
 import { Button, Switch } from "@material-ui/core";
 
-import bsCustomFileInput from "bs-custom-file-input";
 import Route from "../../../../Route";
 
 import i18n from "../../../../i18n";
@@ -12,10 +11,9 @@ import gestorPOD from "../../../../services/persistanceManagement";
 export default class RouteForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { form: { name: "", description: "", gpx: null, images: [], priv: true }};
+    this.state = { form: { name: "", description: "", priv: !props.route.priv }, route: props.route };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChangeFiles = this.handleChangeFiles.bind(this);
   }
 
   handleChange(event) {
@@ -23,55 +21,31 @@ export default class RouteForm extends React.Component {
     let fieldVal = event.target.value;
 
     //In case is the switch from Material library
-    if (fieldName === "priv") {fieldVal = !event.target.checked}
+    console.log(event.target)
+    console.log(event.target.checked)
+    if (fieldName === "priv") { fieldVal = event.target.checked }
 
-    this.setState({ form: { ...this.state.form, [fieldName]: fieldVal } });
-  }
-
-  handleChangeFiles(event) {
-    let fieldName = event.target.name;
-    let fieldVal;
-    if (fieldName === "gpx"){
-      fieldVal = event.target.files[0];
-    }
-    else{
-      fieldVal = event.target.files;
-    }
-     
     this.setState({ form: { ...this.state.form, [fieldName]: fieldVal } });
   }
 
   async handleSubmit(event) {
 
     event.preventDefault();
-    let idOld = gestorPOD.getID();
-    let oldRoute = await gestorPOD.seeRoute(idOld, gestorPOD.loadPurePriv());
-    let name;
-    if (this.state.form.name === "") {
-        name = gestorPOD.loadName();
-    } 
-    else {
-        name = this.state.form.name;
-    }
-    let description;
-    if (this.state.form.description === "") {
-      description = gestorPOD.loadDescrip();
-    }
-    else {
-      description = this.state.form.description;
-    }
-    let gpx = gestorPOD.loadGPX();
-    let images = this.state.form.images;
-    let id = name + "-" + Date.now().toString();
-    let priv = this.state.form.priv;
+    let newRoute = this.state.route;
 
-    var route = new Route(id, name, description, gpx, images, priv);
-    if (priv !== gestorPOD.loadPurePriv()) {
-	await gestorPOD.deleteRoute(oldRoute.id, !priv);
-    }
-    await gestorPOD.editRoute(oldRoute,route);
+    if (this.state.form.name !== "") newRoute.name = this.state.form.name;
 
-    window.location.reload();
+    if (this.state.form.description !== "") newRoute.description = this.state.form.description;
+
+    let privacyChanged = false;
+    if (this.state.form.priv === this.state.route.priv) {
+      newRoute.priv = !this.state.form.priv;
+      privacyChanged = true;
+    }
+
+    await gestorPOD.editRoute(newRoute, privacyChanged);
+
+    window.location.reload(false);
 
   }
 
@@ -82,38 +56,30 @@ export default class RouteForm extends React.Component {
 
           <Form.Group controlId="formNameRoute">
             <Form.Label>{i18n.t("form.name_edit")}</Form.Label>
-            <Form.Label>{i18n.t("form.actual")} {gestorPOD.loadName()}</Form.Label>
-            <Form.Control type="text" name="name" placeholder={i18n.t("form.enter_name_edit")}
+            <Form.Control type="text" name="name" placeholder={this.state.route.name}
               defaultValue={this.state.form.name_edit} onChange={this.handleChange} />
           </Form.Group>
 
           <Form.Group controlId="formDescriptionRoute">
             <Form.Label>{i18n.t("form.description_edit")}</Form.Label>
-	    <Form.Label>{i18n.t("form.actual")} {gestorPOD.loadDescrip()}</Form.Label>
-            <Form.Control type="text" name="description" placeholder={i18n.t("form.enter_description_edit")}
+            <Form.Control type="text" name="description" placeholder={this.state.route.description}
               defaultValue={this.state.form.description_edit} onChange={this.handleChange} />
           </Form.Group>
 
           <Form.Group controlId="formPrivacyRoute">
-          <Form.Label>{i18n.t("form.publicRoute")}</Form.Label>
-	  <Form.Label>{i18n.t("form.actual")} {gestorPOD.loadPriv()}</Form.Label>
-          <Switch
-            checked={!gestorPOD.loadPurePriv()}
-            onChange={this.handleChange}
-            name="priv"
-            inputProps={{ 'aria-label': 'secondary checkbox' }}
-          />
+            <Form.Label>{i18n.t("form.publicRoute")}</Form.Label>
+            <Switch
+              checked={this.state.form.priv}
+              onChange={this.handleChange}
+              name="priv"
+              inputProps={{ 'aria-label': 'secondary checkbox' }}
+            />
           </Form.Group>
 
           <Button variant="contained" type="submit">
-          {i18n.t("form.submit")}
-        </Button>
+            {i18n.t("form.submit")}
+          </Button>
         </Form>
-        <script>
-          $(document).ready(function () {
-            bsCustomFileInput.init()
-          })
-      </script>
       </div>
     );
   }
