@@ -23,9 +23,6 @@ export default class RouteMap extends React.Component {
 
   updateMap() {
     this.parse(this.props.gpx);
-
-    //IMPLEMENTAR CARGA DEL MAPA
-
   }
   
   parse (filePath) {
@@ -33,6 +30,10 @@ export default class RouteMap extends React.Component {
     if (this.refs.mapInstance.leafletElement !== null) {
       this.refs.mapInstance.leafletElement.eachLayer((layer) => {this.refs.mapInstance.leafletElement.removeLayer(layer);});
     }
+	
+	if (this.control != null) {
+		this.control.remove();
+	}
 
     L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(this.refs.mapInstance.leafletElement);
 
@@ -70,9 +71,9 @@ export default class RouteMap extends React.Component {
               })
             }
           ],
-          startIconUrl: "http://github.com/mpetazzoni/leaflet-gpx/raw/master/pin-icon-start.png",
-          endIconUrl:   "http://github.com/mpetazzoni/leaflet-gpx/raw/master/pin-icon-end.png",
-          shadowUrl:    "http://github.com/mpetazzoni/leaflet-gpx/raw/master/pin-shadow.png",
+          startIconUrl: "img/pin-icon-start.png",
+          endIconUrl:   "img/pin-icon-end.png",
+          shadowUrl:    "img/pin-shadow.png",
         },
         gpx_options: {
           parseElements: ["track", "route", "waypoint"],
@@ -87,7 +88,7 @@ export default class RouteMap extends React.Component {
                                this.refs.mapInstance.leafletElement.fitBounds(gpx.getBounds());}))
                                .addTo(this.refs.mapInstance.leafletElement);
 
-    L.control.layers({}, {"GPX":track}).addTo(this.refs.mapInstance.leafletElement);
+    this.control = L.control.layers({}, {"GPX":track}).addTo(this.refs.mapInstance.leafletElement);
     this.refs.mapInstance.leafletElement.dragging.disable();
     this.refs.mapInstance.leafletElement.dragging.enable();
 }
