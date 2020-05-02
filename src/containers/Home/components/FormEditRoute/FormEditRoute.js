@@ -2,8 +2,6 @@ import React from "react";
 import Form from "react-bootstrap/Form";
 import { Button, Switch } from "@material-ui/core";
 
-import Route from "../../../../Route";
-
 import i18n from "../../../../i18n";
 
 import gestorPOD from "../../../../services/persistanceManagement";

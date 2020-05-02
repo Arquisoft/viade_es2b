@@ -96,9 +96,7 @@ export default {
         await fc.createFile(urlUser + "/" + idNoSpaces + ".gpx", route.gpx, "application/gpx+xml", { withAcl: false });
 
         for (var i = 0; i < route.images.length; i++) {
-            console.log(route.images);
             var image = route.images[i];
-            console.log(image)
             await fc.createFile(urlUser + "/" + idNoSpaces + "_" + i, image, image.type, { withAcl: false });
         }
 
