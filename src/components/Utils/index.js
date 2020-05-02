@@ -21,7 +21,6 @@ export {
   Panel,
   Dropdown,
   RadioButton,
-  Badge,
   Loader,
   Input,
   LanguageDropdown,
