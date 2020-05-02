@@ -8,9 +8,7 @@ export const HomeWrapper = styled.section`
   display: flex;
 `;
 
-
 export const HomeBody = styled.div`
-
   display: inline-block;
   box-sizing: border-box;
   width:100%;

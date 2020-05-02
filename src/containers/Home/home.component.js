@@ -8,7 +8,6 @@ import FormEditRoute from "./components/FormEditRoute/FormEditRoute";
 import {
   HomeWrapper,
   HomeCard,
-  HomeSidenav,
   HomeBody,
   RouteMap,
   RouteInfo,
@@ -71,25 +70,23 @@ export const HomePageContent = (props) => {
   const { t } = useTranslation(); /* se puede pasar un mensaje prefefinido a Trans o usar t */
   return (
     <HomeWrapper data-testid="home-wrapper">
-
       <Paper style={{maxHeight:"100%", overflow: "auto"}}>
-      <h2>{t("home.routes")}</h2>
-      <RouteList privateRoutesText={t("home.private_routes")} publicRoutesText={t("home.public_routes")} 
-        sharedRoutesText={t("home.shared_routes")} setRoute={props.setRoute} changeEditForm={props.changeEditForm}> 
-      </RouteList>
-      <ButtonGroup variant="contained" color="primary" size="small"> 
-        <Button onClick={() => props.changeForm()}>
-        {t("home.add_route")}
-        </Button>
-        <Button onClick={async () => {
-          await manejadorPODs.deleteRoutes(false, true);
-          await manejadorPODs.deleteRoutes(true);
-          window.location.reload();}}>
-          {t("home.delete_route")}
-        </Button>
-      </ButtonGroup>
+        <h2>{t("home.routes")}</h2>
+        <RouteList privateRoutesText={t("home.private_routes")} publicRoutesText={t("home.public_routes")} 
+          sharedRoutesText={t("home.shared_routes")} setRoute={props.setRoute} changeEditForm={props.changeEditForm}> 
+        </RouteList>
+        <ButtonGroup variant="contained" color="primary" size="small"> 
+          <Button onClick={() => props.changeForm()}>
+          {t("home.add_route")}
+          </Button>
+          <Button onClick={async () => {
+            await manejadorPODs.deleteRoutes(false, true);
+            await manejadorPODs.deleteRoutes(true);
+            window.location.reload();}}>
+            {t("home.delete_route")}
+          </Button>
+        </ButtonGroup>
       </Paper>
-
 
       <HomeBody className="home-body">
          {(props.needEditForm ? loadEditForm() : props.needForm ? loadForm() : loadMap(props, t))}

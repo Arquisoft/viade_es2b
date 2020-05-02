@@ -133,9 +133,9 @@
     "images" : "Cargar imagenes",
     "submit": "Enviar",
     "publicRoute": "Ruta pública",
-	"groupName": "Nombre del grupo",
+  	"groupName": "Nombre del grupo",
     "enterGroupName": "Introduce el nombre del grupo",
-	"friendsSelect": "Elige los amigos que quieres añadir al grupo"
+	  "friendsSelect": "Elige los amigos que quieres añadir al grupo"
   },
   "profile": {
     "successCallback": "Pod actualizado satisfactoriamente",
@@ -172,7 +172,7 @@
     "content": "Texto de prueba para la ventana de amigos",
     "loading": "Cargando los datos...",
     "pod": "Pod del usuario",
-	"createGroup" : "Crear nuevo grupo"
+	  "createGroup" : "Crear nuevo grupo"
   },
   "groups":{
     "title": "Grupos",
@@ -235,13 +235,5 @@
       "fieldDeleted": "Campo de formulario eliminado correctamente",
       "fieldAdded": "Campo de formulario agregado con éxito"
     }
-  },
-  "editor": {
-    "explanation": "Aqui tiene un simple editor de textos con que puede crear un fichero de texto plano y guardarlo en un Pod. Para mostrarlo claramente en este demo, hay que proveer una URL que directamente identifica el fichero en el Pod. El Pod puede ser el del mismo usuario conectado, o de otra persona. Para poder escribir, y leer, al Pod de otra persona, el proprietario tendrá que dar permiso de escribir, usando el botón de 'Dar Acceso' abajo.",
-    "url": "URL",
-    "friend": "Webid de collaborador",
-    "load": "Cargar",
-    "save": "Guardar",
-    "grantAccess": "Dar Acceso"
   }
 }
