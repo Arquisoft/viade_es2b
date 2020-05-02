@@ -138,6 +138,7 @@
 	"friendsSelect": "Choose friends to add them to the group"
   },
   "profile": {
+    "name": "Name:",
     "successCallback": "Pod updated successfully",
     "successTitle": "Success",
     "errorCallback": "Error submitting form",

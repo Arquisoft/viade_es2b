@@ -126,7 +126,7 @@
     "description": "Descripción de la ruta",
     "description_edit": "Nueva descripción de la ruta",
     "enter_description": "Introduce la descripción de la ruta",
-    "enter_description": "Introduce la nueva descripción de la ruta",
+    "enter_description_edit": "Introduce la nueva descripción de la ruta",
     "actual": "Valor actual: ",
     "priv": "Privado", 
     "publ": "Público",
@@ -134,11 +134,12 @@
     "images" : "Cargar imagenes",
     "submit": "Enviar",
     "publicRoute": "Ruta pública",
-	"groupName": "Nombre del grupo",,
+	"groupName": "Nombre del grupo",
     "enterGroupName": "Introduce el nombre del grupo",
 	"friendsSelect": "Elige los amigos que quieres añadir al grupo"
   },
   "profile": {
+    "name": "Nombre: ",
     "successCallback": "Pod actualizado satisfactoriamente",
     "successTitle": "Éxito",
     "errorCallback": "Ha ocurrido un error al enviar el formulario",

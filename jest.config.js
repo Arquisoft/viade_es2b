@@ -25,6 +25,12 @@ module.exports = {
       "src/**/*.{js,jsx,ts,tsx}",
       "!src/**/*.d.ts",
       "!src/**/index.js",
+      "!src/services/persistanceManagement.js",
+      "!src/Map.js",
+      "!src/Group.js",
+      "!src/Route.js",
+      "!src/hocs/*",
+      "!src/utils/*"
     ],
   
     // The directory where Jest should output its coverage files
