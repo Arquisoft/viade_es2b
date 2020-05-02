@@ -42,10 +42,10 @@ const Friends = (props) => {
         {/*Friends section*/}
         <Grid item xs={12} md={6}>
           <h3>{t("friends.title")}</h3>
-          <FriendsCard>
+          <FriendsCard className="friends-list">
             <List src ="user.friends">
             {(friend)=> 
-              <FriendItem friendID={friend.value}/>
+              <FriendItem className="friend-item" friendID={friend.value}/>
             }
             </List>
           </FriendsCard>
@@ -53,7 +53,7 @@ const Friends = (props) => {
         {/*Groups section*/}
         <Grid item xs={12} md={6}>
         <h3>{t("groups.title")}</h3>
-        <FriendsCard>
+        <FriendsCard className="groups-list">
           {Array.from(groups).map((group) => 
             <div>
               <h4>{group.name}</h4>
