@@ -65,7 +65,7 @@
     },
     "noe":{
       "rol":  "DESARROLLADOR BACKEND",
-      "description": "edita esto y escribe algo sobre ti"
+      "description": "Me gusta desarrollar la lógica de los proyectos. Al final, plasmamos una idea o concepto que no existía al mundo real."
     }
   },
   "navBar": {
@@ -112,6 +112,11 @@
 	"share_text": "Elige un amigo o un grupo para compartir tu ruta",
 	"edit_route": "Editar ruta"
   },
+  "share": {
+    "notification_title": "Ruta nueva!",
+    "notification_content": "Alguien ha compartido una nueva ruta contigo",
+    "notification_sended": "Ruta enviada con éxito"
+  },
   "form": {
      "name": "Nombre de la ruta",
     "name_edit": "Nuevo nombre de la ruta",
@@ -121,6 +126,9 @@
     "description_edit": "Nueva descripción de la ruta",
     "enter_description": "Introduce la descripción de la ruta",
     "enter_description": "Introduce la nueva descripción de la ruta",
+    "actual": "Valor actual: ",
+    "priv": "Privado", 
+    "publ": "Público",
     "gpx": "Cargar gpx",
     "images" : "Cargar imagenes",
     "submit": "Enviar",

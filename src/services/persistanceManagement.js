@@ -3,6 +3,8 @@ import Route from "../Route";
 
 //Class Group
 import Group from "../Group";
+//Class for translate
+import i18n from "../i18n";
 
 //Library for authentication
 const auth = require("solid-auth-client");
@@ -15,8 +17,26 @@ var routeGPX;
 var routeName;
 var routeDescrip;
 var routePriv;
-
+var purePriv;
 export default {
+
+    async getWebID() {
+        return (await auth.currentSession()).webId;
+    },
+
+    async setUpInboxFolder() {
+        //We create the app folder if it dowsn't exist, if it exists we return.
+        fc = new FC(auth);
+
+        let webIdUser = ((await auth.currentSession()).webId).toString();
+        let urlInboxFolder = webIdUser.slice(0, -16) + "/viade_es2b/inbox";
+
+        //Check if it already exists.
+        if (await fc.itemExists(urlInboxFolder)) return;
+
+        //Create it if not
+        await fc.createFolder(urlInboxFolder);
+    },
     
     /**
      * This method set up the folder for shared routes in your pod, and change its permissions to allow
@@ -70,7 +90,7 @@ export default {
     async shareRoute(route, webId) {
         fc = new FC(auth);
 
-        var basicData = { id: route.id, name: route.name, description: route.description, priv: route.priv };
+        var basicData = { id: route.id, name: route.name, description: route.description, priv: route.priv, shared: true };
         var basicDataJson = JSON.stringify(basicData);
 
         let idNoSpaces = route.id.replace(/\s/g, "_");
@@ -98,7 +118,7 @@ export default {
     async saveRoute(route) {
         fc = new FC(auth);
 
-        var basicData = { id: route.id, name: route.name, description: route.description, priv: route.priv };
+        var basicData = { id: route.id, name: route.name, description: route.description, priv: route.priv, shared: route.shared };
         var basicDataJson = JSON.stringify(basicData);
 
         let idNoSpaces = route.id.replace(/\s/g, "_");
@@ -131,14 +151,19 @@ export default {
 
         let tempUrlUser = ((await auth.currentSession()).webId).toString();
         var urlUser = "";
-
-        // Here we check the privacy of the route
-        if (priv) { urlUser = tempUrlUser.slice(0, -16) + "/private/routes/" + idRoute + "/" }
-        else { urlUser = tempUrlUser.slice(0, -16) + "/public/routes/" + idRoute + "/" }
-
-        var route = await fc.readFile(urlUser + idRoute + ".json").catch(err => "The route is public, searching in public routes to see it.");
-        //route = await fc.readFile(tempUrlUser.slice(0, -16) + "/public/routes/" + idRoute + ".json").catch("There was a problem searching for the route.")
-
+	var route;
+	//Check if it is in shared folder
+	urlUser = tempUrlUser.slice(0, -16) + "/shared/routes/" + idRoute + "/";	
+	if (await fc.itemExists(urlUser + idRoute + ".json")) {
+		route = await fc.readFile(urlUser + idRoute + ".json").catch(err => "The was a problem searching the route.");
+	}
+	else {
+        	// If it is not in shared folder, we check the privacy of the local route
+        	if (priv) { urlUser = tempUrlUser.slice(0, -16) + "/private/routes/" + idRoute + "/" }
+        	else { urlUser = tempUrlUser.slice(0, -16) + "/public/routes/" + idRoute + "/" }
+		route = await fc.readFile(urlUser + idRoute + ".json").catch(err => "The was a problem searching the route.");
+	}
+        
         return JSON.parse(route);
     },
 
@@ -195,7 +220,7 @@ export default {
      * Method which delete all the routes with the privacy you give in the params.
      * @param {The privacy of the routes to be deleted. By default is private.} priv 
      */
-    async deleteRoutes(priv = true) {
+    async deleteRoutes(priv = true, shared = false) {
         fc = new FC(auth);
 
         let tempUrlUser = ((await auth.currentSession()).webId).toString();
@@ -203,9 +228,11 @@ export default {
         // Here we check the privacy of the routes to be deleted.
         var urlUser = "";
         if (priv === true) { urlUser = tempUrlUser.slice(0, -16) + "/private/routes/"; }
-        else { urlUser = tempUrlUser.slice(0, -16) + "/piublic/routes/"; }
+        else { urlUser = tempUrlUser.slice(0, -16) + "/public/routes/"; }
 
-        await fc.deleteFolder(urlUser);
+        await fc.deleteFolder(urlUser).catch(err => console.log(err));
+
+        if (shared === true) await fc.deleteFolder(tempUrlUser.slice(0, -16) + "/shared/routes/").catch(err => console.log(err));
 
     },
 
@@ -214,7 +241,7 @@ export default {
      * @param {ID of the route to be showed.} idRoute 
      * @param {Privacy of the route to be showed. By default is private.} priv 
      */
-    async deleteRoute(id, priv = true) {
+    async deleteRoute(id, priv = true, shared = false) {
         fc = new FC(auth);
 
         let idNoSpaces = id.toString().replace(/\s/g, "_");
@@ -223,8 +250,9 @@ export default {
 
         // Here we check the privacy of the route to be deleted.
         var urlUser = "";
-        if (priv === true) { urlUser = tempUrlUser.slice(0, -16) + "/private/routes/"; }
-        else { urlUser = tempUrlUser.slice(0, -16) + "/public/routes/"; }
+        if (shared) urlUser = tempUrlUser.slice(0, -16) + "/shared/routes/";            //Ruta compartida
+        else if (priv) { urlUser = tempUrlUser.slice(0, -16) + "/private/routes/"; }    //Ruta privada
+        else { urlUser = tempUrlUser.slice(0, -16) + "/public/routes/"; }               //Ruta pública
 
         let folder = await fc.readFolder(urlUser);
         var arrayRoutesFolders = [];
@@ -292,37 +320,44 @@ export default {
 	},
 
 	savePriv(route){
-		if (route.priv === false) {
-			routePriv = "priv";
+		if (route.priv === true) {
+			routePriv = i18n.t("form.priv");
 		} else {
-			routePriv = "publ";  
+			routePriv = i18n.t("form.publ");  
 		}
 	},
 
 	loadPriv(){
 		return routePriv;
 	},
+		
+	savePurePriv(route){
+		purePriv = route.priv;		
+	},
+
+	loadPurePriv(){
+		return purePriv;
+	},
 
 	async editRoute(oldRoute,route){
 		fc = new FC(auth);
-
-        var basicData = { id: oldRoute.id, name: route.name, description: route.description, priv: route.priv };
+        var basicData = { id: oldRoute.id, name: route.name, description: route.description, priv: route.priv, shared: route.shared };
         var basicDataJson = JSON.stringify(basicData);
 
         let idNoSpaces = oldRoute.id.replace(/\s/g, "_");
 
-	        let tempUrlUser = ((await auth.currentSession()).webId).toString();
+	      let tempUrlUser = ((await auth.currentSession()).webId).toString();
         
-        	// Here we check if the route is private to decide where to save it. By default is private.
-        	var urlUser = "";
-        	if (route.priv === true) {urlUser = tempUrlUser.slice(0, -16) + "/private/routes" ;}
-	       	 else {urlUser = tempUrlUser.slice(0, -16) + "/public/routes" ;}
-	        await fc.createFile(urlUser+"/"+ idNoSpaces + "/" + idNoSpaces+ ".json", basicDataJson, "application/json");
-	        await fc.createFile(urlUser +"/"+ idNoSpaces+ "/" + idNoSpaces +".gpx", route.gpx, "application/gpx+xml");
-    },
+        // Here we check if the route is private to decide where to save it. By default is private.
+        var urlUser = "";
+        if (route.priv === true) {urlUser = tempUrlUser.slice(0, -16) + "/private/routes" ;}
+	      else {urlUser = tempUrlUser.slice(0, -16) + "/public/routes" ;}
+	      await fc.createFile(urlUser+"/"+ idNoSpaces + "/" + idNoSpaces+ ".json", basicDataJson, "application/json");
+	      await fc.createFile(urlUser +"/"+ idNoSpaces+ "/" + idNoSpaces +".gpx", route.gpx, "application/gpx+xml");
+    	},
 
 	async downloadRoute(){
-		var route = await this.seeRoute(this.getID());
+		var route = await this.seeRoute(this.getID(), this.loadPurePriv());
 		var routeFinal = new Route(route.id, route.name, route.description, this.loadGPX(), null);
 		var gpxToDownload = routeFinal.gpx;
 		var b = new Blob([gpxToDownload], {type: "text/plain"});
@@ -334,6 +369,7 @@ export default {
 		fileLink.href = url;
 
 		fileLink.click();
+
     },
 
     async saveGroup(group) {
@@ -365,7 +401,12 @@ export default {
         const groups = await extractGroups(folder, urlUser);
         return groups;
     }
+       },
 
+    async getAppPath() {
+        let tempUrlUser = ((await auth.currentSession()).webId).toString();
+        return tempUrlUser.slice(0, -16) + "/viade_es2b";
+    }
 };
 
 /**
@@ -392,7 +433,7 @@ async function extractRoutesFromFile(folder, urlUser) {
                 images.push(image);
             }
         }
-        let route = new Route(basicData.id, basicData.name, basicData.description, gpx, images, basicData.priv);
+        let route = new Route(basicData.id, basicData.name, basicData.description, gpx, images, basicData.priv, basicData.shared);
         routes.push(route);
     }
     return routes;
