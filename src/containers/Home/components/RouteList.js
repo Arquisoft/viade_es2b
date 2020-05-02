@@ -26,8 +26,8 @@ export default class RouteList extends React.Component {
         this.setState({ loadingPrivate: true, loadingPublic: true, loadingShared: true }, async () => {
             gestorPOD.seeRoutes().then((routes) => this.setState({ routes: Array.from(routes), loadingPrivate: false }));
             gestorPOD.seeRoutes(false).then((routes) => this.setState({ publicRoutes: Array.from(routes), loadingPublic: false }));
-            gestorPOD.seeSharedRoutes().then((routes) => this.setState({ sharedRoutes: Array.from(routes), loadingShared: false}));
-                });
+            gestorPOD.seeSharedRoutes().then((routes) => this.setState({ sharedRoutes: Array.from(routes), loadingShared: false }));
+        });
     }
 
     loadingShared() {
@@ -68,9 +68,9 @@ export default class RouteList extends React.Component {
         return (<div>
             <h3>{this.props.sharedRoutesText}</h3>
             <ul>
-                {this.state.sharedRoutes.map((route) => this.generateRoutesCardsSh(route))}
+                {this.state.sharedRoutes.map((route) => this.generateRoutesCards(route))}
             </ul>
-            </div>);
+        </div>);
     }
 
     loadingPrivateFinished() {
@@ -88,62 +88,32 @@ export default class RouteList extends React.Component {
             <IconButton onClick={async () => {
                 await gestorPOD.deleteRoute(route.id, route.priv, route.shared);
                 window.location.reload(false);
-            } } aria-label="delete">
+            }} aria-label="delete">
                 <DeleteIcon fontSize="small" />
             </IconButton>
             {!route.shared ? <IconButton onClick={() => {
-                this.props.changeEditForm();
-                gestorPOD.saveID(route.id);
-		gestorPOD.saveName(route);
-           	gestorPOD.saveDescrip(route);
-		gestorPOD.savePriv(route); 
-		gestorPOD.saveGPX(route);
-		gestorPOD.savePurePriv(route);
-            } } aria-label="edit">
+                this.props.changeEditForm(route);
+            }} aria-label="edit">
                 <BorderColorIcon fontSize="small" />
             </IconButton> : null}
             <IconButton onClick={async () => {
-                await gestorPOD.saveID(route.id);
-                await gestorPOD.saveGPX(route);
-		await gestorPOD.savePurePriv(route);
-                await gestorPOD.downloadRoute();
-            } } aria-label="download">
+                await gestorPOD.downloadRoute(route);
+            }} aria-label="download">
                 <ArrowDownwardIcon fontSize="small" />
             </IconButton>
-        </li>);
-    }
-
-    generateRoutesCardsSh(route) {
-        return (<li id="container_route" key={route.id}>
-            <Button color="primary" onClick={() => this.props.setRoute(route)}> {route.name} </Button>
-            <IconButton onClick={async () => {
-                await gestorPOD.deleteRoute(route.id, false);
-                window.location.reload(false);
-            } } aria-label="delete">
-                <DeleteIcon fontSize="small" />
-            </IconButton>
-
-            {!route.shared ? <IconButton onClick={async () => {
-                await gestorPOD.saveID(route.id);
-                await gestorPOD.saveGPX(route);
-		await gestorPOD.savePurePriv(route);
-                await gestorPOD.downloadRoute();
-            } } aria-label="download">
-                <ArrowDownwardIcon fontSize="small" />
-            </IconButton> : null}
         </li>);
     }
 
     render() {
         const { loadingPrivate, loadingPublic, loadingShared } = this.state;
 
-        return(
+        return (
             <div>
-                {loadingPrivate ? <this.loadingPrivate/> : <this.loadingPrivateFinished/>}
-                {loadingPublic ? <this.loadingPublic/> : <this.loadingPublicFinished/>}
-                {loadingShared ? <this.loadingShared/> : <this.loadingSharedFinished/>}
+                {loadingPrivate ? <this.loadingPrivate /> : <this.loadingPrivateFinished />}
+                {loadingPublic ? <this.loadingPublic /> : <this.loadingPublicFinished />}
+                {loadingShared ? <this.loadingShared /> : <this.loadingSharedFinished />}
             </div>
         );
-        
+
     }
 }
