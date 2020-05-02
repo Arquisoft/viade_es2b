@@ -1,13 +1,15 @@
 /* eslint-disable constructor-super */
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 // import { Link } from "react-router-dom";
 import { FriendsWrapper, FriendsCard} from "./friends.style";
 import { Grid} from "@material-ui/core";
 import {List} from "@solid/react";
-
-
+import { Button } from '@material-ui/core';
+import ModalGroupForm from "./components/ModalGroupForm/ModalGroupForm.component";
+import gestorPOD from "../../services/persistanceManagement"
 import FriendItem from "./components/FriendItem";
+import GroupFriendItem from "./components/GroupFriendItem";
 
 /**
  * A React component page that is displayed when the user wants to check his/her friends list and each 
@@ -15,6 +17,25 @@ import FriendItem from "./components/FriendItem";
  */
 const Friends = (props) => {
   const { t } = useTranslation();
+  const [modal, setModal] = useState(false);
+  const [groups, setGroups] = useState([]);
+
+  const showModalForm = (x) => {
+    setModal(true);
+  }
+
+  const close = () => {
+    setModal(false);
+  }
+
+  useEffect(() => {
+    async function getGroups() {
+      const groups = await gestorPOD.seeGroups();
+      setGroups(groups);
+    }
+    getGroups();
+  }, [])
+
   return (
     <FriendsWrapper>
       <Grid container spacing={6}>
@@ -33,14 +54,21 @@ const Friends = (props) => {
         <Grid item xs={12} md={6}>
         <h3>{t("groups.title")}</h3>
         <FriendsCard>
-
+          {Array.from(groups).map((group) => 
+            <div>
+              <h4>{group.name}</h4>
+              <List src ="user.friends">
+                {(friend)=> 
+                  <GroupFriendItem friendID={friend.value} group={group}/>
+                }
+              </List>
+            </div>
+          )}
+          <Button onClick={e => {showModalForm()}} variant="contained" color="primary">{t('friends.createGroup')}</Button>
         </FriendsCard>
+        <ModalGroupForm show={modal} closingFunction={close}></ModalGroupForm>
         </Grid>
       </Grid>
-           
-         
-           
-         
     </FriendsWrapper>
   );
 };

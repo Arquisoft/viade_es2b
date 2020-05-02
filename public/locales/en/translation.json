@@ -111,6 +111,11 @@
 	"share_text": "Choose a single friend or group to share this route with",
     "edit_route": "Edit route"
   },
+  "share": {
+    "notification_title": "New route!",
+    "notification_content": "Someone shared a route with you",
+    "notification_sended": "Route sended succesfully"
+  },
   "form": {
     "name": "Route name",
     "name_edit": "New route name",
@@ -126,7 +131,10 @@
     "gpx": "Load gpx",
     "images" : "Load images",
     "submit": "Submit",
-    "publicRoute": "Public route"
+    "publicRoute": "Public route", 
+	"groupName": "Group name",
+    "enterGroupName": "Enter group name",
+	"friendsSelect": "Choose friends to add them to the group"
   },
   "profile": {
     "successCallback": "Pod updated successfully",
@@ -162,7 +170,8 @@
     "title": "Friends",
     "content": "Text for friends window",
     "loading": "Loading friend data...",
-    "pod": "User pod"
+    "pod": "User pod",
+	"createGroup" : "Create new group"
   },
   "groups":{
     "title": "Grups",

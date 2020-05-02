@@ -86,13 +86,12 @@ export default class RouteList extends React.Component {
         return (<li id="container_route" key={route.id}>
             <Button color="primary" onClick={() => this.props.setRoute(route)}> {route.name} </Button>
             <IconButton onClick={async () => {
-                await gestorPOD.deleteRoute(route.id, false);
+                await gestorPOD.deleteRoute(route.id, route.priv, route.shared);
                 window.location.reload(false);
             } } aria-label="delete">
                 <DeleteIcon fontSize="small" />
             </IconButton>
-	    
-            <IconButton onClick={() => {
+            {!route.shared ? <IconButton onClick={() => {
                 this.props.changeEditForm();
                 gestorPOD.saveID(route.id);
 		gestorPOD.saveName(route);
@@ -101,9 +100,8 @@ export default class RouteList extends React.Component {
 		gestorPOD.saveGPX(route);
 		gestorPOD.savePurePriv(route);
             } } aria-label="edit">
-                <BorderColorIcon fontSize="small"/>
-            </IconButton>
-
+                <BorderColorIcon fontSize="small" />
+            </IconButton> : null}
             <IconButton onClick={async () => {
                 await gestorPOD.saveID(route.id);
                 await gestorPOD.saveGPX(route);
@@ -125,14 +123,14 @@ export default class RouteList extends React.Component {
                 <DeleteIcon fontSize="small" />
             </IconButton>
 
-            <IconButton onClick={async () => {
+            {!route.shared ? <IconButton onClick={async () => {
                 await gestorPOD.saveID(route.id);
                 await gestorPOD.saveGPX(route);
 		await gestorPOD.savePurePriv(route);
                 await gestorPOD.downloadRoute();
             } } aria-label="download">
                 <ArrowDownwardIcon fontSize="small" />
-            </IconButton>
+            </IconButton> : null}
         </li>);
     }
 

@@ -18,6 +18,7 @@ export class HomeComponent extends Component<Props> {
   
   componentDidMount() {
     gestorPod.setUpSharedFolder();
+    gestorPod.setUpInboxFolder();
  }
 
   componentDidUpdate(prevProps) {
