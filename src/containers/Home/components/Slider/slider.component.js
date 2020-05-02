@@ -30,21 +30,21 @@ const Slider = (props) => {
     }
 
     return (images === undefined ? <SliderWrapper></SliderWrapper> :
-        <SliderWrapper>
+        <SliderWrapper className="slider-wrapper">
             {images.length > 5 &&
                 <button id="left" onClick={clickLeft}>&lt;</button>
             }
-            <ImageList>
+            <ImageList className="image-list">
                 {images.slice(count, count + 5).map((image, index) =>
-                    <ImageContainer key={"image" + index}>
-                        <ImageWrapper src={URL.createObjectURL(image)} alt="imagen" onClick={e => {showModal(image)}}/>
+                    <ImageContainer className="image-container" key={"image" + index}>
+                        <ImageWrapper className="image-wrapper" src={URL.createObjectURL(image)} alt="imagen" onClick={e => {showModal(image)}}/>
                     </ImageContainer>
                 )}
             </ImageList>
             {images.length > 5 &&
                 <button id="right" onClick={clickRight}>&gt;</button>
             }
-            <Modal show={modal} image={actualImage} onClick={e => {onclose(e)}} >
+            <Modal className="modal" show={modal} image={actualImage} onClick={e => {onclose(e)}} >
             </Modal>
         </SliderWrapper>
     );
