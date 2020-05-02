@@ -114,7 +114,8 @@
   "share": {
     "notification_title": "New route!",
     "notification_content": "Someone shared a route with you",
-    "notification_sended": "Route sended succesfully"
+    "notification_sended": "Route sended succesfully",
+    "toast_error": "There were an error trying to share the route with: "
   },
   "form": {
     "name": "Route name",
@@ -137,6 +138,7 @@
 	"friendsSelect": "Choose friends to add them to the group"
   },
   "profile": {
+    "name": "Name:",
     "successCallback": "Pod updated successfully",
     "successTitle": "Success",
     "errorCallback": "Error submitting form",

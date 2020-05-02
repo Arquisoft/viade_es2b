@@ -48,8 +48,8 @@ export class HomeComponent extends Component<Props> {
     this.setState({ needForm: !this.state.needForm,needEditForm: false});
   }
 
-  changeEditForm = () => {
-    this.setState({ needEditForm: !this.state.needEditForm,needForm: false});
+  changeEditForm = (route) => {
+    this.setState({ needEditForm: !this.state.needEditForm,needForm: false, route: route});
   }
 
   render() {

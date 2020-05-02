@@ -67,11 +67,11 @@ export default class RouteForm extends React.Component {
   render() {
     return (
       <div className="RouteForm">
-        <Form onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.handleSubmit} data-testid="form">
 
-          <Form.Group controlId="formNameRoute">
-            <Form.Label>{i18n.t("form.name")}</Form.Label>
-            <Form.Control type="text" name="name" placeholder={i18n.t("form.enter_name")}
+          <Form.Group controlId="formNameRoute" data-testid="formNameRoute">
+            <Form.Label data-testid="formNameRouteLabel">{i18n.t("form.name")}</Form.Label>
+            <Form.Control data-testid="formNameRouteControl" type="text" name="name" placeholder={i18n.t("form.enter_name")}
               defaultValue={this.state.form.name} onChange={this.handleChange} />
           </Form.Group>
 

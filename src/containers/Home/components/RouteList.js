@@ -26,8 +26,8 @@ export default class RouteList extends React.Component {
         this.setState({ loadingPrivate: true, loadingPublic: true, loadingShared: true }, async () => {
             gestorPOD.seeRoutes().then((routes) => this.setState({ routes: Array.from(routes), loadingPrivate: false }));
             gestorPOD.seeRoutes(false).then((routes) => this.setState({ publicRoutes: Array.from(routes), loadingPublic: false }));
-            gestorPOD.seeSharedRoutes().then((routes) => this.setState({ sharedRoutes: Array.from(routes), loadingShared: false}));
-                });
+            gestorPOD.seeSharedRoutes().then((routes) => this.setState({ sharedRoutes: Array.from(routes), loadingShared: false }));
+        });
     }
 
     loadingPublicFinished() {
@@ -131,6 +131,6 @@ export default class RouteList extends React.Component {
                 {loadingShared ? <CircularProgress/> : <this.loadingSharedFinished/>}
             </List>
         );
-        
+
     }
 }

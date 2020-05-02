@@ -3,8 +3,6 @@ import Route from "../Route";
 
 //Class Group
 import Group from "../Group";
-//Class for translate
-import i18n from "../i18n";
 
 //Library for authentication
 const auth = require("solid-auth-client");
@@ -12,12 +10,7 @@ const auth = require("solid-auth-client");
 //Library to manage files and data in PODs
 const FC = require("solid-file-client");
 var fc;
-var routeId;
-var routeGPX;
-var routeName;
-var routeDescrip;
-var routePriv;
-var purePriv;
+
 export default {
 
     async getWebID() {
@@ -25,7 +18,7 @@ export default {
     },
 
     async setUpInboxFolder() {
-        //We create the app folder if it dowsn't exist, if it exists we return.
+        //We create the app folder if it dowsn"t exist, if it exists we return.
         fc = new FC(auth);
 
         let webIdUser = ((await auth.currentSession()).webId).toString();
@@ -37,13 +30,13 @@ export default {
         //Create it if not
         await fc.createFolder(urlInboxFolder);
     },
-    
+
     /**
      * This method set up the folder for shared routes in your pod, and change its permissions to allow
      * the write and read on it.
      */
     async setUpSharedFolder() {
-        //We create the shared folder if it dowsn't exist, if it exists we return.
+        //We create the shared folder if it dowsn"t exist, if it exists we return.
         fc = new FC(auth);
 
         let webIdUser = ((await auth.currentSession()).webId).toString();
@@ -54,9 +47,9 @@ export default {
         if (await fc.itemExists(urlSharedFolder)) return;
 
         //Create it if not
-        await fc.createFolder(urlSharedFolder);   
+        await fc.createFolder(urlSharedFolder);
 
-        var newTurtleFile =  `# ACL resource for the shared routes folder
+        var newTurtleFile = `# ACL resource for the shared routes folder
         @prefix acl: <http://www.w3.org/ns/auth/acl#>.
         @prefix foaf: <http://xmlns.com/foaf/0.1/>.
         
@@ -76,9 +69,9 @@ export default {
             acl:default <./>;
             acl:mode acl:Read, acl:Write.`;
 
-        
+
         await fc.createFile(aclRoute, newTurtleFile, "text/turtle");
-        await fc.createFolder(urlSharedFolder + "routes/", {withAcl:false});
+        await fc.createFolder(urlSharedFolder + "routes/", { withAcl: false });
     },
 
     /**
@@ -99,8 +92,8 @@ export default {
 
         var urlUser = tempUrlUser.slice(0, -16) + "/shared/routes/" + idNoSpaces;
 
-        await fc.createFile(urlUser + "/" + idNoSpaces + ".json", basicDataJson, "application/json", {withAcl:false});
-        await fc.createFile(urlUser + "/" + idNoSpaces + ".gpx", route.gpx, "application/gpx+xml", {withAcl:false});
+        await fc.createFile(urlUser + "/" + idNoSpaces + ".json", basicDataJson, "application/json", { withAcl: false });
+        await fc.createFile(urlUser + "/" + idNoSpaces + ".gpx", route.gpx, "application/gpx+xml", { withAcl: false });
 
         for (var i = 0; i < route.images.length; i++) {
             var image = route.images[i];
@@ -140,7 +133,7 @@ export default {
 
     /**
      * Method that returns the route saved in the user"s pod, if exist. Null otherwise.
-     * This method only works for owned routes, the shared ones can't be search through this method.
+     * This method only works for owned routes, the shared ones can"t be search through this method.
      * @param {ID of the route to be showed.} idRoute 
      * @param {Privacy of the route to be showed. By default is private.} priv 
      */
@@ -275,98 +268,45 @@ export default {
 
     },
 
-
-    saveID(id){
-        let idNoSpaces = id.replace( /\s/g, "_");
-        routeId = idNoSpaces;
-    },
-
-    getID() {
-        return routeId;
-    },
-
-    getGPX(route) {
-        return route.gpx;
-    },
-
-	getPriv(route){
-		return route.priv;
-    },
-    
-    saveGPX(route){
-		routeGPX = route.gpx;
-	},
-
-	loadGPX(){
-		return routeGPX;
-	},
-
-	saveName(route){
-		routeName = route.name;
-	},
-
-	loadName(){
-		return routeName;
-	},
-
-	saveDescrip(route){
-		routeDescrip = route.description;
-	},
-
-	loadDescrip(){
-		return routeDescrip;
-	},
-
-	savePriv(route){
-		if (route.priv === true) {
-			routePriv = i18n.t("form.priv");
-		} else {
-			routePriv = i18n.t("form.publ");  
-		}
-	},
-
-	loadPriv(){
-		return routePriv;
-	},
-		
-	savePurePriv(route){
-		purePriv = route.priv;		
-	},
-
-	loadPurePriv(){
-		return purePriv;
-	},
-
-	async editRoute(oldRoute,route){
-		fc = new FC(auth);
-        var basicData = { id: oldRoute.id, name: route.name, description: route.description, priv: route.priv, shared: route.shared };
+    async editRoute(routeToBeEdited, privacyChanged) {
+        fc = new FC(auth);
+        var basicData = { id: routeToBeEdited.id, name: routeToBeEdited.name, description: routeToBeEdited.description, priv: routeToBeEdited.priv, shared: routeToBeEdited.shared };
         var basicDataJson = JSON.stringify(basicData);
 
-        let idNoSpaces = oldRoute.id.replace(/\s/g, "_");
+        let idNoSpaces = routeToBeEdited.id.replace(/\s/g, "_");
 
-	      let tempUrlUser = ((await auth.currentSession()).webId).toString();
-        
+        let tempUrlUser = ((await auth.currentSession()).webId).toString();
+
         // Here we check if the route is private to decide where to save it. By default is private.
         var urlUser = "";
-        if (route.priv === true) {urlUser = tempUrlUser.slice(0, -16) + "/private/routes" ;}
-	      else {urlUser = tempUrlUser.slice(0, -16) + "/public/routes" ;}
-	      await fc.createFile(urlUser+"/"+ idNoSpaces + "/" + idNoSpaces+ ".json", basicDataJson, "application/json");
-	      await fc.createFile(urlUser +"/"+ idNoSpaces+ "/" + idNoSpaces +".gpx", route.gpx, "application/gpx+xml");
-    	},
+        if (routeToBeEdited.priv === true) { urlUser = tempUrlUser.slice(0, -16) + "/private/routes"; }
+        else { urlUser = tempUrlUser.slice(0, -16) + "/public/routes"; }
 
-	async downloadRoute(){
-		var route = await this.seeRoute(this.getID(), this.loadPurePriv());
-		var routeFinal = new Route(route.id, route.name, route.description, this.loadGPX(), null);
-		var gpxToDownload = routeFinal.gpx;
-		var b = new Blob([gpxToDownload], {type: "text/plain"});
-		var fileLink = document.createElement("a");
+        // If the privacy changed then first we move the old route.
+        if (privacyChanged) {
+            let oldRoutePath = "";
+            routeToBeEdited.priv ? oldRoutePath = tempUrlUser.slice(0, -16) + "/public/routes" : oldRoutePath = tempUrlUser.slice(0, -16) + "/private/routes";
+            oldRoutePath += "/" + idNoSpaces + "/";
 
-		fileLink.download = route.id + ".gpx";
+            const newRoutePath = urlUser + "/" + idNoSpaces + "/";
 
-		var url = URL.createObjectURL(b);
-		fileLink.href = url;
+            await fc.move(oldRoutePath, newRoutePath);
+        }
 
-		fileLink.click();
+        // We remove and create a new JSON file with the new data
+        await fc.createFile(urlUser + "/" + idNoSpaces + "/" + idNoSpaces + ".json", basicDataJson, "application/json");
+    },
+
+    async downloadRoute(routeToBeDownloaded) {
+        var b = new Blob([routeToBeDownloaded.gpx], { type: "application/gpx+xml" });
+        var fileLink = document.createElement("a");
+
+        fileLink.download = routeToBeDownloaded.name + ".gpx";
+
+        var url = URL.createObjectURL(b);
+        fileLink.href = url;
+
+        fileLink.click();
 
     },
 
