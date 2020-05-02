@@ -400,8 +400,7 @@ export default {
 
         const groups = await extractGroups(folder, urlUser);
         return groups;
-    }
-       },
+    },
 
     async getAppPath() {
         let tempUrlUser = ((await auth.currentSession()).webId).toString();
