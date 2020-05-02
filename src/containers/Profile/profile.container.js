@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 //import { FormModel } from "@inrupt/solid-react-components";
 //import { successToaster, errorToaster } from "@utils";
 import { Loader } from "@util-components";
-import {Value, List, Link, useLDflexValue} from "@solid/react";
+import {Value,  Link, useLDflexValue} from "@solid/react";
 import {
   Header,
   ProfileContainer,
@@ -32,6 +32,7 @@ const Profile = ({ webId }: Props) => {
   const { t } = useTranslation();
   const [isLoading/*, setIsLoading*/] = useState(false);
   const email = useLDflexValue('user.inbox') || 'unknown';
+  const firstName = useLDflexValue('user.firstName') || "unknown";
  
 /*
   const onError = e => {
@@ -73,10 +74,6 @@ const Profile = ({ webId }: Props) => {
                 <p>Inbox:<Link href="user.inbox">{`${email}`}</Link></p>
               </WebId>
             </FormRenderContainer>
-            <h2> {t("friends.title")}</h2>
-            <List src="user.friends">
-              {(friend)=> <a href={`${friend}`} target="_blank" rel="noopener noreferrer">{`${friend}`}<br/></a>}
-            </List>
           </Fragment>
         
         )}

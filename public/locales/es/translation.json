@@ -139,6 +139,7 @@
 	"friendsSelect": "Elige los amigos que quieres añadir al grupo"
   },
   "profile": {
+    "name": "Nombre: ",
     "successCallback": "Pod actualizado satisfactoriamente",
     "successTitle": "Éxito",
     "errorCallback": "Ha ocurrido un error al enviar el formulario",
