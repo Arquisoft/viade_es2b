@@ -20,6 +20,8 @@ import ShareComponent from './components/ShareComponent/ShareComponent'
 
 const Map = React.lazy(() => import('../../Map'));
 
+
+
 function loadMap(props, t) {
   return (
     <HomeCard className="card">
@@ -30,7 +32,7 @@ function loadMap(props, t) {
       </RouteMap>
       <RouteInfo>
         <RouteHead>
-          <h2> {t('home.information')} </h2>
+          <h2> {props.route !== undefined ? props.route.name : t("home.information")} </h2>
           {props.route !== undefined && !props.route.shared ? <ShareComponent route = {props.route}></ShareComponent> : <div></div>}
         </RouteHead>
         <p>
