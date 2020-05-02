@@ -44,6 +44,7 @@ export default class RouteList extends React.Component {
                 <Divider />
                 {this.state.sharedRoutes.map((route) => this.generateRoutesCardsSh(route))}
             </div>);
+
     }
 
     loadingPrivateFinished() {
@@ -88,6 +89,7 @@ export default class RouteList extends React.Component {
         </ListItem>
         );
     }
+
 
     generateRoutesCardsSh(route) {
         return (

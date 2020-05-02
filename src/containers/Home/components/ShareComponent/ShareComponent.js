@@ -53,9 +53,7 @@ const ShareButton = (props) => {
                 console.log(error);
                 toast.error(i18n.t("share.toast_error") + arrayToIterate[i]);
             }
-
         }
-
         toast(i18n.t("share.notification_sended"));
 
     }
@@ -69,6 +67,7 @@ function ListFriendsGroups(props) {
     const [groups, setGroups] = useState([]);
 
     function getFriends() {
+
         const friends = useLDflexList("user.friends");
         gestorPOD.seeGroups().then(groups => setGroups(groups));
         return friends;
@@ -130,11 +129,16 @@ export default class ShareComponent extends React.Component {
         this.setState({ selectedGroup: newSelectedGroup })
     }
 
+    setSelectedGroup(newSelectedGroup) {
+        this.setState({ selectedGroup: newSelectedGroup })
+    }
+
     render() {
         return (
             this.props.route === undefined ? <ShareWrapper id="share"></ShareWrapper> :
                 <ShareWrapper id="share">
                     <div>
+
                         <p>{i18n.t("home.share_text")}</p>
                         <ListFriendsGroups setSelectedGroup={this.setSelectedGroup} setSelectedFriend={this.setSelectedFriend}></ListFriendsGroups>
                         <ShareButton route={this.props.route} selectedFriend={this.state.selectedFriend} selectedGroup={this.state.selectedGroup}></ShareButton>

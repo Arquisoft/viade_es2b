@@ -97,7 +97,8 @@ export default {
 
         for (var i = 0; i < route.images.length; i++) {
             var image = route.images[i];
-            await fc.createFile(urlUser + "/" + idNoSpaces + "_" + i, image, image.type, {withAcl:false});
+
+            await fc.createFile(urlUser + "/" + idNoSpaces + "_" + i, image, image.type, { withAcl: false });
         }
 
     },
@@ -142,19 +143,20 @@ export default {
 
         let tempUrlUser = ((await auth.currentSession()).webId).toString();
         var urlUser = "";
-	var route;
-	//Check if it is in shared folder
-	urlUser = tempUrlUser.slice(0, -16) + "/shared/routes/" + idRoute + "/";	
-	if (await fc.itemExists(urlUser + idRoute + ".json")) {
-		route = await fc.readFile(urlUser + idRoute + ".json").catch(err => "The was a problem searching the route.");
-	}
-	else {
-        	// If it is not in shared folder, we check the privacy of the local route
-        	if (priv) { urlUser = tempUrlUser.slice(0, -16) + "/private/routes/" + idRoute + "/"; }
-        	else { urlUser = tempUrlUser.slice(0, -16) + "/public/routes/" + idRoute + "/"; }
-		route = await fc.readFile(urlUser + idRoute + ".json").catch(err => "The was a problem searching the route.");
-	}
-        
+
+        var route;
+        //Check if it is in shared folder
+        urlUser = tempUrlUser.slice(0, -16) + "/shared/routes/" + idRoute + "/";
+        if (await fc.itemExists(urlUser + idRoute + ".json")) {
+            route = await fc.readFile(urlUser + idRoute + ".json").catch(err => "The was a problem searching the route.");
+        }
+        else {
+            // If it is not in shared folder, we check the privacy of the local route
+            if (priv) { urlUser = tempUrlUser.slice(0, -16) + "/private/routes/" + idRoute + "/"; }
+            else { urlUser = tempUrlUser.slice(0, -16) + "/public/routes/" + idRoute + "/"; }
+            route = await fc.readFile(urlUser + idRoute + ".json").catch( (err) => "The was a problem searching the route.");
+        }
+
         return JSON.parse(route);
     },
 
@@ -314,6 +316,7 @@ export default {
         fc = new FC(auth);
 
         var data = {id: group.id, name: group.name, members: group.members};
+
         var groupJson = JSON.stringify(data);
         let idNoSpaces = group.id.replace(/\s/g, "_");
 

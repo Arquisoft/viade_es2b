@@ -20,6 +20,8 @@ const Map = React.lazy(() => import("../../Map"));
 
 
 
+
+
 function loadMap(props, t) {
   return (
     <HomeCard className="card">
