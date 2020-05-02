@@ -85,7 +85,7 @@ export default {
     async shareRoute(route, webId) {
         fc = new FC(auth);
 
-        var basicData = { id: route.id, name: route.name, description: route.description, priv: route.priv };
+        var basicData = { id: route.id, name: route.name, description: route.description, priv: route.priv, shared: true };
         var basicDataJson = JSON.stringify(basicData);
 
         let idNoSpaces = route.id.replace(/\s/g, "_");
@@ -113,7 +113,7 @@ export default {
     async saveRoute(route) {
         fc = new FC(auth);
 
-        var basicData = { id: route.id, name: route.name, description: route.description, priv: route.priv };
+        var basicData = { id: route.id, name: route.name, description: route.description, priv: route.priv, shared: route.shared };
         var basicDataJson = JSON.stringify(basicData);
 
         let idNoSpaces = route.id.replace(/\s/g, "_");
@@ -210,7 +210,7 @@ export default {
      * Method which delete all the routes with the privacy you give in the params.
      * @param {The privacy of the routes to be deleted. By default is private.} priv 
      */
-    async deleteRoutes(priv = true) {
+    async deleteRoutes(priv = true, shared = false) {
         fc = new FC(auth);
 
         let tempUrlUser = ((await auth.currentSession()).webId).toString();
@@ -218,9 +218,11 @@ export default {
         // Here we check the privacy of the routes to be deleted.
         var urlUser = "";
         if (priv === true) { urlUser = tempUrlUser.slice(0, -16) + "/private/routes/"; }
-        else { urlUser = tempUrlUser.slice(0, -16) + "/piublic/routes/"; }
+        else { urlUser = tempUrlUser.slice(0, -16) + "/public/routes/"; }
 
-        await fc.deleteFolder(urlUser);
+        await fc.deleteFolder(urlUser).catch(err => console.log(err));
+
+        if (shared === true) await fc.deleteFolder(tempUrlUser.slice(0, -16) + "/shared/routes/").catch(err => console.log(err));
 
     },
 
@@ -229,7 +231,7 @@ export default {
      * @param {ID of the route to be showed.} idRoute 
      * @param {Privacy of the route to be showed. By default is private.} priv 
      */
-    async deleteRoute(id, priv = true) {
+    async deleteRoute(id, priv = true, shared = false) {
         fc = new FC(auth);
 
         let idNoSpaces = id.toString().replace(/\s/g, "_");
@@ -238,8 +240,9 @@ export default {
 
         // Here we check the privacy of the route to be deleted.
         var urlUser = "";
-        if (priv === true) { urlUser = tempUrlUser.slice(0, -16) + "/private/routes/"; }
-        else { urlUser = tempUrlUser.slice(0, -16) + "/public/routes/"; }
+        if (shared) urlUser = tempUrlUser.slice(0, -16) + "/shared/routes/";            //Ruta compartida
+        else if (priv) { urlUser = tempUrlUser.slice(0, -16) + "/private/routes/"; }    //Ruta privada
+        else { urlUser = tempUrlUser.slice(0, -16) + "/public/routes/"; }               //Ruta pública
 
         let folder = await fc.readFolder(urlUser);
         var arrayRoutesFolders = [];
@@ -321,7 +324,7 @@ export default {
 	async editRoute(oldRoute,route){
 		fc = new FC(auth);
 
-        var basicData = { id: oldRoute.id, name: route.name, description: route.description, priv: route.priv };
+        var basicData = { id: oldRoute.id, name: route.name, description: route.description, priv: route.priv, shared: route.shared };
         var basicDataJson = JSON.stringify(basicData);
 
         let idNoSpaces = oldRoute.id.replace(/\s/g, "_");
@@ -381,7 +384,7 @@ async function extractRoutesFromFile(folder, urlUser) {
                 images.push(image);
             }
         }
-        let route = new Route(basicData.id, basicData.name, basicData.description, gpx, images, basicData.priv);
+        let route = new Route(basicData.id, basicData.name, basicData.description, gpx, images, basicData.priv, basicData.shared);
         routes.push(route);
     }
     return routes;

@@ -21,6 +21,7 @@ import ShareComponent from './components/ShareComponent/ShareComponent'
 const Map = React.lazy(() => import('../../Map'));
 
 function loadMap(props, t) {
+  console.log(props.route)
   return (
     <HomeCard className="card">
       <RouteMap id="map">
@@ -31,7 +32,7 @@ function loadMap(props, t) {
       <RouteInfo>
         <RouteHead>
           <h2> {t('home.information')} </h2>
-          <ShareComponent route = {props.route}></ShareComponent>
+          {props.route !== undefined && !props.route.shared ? <ShareComponent route = {props.route}></ShareComponent> : <div></div>}
         </RouteHead>
         <p>
           {props.routeDescription}
@@ -82,7 +83,8 @@ export const HomePageContent = (props) => {
           </Button>
           <span>   </span>
           <Button variant="contained" color="secondary" onClick={async () => {
-            await manejadorPODs.deleteRoutes();
+            await manejadorPODs.deleteRoutes(false, true);
+            await manejadorPODs.deleteRoutes(true);
             window.location.reload();
           }}>
             {t("home.delete_route")}

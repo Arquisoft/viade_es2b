@@ -31,11 +31,12 @@ const ShareButton = (props) => {
         }
 
         try {
+            const actor = "Viade_es2b";
             createNotification(
                 {
                     title: i18n.t("share.notification_title"),
                     summary: i18n.t("share.notification_content"),
-                    actor: webID
+                    actor: actor
                 },
                 inboxUrl,
                 NotificationTypes.ANNOUNCE
