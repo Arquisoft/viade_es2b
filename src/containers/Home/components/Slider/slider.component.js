@@ -35,8 +35,8 @@ const Slider = (props) => {
                 <button id="left" onClick={clickLeft}>&lt;</button>
             }
             <ImageList>
-                {images.slice(count, count + 5).map((image) =>
-                    <ImageContainer>
+                {images.slice(count, count + 5).map((image, index) =>
+                    <ImageContainer key={"image" + index}>
                         <ImageWrapper src={URL.createObjectURL(image)} alt="imagen" onClick={e => {showModal(image)}}/>
                     </ImageContainer>
                 )}
