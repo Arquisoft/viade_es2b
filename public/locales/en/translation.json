@@ -111,6 +111,11 @@
 	"share_text": "Choose a single friend or group to share this route with",
     "edit_route": "Edit route"
   },
+  "share": {
+    "notification_title": "New route!",
+    "notification_content": "Someone shared a route with you",
+    "notification_sended": "Route sended succesfully"
+  },
   "form": {
     "name": "Route name",
     "name_edit": "New route name",
