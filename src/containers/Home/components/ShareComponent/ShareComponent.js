@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import i18n from '../../../../i18n'
 import { Button, Select, MenuItem } from '@material-ui/core';
 import { useLDflexList, Value } from '@solid/react';
@@ -68,9 +68,15 @@ function ListFriendsGroups(props) {
     const [selectValue, setSelectValue] = useState(i18n.t("share.placeholder"));
     const [groups, setGroups] = useState([]);
 
+    useEffect( 
+        () => {
+            const asyncCall = () => gestorPOD.seeGroups().then(groups => setGroups(groups));
+            asyncCall();
+        }, [groups]
+    );
+
     function getFriends() {
         const friends = useLDflexList('user.friends');
-        gestorPOD.seeGroups().then(groups => setGroups(groups));
         return friends;
     };
 

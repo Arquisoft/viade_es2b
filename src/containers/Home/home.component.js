@@ -75,7 +75,7 @@ export const HomePageContent = (props) => {
   return (
     <HomeWrapper data-testid="home-wrapper">
       <HomeSidenav className="home-sidebar">
-        <h2>{t("home.routes")}</h2>
+        <h2 style={{paddingLeft: "14px"}}>{t("home.routes")}</h2>
         <RouteList privateRoutesText={t("home.private_routes")} publicRoutesText={t("home.public_routes")} sharedRoutesText={t("home.shared_routes")}
          setRoute={props.setRoute} changeEditForm={props.changeEditForm}></RouteList>
         <div id="Manage buttons">
