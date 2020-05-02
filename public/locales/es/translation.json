@@ -65,7 +65,7 @@
     },
     "noe":{
       "rol":  "DESARROLLADOR BACKEND",
-      "description": "edita esto y escribe algo sobre ti"
+      "description": "Me gusta desarrollar la lógica de los proyectos. Al final, plasmamos una idea o concepto que no existía al mundo real."
     }
   },
   "navBar": {
@@ -121,6 +121,9 @@
     "description_edit": "Nueva descripción de la ruta",
     "enter_description": "Introduce la descripción de la ruta",
     "enter_description": "Introduce la nueva descripción de la ruta",
+    "actual": "Valor actual: ",
+    "priv": "Privado", 
+    "publ": "Público",
     "gpx": "Cargar gpx",
     "images" : "Cargar imagenes",
     "submit": "Enviar",

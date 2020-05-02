@@ -64,7 +64,6 @@
     "shacl-js": "0.0.1",
     "simple-cache-provider": "^0.10.0",
     "solid-acl-parser": "^0.2.1",
-    "solid-acl-utils": "github:otto-aa/solid-acl-utils",
     "solid-auth-client": "^2.4.1",
     "solid-file-client": "^1.0.5",
     "styled-components": "^4.1.3"
