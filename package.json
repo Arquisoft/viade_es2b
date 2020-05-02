@@ -76,7 +76,8 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "flow": "flow"
+    "flow": "flow",
+	"test:cucumber": "jest -c cucumber/jest-config.js"
   },
   "eslintConfig": {
     "extends": "react-app"

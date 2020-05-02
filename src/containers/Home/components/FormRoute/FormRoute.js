@@ -117,7 +117,7 @@ export default class RouteForm extends React.Component {
             </Form.File>
           </Form.Group>
 
-          <Button data-testid="formSendButton" variant="contained" type="submit">
+          <Button name="submit_button" data-testid="formSendButton" variant="contained" type="submit">
           {i18n.t("form.submit")}
         </Button>
         </Form>

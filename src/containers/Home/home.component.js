@@ -79,11 +79,11 @@ export const HomePageContent = (props) => {
         <RouteList privateRoutesText={t("home.private_routes")} publicRoutesText={t("home.public_routes")} sharedRoutesText={t("home.shared_routes")}
          setRoute={props.setRoute} changeEditForm={props.changeEditForm}></RouteList>
         <div id="Manage buttons">
-          <Button variant="contained" color="primary" onClick={() => props.changeForm()}>
+          <Button name="add_route" variant="contained" color="primary" onClick={() => props.changeForm()}>
           {t("home.add_route")}
           </Button>
           <span>   </span>
-          <Button variant="contained" color="secondary" onClick={async () => {
+          <Button name="delete_all_routes" variant="contained" color="secondary" onClick={async () => {
             await manejadorPODs.deleteRoutes(false, true);
             await manejadorPODs.deleteRoutes(true);
             window.location.reload();
