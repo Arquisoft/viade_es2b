@@ -32,7 +32,6 @@ const Profile = ({ webId }: Props) => {
   const { t } = useTranslation();
   const [isLoading/*, setIsLoading*/] = useState(false);
   const email = useLDflexValue('user.inbox') || 'unknown';
-  const firstName = useLDflexValue('user.firstName') || "unknown";
  
 /*
   const onError = e => {

@@ -35,10 +35,10 @@ const Routes = () => {
   <Router basename="/">
     <Fragment>
       <Switch>
-        <NotLoggedInLayout path="/" exact component={Login} />
-        <NotLoggedInLayout path="/register" exact component={Register} />
-        <NotLoggedInLayout path="/register/success" exact component={RegistrationSuccess} />
-        <PublicLayout path="/404" exact component={PageNotFound} />
+        <NotLoggedInLayout path="/" component={Login} exact />
+        <NotLoggedInLayout path="/register" component={Register} exact />
+        <NotLoggedInLayout path="/register/success" component={RegistrationSuccess} exact />
+        <PublicLayout path="/404" component={PageNotFound} exact />
         <Redirect from="/" to="/home" exact />
         <PrivateLayout path="/" routes={privateRoutes} />
         <Redirect to="/404" />
