@@ -28,7 +28,7 @@ const Friends = (props) => {
     setModal(false);
   }
 
-  useEffect(async () => {
+  useEffect(() => {
     async function getGroups() {
       const groups = await gestorPOD.seeGroups();
       setGroups(groups);

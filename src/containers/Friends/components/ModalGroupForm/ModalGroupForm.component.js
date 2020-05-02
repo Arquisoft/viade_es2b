@@ -17,7 +17,7 @@ function ListFriends() {
     return (
             getFriends().map((friend) =>
             <option key={friend} value={`${friend}`}>
-                {`[${friend}].name`}
+                {`[${friend}]`}
             </option>)
     );
 };
