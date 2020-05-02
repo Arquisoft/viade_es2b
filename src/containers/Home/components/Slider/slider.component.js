@@ -22,12 +22,12 @@ const Slider = (props) => {
 
     const showModal = (x) => {
         setModal(true);
-        setActualImage(URL.createObjectURL(x))
+        setActualImage(URL.createObjectURL(x));
     }
 
     const onclose = (e) => {
         setModal(false);
-    }
+    };
 
     return (images === undefined ? <SliderWrapper></SliderWrapper> :
         <SliderWrapper>
@@ -37,14 +37,14 @@ const Slider = (props) => {
             <ImageList>
                 {images.slice(count, count + 5).map((image) =>
                     <ImageContainer>
-                        <ImageWrapper src={URL.createObjectURL(image)} alt="imagen" onClick={e => {showModal(image)}}/>
+                        <ImageWrapper src={URL.createObjectURL(image)} alt="imagen" onClick={e => {showModal(image);}}/>
                     </ImageContainer>
                 )}
             </ImageList>
             {images.length > 5 &&
                 <button id="right" onClick={clickRight}>&gt;</button>
             }
-            <Modal show={modal} image={actualImage} onClick={e => {onclose(e)}} >
+            <Modal show={modal} image={actualImage} onClick={e => {onclose(e);}} >
             </Modal>
         </SliderWrapper>
     );

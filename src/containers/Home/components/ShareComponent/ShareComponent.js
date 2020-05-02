@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import i18n from '../../../../i18n'
-import { Button, Select, MenuItem } from '@material-ui/core';
-import { useLDflexList, Value } from '@solid/react';
-import { ShareWrapper } from './ShareComponent.style';
+import React, { useState } from "react";
+import i18n from "../../../../i18n";
+import { Button, Select, MenuItem } from "@material-ui/core";
+import { useLDflexList, Value } from "@solid/react";
+import { ShareWrapper } from "./ShareComponent.style";
 
-import gestorPOD from '../../../../services/persistanceManagement';
-import { toast } from 'react-toastify';
+import gestorPOD from "../../../../services/persistanceManagement";
+import { toast } from "react-toastify";
 
 function ListFriends(props) {
 
@@ -13,7 +13,7 @@ function ListFriends(props) {
 
 
     function getFriends() {
-        const friends = useLDflexList('user.friends');
+        const friends = useLDflexList("user.friends");
         return friends;
     };
 
@@ -35,7 +35,7 @@ function ListFriends(props) {
 
 const listFriendsStyle = {
     minWidth: "200px",
-    marginRight: '10px',
+    marginRight: "10px",
 };
 
 export default class ShareComponent extends React.Component {
@@ -55,7 +55,7 @@ export default class ShareComponent extends React.Component {
     }
 
     setSelectedFriend(newSelectedFriend) {
-        this.setState({ selectedFriend: newSelectedFriend })
+        this.setState({ selectedFriend: newSelectedFriend });
     }
 
     buttonClicked() {
@@ -72,9 +72,9 @@ export default class ShareComponent extends React.Component {
             this.props.route === undefined ? <ShareWrapper id="share"></ShareWrapper> :
                 <ShareWrapper id="share">
                     <div>
-                        <p>{i18n.t('home.share_text')}</p>
+                        <p>{i18n.t("home.share_text")}</p>
                         <ListFriends setSelectedFriend={this.setSelectedFriend}></ListFriends>
-                        <Button onClick={this.buttonClicked} variant="contained" color="primary">{i18n.t('home.share_route')}</Button>
+                        <Button onClick={this.buttonClicked} variant="contained" color="primary">{i18n.t("home.share_route")}</Button>
                     </div>
                 </ShareWrapper>
         );

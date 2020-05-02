@@ -17,7 +17,7 @@ export default class RouteList extends React.Component {
         this.setState( {loading: true }, async () => {
             await gestorPOD.seeRoutes().then((routes) => this.setState( {routes: Array.from(routes)}) );
             await gestorPOD.seeRoutes(false).then((routes) => this.setState( {publicRoutes: Array.from(routes)}) );
-            this.setState({loading: false})
+            this.setState({loading: false});
         });
     }
 

@@ -7,11 +7,9 @@ body,
   padding: 0;
 }
 
-
 body {
   color: #000;
   font-size: 62.5%;
-  
 }
 
 p,
@@ -51,7 +49,7 @@ input[type='text'] {
 /**
 Temporary fix to overwrite and display the default style of the checkbox
 to prevent issues with the custom component and react/fontawesome missing icons
- */
+*/
 input[type="checkbox"] {
   appearance: checkbox;
   -webkit-appearance: checkbox;
@@ -59,11 +57,11 @@ input[type="checkbox"] {
   margin: 0 0 0 16px
 }
 input[type="checkbox"]::before {
-  content: none ;
+  content: none;
 }
 /**
 Ends temporary react/fontawesome fix
- */
+*/
 
 .link,
 .link-button {
@@ -140,11 +138,11 @@ form-group .select-role {
   color: #074166; 
 }
 
-.nav.nav > ul > li > a:hover, 
-.nav.nav > ul > li > a.active, 
+.nav.nav > ul > li > a:hover,
+.nav.nav > ul > li > a.active,
 .nav.nav > ul > li > button:hover,
 .nav.nav > ul > li > button.active {
-  color: #074166; 
+  color: #074166;
   background: rgba(7, 65, 102, 0.3);
 }
 
@@ -153,17 +151,17 @@ form-group .select-role {
   line-height: 60px;
   cursor: pointer;
   transition: all 0.5s ease-in-out;
-  border-left: 1px solid rgba(8, 53, 117, 0.1); 
+  border-left: 1px solid rgba(8, 53, 117, 0.1);
 }
 
 /*boton notificaciones*/
-  .fUwLnT:active,.fUwLnT:focus,.fUwLnT:hover,.fUwLnT.active{ 
-    background:rgba(7, 65, 102, 0.3); 
-    outline:none;
-  }
+.fUwLnT:active,.fUwLnT:focus,.fUwLnT:hover,.fUwLnT.active{ 
+  background:rgba(7, 65, 102, 0.3);
+  outline:none;
+}
 /* menu dropdown sobre el icono perfil*/
-  .jOLVKi button:hover{
-    background:rgba(7, 65, 102, 0.3); 
-    transition:all 0.5s ease-in-out;
-    color:#083575;
-  } 
+.jOLVKi button:hover{
+  background:rgba(7, 65, 102, 0.3);
+  transition:all 0.5s ease-in-out;
+  color:#083575;
+}

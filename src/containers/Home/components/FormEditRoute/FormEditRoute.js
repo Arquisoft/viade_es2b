@@ -23,7 +23,7 @@ export default class RouteForm extends React.Component {
     let fieldVal = event.target.value;
 
     //In case is the switch from Material library
-    if (fieldName === "priv") {fieldVal = !event.target.checked}
+    if (fieldName === "priv") {fieldVal = !event.target.checked};
 
     this.setState({ form: { ...this.state.form, [fieldName]: fieldVal } });
   }
@@ -87,19 +87,19 @@ export default class RouteForm extends React.Component {
 
           <Form.Group controlId="formDescriptionRoute">
             <Form.Label>{i18n.t("form.description_edit")}</Form.Label>
-	    <Form.Label>Actual: {gestorPOD.loadDescrip()}</Form.Label>
+	          <Form.Label>Actual: {gestorPOD.loadDescrip()}</Form.Label>
             <Form.Control type="text" name="description" placeholder={i18n.t("form.enter_description_edit")}
               defaultValue={this.state.form.description_edit} onChange={this.handleChange} />
           </Form.Group>
 
           <Form.Group controlId="formPrivacyRoute">
-          <Form.Label>{i18n.t("form.publicRoute")}</Form.Label>
-	  <Form.Label>Actual: {gestorPOD.loadPriv()}</Form.Label>
+            <Form.Label>{i18n.t("form.publicRoute")}</Form.Label>
+	          <Form.Label>Actual: {gestorPOD.loadPriv()}</Form.Label>
           <Switch
             checked={this.state.priv}
             onChange={this.handleChange}
             name="priv"
-            inputProps={{ 'aria-label': 'secondary checkbox' }}
+            inputProps={{ "aria-label": "secondary checkbox" }}
           />
           </Form.Group>
 

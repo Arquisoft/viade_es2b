@@ -123,9 +123,7 @@ export default {
         await fc.createFile(urlUser + "/" + idNoSpaces + ".gpx", route.gpx, "application/gpx+xml", {withAcl:false});
 
         for (var i = 0; i < route.images.length; i++) {
-            console.log(route.images);
             var image = route.images[i];
-            console.log(image)
             await fc.createFile(urlUser + "/" + idNoSpaces + "_" + i, image, image.type, {withAcl:false});
         }
 
@@ -351,15 +349,15 @@ export default {
 
         let idNoSpaces = oldRoute.id.replace(/\s/g, "_");
 
-	        let tempUrlUser = ((await auth.currentSession()).webId).toString();
+	    let tempUrlUser = ((await auth.currentSession()).webId).toString();
         
-        	// Here we check if the route is private to decide where to save it. By default is private.
-        	var urlUser = "";
-        	if (route.priv === true) {urlUser = tempUrlUser.slice(0, -16) + "/private/routes" ;}
-	       	 else {urlUser = tempUrlUser.slice(0, -16) + "/public/routes" ;}
-	        await fc.createFile(urlUser+"/"+ idNoSpaces + "/" + idNoSpaces+ ".json", basicDataJson, "application/json");
-	        await fc.createFile(urlUser +"/"+ idNoSpaces+ "/" + idNoSpaces +".gpx", route.gpx, "application/gpx+xml");
-    	},
+        // Here we check if the route is private to decide where to save it. By default is private.
+        var urlUser = "";
+        if (route.priv === true) {urlUser = tempUrlUser.slice(0, -16) + "/private/routes" ;}
+	    else {urlUser = tempUrlUser.slice(0, -16) + "/public/routes" ;}
+	    await fc.createFile(urlUser+"/"+ idNoSpaces + "/" + idNoSpaces+ ".json", basicDataJson, "application/json");
+	    await fc.createFile(urlUser +"/"+ idNoSpaces+ "/" + idNoSpaces +".gpx", route.gpx, "application/gpx+xml");
+    },
 
 	async downloadRoute(){
 		var route = await this.seeRoute(this.getID());

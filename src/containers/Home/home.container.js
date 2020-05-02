@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { HomePageContent } from "./home.component";
-import gestorPod from "../../services/persistanceManagement"
+import gestorPod from "../../services/persistanceManagement";
 
 
 /**
