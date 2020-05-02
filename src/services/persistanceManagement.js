@@ -157,8 +157,8 @@ export default {
 	}
 	else {
         	// If it is not in shared folder, we check the privacy of the local route
-        	if (priv) { urlUser = tempUrlUser.slice(0, -16) + "/private/routes/" + idRoute + "/" }
-        	else { urlUser = tempUrlUser.slice(0, -16) + "/public/routes/" + idRoute + "/" }
+        	if (priv) { urlUser = tempUrlUser.slice(0, -16) + "/private/routes/" + idRoute + "/"; }
+        	else { urlUser = tempUrlUser.slice(0, -16) + "/public/routes/" + idRoute + "/"; }
 		route = await fc.readFile(urlUser + idRoute + ".json").catch(err => "The was a problem searching the route.");
 	}
         
@@ -173,7 +173,7 @@ export default {
 
         let tempUrlUser = ((await auth.currentSession()).webId).toString();
 
-        var urlUser = tempUrlUser.slice(0, -16) + "/shared/routes/"
+        var urlUser = tempUrlUser.slice(0, -16) + "/shared/routes/";
 
         var err = "";
         let folder = await fc.readFolder(urlUser).catch((error) => err = error);
@@ -373,7 +373,7 @@ export default {
     async saveGroup(group) {
         fc = new FC(auth);
 
-        var data = {id: group.id, name: group.name, members: group.members}
+        var data = {id: group.id, name: group.name, members: group.members};
         var groupJson = JSON.stringify(data);
         let idNoSpaces = group.id.replace(/\s/g, "_");
 

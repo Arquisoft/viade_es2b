@@ -1,10 +1,13 @@
 import React from "react";
-import { Button, IconButton, CircularProgress } from "@material-ui/core";
+import { Button, IconButton, CircularProgress} from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import BorderColorIcon from "@material-ui/icons/BorderColor";
 import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 
 import gestorPOD from "../../../services/persistanceManagement";
+
+import {List,ListSubheader,ListItem, ListItemText,Divider} from "@material-ui/core";
+
 
 export default class RouteList extends React.Component {
 
@@ -32,85 +35,107 @@ export default class RouteList extends React.Component {
 
     loadingShared() {
         return (
-            <div>
-                <h3>{this.props.sharedRoutesText}</h3>
-                <CircularProgress></CircularProgress>
-            </div>
+            <List>
+            <ListSubheader>
+                {this.props.sharedRoutesText}
+            </ListSubheader>
+            <ListItem>
+                <CircularProgress/>
+            </ListItem>
+        </List>
         );
     }
 
     loadingPrivate() {
         return (
-            <div>
-                <h3>{this.props.privateRoutesText}</h3>
-                <CircularProgress></CircularProgress>
-            </div>
+            <List>
+                <ListSubheader>
+                    {this.props.privateRoutesText}
+                </ListSubheader>
+                <ListItem>
+                    <CircularProgress/>
+                </ListItem>  
+            </List>
         );
     }
 
     loadingPublic() {
         return (
-            <div>
-                <h3>{this.props.publicRoutesText}</h3>
-                <CircularProgress></CircularProgress>
-            </div>
+            <List>
+                <ListSubheader>
+                    {this.props.publicRoutesText}
+                </ListSubheader>
+                <ListItem>
+                    <CircularProgress/>
+                </ListItem> 
+            </List>
         );
     }
 
     loadingPublicFinished() {
-        return (<div><h3>{this.props.publicRoutesText}</h3>
-            <ul>
-                {this.state.publicRoutes.map((route) => this.generateRoutesCards(route))}
-            </ul></div>);
+        return (<List>
+            <ListSubheader>
+                {this.props.publicRoutesText}
+            </ListSubheader>
+            <Divider />
+            {this.state.publicRoutes.map((route) => this.generateRoutesCards(route))}
+        </List>);
     }
 
     loadingSharedFinished() {
-        return (<div>
-            <h3>{this.props.sharedRoutesText}</h3>
-            <ul>
-                {this.state.sharedRoutes.map((route) => this.generateRoutesCardsSh(route))}
-            </ul>
-            </div>);
+        return (<List>
+            <ListSubheader>
+                {this.props.sharedRoutesText}
+            </ListSubheader>
+            <Divider />
+            {this.state.sharedRoutes.map((route) => this.generateRoutesCardsSh(route))}
+        </List>);
     }
 
     loadingPrivateFinished() {
-        return (<div>
-            <h3>{this.props.privateRoutesText}</h3>
-            <ul>
-                {this.state.routes.map((route) => this.generateRoutesCards(route))}
-            </ul>
-        </div>);
+        return (
+        <List>
+            <ListSubheader>
+                {this.props.privateRoutesText}
+            </ListSubheader>
+            <Divider />
+            {this.state.routes.map((route) => this.generateRoutesCards(route))}
+        </List>);
     }
 
     generateRoutesCards(route) {
-        return (<li id="container_route" key={route.id}>
-            <Button color="primary" onClick={() => this.props.setRoute(route)}> {route.name} </Button>
+        return (
+            <ListItem button onClick={() => this.props.setRoute(route)}> 
+            <ListItemText primary={route.name}/>
+
             <IconButton onClick={async () => {
-                await gestorPOD.deleteRoute(route.id, route.priv, route.shared);
-                window.location.reload(false);
-            } } aria-label="delete">
-                <DeleteIcon fontSize="small" />
+                await gestorPOD.deleteRoute(route.id, false);
+                window.location.reload(false);} 
+                } aria-label="delete">
+                <DeleteIcon fontSize="small"/>
             </IconButton>
+
             {!route.shared ? <IconButton onClick={() => {
                 this.props.changeEditForm();
                 gestorPOD.saveID(route.id);
-		gestorPOD.saveName(route);
-           	gestorPOD.saveDescrip(route);
-		gestorPOD.savePriv(route); 
-		gestorPOD.saveGPX(route);
-		gestorPOD.savePurePriv(route);
+                gestorPOD.saveName(route);
+                gestorPOD.saveDescrip(route);
+                gestorPOD.savePriv(route); 
+                gestorPOD.saveGPX(route);
+                gestorPOD.savePurePriv(route);
             } } aria-label="edit">
                 <BorderColorIcon fontSize="small" />
             </IconButton> : null}
             <IconButton onClick={async () => {
                 await gestorPOD.saveID(route.id);
                 await gestorPOD.saveGPX(route);
-		await gestorPOD.savePurePriv(route);
+                await gestorPOD.savePurePriv(route);
                 await gestorPOD.downloadRoute();
             } } aria-label="download">
                 <ArrowDownwardIcon fontSize="small" />
             </IconButton>
-        </li>);
+        </ListItem>
+        );
     }
 
     generateRoutesCardsSh(route) {

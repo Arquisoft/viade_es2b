@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { Button } from "@material-ui/core";
+import { Button, ButtonGroup, Paper } from "@material-ui/core";
 import { useTranslation } from "react-i18next";
 import manejadorPODs from "../../services/persistanceManagement";
 import RouteList from "./components/RouteList";
@@ -20,7 +20,6 @@ import ShareComponent from "./components/ShareComponent/ShareComponent";
 const Map = React.lazy(() => import("../../Map"));
 
 function loadMap(props, t) {
-  console.log(props.route)
   return (
     <HomeCard className="card">
       <RouteMap id="map">
@@ -72,24 +71,25 @@ export const HomePageContent = (props) => {
   const { t } = useTranslation(); /* se puede pasar un mensaje prefefinido a Trans o usar t */
   return (
     <HomeWrapper data-testid="home-wrapper">
-      <HomeSidenav className="home-sidebar">
-        <h2>{t("home.routes")}</h2>
-        <RouteList privateRoutesText={t("home.private_routes")} publicRoutesText={t("home.public_routes")} sharedRoutesText={t("home.shared_routes")}
-         setRoute={props.setRoute} changeEditForm={props.changeEditForm}></RouteList>
-        <div id="Manage buttons">
-          <Button variant="contained" color="primary" onClick={() => props.changeForm()}>
-          {t("home.add_route")}
-          </Button>
-          <span>   </span>
-          <Button variant="contained" color="secondary" onClick={async () => {
-            await manejadorPODs.deleteRoutes(false, true);
-            await manejadorPODs.deleteRoutes(true);
-            window.location.reload();
-          }}>
-            {t("home.delete_route")}
+
+      <Paper style={{maxHeight:"100%", overflow: "auto"}}>
+      <h2>{t("home.routes")}</h2>
+      <RouteList privateRoutesText={t("home.private_routes")} publicRoutesText={t("home.public_routes")} 
+        sharedRoutesText={t("home.shared_routes")} setRoute={props.setRoute} changeEditForm={props.changeEditForm}> 
+      </RouteList>
+      <ButtonGroup variant="contained" color="primary" size="small"> 
+        <Button onClick={() => props.changeForm()}>
+        {t("home.add_route")}
         </Button>
-        </div>
-      </HomeSidenav>
+        <Button onClick={async () => {
+          await manejadorPODs.deleteRoutes(false, true);
+          await manejadorPODs.deleteRoutes(true);
+          window.location.reload();}}>
+          {t("home.delete_route")}
+        </Button>
+      </ButtonGroup>
+      </Paper>
+
 
       <HomeBody className="home-body">
          {(props.needEditForm ? loadEditForm() : props.needForm ? loadForm() : loadMap(props, t))}

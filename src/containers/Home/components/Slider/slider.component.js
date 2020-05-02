@@ -12,7 +12,7 @@ const Slider = (props) => {
         if (count > 0) {
             setCount(count - 1);
         }
-    }
+    };
 
     const clickRight = () => {
         if (count < images.length - 5) {

@@ -50,7 +50,7 @@ const ShareButton = (props) => {
     }
 
     return <Button onClick={handleClickButtonShare} variant="contained" color="primary">{i18n.t("home.share_route")}</Button>
-}
+};
 
 function ListFriends(props) {
 

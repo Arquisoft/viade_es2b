@@ -28,4 +28,4 @@ export const ModalWrapper = styled.div`
         font-weight: bold;
         border: none;
     }
-`
+`;

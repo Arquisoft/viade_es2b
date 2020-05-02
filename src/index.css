@@ -23,9 +23,7 @@ a {
   text-decoration: none;
 }
 
-a svg-inline--fa {
-  margin-right: 5px;
-}
+
 
 ul {
   padding: 0;
@@ -38,7 +36,7 @@ ul li {
   margin: 0;
 }
 
-input[type='text'] {
+input[type="text"] {
   box-sizing: border-box;
   border: 1px solid hsl(0, 0%, 80%);
   border-radius: 4px;
@@ -46,19 +44,20 @@ input[type='text'] {
   padding: 7px 10px;
 }
 
-/**
-Temporary fix to overwrite and display the default style of the checkbox
-to prevent issues with the custom component and react/fontawesome missing icons
-*/
+/* Temporary fix to overwrite and display the default style of the checkbox
+to prevent issues with the custom component and react/fontawesome missing icons */
+
 input[type="checkbox"] {
   appearance: checkbox;
   -webkit-appearance: checkbox;
   -moz-appearance: checkbox;
-  margin: 0 0 0 16px
+  margin: 0 0 0 16px;
 }
+
 input[type="checkbox"]::before {
   content: none;
 }
+
 /**
 Ends temporary react/fontawesome fix
 */
@@ -66,7 +65,7 @@ Ends temporary react/fontawesome fix
 .link,
 .link-button {
   color: #074166;
-  font-family: 'Roboto', cursive;
+  font-family: "Roboto", cursive;
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.75px;
@@ -87,10 +86,6 @@ Ends temporary react/fontawesome fix
   font-family: sans-serif, "Roboto", "Segoe UI";
 }
 
-.form-group {
-  text-align: left;
-  margin: 12px 0;
-}
 
 .form-group:first-child {
   margin-top: 0;
@@ -98,7 +93,7 @@ Ends temporary react/fontawesome fix
 
 .form-group > label {
   color: #074166;
-  font-family: 'Roboto';
+  font-family: "Roboto";
   font-size: 11px;
   font-weight: bold;
   letter-spacing: 0.75px;
@@ -125,7 +120,8 @@ form-group .select-role {
   text-align: left;
 }
 
-.solid-provider-select .option {
+.solid-provider-select 
+.option {
   padding-left: 10px;
 }
 
@@ -134,8 +130,9 @@ form-group .select-role {
   height: 60px;
 }
 
-.nav.nav__toolbar > ul > li > a, .nav.nav__toolbar  > ul > li > button {
-  color: #074166; 
+.nav.nav__toolbar > ul > li > a,
+.nav.nav__toolbar > ul > li > button {
+  color: #074166;
 }
 
 .nav.nav > ul > li > a:hover,
@@ -155,7 +152,10 @@ form-group .select-role {
 }
 
 /*boton notificaciones*/
-.fUwLnT:active,.fUwLnT:focus,.fUwLnT:hover,.fUwLnT.active{ 
+.fUwLnT:active,
+.fUwLnT:focus,
+.fUwLnT:hover,
+.fUwLnT.active{ 
   background:rgba(7, 65, 102, 0.3);
   outline:none;
 }
