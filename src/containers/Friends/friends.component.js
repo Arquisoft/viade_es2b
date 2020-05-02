@@ -9,6 +9,7 @@ import { Button } from '@material-ui/core';
 import ModalGroupForm from "./components/ModalGroupForm/ModalGroupForm.component";
 import gestorPOD from "../../services/persistanceManagement"
 import FriendItem from "./components/FriendItem";
+import GroupFriendItem from "./components/GroupFriendItem";
 
 /**
  * A React component page that is displayed when the user wants to check his/her friends list and each 
@@ -53,8 +54,16 @@ const Friends = (props) => {
         <Grid item xs={12} md={6}>
         <h3>{t("groups.title")}</h3>
         <FriendsCard>
-          {/* Cambia el codigo para mostrar los grupos como quieras, esto era para ver si se listaban */}
-          {Array.from(groups).map((group) => <p>{group.name}</p>)}
+          {Array.from(groups).map((group) => 
+            <div>
+              <h4>{group.name}</h4>
+              <List src ="user.friends">
+                {(friend)=> 
+                  <GroupFriendItem friendID={friend.value} group={group}/>
+                }
+              </List>
+            </div>
+          )}
           <Button onClick={e => {showModalForm()}} variant="contained" color="primary">{t('friends.createGroup')}</Button>
         </FriendsCard>
         <ModalGroupForm show={modal} closingFunction={close}></ModalGroupForm>
