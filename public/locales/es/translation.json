@@ -116,7 +116,8 @@
     "notification_title": "Ruta nueva!",
     "notification_content": "Alguien ha compartido una nueva ruta contigo",
     "notification_sended": "Ruta enviada con éxito",
-    "toast_error": "Ha habido un error al compartir la ruta con: "
+    "toast_error": "Ha habido un error al compartir la ruta con: ",
+    "placeholder": "Selecciona un amigo o grupo"
   },
   "form": {
      "name": "Nombre de la ruta",
