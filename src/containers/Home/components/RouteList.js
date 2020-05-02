@@ -20,7 +20,6 @@ export default class RouteList extends React.Component {
         this.loadingPublicFinished = this.loadingPublicFinished.bind(this);
         this.loadingSharedFinished = this.loadingSharedFinished.bind(this);
         this.generateRoutesCards = this.generateRoutesCards.bind(this);
-
     }
 
     async componentDidMount() {
@@ -69,7 +68,7 @@ export default class RouteList extends React.Component {
         return (<div>
             <h3>{this.props.sharedRoutesText}</h3>
             <ul>
-                {this.state.sharedRoutes.map((route) => this.generateRoutesCards(route))}
+                {this.state.sharedRoutes.map((route) => this.generateRoutesCardsSh(route))}
             </ul>
             </div>);
     }
@@ -92,17 +91,42 @@ export default class RouteList extends React.Component {
             } } aria-label="delete">
                 <DeleteIcon fontSize="small" />
             </IconButton>
-
             {!route.shared ? <IconButton onClick={() => {
                 this.props.changeEditForm();
                 gestorPOD.saveID(route.id);
+		gestorPOD.saveName(route);
+           	gestorPOD.saveDescrip(route);
+		gestorPOD.savePriv(route); 
+		gestorPOD.saveGPX(route);
+		gestorPOD.savePurePriv(route);
             } } aria-label="edit">
                 <BorderColorIcon fontSize="small" />
             </IconButton> : null}
+            <IconButton onClick={async () => {
+                await gestorPOD.saveID(route.id);
+                await gestorPOD.saveGPX(route);
+		await gestorPOD.savePurePriv(route);
+                await gestorPOD.downloadRoute();
+            } } aria-label="download">
+                <ArrowDownwardIcon fontSize="small" />
+            </IconButton>
+        </li>);
+    }
+
+    generateRoutesCardsSh(route) {
+        return (<li id="container_route" key={route.id}>
+            <Button color="primary" onClick={() => this.props.setRoute(route)}> {route.name} </Button>
+            <IconButton onClick={async () => {
+                await gestorPOD.deleteRoute(route.id, false);
+                window.location.reload(false);
+            } } aria-label="delete">
+                <DeleteIcon fontSize="small" />
+            </IconButton>
 
             {!route.shared ? <IconButton onClick={async () => {
                 await gestorPOD.saveID(route.id);
                 await gestorPOD.saveGPX(route);
+		await gestorPOD.savePurePriv(route);
                 await gestorPOD.downloadRoute();
             } } aria-label="download">
                 <ArrowDownwardIcon fontSize="small" />

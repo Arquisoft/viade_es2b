@@ -125,6 +125,9 @@
     "description_edit": "New route description",
     "enter_description": "Enter route description",
     "enter_description_edit": "Enter new route description",
+    "actual": "Current valor: ",
+    "priv": "Private", 
+    "publ": "Public",
     "gpx": "Load gpx",
     "images" : "Load images",
     "submit": "Submit",
@@ -162,7 +165,9 @@
   },
   "friends":{
     "title": "Friends",
-    "content": "Text for friends window"
+    "content": "Text for friends window",
+    "loading": "Loading friend data...",
+    "pod": "User pod"
   },
   "groups":{
     "title": "Grups",

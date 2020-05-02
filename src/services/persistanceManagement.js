@@ -1,6 +1,9 @@
 ﻿//Class Route
 import Route from "../Route";
 
+//Class for translate
+import i18n from "../i18n";
+
 //Library for authentication
 const auth = require("solid-auth-client");
 
@@ -12,7 +15,7 @@ var routeGPX;
 var routeName;
 var routeDescrip;
 var routePriv;
-
+var purePriv;
 export default {
 
     async getWebID() {
@@ -146,14 +149,19 @@ export default {
 
         let tempUrlUser = ((await auth.currentSession()).webId).toString();
         var urlUser = "";
-
-        // Here we check the privacy of the route
-        if (priv) { urlUser = tempUrlUser.slice(0, -16) + "/private/routes/" + idRoute + "/" }
-        else { urlUser = tempUrlUser.slice(0, -16) + "/public/routes/" + idRoute + "/" }
-
-        var route = await fc.readFile(urlUser + idRoute + ".json").catch(err => "The route is public, searching in public routes to see it.");
-        //route = await fc.readFile(tempUrlUser.slice(0, -16) + "/public/routes/" + idRoute + ".json").catch("There was a problem searching for the route.")
-
+	var route;
+	//Check if it is in shared folder
+	urlUser = tempUrlUser.slice(0, -16) + "/shared/routes/" + idRoute + "/";	
+	if (await fc.itemExists(urlUser + idRoute + ".json")) {
+		route = await fc.readFile(urlUser + idRoute + ".json").catch(err => "The was a problem searching the route.");
+	}
+	else {
+        	// If it is not in shared folder, we check the privacy of the local route
+        	if (priv) { urlUser = tempUrlUser.slice(0, -16) + "/private/routes/" + idRoute + "/" }
+        	else { urlUser = tempUrlUser.slice(0, -16) + "/public/routes/" + idRoute + "/" }
+		route = await fc.readFile(urlUser + idRoute + ".json").catch(err => "The was a problem searching the route.");
+	}
+        
         return JSON.parse(route);
     },
 
@@ -310,37 +318,44 @@ export default {
 	},
 
 	savePriv(route){
-		if (route.priv === false) {
-			routePriv = "priv";
+		if (route.priv === true) {
+			routePriv = i18n.t("form.priv");
 		} else {
-			routePriv = "publ";  
+			routePriv = i18n.t("form.publ");  
 		}
 	},
 
 	loadPriv(){
 		return routePriv;
 	},
+		
+	savePurePriv(route){
+		purePriv = route.priv;		
+	},
+
+	loadPurePriv(){
+		return purePriv;
+	},
 
 	async editRoute(oldRoute,route){
 		fc = new FC(auth);
-
         var basicData = { id: oldRoute.id, name: route.name, description: route.description, priv: route.priv, shared: route.shared };
         var basicDataJson = JSON.stringify(basicData);
 
         let idNoSpaces = oldRoute.id.replace(/\s/g, "_");
 
-	        let tempUrlUser = ((await auth.currentSession()).webId).toString();
+	      let tempUrlUser = ((await auth.currentSession()).webId).toString();
         
-        	// Here we check if the route is private to decide where to save it. By default is private.
-        	var urlUser = "";
-        	if (route.priv === true) {urlUser = tempUrlUser.slice(0, -16) + "/private/routes" ;}
-	       	 else {urlUser = tempUrlUser.slice(0, -16) + "/public/routes" ;}
-	        await fc.createFile(urlUser+"/"+ idNoSpaces + "/" + idNoSpaces+ ".json", basicDataJson, "application/json");
-	        await fc.createFile(urlUser +"/"+ idNoSpaces+ "/" + idNoSpaces +".gpx", route.gpx, "application/gpx+xml");
+        // Here we check if the route is private to decide where to save it. By default is private.
+        var urlUser = "";
+        if (route.priv === true) {urlUser = tempUrlUser.slice(0, -16) + "/private/routes" ;}
+	      else {urlUser = tempUrlUser.slice(0, -16) + "/public/routes" ;}
+	      await fc.createFile(urlUser+"/"+ idNoSpaces + "/" + idNoSpaces+ ".json", basicDataJson, "application/json");
+	      await fc.createFile(urlUser +"/"+ idNoSpaces+ "/" + idNoSpaces +".gpx", route.gpx, "application/gpx+xml");
     	},
 
 	async downloadRoute(){
-		var route = await this.seeRoute(this.getID());
+		var route = await this.seeRoute(this.getID(), this.loadPurePriv());
 		var routeFinal = new Route(route.id, route.name, route.description, this.loadGPX(), null);
 		var gpxToDownload = routeFinal.gpx;
 		var b = new Blob([gpxToDownload], {type: "text/plain"});

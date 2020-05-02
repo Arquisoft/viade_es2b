@@ -4,13 +4,12 @@ import { useTranslation } from "react-i18next";
 //import { FormModel } from "@inrupt/solid-react-components";
 //import { successToaster, errorToaster } from "@utils";
 import { Loader } from "@util-components";
-import {Value,List} from "@solid/react";
+import {Value, List, Link, useLDflexValue} from "@solid/react";
 import {
   Header,
   ProfileContainer,
   ProfileWrapper,
   FormRenderContainer,
-  AutoSaveNotification,
   WebId
 } from "./profile.style";
 import { Image } from "./components";
@@ -32,6 +31,8 @@ type Props = { webId: String };
 const Profile = ({ webId }: Props) => {
   const { t } = useTranslation();
   const [isLoading/*, setIsLoading*/] = useState(false);
+  const email = useLDflexValue('user.inbox') || 'unknown';
+ 
 /*
   const onError = e => {
     if (e.message.toString().indexOf("Validation failed") < 0) {
@@ -55,8 +56,7 @@ const Profile = ({ webId }: Props) => {
     <ProfileWrapper data-testid="profile-component">
       <ProfileContainer>
         {webId && (
-          <Fragment>
-            
+          <Fragment>    
             <Header>
               <Image
                 {...{
@@ -64,30 +64,21 @@ const Profile = ({ webId }: Props) => {
                   defaultProfilePhoto
                 }}
               />
-              
             </Header>
-
-            <AutoSaveNotification className="banner-wrap--warning banner">
-              <div className="banner-wrap__content">
-                <i className="icon fa fa-exclamation-circle" />
-                {t("profile.autosaveNotification")}
-              </div>
-            </AutoSaveNotification>
 
             <FormRenderContainer>
             <h2><Value src="user.name"></Value></h2>
               <WebId>
-                <p>Profile:<a href={webId} target="_blank" rel="noopener noreferrer">
-                  {webId}
-                </a></p>
+                <p>{t('navBar.profile')}:<Link href="user">{`${webId}`}</Link></p>
+                <p>Inbox:<Link href="user.inbox">{`${email}`}</Link></p>
               </WebId>
             </FormRenderContainer>
-            <h2>Friends list</h2>
+            <h2> {t("friends.title")}</h2>
             <List src="user.friends">
               {(friend)=> <a href={`${friend}`} target="_blank" rel="noopener noreferrer">{`${friend}`}<br/></a>}
             </List>
           </Fragment>
-          
+        
         )}
         {isLoading && <Loader absolute />}
       </ProfileContainer>
