@@ -23,7 +23,7 @@ export default class RouteForm extends React.Component {
     let fieldVal = event.target.value;
 
     //In case is the switch from Material library
-    if (fieldName === "priv") {fieldVal = !event.target.checked};
+    if (fieldName === "priv") {fieldVal = !event.target.checked;}
 
     this.setState({ form: { ...this.state.form, [fieldName]: fieldVal } });
   }
@@ -45,7 +45,7 @@ export default class RouteForm extends React.Component {
 
     event.preventDefault();
     let idOld = gestorPOD.getID();
-    let oldRoute = await gestorPOD.seeRoute(idOld);
+    let oldRoute = await gestorPOD.seeRoute(idOld, gestorPOD.loadPurePriv());
     let name;
     if (this.state.form.name === "") {
         name = gestorPOD.loadName();
@@ -60,13 +60,15 @@ export default class RouteForm extends React.Component {
     else {
       description = this.state.form.description;
     }
-    let gpx = gestorPOD.getGPX(oldRoute);
+    let gpx = gestorPOD.loadGPX();
     let images = this.state.form.images;
     let id = name + "-" + Date.now().toString();
     let priv = this.state.form.priv;
 
     var route = new Route(id, name, description, gpx, images, priv);
-    
+    if (priv !== gestorPOD.loadPurePriv()) {
+	await gestorPOD.deleteRoute(oldRoute.id, !priv);
+    }
     await gestorPOD.editRoute(oldRoute,route);
 
     window.location.reload();
@@ -80,23 +82,23 @@ export default class RouteForm extends React.Component {
 
           <Form.Group controlId="formNameRoute">
             <Form.Label>{i18n.t("form.name_edit")}</Form.Label>
-            <Form.Label>Actual: {gestorPOD.loadName()}</Form.Label>
+            <Form.Label>{i18n.t("form.actual")} {gestorPOD.loadName()}</Form.Label>
             <Form.Control type="text" name="name" placeholder={i18n.t("form.enter_name_edit")}
               defaultValue={this.state.form.name_edit} onChange={this.handleChange} />
           </Form.Group>
 
           <Form.Group controlId="formDescriptionRoute">
             <Form.Label>{i18n.t("form.description_edit")}</Form.Label>
-	          <Form.Label>Actual: {gestorPOD.loadDescrip()}</Form.Label>
+	    <Form.Label>{i18n.t("form.actual")} {gestorPOD.loadDescrip()}</Form.Label>
             <Form.Control type="text" name="description" placeholder={i18n.t("form.enter_description_edit")}
               defaultValue={this.state.form.description_edit} onChange={this.handleChange} />
           </Form.Group>
 
           <Form.Group controlId="formPrivacyRoute">
-            <Form.Label>{i18n.t("form.publicRoute")}</Form.Label>
-	          <Form.Label>Actual: {gestorPOD.loadPriv()}</Form.Label>
+          <Form.Label>{i18n.t("form.publicRoute")}</Form.Label>
+	  <Form.Label>{i18n.t("form.actual")} {gestorPOD.loadPriv()}</Form.Label>
           <Switch
-            checked={this.state.priv}
+            checked={!gestorPOD.loadPurePriv()}
             onChange={this.handleChange}
             name="priv"
             inputProps={{ "aria-label": "secondary checkbox" }}

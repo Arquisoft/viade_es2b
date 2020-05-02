@@ -23,7 +23,7 @@ const Slider = (props) => {
     const showModal = (x) => {
         setModal(true);
         setActualImage(URL.createObjectURL(x));
-    }
+    };
 
     const onclose = (e) => {
         setModal(false);

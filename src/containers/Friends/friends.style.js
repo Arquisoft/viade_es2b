@@ -23,4 +23,8 @@ export const FriendsWrapper = styled.section`
 export const FriendsCard = styled(Panel)`
   width:90%;
   margin: 5%;
+
+  button {
+    margin: 5%
+  }
 `;

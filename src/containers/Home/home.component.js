@@ -20,6 +20,7 @@ import ShareComponent from "./components/ShareComponent/ShareComponent";
 const Map = React.lazy(() => import("../../Map"));
 
 function loadMap(props, t) {
+  console.log(props.route)
   return (
     <HomeCard className="card">
       <RouteMap id="map">
@@ -29,8 +30,8 @@ function loadMap(props, t) {
       </RouteMap>
       <RouteInfo>
         <RouteHead>
-          <h2> {t("home.information")} </h2>
-          <ShareComponent route = {props.route}></ShareComponent>
+          <h2> {t('home.information')} </h2>
+          {props.route !== undefined && !props.route.shared ? <ShareComponent route = {props.route}></ShareComponent> : <div></div>}
         </RouteHead>
         <p>
           {props.routeDescription}
@@ -73,14 +74,16 @@ export const HomePageContent = (props) => {
     <HomeWrapper data-testid="home-wrapper">
       <HomeSidenav className="home-sidebar">
         <h2>{t("home.routes")}</h2>
-        <RouteList loadingText={t("home.loading_routes")} setRoute={props.setRoute} changeEditForm={props.changeEditForm}></RouteList>
+        <RouteList privateRoutesText={t("home.private_routes")} publicRoutesText={t("home.public_routes")} sharedRoutesText={t("home.shared_routes")}
+         setRoute={props.setRoute} changeEditForm={props.changeEditForm}></RouteList>
         <div id="Manage buttons">
           <Button variant="contained" color="primary" onClick={() => props.changeForm()}>
           {t("home.add_route")}
           </Button>
           <span>   </span>
           <Button variant="contained" color="secondary" onClick={async () => {
-            await manejadorPODs.deleteRoutes();
+            await manejadorPODs.deleteRoutes(false, true);
+            await manejadorPODs.deleteRoutes(true);
             window.location.reload();
           }}>
             {t("home.delete_route")}

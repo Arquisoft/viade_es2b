@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { HomePageContent } from "./home.component";
-import gestorPod from "../../services/persistanceManagement";
+import gestorPod from "../../services/persistanceManagement"
+import i18n from "../../i18n";
 
 
 /**
@@ -11,12 +12,13 @@ export class HomeComponent extends Component<Props> {
   constructor(props) {
     super(props);
 
-    this.state = { needForm: false, needEditForm: false };
+    this.state = { needForm: false, needEditForm: false, routeDescription: i18n.t("home.help_see_info") };
 
   }
   
   componentDidMount() {
     gestorPod.setUpSharedFolder();
+    gestorPod.setUpInboxFolder();
  }
 
   componentDidUpdate(prevProps) {

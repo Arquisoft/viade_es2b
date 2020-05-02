@@ -65,7 +65,7 @@
     },
     "noe":{
       "rol":  "DESARROLLADOR BACKEND",
-      "description": "edita esto y escribe algo sobre ti"
+      "description": "Me gusta desarrollar la lógica de los proyectos. Al final, plasmamos una idea o concepto que no existía al mundo real."
     }
   },
   "navBar": {
@@ -101,26 +101,41 @@
     "ej_information": "Esto es un ejemplo de información. Los links se ponen de esta manera.",
     "loading_routes": "Cargando rutas...",
     "loading_map": "Cargando mapa...",
-    "routes" : "Rutas",
+    "routes" : "Feed",
+    "public_routes" : "Rutas públicas",
+    "private_routes" : "Rutas privadas",
+    "shared_routes" : "Rutas compatidas conmigo",
+    "help_see_info": "Seleccione una ruta en el menu lateral para ver su información.",
     "add_route": "Añadir ruta",
     "delete_route": "Eliminar rutas",
 	"share_route": "Compartir ruta",
 	"share_text": "Elige un amigo o un grupo para compartir tu ruta",
 	"edit_route": "Editar ruta"
   },
+  "share": {
+    "notification_title": "Ruta nueva!",
+    "notification_content": "Alguien ha compartido una nueva ruta contigo",
+    "notification_sended": "Ruta enviada con éxito"
+  },
   "form": {
-     "name": "Nombre de la ruta",
+    "name": "Nombre de la ruta",
     "name_edit": "Nuevo nombre de la ruta",
     "enter_name": "Introduce el nombre de la ruta",
     "enter_name_edit": "Introduce el nuevo nombre de la ruta",
     "description": "Descripción de la ruta",
     "description_edit": "Nueva descripción de la ruta",
     "enter_description": "Introduce la descripción de la ruta",
-    "enter_description": "Introduce la nueva descripción de la ruta",
+    "enter_description_edit": "Introduce la nueva descripción de la ruta",
+    "actual": "Valor actual: ",
+    "priv": "Privado", 
+    "publ": "Público",
     "gpx": "Cargar gpx",
     "images" : "Cargar imagenes",
     "submit": "Enviar",
-    "publicRoute": "Ruta pública"
+    "publicRoute": "Ruta pública",
+	"groupName": "Nombre del grupo",
+    "enterGroupName": "Introduce el nombre del grupo",
+	"friendsSelect": "Elige los amigos que quieres añadir al grupo"
   },
   "profile": {
     "successCallback": "Pod actualizado satisfactoriamente",
@@ -156,7 +171,8 @@
     "title": "Amigos",
     "content": "Texto de prueba para la ventana de amigos",
     "loading": "Cargando los datos...",
-    "pod": "Pod del usuario"
+    "pod": "Pod del usuario",
+	"createGroup" : "Crear nuevo grupo"
   },
   "groups":{
     "title": "Grupos",
