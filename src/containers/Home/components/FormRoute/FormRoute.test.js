@@ -1,31 +1,54 @@
 import React from "react";
-import { render } from "react-testing-library";
+import { render, fireEvent, cleanup, getByTestId } from "react-testing-library";
 import FormRoute from "./FormRoute";
 
-describe("RouteForm", () => {
-  const { container, getByTestId } = render(
-    <FormRoute>
-    </FormRoute>
-  );
+describe.only('FormRoute', () => {
+    afterAll(cleanup);
+    const { container } = render(
+        <FormRoute>
+        </FormRoute>
+    );
 
   test("renders without crashing", () => {
     expect(container).toBeTruthy();
   });
 
-  test("renders Form bootstrap properly", () => {
-    expect(getByTestId("form")).toBeTruthy();
-  });
+  test('Testing new route form', () => {
+    const inputName = getByTestId(container, "formNameRouteControl");
+    const inputDescription = getByTestId(container, 'formDescriptionRouteControl');
+    const switchPriv = getByTestId(container, 'formSwitchRouteControl');
+    const inputGpx = getByTestId(container, 'formRouteGpx');
+    const inputImg = getByTestId(container, 'formRouteImages');
+    const buttonSave = getByTestId(container, 'formSendButton');
 
-  test("renders BootStrap form group properly", () => {
-    expect(getByTestId("formNameRoute")).toBeTruthy();
-  });
+    fireEvent.change(inputName, {target: {value: "Test"}});
+    fireEvent.change(inputDescription, {target: {value: "Description tests"}});
+    fireEvent.change(switchPriv, {target: {checked: true}});
 
-  test("renders BootStrap label properly", () => {
-    expect(getByTestId("formNameRouteLabel")).toBeTruthy();
-  });
+    expect(inputName.value).toEqual("Test");
+    expect(inputDescription.value).toEqual("Description tests");
+    expect(switchPriv.checked).toEqual(true);
 
-  test("renders BootStrap control properly", () => {
-    expect(getByTestId("formNameRouteControl")).toBeTruthy();
-  });
+    const image = new File(["Soy una imagen :D"], "image.png", {
+        type: "image/png"
+    });
+
+    const gpx = new File(["Y yo una ruta"], "ruta.gpx", {
+        type: "application/gpx+xml"
+    });
+
+    Object.defineProperty(inputImg, "files", {
+        value: [image]
+    });
+    fireEvent.change(inputImg);
+
+    Object.defineProperty(inputGpx, "files", {
+        value: [gpx]
+    });
+    fireEvent.change(inputGpx);
+
+    fireEvent.click(buttonSave);
+});
+
 
 });
