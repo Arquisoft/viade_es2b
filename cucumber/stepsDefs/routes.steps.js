@@ -3,6 +3,7 @@ const expectPuppeteer = require('expect-puppeteer');
 const { defineFeature, loadFeature } = require('jest-cucumber');
 const feature = loadFeature('./cucumber/features/routes/create.feature');
 const feature2 = loadFeature('./cucumber/features/routes/edit.feature');
+const feature3 = loadFeature('./cucumber/features/routes/delete.feature');
 
 var port = 3000;
 let url = 'http://localhost:' + port;
@@ -170,4 +171,41 @@ defineFeature(feature2, testEditRoute => {
         });
     });
 });
+
+//Test: Delete a route
+defineFeature(feature3, testDeleteRoute => {
+	jest.setTimeout(3000000);
+    testDeleteRoute('John wants to delete a route', ({ given, when, then }) => {
+        
+        given('John has logged into the application without problems', () => {
+            //cleanBrowserAndLogIn() treats this part
+        });
+
+        when('John delete a public route with name and description, but with no images and gpx file', async () => {
+			
+			//Click on delete route button deleting the new route we added before
+            await page.waitForSelector('button[name="delete_Test Route2 Edited"]');
+            await page.click('button[name="delete_Test Route2 Edited"]');
+
+            //Wait for reload page around 6 seconds
+            await wait(6000);
+        });
+
+        then('John cant click and view his route on the feed tab, on public routes', async() => {
+			
+			var routeAppears = null;
+			try {
+				routeAppears = await page.waitForSelector('div[name="Test Route2 Edited"]');
+			}
+			catch (error) {
+				// If everything worked fine, an error should be produced (the route doesn't exist anymore)
+			}
+			
+			if (routeAppears !== null) {
+				throw new Error("The route still exists");
+			}
+        });
+    });
+});
+
 
