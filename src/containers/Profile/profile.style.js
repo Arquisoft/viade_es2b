@@ -29,6 +29,8 @@ export const Header = styled.div`
 `;
 
 export const ImageRounded = styled(Image)`
+  width: 250px;
+  height: 250px;
   border-radius: 50%;
 `;
 
