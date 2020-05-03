@@ -16,7 +16,7 @@ In this section we are going to explain the ideas, concepts and regulations that
 ****
 This is one of the most important parts in our application. Users need an intuitive, friendly, easy to understand interface in order to feel confident using the app and not getting overwhelmed by confusing, cryptic options.
 
-To achieve that, we are going to divide our app in two simple parts: the first one will include the functionality needed to upload and store a route file from the user's device, and the second one will allow the user to search and see all his stored routes. This division will help the most inexperienced users to understand the functioning of the app in a simple way.
+To achieve that, we are going to divide our app in two simple parts: the first one will include the functionality needed to upload and store a route file from the user's device, as well as editing, downloading, sharing, deleting and displaying those routes in the map; and the second one will allow the user to see all his friends and groups of friends. He will also be able to create new groups. This division will help the most unexperienced users to understand the functioning of the app in a simple way.
 ****
 
 [safety-security]
@@ -37,20 +37,19 @@ As we are going to use the React framework in this project, we will base our app
 * Session handling: we will manage the session by using the SOLID session itself, which can be accessed using the SOLID credentials
 * Persistence: as the data is stored in PODs, we don't need to use any other kind of databases or storages to save all the user's information
 * Error handling: the main error on this app will occur in case of not having a good and stable internet connection, which could lead to lag or malfunctioning of the app
-* Transaction handling: we plan to include a method to prevent unfinished transactions from causing errors such as an incorrect upload of a route file
 ****
 
 [development-concepts]
 === Development concepts
 ****
 * Building: we will use the Node.js package manager, npm, to build the app by using different plugins or tools in order to accomplish the goals we want to reach
-* Testing: this is a key part in our app, and we will put a lot of our efforts on ensuring that the app works the way it has to. For accomplishing this, we will use several frameworks such as Cucumber.js or Mocha, as well as React's own testing library
+* Testing: this is a key part in our app, and we will put a lot of our efforts on ensuring that the app works the way it has to. For accomplishing this, we will use several frameworks such as Cucumber.js, Jest and Gatling, as well as React's own testing library
 ****
 
 [operational-concepts]
 === Operational concepts
 ****
-* Disaster recovery: the user's data are stored in his own POD, which is independent from the app, so they won't be at risk if something wrong happens with the app. As for the app itself, it depends on GitHub, so if GitHub is down, the app will be too until the problem is solved
+* Disaster recovery: the user's data are stored in his own POD, which is independent from the app, so they won't be at risk if something wrong happens with the app. As for the app itself, it depends on GitHub, so if GitHub is down, the app will be too until the problem is solved. However, the app can also be deployed using Docker, as explained in the repository readme
 * High availability: once a new version of the app is finished, it will be available for the user as soon as the changes included in the development branch are merged with the master branch
 * Administration: as we are a team, we divide the administration of the project equally between all the team members, as well as we might help others with the problems they have
 ****
