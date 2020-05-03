@@ -2,6 +2,7 @@ const puppeteer = require('puppeteer');
 const expectPuppeteer = require('expect-puppeteer');
 const { defineFeature, loadFeature } = require('jest-cucumber');
 const feature = loadFeature('./cucumber/features/routes/create.feature');
+const feature2 = loadFeature('./cucumber/features/routes/edit.feature');
 
 var port = 3000;
 let url = 'http://localhost:' + port;
@@ -118,5 +119,55 @@ defineFeature(feature, testAddRoute => {
     });
 });
 
+//Test: Edit a route
+defineFeature(feature2, testEditRoute => {
+	jest.setTimeout(3000000);
+    testEditRoute('John wants to edit a route', ({ given, when, then }) => {
+        
+        given('John has logged into the application without problems', () => {
+            //cleanBrowserAndLogIn() treats this part
+        });
 
+        when('John edit a public route with name and description, but with no images and gpx file', async () => {
+
+			//Click on delete route button deleting the new route we added before
+            await page.waitForSelector('button[name="edit_Test Route2"]');
+            await page.click('button[name="edit_Test Route2"]');
+
+            //Wait for it 3 seconds
+            await wait(3000);
+
+            //Fill name field
+            await page.waitForSelector('input[name="name"]');
+            await expect(page).toFill('input[name="name"]', "Test Route2 Edited");
+
+            //Fill description field
+            await page.waitForSelector('input[name="description"]');
+            await expect(page).toFill('input[name="description"]', "New description for a simple route");
+
+            //Choose public route, clicking on the switcher
+            await page.waitForSelector('input[name="priv"]');
+            await page.click('input[name="priv"]');
+
+            //Submit the route
+            await page.click('button[name="submitEdit"]');
+
+            //Wait for reload page around 6 seconds
+            await wait(6000);
+        });
+
+        then('John can click and view his route edited on the feed tab, on public routes', async() => {
+			//Click the route name on the feed
+            await page.waitForSelector('div[name="Test Route2 Edited"]');
+			await page.click('div[name="Test Route2 Edited"]');
+			
+			//Wait for it 3 seconds
+			await wait(6000);
+			
+			//Check if it's seeing description of the route
+			await page.waitForSelector('p[id="New description for a simple route"]');
+			await expect(page).toMatchElement('p[id="New description for a simple route"]');
+        });
+    });
+});
 
