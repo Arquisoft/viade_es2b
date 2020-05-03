@@ -35,7 +35,7 @@ function loadMap(props, t) {
           <h2> {props.route !== undefined ? props.route.name : t("home.information")} </h2>
           {props.route !== undefined && !props.route.shared ? <ShareComponent route = {props.route}></ShareComponent> : <div></div>}
         </RouteHead>
-        <p>
+        <p id={props.routeDescription}>
           {props.routeDescription}
         </p>
         <Slider imgs={props.routeImages}></Slider>

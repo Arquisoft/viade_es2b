@@ -84,19 +84,19 @@ export default class RouteList extends React.Component {
 
     generateRoutesCards(route) {
         return (<li id="container_route" key={route.id}>
-            <Button color="primary" onClick={() => this.props.setRoute(route)}> {route.name} </Button>
-            <IconButton onClick={async () => {
+            <Button name={route.name} color="primary" onClick={() => this.props.setRoute(route)}> {route.name} </Button>
+            <IconButton name={"delete_" + route.name} onClick={async () => {
                 await gestorPOD.deleteRoute(route.id, route.priv, route.shared);
                 window.location.reload(false);
             }} aria-label="delete">
                 <DeleteIcon fontSize="small" />
             </IconButton>
-            {!route.shared ? <IconButton onClick={() => {
+            {!route.shared ? <IconButton name={"edit_" + route.name} onClick={() => {
                 this.props.changeEditForm(route);
             }} aria-label="edit">
                 <BorderColorIcon fontSize="small" />
             </IconButton> : null}
-            <IconButton onClick={async () => {
+            <IconButton name={"download_" + route.name} onClick={async () => {
                 await gestorPOD.downloadRoute(route);
             }} aria-label="download">
                 <ArrowDownwardIcon fontSize="small" />
