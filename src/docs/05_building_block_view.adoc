@@ -5,7 +5,7 @@ This block shows the decomposition of the system into building blocks and their 
 
 === Whitebox Overall System
 
-image::05_building_block_view.png[Building block view diagram]
+image::05_building_block_view_1.png[Building block view diagram]
 
 Contained Building Blocks::
 [options="header",cols="1,2"]
@@ -18,6 +18,8 @@ Contained Building Blocks::
 
 === Level 2
 The whitebox shown at this level is the application: Viade
+
+image::05_building_block_view_2.png[Building block view diagram]
 
 Contained Building Blocks::
 [options="header",cols="1,2"]
@@ -34,6 +36,8 @@ At this level we have two whiteboxes: Components and Containers
 
 ==== Components
 
+image::05_building_block_view_3.png[Building block view diagram]
+
 Contained Building Blocks::
 [options="header",cols="1,2"]
 |===
@@ -43,12 +47,14 @@ It provides different functionalities like the view with the routes or the one w
 | Footer | The bottom part of every view. It displays our organization and the version of the application
 | Spinner | This component displays all the images that a route has
 | RouteList | It shows all the different routes that a user has in his POD
-| Utils | Different component of minor relevance like Radiobutton or Badge
+| FormEditRoute | From this form, we can edit our routes
 | Notifications | Displays the different notifications of the app
 | Map | Shows the selected route drawn in the world map
 |===
 
 ==== Containers
+
+image::05_building_block_view_4.png[Building block view diagram]
 
 Contained Building Blocks::
 [options="header",cols="1,2"]
@@ -59,4 +65,9 @@ Contained Building Blocks::
 | PageNotFound | It is shown when a Container/view is not found
 | Profile | It shows the user that is currently in the application
 | Register | When accessed, it allows the user to register in a SOLID provider
+| Friends | This view shows our SOLID friends and also the groups we are in. We can create or delete groups
 |===
+
+So, the full building block view would be:
+
+image::05_building_block_view.png[Building block view diagram]
