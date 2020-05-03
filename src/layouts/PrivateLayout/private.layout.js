@@ -15,6 +15,7 @@ const Container = styled.div`
 `;
 
 const Content = styled.div`
+  background-image: url(./img/concentric-hex-pattern_2x.png);
   padding-top: 60px;
   flex: 1 0 auto;
   display: flex;

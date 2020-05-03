@@ -92,6 +92,8 @@
     "public_routes" : "Private routes",
     "private_routes" : "Public routes",
     "shared_routes" : "Routes shared with me",
+    "friends_routes" : "Friends public routes",
+    "no_routes" : "Your friends dosen't have routes yet",
     "help_see_info": "Select a route in the menu at your left to see its information.",
     "add_route": "Add route",
     "delete_route": "Delete routes",

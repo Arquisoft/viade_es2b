@@ -221,6 +221,47 @@ export default {
     },
 
     /**
+     * Method which looks in the user pods for all the saved routes.
+     * Return an array containing them.
+     * @param {The privacy of the routes you want to see. By default you look for the private ones.} priv 
+     */
+    async seeFriendsRoutes(friendsList) {
+        fc = new FC(auth);
+
+        const friendIDs = [];
+
+        for (var i = 0; i < friendsList.length; i++) {
+            const webID = `${friendsList[i]}`
+            friendIDs.push(webID);
+        }
+
+        const routes = [];
+
+        for (i = 0; i < friendIDs.length; i++) {
+
+            let tempUrlUser = friendIDs[i].toString();
+
+            // Here we check for the privacy of the routes to see.
+            var urlUser = urlUser = tempUrlUser.slice(0, -16) + "/public/routes/";
+
+            var err = "";
+            // eslint-disable-next-line no-loop-func
+            let folder = await fc.readFolder(urlUser).catch((error) => err = error);
+
+            if (err !== "") {
+                continue;
+            }
+
+            const routesUser = await extractRoutesFromFile(folder, urlUser);
+
+            routesUser.forEach(route => route.owner = tempUrlUser);
+
+            routes.push(routesUser);
+        }
+        return routes;
+    },
+
+    /**
      * Method which delete all the routes with the privacy you give in the params.
      * @param {The privacy of the routes to be deleted. By default is private.} priv 
      */
