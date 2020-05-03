@@ -41,7 +41,7 @@ const Friends = (props) => {
       <Grid container spacing={6}>
         {/*Friends section*/}
         <Grid item xs={12} md={6}>
-          <h3>{t("friends.title")}</h3>
+          <h3 name="friends">{t("friends.title")}</h3>
           <FriendsCard className="friends-list">
             <List src ="user.friends">
             {(friend)=> 
@@ -52,11 +52,11 @@ const Friends = (props) => {
         </Grid>
         {/*Groups section*/}
         <Grid item xs={12} md={6}>
-        <h3>{t("groups.title")}</h3>
+        <h3 name="groups">{t("groups.title")}</h3>
         <FriendsCard className="groups-list">
           {Array.from(groups).map((group) => 
             <div>
-              <h4>{group.name}</h4>
+              <h4 id={group.name} >{group.name}</h4>
               <List src ="user.friends">
                 {(friend)=> 
                   <GroupFriendItem friendID={friend.value} group={group}/>
@@ -64,7 +64,7 @@ const Friends = (props) => {
               </List>
             </div>
           )}
-          <Button onClick={ (e) => {showModalForm();}} variant="contained" color="primary">{t("friends.createGroup")}</Button>
+          <Button name="group_button" onClick={ (e) => {showModalForm();}} variant="contained" color="primary">{t("friends.createGroup")}</Button>
         </FriendsCard>
         <ModalGroupForm show={modal} closingFunction={close}></ModalGroupForm>
         </Grid>

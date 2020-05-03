@@ -16,8 +16,8 @@ function ListFriends() {
 
     return (
             getFriends().map((friend) =>
-            <option key={friend} value={`${friend}`}>
-                {`[${friend}]`}
+            <option id={`${friend}`} key={friend} value={`${friend}`}>
+                {`${friend}`}
             </option>)
     );
 };
@@ -83,7 +83,7 @@ export default class ModalGroupForm extends React.Component {
                                     <ListFriends></ListFriends>
                                 </Form.Control>
                         </Form.Group>
-                        <Button variant="contained" type="submit" onClick={this.handleSubmit}>
+                        <Button name="submit_button" variant="contained" type="submit" onClick={this.handleSubmit}>
                             {i18n.t("form.submit")}
                         </Button>
                     </Form>
