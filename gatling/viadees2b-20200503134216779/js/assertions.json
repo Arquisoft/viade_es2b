@@ -1,0 +1,10 @@
+{
+  "simulation": "viadees2b",
+  "simulationId": "viadees2b",
+  "start": 1588513336779,
+  "description": "Viade es2b gatling test with 100 users at once",
+  "scenarios": ["viadees2b"],
+  "assertions": [
+
+  ]
+}
