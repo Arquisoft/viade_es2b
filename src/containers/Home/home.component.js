@@ -107,6 +107,7 @@ export const HomePageContent = (props) => {
 const useStyles = makeStyles(() => ({
   ButtonGroup: {
     display: "flex",
-    justifyContent: "center"
+    justifyContent: "center",
+    marginBottom: "14px"
   },
 }));

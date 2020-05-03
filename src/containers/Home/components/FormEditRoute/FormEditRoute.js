@@ -1,6 +1,7 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
 import { Button, Switch } from "@material-ui/core";
+import SendIcon from '@material-ui/icons/Send';
 
 import i18n from "../../../../i18n";
 
@@ -75,7 +76,7 @@ export default class RouteForm extends React.Component {
             />
           </Form.Group>
 
-          <Button variant="contained" type="submit" name="submitEdit">
+          <Button variant="contained" color="primary" startIcon={<SendIcon />} type="submit" name="submitEdit" first>
             {i18n.t("form.submit")}
           </Button>
         </Form>

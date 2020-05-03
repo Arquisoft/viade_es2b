@@ -90,8 +90,9 @@ export default class RouteList extends React.Component {
     generateRoutesCards(route) {
         return (
             <ListItem name={route.name} key={route.id} button onClick={() => this.props.setRoute(route)}> 
-            {route.owner ? <ListItemText primary={route.name} secondary={route.owner.slice(0, -15)}/> : <ListItemText primary={route.name}/>}
-
+            {route.owner ? <ListItemText primary={route.name} secondary={route.owner.slice(0, -15)}/>
+             : <ListItemText primary={route.name} secondary={route.description.slice(0, 40) === route.description ?
+              route.description : route.description.slice(0, 40) + "..."} />}
             {!route.owner ? <IconButton name={"delete_" + route.name} onClick={async () => {
                 await gestorPOD.deleteRoute(route.id, route.priv, route.shared);
                 window.location.reload(false);
@@ -115,7 +116,6 @@ export default class RouteList extends React.Component {
     render() {
         const { loadingPrivate, loadingPublic, loadingPublicFriends, loadingShared } = this.state;
 
-        //TODO
         return(
             <List>
                 <ListSubheader style={{fontSize: "1.1rem"}}>
