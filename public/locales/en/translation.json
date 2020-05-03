@@ -146,7 +146,8 @@
   },
   "groups":{
     "title": "Groups",
-    "createGroup" : "Create new group"
+    "createGroup" : "Create new group",
+    "deleteGroups" : "Delete groups"
   },
   "noInboxUser": {
     "message": "Global inbox not found, please go to your Pod and create one",
