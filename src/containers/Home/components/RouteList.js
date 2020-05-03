@@ -6,7 +6,7 @@ import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 
 import gestorPOD from "../../../services/persistanceManagement";
 
-import {List,ListSubheader,ListItem, ListItemText,Divider} from "@material-ui/core";
+import { List, ListSubheader, ListItem, ListItemText, Divider } from "@material-ui/core";
 
 
 export default class RouteList extends React.Component {
@@ -42,7 +42,7 @@ export default class RouteList extends React.Component {
         return (
             <div>
                 <Divider />
-                {this.state.sharedRoutes.map((route) => this.generateRoutesCardsSh(route))}
+                {this.state.sharedRoutes.map((route) => this.generateRoutesCards(route))}
             </div>);
 
     }
@@ -61,28 +61,19 @@ export default class RouteList extends React.Component {
             <ListItemText primary={route.name}/>
 
             <IconButton onClick={async () => {
-                await gestorPOD.deleteRoute(route.id, false);
-                window.location.reload(false);} 
-                } aria-label="delete">
+                await gestorPOD.deleteRoute(route.id, route.priv, route.shared);
+                window.location.reload(false);
+            }} aria-label="delete">
                 <DeleteIcon fontSize="small"/>
             </IconButton>
 
             {!route.shared ? <IconButton onClick={() => {
-                this.props.changeEditForm();
-                gestorPOD.saveID(route.id);
-                gestorPOD.saveName(route);
-                gestorPOD.saveDescrip(route);
-                gestorPOD.savePriv(route); 
-                gestorPOD.saveGPX(route);
-                gestorPOD.savePurePriv(route);
+                this.props.changeEditForm(route);
             } } aria-label="edit">
                 <BorderColorIcon fontSize="small" />
             </IconButton> : null}
             <IconButton onClick={async () => {
-                await gestorPOD.saveID(route.id);
-                await gestorPOD.saveGPX(route);
-                await gestorPOD.savePurePriv(route);
-                await gestorPOD.downloadRoute();
+                await gestorPOD.downloadRoute(route);
             } } aria-label="download">
                 <ArrowDownwardIcon fontSize="small" />
             </IconButton>
@@ -90,47 +81,23 @@ export default class RouteList extends React.Component {
         );
     }
 
-
-    generateRoutesCardsSh(route) {
-        return (
-            <ListItem button onClick={() => this.props.setRoute(route)}> 
-                <ListItemText primary={route.name}/>
-
-                <IconButton onClick={async () => {
-                    await gestorPOD.deleteRoute(route.id, false);
-                    window.location.reload(false);
-                    } } aria-label="delete">
-                    <DeleteIcon fontSize="small" />
-                </IconButton>
-
-                {!route.shared ? <IconButton onClick={async () => {
-                    await gestorPOD.saveID(route.id);
-                    await gestorPOD.saveGPX(route);
-                    await gestorPOD.savePurePriv(route);
-                    await gestorPOD.downloadRoute();
-                } } aria-label="download">
-                    <ArrowDownwardIcon fontSize="small" />
-                </IconButton> : null}
-            </ListItem>);
-    }
-
     render() {
         const { loadingPrivate, loadingPublic, loadingShared } = this.state;
 
         return(
             <List>
-                <ListSubheader>
+                <ListSubheader style={{fontSize: "1.1rem"}}>
                     {this.props.privateRoutesText}
                 </ListSubheader>
-                {loadingPrivate ? <CircularProgress/> : <this.loadingPrivateFinished/>}
-                <ListSubheader>
+                {loadingPrivate ? <CircularProgress style={{margin: "20px"}} /> : <this.loadingPrivateFinished/>}
+                <ListSubheader style={{fontSize: "1.1rem"}}>
                     {this.props.publicRoutesText}
                 </ListSubheader>
-                {loadingPublic ? <CircularProgress/> : <this.loadingPublicFinished/>}
-                <ListSubheader>
+                {loadingPublic ? <CircularProgress style={{margin: "20px"}} /> : <this.loadingPublicFinished/>}
+                <ListSubheader style={{fontSize: "1.1rem"}}>
                     {this.props.sharedRoutesText}
                 </ListSubheader>
-                {loadingShared ? <CircularProgress/> : <this.loadingSharedFinished/>}
+                {loadingShared ? <CircularProgress style={{margin: "20px"}} /> : <this.loadingSharedFinished/>}
             </List>
         );
 

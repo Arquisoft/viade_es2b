@@ -1,6 +1,9 @@
 import React, { Suspense } from "react";
 import { Button, ButtonGroup, Paper } from "@material-ui/core";
+import DeleteIcon from '@material-ui/icons/Delete';
+import AddIcon from '@material-ui/icons/Add';
 import { useTranslation } from "react-i18next";
+import { makeStyles } from '@material-ui/core/styles';
 import manejadorPODs from "../../services/persistanceManagement";
 import RouteList from "./components/RouteList";
 import FormRoute from "./components/FormRoute/FormRoute";
@@ -68,22 +71,21 @@ function loadEditForm(route) {
  * Image component will get theimage context and resolve the value to render.
  * @param props 
  */
-
-
 export const HomePageContent = (props) => {
+  const classes = useStyles();
   const { t } = useTranslation(); /* se puede pasar un mensaje prefefinido a Trans o usar t */
   return (
     <HomeWrapper data-testid="home-wrapper">
-      <Paper style={{maxHeight:"100%", overflow: "auto"}}>
-        <h2 style={{paddingLeft: "14px"}}>{t("home.routes")}</h2>
+      <Paper style={{minWidth:"fit-content", maxHeight:"100%", overflow: "auto"}}>
+        <h2 style={{paddingLeft: "14px", marginBlockEnd: "0.4em"}}>{t("home.routes")}</h2>
         <RouteList privateRoutesText={t("home.private_routes")} publicRoutesText={t("home.public_routes")} 
           sharedRoutesText={t("home.shared_routes")} setRoute={props.setRoute} changeEditForm={props.changeEditForm}> 
         </RouteList>
-        <ButtonGroup variant="contained" color="primary" size="small"> 
-          <Button onClick={() => props.changeForm()}>
+        <ButtonGroup style={{boxShadow: "none"}} className={classes.ButtonGroup} variant="contained" color="primary" size="small"> 
+          <Button startIcon={<AddIcon />} onClick={() => props.changeForm()}>
           {t("home.add_route")}
           </Button>
-          <Button onClick={async () => {
+          <Button color="secondary" startIcon={<DeleteIcon />} onClick={async () => {
             await manejadorPODs.deleteRoutes(false, true);
             await manejadorPODs.deleteRoutes(true);
             window.location.reload();}}>
@@ -98,3 +100,11 @@ export const HomePageContent = (props) => {
     </HomeWrapper>
   );
 };
+
+// Styles for Material UI
+const useStyles = makeStyles(() => ({
+  ButtonGroup: {
+    display: 'flex',
+    justifyContent: 'center'
+  },
+}));
