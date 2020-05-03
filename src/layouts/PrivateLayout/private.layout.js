@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { withAuthorization } from '@inrupt/solid-react-components';
-import { AuthNavBar, Footer } from '@components';
-import { permissionHelper } from '@utils';
-import styled from 'styled-components';
+import React, { useEffect } from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { withAuthorization } from "@inrupt/solid-react-components";
+import { AuthNavBar, Footer } from "@components";
+import { permissionHelper } from "@utils";
+import styled from "styled-components";
 
 const Container = styled.div`
   display: flex;
@@ -15,6 +15,7 @@ const Container = styled.div`
 `;
 
 const Content = styled.div`
+  background-image: url(./img/concentric-hex-pattern_2x.png);
   padding-top: 60px;
   flex: 1 0 auto;
   display: flex;
@@ -35,10 +36,10 @@ const FooterContainer = styled.div`
 const PrivateLayout = ({ routes, webId, location, history, ...rest }) => {
   const { t } = useTranslation();
   const errorMessages = {
-    message: t('appPermission.message'),
-    title: t('notifications.error'),
-    label: t('appPermission.link.label'),
-    href: t('appPermission.link.href')
+    message: t("appPermission.message"),
+    title: t("notifications.error"),
+    label: t("appPermission.link.label"),
+    href: t("appPermission.link.href")
   };
 
   useEffect(() => {
@@ -56,13 +57,13 @@ const PrivateLayout = ({ routes, webId, location, history, ...rest }) => {
             <Content className="contentApp">
               <AuthNavBar {...{ location, webId, history }} />
               <Switch>
-                {routes.map(route => {
+                {routes.map( (route) => {
                   const { component: RouteComponent } = route;
                   return (
                     <Route
                       key={route.id}
                       path={route.path}
-                      render={routerProps => <RouteComponent {...routerProps} webId={webId} />}
+                      render={(routerProps) => <RouteComponent {...routerProps} webId={webId} />}
                       webId={webId}
                       exact
                     />
@@ -80,5 +81,5 @@ const PrivateLayout = ({ routes, webId, location, history, ...rest }) => {
     </React.Fragment>
   );
 };
-
+/*redirect to private if its authenticated, to login otherwise */
 export default withAuthorization(PrivateLayout);

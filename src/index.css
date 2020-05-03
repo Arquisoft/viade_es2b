@@ -1,12 +1,11 @@
 html,
 body,
 #root {
-  height: 100% !important;
+  height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
 }
-
 
 body {
   color: #000;
@@ -24,9 +23,7 @@ a {
   text-decoration: none;
 }
 
-a svg-inline--fa {
-  margin-right: 5px;
-}
+
 
 ul {
   padding: 0;
@@ -39,7 +36,7 @@ ul li {
   margin: 0;
 }
 
-input[type='text'] {
+input[type="text"] {
   box-sizing: border-box;
   border: 1px solid hsl(0, 0%, 80%);
   border-radius: 4px;
@@ -47,27 +44,28 @@ input[type='text'] {
   padding: 7px 10px;
 }
 
-/**
-Temporary fix to overwrite and display the default style of the checkbox
-to prevent issues with the custom component and react/fontawesome missing icons
- */
+/* Temporary fix to overwrite and display the default style of the checkbox
+to prevent issues with the custom component and react/fontawesome missing icons */
+
 input[type="checkbox"] {
-  appearance: checkbox !important;
-  -webkit-appearance: checkbox !important;
-  -moz-appearance: checkbox !important;
-  margin: 0 0 0 16px !important
+  appearance: checkbox;
+  -webkit-appearance: checkbox;
+  -moz-appearance: checkbox;
+  margin: 0 0 0 16px;
 }
+
 input[type="checkbox"]::before {
-  content: none !important;
+  content: none;
 }
+
 /**
 Ends temporary react/fontawesome fix
- */
+*/
 
 .link,
 .link-button {
   color: #074166;
-  font-family: 'Roboto', cursive;
+  font-family: "Roboto", cursive;
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.75px;
@@ -88,18 +86,13 @@ Ends temporary react/fontawesome fix
   font-family: sans-serif, "Roboto", "Segoe UI";
 }
 
-.form-group {
-  text-align: left;
-  margin: 12px 0;
-}
-
 .form-group:first-child {
   margin-top: 0;
 }
 
 .form-group > label {
   color: #074166;
-  font-family: 'Roboto';
+  font-family: "Roboto";
   font-size: 11px;
   font-weight: bold;
   letter-spacing: 0.75px;
@@ -123,11 +116,12 @@ form-group .select-role {
 
 /* Overriding the center-align property from the styleguide */
 .solid-provider-select {
-  text-align: left !important;
+  text-align: left;
 }
 
-.solid-provider-select .option {
-  padding-left: 10px !important;
+.solid-provider-select
+.option {
+  padding-left: 10px;
 }
 
 .nav.nav > ul {
@@ -135,15 +129,16 @@ form-group .select-role {
   height: 60px;
 }
 
-.nav.nav__toolbar > ul > li > a, .nav.nav__toolbar  > ul > li > button {
-  color: #074166; 
+.nav.nav__toolbar > ul > li > a,
+.nav.nav__toolbar > ul > li > button {
+  color: #074166;
 }
 
-.nav.nav > ul > li > a:hover, 
-.nav.nav > ul > li > a.active, 
+.nav.nav > ul > li > a:hover,
+.nav.nav > ul > li > a.active,
 .nav.nav > ul > li > button:hover,
 .nav.nav > ul > li > button.active {
-  color: #074166; 
+  color: #074166;
   background: rgba(7, 65, 102, 0.3);
 }
 
@@ -152,17 +147,22 @@ form-group .select-role {
   line-height: 60px;
   cursor: pointer;
   transition: all 0.5s ease-in-out;
-  border-left: 1px solid rgba(8, 53, 117, 0.1); 
+  border-left: 1px solid rgba(8, 53, 117, 0.1);
 }
 
-/*boton notificaciones*/
-  .fUwLnT:active,.fUwLnT:focus,.fUwLnT:hover,.fUwLnT.active{ 
-    background:rgba(7, 65, 102, 0.3); 
-    outline:none;
-  }
-/* menu dropdown sobre el icono perfil*/
-  .jOLVKi button:hover{
-    background:rgba(7, 65, 102, 0.3); 
-    transition:all 0.5s ease-in-out;
-    color:#083575;
-  } 
+/* boton notificaciones */
+.fUwLnT:active,
+.fUwLnT:focus,
+.fUwLnT:hover,
+.fUwLnT
+.active { 
+  background: rgba(7, 65, 102, 0.3);
+  outline: none;
+}
+
+/* menu dropdown sobre el icono perfil */
+.jOLVKi button:hover {
+  background: rgba(7, 65, 102, 0.3);
+  transition: all 0.5s ease-in-out;
+  color: #083575;
+}

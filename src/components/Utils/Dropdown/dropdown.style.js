@@ -1,12 +1,12 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { media } from '../../../utils';
+import { media } from "../../../utils";
 
 export const DropdownContainer = styled.div`
   position: relative;
   height: auto;
   width: 100%;
-  padding: 0 !important;
+  padding: 0px;
 
   .icon {
     margin-right: 5px;

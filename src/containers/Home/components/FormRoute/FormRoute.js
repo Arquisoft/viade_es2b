@@ -1,18 +1,19 @@
-import React from 'react';
-import Form from 'react-bootstrap/Form'
-import { Button } from '@material-ui/core'
+import React from "react";
+import Form from "react-bootstrap/Form";
+import { Button, Switch } from "@material-ui/core";
+import SendIcon from '@material-ui/icons/Send';
 
-import bsCustomFileInput from 'bs-custom-file-input'
-import Route from '../../../../Route';
+import bsCustomFileInput from "bs-custom-file-input";
+import Route from "../../../../Route";
 
-import i18n from '../../../../i18n'
+import i18n from "../../../../i18n";
 
-import gestorPOD from '../../../../persistanceManagement';
+import gestorPOD from "../../../../services/persistanceManagement";
 
 export default class RouteForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { form: { name: "", description: "", gpx: null, images: [] }};
+    this.state = { form: { name: "", description: "", gpx: null, images: [], priv: true } };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,16 +23,22 @@ export default class RouteForm extends React.Component {
   handleChange(event) {
     let fieldName = event.target.name;
     let fieldVal = event.target.value;
+
+    //In case is the switch from Material library
+    if (fieldName === "priv") { fieldVal = !event.target.checked; }
+
     this.setState({ form: { ...this.state.form, [fieldName]: fieldVal } });
   }
 
   handleChangeFiles(event) {
     let fieldName = event.target.name;
     let fieldVal;
-    if (fieldName === "gpx")
+    if (fieldName === "gpx") {
       fieldVal = event.target.files[0];
-    else
+    }
+    else {
       fieldVal = event.target.files;
+    }
 
     this.setState({ form: { ...this.state.form, [fieldName]: fieldVal } });
   }
@@ -45,8 +52,12 @@ export default class RouteForm extends React.Component {
     let gpx = this.state.form.gpx;
     let images = this.state.form.images;
     let id = name + "-" + Date.now().toString();
+    let priv = this.state.form.priv;
 
-    var route = new Route(id, name, description, gpx, images);
+    var route = new Route(id, name, description, gpx, images, priv);
+
+    //In order to avoid problems when managin files, we put _ instead of blank spaces
+    route.id.replace(/\s/g, "_");
 
     await gestorPOD.saveRoute(route);
 
@@ -61,19 +72,31 @@ export default class RouteForm extends React.Component {
 
           <Form.Group controlId="formNameRoute">
             <Form.Label>{i18n.t("form.name")}</Form.Label>
-            <Form.Control type="text" name="name" placeholder={i18n.t("form.enter_name")}
+            <Form.Control data-testid="formNameRouteControl" type="text" name="name" placeholder={i18n.t("form.enter_name")}
               defaultValue={this.state.form.name} onChange={this.handleChange} />
           </Form.Group>
 
           <Form.Group controlId="formDescriptionRoute">
             <Form.Label>{i18n.t("form.description")}</Form.Label>
-            <Form.Control type="text" name="description" placeholder={i18n.t("form.enter_description")}
+            <Form.Control type="text" name="description" data-testid="formDescriptionRouteControl" placeholder={i18n.t("form.enter_description")}
               defaultValue={this.state.form.description} onChange={this.handleChange} />
           </Form.Group>
 
+          <Form.Group controlId="formPrivacyRoute">
+            <Form.Label>{i18n.t("form.publicRoute")}</Form.Label>
+            <Switch
+              data-testid="formSwitchRouteControl"
+              checked={this.state.priv}
+              onChange={this.handleChange}
+              name="priv"
+              inputProps={{ 'aria-label': 'secondary checkbox' }}
+            />
+          </Form.Group>
+
           <Form.Group controlId="formGpxFile">
-          <Form.Label>{i18n.t("form.gpx")}</Form.Label>
+            <Form.Label>{i18n.t("form.gpx")}</Form.Label>
             <Form.File
+              data-testid="formRouteGpx"
               id="gpx-file"
               name="gpx"
               accept=".gpx"
@@ -81,10 +104,11 @@ export default class RouteForm extends React.Component {
             >
             </Form.File>
           </Form.Group>
-
+          <br />
           <Form.Group controlId="formImages">
-          <Form.Label>{i18n.t("form.images")}</Form.Label>
+            <Form.Label>{i18n.t("form.images")}</Form.Label>
             <Form.File
+              data-testid="formRouteImages"
               id="images-list"
               name="images"
               accept="image/*"
@@ -93,10 +117,10 @@ export default class RouteForm extends React.Component {
             >
             </Form.File>
           </Form.Group>
-
-          <Button variant="contained" type="submit">
-          {i18n.t("form.submit")}
-        </Button>
+          <br />
+          <Button name="submit_button" data-testid="formSendButton" color="primary" variant="contained" type="submit" startIcon={<SendIcon />}>
+            {i18n.t("form.submit")}
+          </Button>
         </Form>
         <script>
           $(document).ready(function () {

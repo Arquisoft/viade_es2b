@@ -1,6 +1,6 @@
-import React, { useState, useEffect, memo } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { AutoSaveSpinnerWrapper } from './auto-save.style';
+import React, { useState, useEffect, memo } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { AutoSaveSpinnerWrapper } from "./auto-save.style";
 
 const AutoSaveSpinner = memo(({ inProgress, result, setResult, setSavingProcess }) => {
   const [timer, setTimer] = useState(null);
@@ -12,8 +12,10 @@ const AutoSaveSpinner = memo(({ inProgress, result, setResult, setSavingProcess 
   );
   useEffect(() => {
     if (result) {
-      if (timer) clearTimeout(timer);
-      if (result.toLowerCase() === 'success') {
+      if (timer) {
+        clearTimeout(timer);
+      }
+      if (result.toLowerCase() === "success") {
         setTimer(
           setTimeout(() => {
             setResult(null);
@@ -33,8 +35,8 @@ const AutoSaveSpinner = memo(({ inProgress, result, setResult, setSavingProcess 
       )}
       {result && !inProgress && (
         <div>
-          {result.toLowerCase() === 'success' && <FontAwesomeIcon icon="check-circle" />}
-          {result.toLowerCase() === 'error' && <FontAwesomeIcon icon="exclamation-triangle" />}
+          {result.toLowerCase() === "success" && <FontAwesomeIcon icon="check-circle" />}
+          {result.toLowerCase() === "error" && <FontAwesomeIcon icon="exclamation-triangle" />}
         </div>
       )}
     </AutoSaveSpinnerWrapper>

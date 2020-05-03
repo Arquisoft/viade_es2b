@@ -1,5 +1,5 @@
-import EventEmitter from 'events';
-import { act } from 'react-testing-library';
+import EventEmitter from "events";
+import { act } from "react-testing-library";
 
 const fetchResponse = { ok: true, status: 200 };
 
@@ -16,22 +16,24 @@ class SolidAuthClient extends EventEmitter {
   logout = () => {};
 
   trackSession(callback) {
-    if (this.session !== undefined) callback(this.session);
-    this.on('session', callback);
+    if (this.session !== undefined){
+      callback(this.session);
+    }
+    this.on("session", callback);
   }
 
   mockWebId(webId) {
     this.session = webId ? { webId } : null;
     act(() => {
-      this.emit('session', this.session);
+      this.emit("session", this.session);
     });
   }
 }
 
 const instance = new SolidAuthClient();
-jest.spyOn(instance, 'fetch');
-jest.spyOn(instance, 'popupLogin');
-jest.spyOn(instance, 'logout');
-jest.spyOn(instance, 'removeListener');
+jest.spyOn(instance, "fetch");
+jest.spyOn(instance, "popupLogin");
+jest.spyOn(instance, "logout");
+jest.spyOn(instance, "removeListener");
 
 export default instance;

@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { NavBar, Notification } from '@components';
-import { useTranslation } from 'react-i18next';
-import { NavBarContainer } from './children';
-import { LanguageDropdown } from '@util-components';
-import { ldflexHelper, errorToaster} from '@utils';
-import { NavigationItems } from '@constants';
+import React, { useState, useEffect, useCallback } from "react";
+import { NavBar, Notification } from "@components";
+import { useTranslation } from "react-i18next";
+import { NavBarContainer } from "./children";
+import { LanguageDropdown } from "@util-components";
+import { ldflexHelper, errorToaster} from "@utils";
+import { NavigationItems } from "@constants";
 
 type Props = {
   webId: string
@@ -13,9 +13,9 @@ type Props = {
 const AuthNavBar = React.memo((props: Props) => {
   const [inboxes, setInbox] = useState([]);
   const { t, i18n } = useTranslation();
-  const navigation = NavigationItems.map(item => ({ ...item, label: t(item.label) }));
+  const navigation = NavigationItems.map( (item) => ({ ...item, label: t(item.label) }));
 
-  const { webId } = props;
+  const {webId} = props;
   /**
    * Looks for all of the inbox containers in the pod and sets inboxes state
    */
@@ -23,28 +23,30 @@ const AuthNavBar = React.memo((props: Props) => {
     try {
       let inboxes = [];
       /**
-       * Get user's global inbox path from pod.
+       * Get user"s global inbox path from pod.
        */
       const globalInbox = await ldflexHelper.discoverInbox(webId);
 
       if (globalInbox) {
         inboxes = [
           ...inboxes,
-          { path: globalInbox, inboxName: t('navBar.notifications.global'), shape: 'default' }
+          { path: globalInbox, inboxName: t("navBar.notifications.global"), shape: "default" }
         ];
       }
       
-      if (inboxes.length === 0)
-        errorToaster(t('noInboxUser.message'), 'Error', {
-          label: t('noInboxUser.link.label'),
-          href: t('noInboxUser.link.href')
+      if (inboxes.length === 0){
+        errorToaster(t("noInboxUser.message"), "Error", {
+          label: t("noInboxUser.link.label"),
+          href: t("noInboxUser.link.href")
         });
+      }
+      // TODO comprobar si la lie aqui 
       setInbox(inboxes);
     } catch (error) {
       /**
        * Show general errors
        */
-      errorToaster(error.message, t('navBar.notifications.fetchingError'));
+      errorToaster(error.message, t("navBar.notifications.fetchingError"));
     }
   }, [webId, inboxes]);
 
@@ -62,15 +64,15 @@ const AuthNavBar = React.memo((props: Props) => {
       toolbar={[
         {
           component: () => <LanguageDropdown {...{ t, i18n }} />,
-          id: 'language'
+          id: "language"
         },
         {
           component: () => <Notification {...{ webId, inbox: inboxes }} />,
-          id: 'notifications'
+          id: "notifications"
         },
         {
-          component: props => <NavBarContainer {...{ t, i18n, webId, history, ...props }} />,
-          id: 'profile'
+          component: (props) => <NavBarContainer {...{ t, i18n, webId, history, ...props }} />,
+          id: "profile"
         }
       ]}
     />

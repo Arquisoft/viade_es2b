@@ -40,9 +40,10 @@ The user can create a group of friends to share routes or multimedia.
 
 User will click a create group button. A list of his friends will be displayed to add them and a textbox to enter the group name.
 
+image::06_viewGroups.PNG[View of the group form]
 
 === Fifth Scenario: Sharing 
 
 The user can share routes or media with his friends.
 
-*To do*
+image::06_shareRoutesExample.PNG[Example of how to share a route]

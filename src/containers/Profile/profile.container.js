@@ -1,24 +1,15 @@
-import React, { Fragment, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-//import { FormModel } from '@inrupt/solid-react-components';
-//import { successToaster, errorToaster } from '@utils';
-import { Loader } from '@util-components';
-import {Value,List} from '@solid/react';
+import React, { Fragment, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Loader } from "@util-components";
+import {Value,Link, useLDflexValue} from "@solid/react";
 import {
   Header,
   ProfileContainer,
   ProfileWrapper,
   FormRenderContainer,
-  AutoSaveNotification,
-  WebId
-} from './profile.style';
-import { Image } from './components';
-//import { AutoSaveSpinner } from '@components';
-//import data from "@solid/query-ldflex";
-
-
-const defaultProfilePhoto = './img/icon/empty-profile.svg';
+  ImageRounded
+} from "./profile.style";
+import data from "@solid/query-ldflex";
 
 /**
  * We are using ldflex to fetch profile data from a solid pod.
@@ -32,62 +23,22 @@ type Props = { webId: String };
 const Profile = ({ webId }: Props) => {
   const { t } = useTranslation();
   const [isLoading/*, setIsLoading*/] = useState(false);
-/*
-  const onError = e => {
-    if (e.message.toString().indexOf('Validation failed') < 0) {
-      errorToaster(t('formLanguage.renderer.formNotLoaded'), t('notifications.error'), {
-        label: t('errorFormRender.link.label'),
-        href: t('errorFormRender.link.href')
-      });
-    }
-  };
-
-  const onDelete = () => {
-    successToaster(t('formLanguage.renderer.fieldDeleted'), t('notifications.success'));
-  };
-
-  const onAddNewField = () => {
-    successToaster(t('formLanguage.renderer.fieldAdded'), t('notifications.success'));
-  };
-*/
-
+  const inbox = useLDflexValue("user.inbox") || "unknown";
+  const image = data[webId].vcard_hasPhoto;
   return (
     <ProfileWrapper data-testid="profile-component">
       <ProfileContainer>
         {webId && (
-          <Fragment>
-            
+          <Fragment>    
             <Header>
-              <Image
-                {...{
-                  webId,
-                  defaultProfilePhoto
-                }}
-              />
-              
+              <ImageRounded src={image} />
             </Header>
-
-            <AutoSaveNotification className="banner-wrap--warning banner">
-              <div className="banner-wrap__content">
-                <i className="icon fa fa-exclamation-circle" />
-                {t('profile.autosaveNotification')}
-              </div>
-            </AutoSaveNotification>
-
             <FormRenderContainer>
             <h2><Value src="user.name"></Value></h2>
-              <WebId>
-                <p>Profile:<a href={webId} target="_blank" rel="noopener noreferrer">
-                  {webId}
-                </a></p>
-              </WebId>
+              <p>{t("navBar.profile")}:<Link href="user">{`${webId}`}</Link></p>
+              <p>Inbox:<Link href="user.inbox">{`${inbox}`}</Link></p>
             </FormRenderContainer>
-            <h2>Friends list</h2>
-            <List src="user.friends">
-              {(friend)=><a href={`${friend}`} target="_blank" rel="noopener noreferrer">{`${friend}`}</a>}
-            </List>
-          </Fragment>
-          
+          </Fragment> 
         )}
         {isLoading && <Loader absolute />}
       </ProfileContainer>
