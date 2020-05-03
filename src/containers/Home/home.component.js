@@ -73,10 +73,10 @@ function loadEditForm(route) {
  */
 export const HomePageContent = (props) => {
   const classes = useStyles();
-  const { t } = useTranslation(); /* se puede pasar un mensaje prefefinido a Trans o usar t */
+  const { t } = useTranslation();
   return (
     <HomeWrapper data-testid="home-wrapper">
-      <Paper style={{minWidth:"fit-content", maxHeight:"100%", overflow: "auto"}}>
+      <Paper style={{width:"30%", minWidth:"fit-content", maxHeight:"100%", overflow: "auto"}}>
         <h2 style={{paddingLeft: "14px", marginBlockEnd: "0.4em"}}>{t("home.routes")}</h2>
         <RouteList privateRoutesText={t("home.private_routes")} publicRoutesText={t("home.public_routes")} 
           sharedRoutesText={t("home.shared_routes")} setRoute={props.setRoute} changeEditForm={props.changeEditForm}> 

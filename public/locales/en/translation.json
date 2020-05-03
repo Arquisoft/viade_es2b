@@ -177,7 +177,7 @@
 	"createGroup" : "Create new group"
   },
   "groups":{
-    "title": "Grups",
+    "title": "Groups",
     "content": "Text for groups window"
   },
   "noInboxOpponent": {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import i18n from '../../../../i18n'
 import { Button, Select, MenuItem } from '@material-ui/core';
-import { useLDflexList, Value } from '@solid/react';
+import { useLDflexList, Value, useLDflexValue } from '@solid/react';
 import { ShareWrapper } from './ShareComponent.style';
 
 import { useNotification, NotificationTypes } from "@inrupt/solid-react-components";
@@ -17,6 +17,7 @@ const ShareButton = (props) => {
     });
 
     const [webID, setWebID] = useState("");
+    const userName = useLDflexValue("user.name");
 
     const { createNotification, discoverInbox } = useNotification(webID);
 
@@ -40,10 +41,12 @@ const ShareButton = (props) => {
 
             try {
                 const actor = "Viade_es2b";
+                const titleNotification = "New route!";
+                const summaryNotification = userName + " shared the route: '" + routeToShare.name + "' with you.";
                 createNotification(
                     {
-                        title: i18n.t("share.notification_title"),
-                        summary: i18n.t("share.notification_content"),
+                        title: titleNotification,
+                        summary: summaryNotification,
                         actor: actor
                     },
                     inboxUrl,

@@ -18,7 +18,7 @@ i18n
   .use(initReactI18next)
   .init({
     fallbackLng: "es",
-    debug: true,
+    debug: false,
     whitelist: ["es", "en"],
     // special options for react-i18next
     // learn more: https://react.i18next.com/components/i18next-instance
