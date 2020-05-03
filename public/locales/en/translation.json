@@ -47,7 +47,7 @@
     },
     "ivan":{
       "rol":  "BACKEND DEVELOPER",
-      "description": "edit this and write whatever you want to say about yourself"
+      "description": "I usually work on logic, functionality and tests, and try to help in everything I can. Two minds work better than one."
     },
     "diego":{
       "rol":  "BACKEND DEVELOPER",
@@ -55,7 +55,7 @@
     },
     "noe":{
       "rol":  "BACKEND DEVELOPER",
-      "description": "edit this and write whatever you want to say about yourself"
+      "description": "I like to develop the logic of the projects. I work mostly with the functionality of the application. However, I have also worked with components and graphical aspects, as well as developed tests using the Cucumber tool."
     }
   },
   "navBar": {

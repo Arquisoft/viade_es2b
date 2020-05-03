@@ -7,12 +7,9 @@ import {
   ProfileContainer,
   ProfileWrapper,
   FormRenderContainer,
-  WebId,
   ImageRounded
 } from "./profile.style";
 import data from "@solid/query-ldflex";
-
-const defaultProfilePhoto = "./img/icon/empty-profile.svg";
 
 /**
  * We are using ldflex to fetch profile data from a solid pod.

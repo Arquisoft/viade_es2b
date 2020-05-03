@@ -38,7 +38,7 @@ function loadMap(props, t) {
           <h2> {props.route !== undefined ? props.route.name : t("home.information")} </h2>
           {props.route !== undefined && !props.route.shared ? <ShareComponent route = {props.route}></ShareComponent> : <div></div>}
         </RouteHead>
-        <p>
+        <p id={props.routeDescription}>
           {props.routeDescription}
         </p>
         <Slider imgs={props.routeImages}></Slider>
@@ -82,10 +82,10 @@ export const HomePageContent = (props) => {
           sharedRoutesText={t("home.shared_routes")} setRoute={props.setRoute} changeEditForm={props.changeEditForm}> 
         </RouteList>
         <ButtonGroup style={{boxShadow: "none"}} className={classes.ButtonGroup} variant="contained" color="primary" size="small"> 
-          <Button startIcon={<AddIcon />} onClick={() => props.changeForm()}>
+          <Button name="add_route" startIcon={<AddIcon />} onClick={() => props.changeForm()}>
           {t("home.add_route")}
           </Button>
-          <Button color="secondary" startIcon={<DeleteIcon />} onClick={async () => {
+          <Button name="delete_all_routes" color="secondary" startIcon={<DeleteIcon />} onClick={async () => {
             await manejadorPODs.deleteRoutes(false, true);
             await manejadorPODs.deleteRoutes(true);
             window.location.reload();}}>

@@ -20,7 +20,7 @@ const FriendItem = ({friendID, friendName, imageSrc,friendKnows, pending}) => {
                 primary={t("friends.loading")}
             />
         </ListItem> :
-        <ListItem button component="a" href={friendID}>
+        <ListItem id="name_friend" button component="a" href={friendID}>
             <ListItemAvatar>
                 <StylesProvider injectFirst>
                     <Avatar alt={friendName} src={imageSrc}/>
