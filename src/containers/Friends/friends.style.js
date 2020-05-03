@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Panel from "/components/Utils/Panel"
+import Panel from "/components/Utils/Panel";
 
 /**
  * A styled-component for the Friends Page layout

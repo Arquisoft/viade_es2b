@@ -7,11 +7,9 @@ body,
   padding: 0;
 }
 
-
 body {
   color: #000;
   font-size: 62.5%;
-  
 }
 
 p,
@@ -25,9 +23,7 @@ a {
   text-decoration: none;
 }
 
-a svg-inline--fa {
-  margin-right: 5px;
-}
+
 
 ul {
   padding: 0;
@@ -40,7 +36,7 @@ ul li {
   margin: 0;
 }
 
-input[type='text'] {
+input[type="text"] {
   box-sizing: border-box;
   border: 1px solid hsl(0, 0%, 80%);
   border-radius: 4px;
@@ -48,27 +44,28 @@ input[type='text'] {
   padding: 7px 10px;
 }
 
-/**
-Temporary fix to overwrite and display the default style of the checkbox
-to prevent issues with the custom component and react/fontawesome missing icons
- */
+/* Temporary fix to overwrite and display the default style of the checkbox
+to prevent issues with the custom component and react/fontawesome missing icons */
+
 input[type="checkbox"] {
   appearance: checkbox;
   -webkit-appearance: checkbox;
   -moz-appearance: checkbox;
-  margin: 0 0 0 16px
+  margin: 0 0 0 16px;
 }
+
 input[type="checkbox"]::before {
-  content: none ;
+  content: none;
 }
+
 /**
 Ends temporary react/fontawesome fix
- */
+*/
 
 .link,
 .link-button {
   color: #074166;
-  font-family: 'Roboto', cursive;
+  font-family: "Roboto", cursive;
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.75px;
@@ -89,10 +86,6 @@ Ends temporary react/fontawesome fix
   font-family: sans-serif, "Roboto", "Segoe UI";
 }
 
-.form-group {
-  text-align: left;
-  margin: 12px 0;
-}
 
 .form-group:first-child {
   margin-top: 0;
@@ -100,7 +93,7 @@ Ends temporary react/fontawesome fix
 
 .form-group > label {
   color: #074166;
-  font-family: 'Roboto';
+  font-family: "Roboto";
   font-size: 11px;
   font-weight: bold;
   letter-spacing: 0.75px;
@@ -127,7 +120,8 @@ form-group .select-role {
   text-align: left;
 }
 
-.solid-provider-select .option {
+.solid-provider-select 
+.option {
   padding-left: 10px;
 }
 
@@ -136,15 +130,16 @@ form-group .select-role {
   height: 60px;
 }
 
-.nav.nav__toolbar > ul > li > a, .nav.nav__toolbar  > ul > li > button {
-  color: #074166; 
+.nav.nav__toolbar > ul > li > a,
+.nav.nav__toolbar > ul > li > button {
+  color: #074166;
 }
 
-.nav.nav > ul > li > a:hover, 
-.nav.nav > ul > li > a.active, 
+.nav.nav > ul > li > a:hover,
+.nav.nav > ul > li > a.active,
 .nav.nav > ul > li > button:hover,
 .nav.nav > ul > li > button.active {
-  color: #074166; 
+  color: #074166;
   background: rgba(7, 65, 102, 0.3);
 }
 
@@ -153,17 +148,20 @@ form-group .select-role {
   line-height: 60px;
   cursor: pointer;
   transition: all 0.5s ease-in-out;
-  border-left: 1px solid rgba(8, 53, 117, 0.1); 
+  border-left: 1px solid rgba(8, 53, 117, 0.1);
 }
 
 /*boton notificaciones*/
-  .fUwLnT:active,.fUwLnT:focus,.fUwLnT:hover,.fUwLnT.active{ 
-    background:rgba(7, 65, 102, 0.3); 
-    outline:none;
-  }
+.fUwLnT:active,
+.fUwLnT:focus,
+.fUwLnT:hover,
+.fUwLnT.active{ 
+  background:rgba(7, 65, 102, 0.3);
+  outline:none;
+}
 /* menu dropdown sobre el icono perfil*/
-  .jOLVKi button:hover{
-    background:rgba(7, 65, 102, 0.3); 
-    transition:all 0.5s ease-in-out;
-    color:#083575;
-  } 
+.jOLVKi button:hover{
+  background:rgba(7, 65, 102, 0.3);
+  transition:all 0.5s ease-in-out;
+  color:#083575;
+}

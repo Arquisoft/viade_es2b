@@ -26,10 +26,10 @@ export const ModalWrapper = styled.div`
         font-weight: bold;
         border: none;
     }
-`
+`;
 
 export const Image = styled.img`
     display: table-row;
     max-width: 100%;
     max-height: 100%;
-`
+`;

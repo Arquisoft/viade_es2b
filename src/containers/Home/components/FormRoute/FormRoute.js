@@ -24,7 +24,7 @@ export default class RouteForm extends React.Component {
     let fieldVal = event.target.value;
 
     //In case is the switch from Material library
-    if (fieldName === "priv") {fieldVal = !event.target.checked}
+    if (fieldName === "priv") {fieldVal = !event.target.checked;}
 
     this.setState({ form: { ...this.state.form, [fieldName]: fieldVal } });
   }

@@ -1,6 +1,5 @@
 import React, { Suspense } from "react";
-import { Button } from "@material-ui/core";
-//import { Uploader } from "@inrupt/solid-react-components";
+import { Button, ButtonGroup, Paper } from "@material-ui/core";
 import { useTranslation } from "react-i18next";
 import manejadorPODs from "../../services/persistanceManagement";
 import RouteList from "./components/RouteList";
@@ -9,16 +8,17 @@ import FormEditRoute from "./components/FormEditRoute/FormEditRoute";
 import {
   HomeWrapper,
   HomeCard,
-  HomeSidenav,
   HomeBody,
   RouteMap,
   RouteInfo,
   RouteHead
-} from './home.style';
-import Slider from './components/Slider'
-import ShareComponent from './components/ShareComponent/ShareComponent'
+} from "./home.style";
+import Slider from "./components/Slider";
+import ShareComponent from "./components/ShareComponent/ShareComponent";
 
-const Map = React.lazy(() => import('../../Map'));
+const Map = React.lazy(() => import("../../Map"));
+
+
 
 
 
@@ -74,24 +74,23 @@ export const HomePageContent = (props) => {
   const { t } = useTranslation(); /* se puede pasar un mensaje prefefinido a Trans o usar t */
   return (
     <HomeWrapper data-testid="home-wrapper">
-      <HomeSidenav className="home-sidebar">
+      <Paper style={{maxHeight:"100%", overflow: "auto"}}>
         <h2 style={{paddingLeft: "14px"}}>{t("home.routes")}</h2>
-        <RouteList privateRoutesText={t("home.private_routes")} publicRoutesText={t("home.public_routes")} sharedRoutesText={t("home.shared_routes")}
-         setRoute={props.setRoute} changeEditForm={props.changeEditForm}></RouteList>
-        <div id="Manage buttons">
-          <Button variant="contained" color="primary" onClick={() => props.changeForm()}>
+        <RouteList privateRoutesText={t("home.private_routes")} publicRoutesText={t("home.public_routes")} 
+          sharedRoutesText={t("home.shared_routes")} setRoute={props.setRoute} changeEditForm={props.changeEditForm}> 
+        </RouteList>
+        <ButtonGroup variant="contained" color="primary" size="small"> 
+          <Button onClick={() => props.changeForm()}>
           {t("home.add_route")}
           </Button>
-          <span>   </span>
-          <Button variant="contained" color="secondary" onClick={async () => {
+          <Button onClick={async () => {
             await manejadorPODs.deleteRoutes(false, true);
             await manejadorPODs.deleteRoutes(true);
-            window.location.reload();
-          }}>
+            window.location.reload();}}>
             {t("home.delete_route")}
-        </Button>
-        </div>
-      </HomeSidenav>
+          </Button>
+        </ButtonGroup>
+      </Paper>
 
       <HomeBody className="home-body">
          {(props.needEditForm ? loadEditForm(props.route) : props.needForm ? loadForm() : loadMap(props, t))}

@@ -8,32 +8,11 @@ export const HomeWrapper = styled.section`
   display: flex;
 `;
 
-export const HomeSidenav = styled.div`
-  background-color: #fff;
-  min-width:20%;
-  max-width:20%;
-  padding: 2%;
-
-  justify-content: space-between;
-  flex-direction: column;
-  display: flex;
-
-  a {
-    padding: 6px 8px 6px 16px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-  }
-  p {
-    color: #000;
-  }
-`;
-
 export const HomeBody = styled.div`
   display: inline-block;
   box-sizing: border-box;
   width:100%;
+  height:100%;
 `;
 
 export const HomeCard = styled.div`

@@ -31,7 +31,7 @@ type Props = { webId: String };
 const Profile = ({ webId }: Props) => {
   const { t } = useTranslation();
   const [isLoading/*, setIsLoading*/] = useState(false);
-  const email = useLDflexValue('user.inbox') || 'unknown';
+  const email = useLDflexValue("user.inbox") || "unknown";
  
 /*
   const onError = e => {
@@ -69,7 +69,7 @@ const Profile = ({ webId }: Props) => {
             <FormRenderContainer>
             <h2><Value src="user.name"></Value></h2>
               <WebId>
-                <p>{t('navBar.profile')}:<Link href="user">{`${webId}`}</Link></p>
+                <p>{t("navBar.profile")}:<Link href="user">{`${webId}`}</Link></p>
                 <p>Inbox:<Link href="user.inbox">{`${email}`}</Link></p>
               </WebId>
             </FormRenderContainer>
