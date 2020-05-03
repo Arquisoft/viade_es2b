@@ -2,9 +2,10 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 // import { Link } from "react-router-dom";
-import { FriendsWrapper, FriendsCard} from "./friends.style";
-import { Grid} from "@material-ui/core";
-import {List} from "@solid/react";
+import { FriendsWrapper, FriendsCard } from "./friends.style";
+import { Grid, ButtonGroup } from "@material-ui/core";
+import { List } from "@solid/react";
+import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 import ModalGroupForm from "./components/ModalGroupForm/ModalGroupForm.component";
 import gestorPOD from "../../services/persistanceManagement";
@@ -28,6 +29,10 @@ const Friends = (props) => {
     setModal(false);
   };
 
+  const deleteGroups = async (e) => {
+    await gestorPOD.deleteGroups().then(() => window.location.reload(false));
+  }
+
   useEffect(() => {
     async function getGroups() {
       const groups = await gestorPOD.seeGroups();
@@ -36,6 +41,16 @@ const Friends = (props) => {
     getGroups();
   }, []);
 
+  // Styles for Material UI
+  const useStyles = makeStyles(() => ({
+    ButtonGroup: {
+      display: "flex",
+      justifyContent: "center"
+    },
+  }));
+
+  const classes = useStyles();
+
   return (
     <FriendsWrapper>
       <Grid container spacing={6}>
@@ -43,30 +58,33 @@ const Friends = (props) => {
         <Grid item xs={12} md={6}>
           <h3 name="friends">{t("friends.title")}</h3>
           <FriendsCard className="friends-list">
-            <List src ="user.friends">
-            { (friend)=> 
-              <FriendItem className="friend-item" friendID={friend.value}/>
-            }
+            <List src="user.friends">
+              {(friend) =>
+                <FriendItem className="friend-item" friendID={friend.value} />
+              }
             </List>
           </FriendsCard>
         </Grid>
         {/*Groups section*/}
         <Grid item xs={12} md={6}>
-        <h3 name="groups">{t("groups.title")}</h3>
-        <FriendsCard className="groups-list">
-          {Array.from(groups).map((group) => 
-            <div>
-              <h4 id={group.name} >{group.name}</h4>
-              <List src ="user.friends">
-                {(friend)=> 
-                  <GroupFriendItem friendID={friend.value} group={group}/>
-                }
-              </List>
-            </div>
-          )}
-          <Button name="group_button" onClick={ (e) => {showModalForm();}} variant="contained" color="primary">{t("groups.createGroup")}</Button>
-        </FriendsCard>
-        <ModalGroupForm show={modal} closingFunction={close}></ModalGroupForm>
+          <h3 name="groups">{t("groups.title")}</h3>
+          <FriendsCard className="groups-list">
+            {Array.from(groups).map((group) =>
+              <div>
+                <h4 id={group.name} >{group.name}</h4>
+                <List src="user.friends">
+                  {(friend) =>
+                    <GroupFriendItem friendID={friend.value} group={group} />
+                  }
+                </List>
+              </div>
+            )}
+            <ButtonGroup style={{ boxShadow: "none" }} className={classes.ButtonGroup}>
+              <Button name="group_button" onClick={(e) => { showModalForm(); }} variant="contained" color="primary">{t("groups.createGroup")}</Button>
+              <Button name="group_button_delete" onClick={deleteGroups} variant="contained" color="secondary">{t("groups.deleteGroups")}</Button>
+            </ButtonGroup>
+          </FriendsCard>
+          <ModalGroupForm show={modal} closingFunction={close}></ModalGroupForm>
         </Grid>
       </Grid>
     </FriendsWrapper>

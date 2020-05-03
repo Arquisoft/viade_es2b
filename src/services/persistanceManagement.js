@@ -362,6 +362,21 @@ export default {
         return groups;
     },
 
+    async deleteGroups() {
+        fc = new FC(auth);
+
+        let tempUrlUser = ((await auth.currentSession()).webId).toString();
+        let err= "";
+
+        var urlUser = tempUrlUser.slice(0, -16) + "/groups/";
+        await fc.deleteFolder(urlUser).catch((error) => err = error);
+
+        if (err !== "")
+            return 1;
+
+        return 0;
+    },
+
     async getAppPath() {
         let tempUrlUser = ((await auth.currentSession()).webId).toString();
         return tempUrlUser.slice(0, -16) + "/viade_es2b";

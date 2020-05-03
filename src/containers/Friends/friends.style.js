@@ -25,6 +25,6 @@ export const FriendsCard = styled(Panel)`
   margin: 5%;
 
   button {
-    margin: 5%
+    margin-top: 5%
   }
 `;

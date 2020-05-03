@@ -146,7 +146,8 @@
   },
   "groups":{
     "title": "Grupos",
-    "createGroup" : "Crear nuevo grupo"
+    "createGroup" : "Crear nuevo grupo",
+    "deleteGroups" : "Borrar los grupos"
   },
   "noInboxUser": {
     "message": "No tienes un inbox, por favor crea uno en tu Pod.",
