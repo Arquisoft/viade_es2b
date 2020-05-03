@@ -5,6 +5,7 @@ import { NavBar, Footer } from "@components";
 import { withWebId } from "@inrupt/solid-react-components";
 import {LanguageDropdown } from "@util-components";
 import styled from "styled-components";
+import { HashLink as Link } from 'react-router-hash-link';
 
 const FooterContainer = styled.div`
   position: relative;
@@ -41,12 +42,9 @@ const NotLoggedInLayout = (props) => {
                 },
                 {
                   component: () => 
-                  /*<Link to="/about" className="about-us">
+                  <Link to="#about" className="about-us">
                       {t("navBar.about")}
-                  </Link>*/
-                  <a href="#about"> 
-                    {t("navBar.about")}
-                </a> 
+                  </Link>
                 },
                 {
                   component: () => <LanguageDropdown {...{ t, ...props }} />,
