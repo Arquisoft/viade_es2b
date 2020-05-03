@@ -59,7 +59,7 @@ const LoginComponent = () => {
         </CenterContainer>
       </LoginWrapper>
       {/*HERE STARTS THE ABOUT SUBCATEGORY OF THE LANDING PAGE */}
-      <AboutWrapper id="about">
+      <AboutWrapper id="about" data-testid="about-section">
         <AboutPanel>
           <h2> {t("navBar.about")}</h2>
           <Trans i18nKey="about.team">

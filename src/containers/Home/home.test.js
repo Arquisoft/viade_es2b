@@ -9,10 +9,7 @@ import { HomeComponent } from "./home.container";
 library.add(fas);
 
 const props = {
-  webId: "https://exmaple.com/#me",
-  image: "test.png",
-  updatePhoto: "updated.png",
-  name: "example"
+  webId: "https://exmaple.com/#me"
 };
 
 describe.only("Home", () => {

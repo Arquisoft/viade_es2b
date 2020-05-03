@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {Image} from "@solid/react";
 
 export const ProfileWrapper = styled.section`
   display: flex;
@@ -23,60 +24,17 @@ export const Header = styled.div`
   position: relative;
   align-items: center;
   justify-content: center;
-  background-image: url("./img/pattern-geo.png"),
-    linear-gradient(135deg, #7c4dff 0%, #18a9e6 50%, #01c9ea 100%);
-  background-repeat: repeat, no-repeat;
+  background-color: rgba(7, 65, 102, 0.7);
   padding: 30px 20px;
-
-  .edit-button {
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid white;
-    color: white;
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    font-size: 1rem;
-  }
 `;
 
-export const WebId = styled.div`
-  padding: 20px 40px 0px 40px;
-  position: relative;
-  &:after {
-    background-color: #d8d8d8;
-    display: block;
-    content: "";
-    height: 1px;
-    width: 100%;
-    margin: 25px 0 0 0;
-  }
-  a {
-    display: inline-block;
-    word-break: break-all;
-    margin-left: 10px;
-  }
-`;
-
-export const AutoSaveNotification = styled.section`
-  margin-bottom: 0px;
+export const ImageRounded = styled(Image)`
+  border-radius: 50%;
 `;
 
 export const FormRenderContainer = styled.div`
   border: 1px solid #dae0e6;
   min-height: 40px;
-  padding: 5px;
+  padding: 20px 40px 0px 40px;
 
-  .inrupt-form-group {
-    border: 1px solid #c0c0c0;
-    background-color: #f9f9f9;
-    margin: 15px 0;
-  }
-
-  .input-wrap {
-    margin: 0;
-  }
-
-  input {
-    margin-left: 0;
-  }
 `;

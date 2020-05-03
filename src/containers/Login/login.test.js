@@ -27,4 +27,8 @@ describe("Login", () => {
     const providerLogin = document.querySelector(".solid-provider-login-component");
     expect(providerLogin).toBeTruthy();
   });
+  it("renders about section", () =>{
+    expect(getByTestId("about-section")).toBeTruthy();
+  });
+  
 });
