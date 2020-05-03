@@ -115,7 +115,8 @@
     "notification_title": "New route!",
     "notification_content": "Someone shared a route with you",
     "notification_sended": "Route sended succesfully",
-    "toast_error": "There were an error trying to share the route with: "
+    "toast_error": "There were an error trying to share the route with: ",
+    "placeholder": "Select a friend or a group"
   },
   "form": {
     "name": "Route name",

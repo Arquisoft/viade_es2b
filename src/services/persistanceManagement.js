@@ -362,14 +362,14 @@ async function extractRoutesFromFile(folder, urlUser) {
         arrayRoutesFolders.push(routeFolder);
     }
     for (var j = 0; j < arrayRoutesFolders.length; j++) {
-        let gpx = await fc.readFile(urlUser + arrayRoutesFolders[j].name + "/" + arrayRoutesFolders[j].name + ".gpx");
-        let basicDataJson = await fc.readFile(urlUser + arrayRoutesFolders[j].name + "/" + arrayRoutesFolders[j].name + ".json");
+        let gpx = await fc.readFile(urlUser + arrayRoutesFolders[j].name + "/" + arrayRoutesFolders[j].name + ".gpx").catch(err => console.log(err));
+        let basicDataJson = await fc.readFile(urlUser + arrayRoutesFolders[j].name + "/" + arrayRoutesFolders[j].name + ".json").catch(err => console.log(err));
         let basicData = JSON.parse(basicDataJson);
-        let filesInFolder = (await fc.readFolder(arrayRoutesFolders[j].url)).files;
+        let filesInFolder = (await fc.readFolder(arrayRoutesFolders[j].url).catch(err => console.log(err))).files;
         var images = [];
         if (filesInFolder.length > 2) {
             for (var k = 0; k < filesInFolder.length - 2; k++) {
-                let image = await fc.readFile(urlUser + arrayRoutesFolders[j].name + "/" + arrayRoutesFolders[j].name + "_" + k);
+                let image = await fc.readFile(urlUser + arrayRoutesFolders[j].name + "/" + arrayRoutesFolders[j].name + "_" + k).catch(err => console.log(err));
                 images.push(image);
             }
         }

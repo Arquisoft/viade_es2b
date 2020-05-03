@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import i18n from "../../../../i18n";
-import { Button, Select, MenuItem } from "@material-ui/core";
-import { useLDflexList, Value } from "@solid/react";
-import { ShareWrapper } from "./ShareComponent.style";
+import React, { useState, useEffect } from 'react';
+import i18n from '../../../../i18n'
+import { Button, Select, MenuItem } from '@material-ui/core';
+import { useLDflexList, Value } from '@solid/react';
+import { ShareWrapper } from './ShareComponent.style';
 
 import { useNotification, NotificationTypes } from "@inrupt/solid-react-components";
 
@@ -14,7 +14,7 @@ const ShareButton = (props) => {
     toast.configure({
         autoClose: 500,
         draggable: true,
-      });
+    });
 
     const [webID, setWebID] = useState("");
 
@@ -58,18 +58,22 @@ const ShareButton = (props) => {
 
     }
 
-    return <Button onClick={handleClickButtonShare} variant="contained" color="primary">{i18n.t("home.share_route")}</Button>
-};
+    return <Button data-testid="buttonShare" onClick={handleClickButtonShare} variant="contained" color="primary">{i18n.t('home.share_route')}</Button>
 
 function ListFriendsGroups(props) {
 
-    const [selectValue, setSelectValue] = useState("[]");
+    const [selectValue, setSelectValue] = useState(i18n.t("share.placeholder"));
     const [groups, setGroups] = useState([]);
 
-    function getFriends() {
+    useEffect( 
+        () => {
+            const asyncCall = () => gestorPOD.seeGroups().then(groups => setGroups(groups));
+            asyncCall();
+        }, [groups]
+    );
 
-        const friends = useLDflexList("user.friends");
-        gestorPOD.seeGroups().then(groups => setGroups(groups));
+    function getFriends() {
+        const friends = useLDflexList('user.friends');
         return friends;
     };
 
@@ -87,7 +91,10 @@ function ListFriendsGroups(props) {
     };
 
     return (
-        <Select style={listFriendsStyle} renderValue={() => selectValue} onChange={handleChange}>
+        <Select displayEmpty={true} style={listFriendsStyle} renderValue={() => selectValue} onChange={handleChange}>
+            <MenuItem value="" disabled>
+                {i18n.t("share.placeholder")}
+            </MenuItem>
             {getFriends().map((friend) =>
                 <MenuItem key={friend} value={`${friend}`} >
                     <Value src={`[${friend}].name`}>{`${friend}`}</Value>
@@ -136,7 +143,7 @@ export default class ShareComponent extends React.Component {
     render() {
         return (
             this.props.route === undefined ? <ShareWrapper id="share"></ShareWrapper> :
-                <ShareWrapper id="share">
+                <ShareWrapper data-testid="shareWrapper" id="share">
                     <div>
 
                         <p>{i18n.t("home.share_text")}</p>
