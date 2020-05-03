@@ -105,8 +105,8 @@ defineFeature(feature, testAddRoute => {
 
         then('John can click and view his route on the feed tab, on public routes', async() => {
 			//Click the route name on the feed
-            await page.waitForSelector('button[name="Test Route2"]');
-			await page.click('button[name="Test Route2"]');
+            await page.waitForSelector('div[name="Test Route2"]');
+			await page.click('div[name="Test Route2"]');
 			
 			//Wait for it 3 seconds
 			await wait(6000);

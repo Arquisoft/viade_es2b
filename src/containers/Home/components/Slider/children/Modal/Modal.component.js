@@ -7,8 +7,8 @@ export default class Modal extends React.Component {
             return null;
         }
       return (
-            <ModalContainer onClick={this.props.onClick}>
-                <ModalWrapper>
+            <ModalContainer className="modal-container" onClick={this.props.onClick}>
+                <ModalWrapper className="modal-wrapper">
                     <button id="close" onClick={this.props.onClick}>x</button>
                     <Image src={this.props.image} alt="imagen" onClick={this.props.onClick}></Image>
                 </ModalWrapper>

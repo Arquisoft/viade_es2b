@@ -1,7 +1,9 @@
 import React, { Suspense } from "react";
-import { Button } from "@material-ui/core";
-//import { Uploader } from "@inrupt/solid-react-components";
+import { Button, ButtonGroup, Paper } from "@material-ui/core";
+import DeleteIcon from '@material-ui/icons/Delete';
+import AddIcon from '@material-ui/icons/Add';
 import { useTranslation } from "react-i18next";
+import { makeStyles } from '@material-ui/core/styles';
 import manejadorPODs from "../../services/persistanceManagement";
 import RouteList from "./components/RouteList";
 import FormRoute from "./components/FormRoute/FormRoute";
@@ -9,16 +11,17 @@ import FormEditRoute from "./components/FormEditRoute/FormEditRoute";
 import {
   HomeWrapper,
   HomeCard,
-  HomeSidenav,
   HomeBody,
   RouteMap,
   RouteInfo,
   RouteHead
-} from './home.style';
-import Slider from './components/Slider'
-import ShareComponent from './components/ShareComponent/ShareComponent'
+} from "./home.style";
+import Slider from "./components/Slider";
+import ShareComponent from "./components/ShareComponent/ShareComponent";
 
-const Map = React.lazy(() => import('../../Map'));
+const Map = React.lazy(() => import("../../Map"));
+
+
 
 
 
@@ -68,30 +71,28 @@ function loadEditForm(route) {
  * Image component will get theimage context and resolve the value to render.
  * @param props 
  */
-
-
 export const HomePageContent = (props) => {
-  const { t } = useTranslation(); /* se puede pasar un mensaje prefefinido a Trans o usar t */
+  const classes = useStyles();
+  const { t } = useTranslation();
   return (
     <HomeWrapper data-testid="home-wrapper">
-      <HomeSidenav className="home-sidebar">
-        <h2>{t("home.routes")}</h2>
-        <RouteList privateRoutesText={t("home.private_routes")} publicRoutesText={t("home.public_routes")} sharedRoutesText={t("home.shared_routes")}
-         setRoute={props.setRoute} changeEditForm={props.changeEditForm}></RouteList>
-        <div id="Manage buttons">
-          <Button name="add_route" variant="contained" color="primary" onClick={() => props.changeForm()}>
+      <Paper style={{width:"30%", minWidth:"fit-content", maxHeight:"100%", overflow: "auto"}}>
+        <h2 style={{paddingLeft: "14px", marginBlockEnd: "0.4em"}}>{t("home.routes")}</h2>
+        <RouteList privateRoutesText={t("home.private_routes")} publicRoutesText={t("home.public_routes")} 
+          sharedRoutesText={t("home.shared_routes")} setRoute={props.setRoute} changeEditForm={props.changeEditForm}> 
+        </RouteList>
+        <ButtonGroup style={{boxShadow: "none"}} className={classes.ButtonGroup} variant="contained" color="primary" size="small"> 
+          <Button name="add_route" startIcon={<AddIcon />} onClick={() => props.changeForm()}>
           {t("home.add_route")}
           </Button>
-          <span>   </span>
-          <Button name="delete_all_routes" variant="contained" color="secondary" onClick={async () => {
+          <Button name="delete_all_routes" color="secondary" startIcon={<DeleteIcon />} onClick={async () => {
             await manejadorPODs.deleteRoutes(false, true);
             await manejadorPODs.deleteRoutes(true);
-            window.location.reload();
-          }}>
+            window.location.reload();}}>
             {t("home.delete_route")}
-        </Button>
-        </div>
-      </HomeSidenav>
+          </Button>
+        </ButtonGroup>
+      </Paper>
 
       <HomeBody className="home-body">
          {(props.needEditForm ? loadEditForm(props.route) : props.needForm ? loadForm() : loadMap(props, t))}
@@ -99,3 +100,11 @@ export const HomePageContent = (props) => {
     </HomeWrapper>
   );
 };
+
+// Styles for Material UI
+const useStyles = makeStyles(() => ({
+  ButtonGroup: {
+    display: 'flex',
+    justifyContent: 'center'
+  },
+}));

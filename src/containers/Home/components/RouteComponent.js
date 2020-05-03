@@ -4,7 +4,7 @@ import {
     RouteMap,
     RouteInfo
   } from "../home.style";
-import gestorPOD from "../../../persistanceManagement";
+import gestorPOD from "../../../services/persistanceManagement";
 import { useTranslation } from "react-i18next";
 
 const Map = React.lazy(() => import("../../../Map"));

@@ -61,7 +61,7 @@
     },
     "diego":{
       "rol":  "DESARROLLADOR BACKEND",
-      "description": "edita esto y escribe algo sobre ti"
+      "description": "Puedo manejar el diseño y la lógica de un proyecto. Por tanto, me encargo de algunos componentes y también de hacer algunos tests."
     },
     "noe":{
       "rol":  "DESARROLLADOR BACKEND",
@@ -120,7 +120,7 @@
     "placeholder": "Selecciona un amigo o grupo"
   },
   "form": {
-     "name": "Nombre de la ruta",
+    "name": "Nombre de la ruta",
     "name_edit": "Nuevo nombre de la ruta",
     "enter_name": "Introduce el nombre de la ruta",
     "enter_name_edit": "Introduce el nuevo nombre de la ruta",
@@ -137,7 +137,7 @@
     "publicRoute": "Ruta pública",
 	"groupName": "Nombre del grupo",
     "enterGroupName": "Introduce el nombre del grupo",
-	"friendsSelect": "Elige los amigos que quieres añadir al grupo"
+	  "friendsSelect": "Elige los amigos que quieres añadir al grupo"
   },
   "profile": {
     "name": "Nombre: ",
@@ -175,7 +175,7 @@
     "content": "Texto de prueba para la ventana de amigos",
     "loading": "Cargando los datos...",
     "pod": "Pod del usuario",
-	"createGroup" : "Crear nuevo grupo"
+	  "createGroup" : "Crear nuevo grupo"
   },
   "groups":{
     "title": "Grupos",
@@ -238,13 +238,5 @@
       "fieldDeleted": "Campo de formulario eliminado correctamente",
       "fieldAdded": "Campo de formulario agregado con éxito"
     }
-  },
-  "editor": {
-    "explanation": "Aqui tiene un simple editor de textos con que puede crear un fichero de texto plano y guardarlo en un Pod. Para mostrarlo claramente en este demo, hay que proveer una URL que directamente identifica el fichero en el Pod. El Pod puede ser el del mismo usuario conectado, o de otra persona. Para poder escribir, y leer, al Pod de otra persona, el proprietario tendrá que dar permiso de escribir, usando el botón de 'Dar Acceso' abajo.",
-    "url": "URL",
-    "friend": "Webid de collaborador",
-    "load": "Cargar",
-    "save": "Guardar",
-    "grantAccess": "Dar Acceso"
   }
 }

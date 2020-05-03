@@ -70,7 +70,7 @@ export default class RouteForm extends React.Component {
               checked={this.state.form.priv}
               onChange={this.handleChange}
               name="priv"
-              inputProps={{ 'aria-label': 'secondary checkbox' }}
+              inputProps={{ "aria-label": "secondary checkbox" }}
             />
           </Form.Group>
 

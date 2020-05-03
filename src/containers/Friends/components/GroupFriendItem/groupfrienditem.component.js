@@ -1,6 +1,6 @@
 import React from "react";
-import {Name} from '@solid/react';
-import {Avatar, ListItemText,ListItem, ListItemAvatar} from '@material-ui/core';
+import {Name} from "@solid/react/";
+import {Avatar, ListItemText,ListItem, ListItemAvatar} from "@material-ui/core";
 import { StylesProvider } from "@material-ui/core/styles";
 
 const GroupFriendItem = ({friendID, webIDString, group, friendName, imageSrc}) => {
@@ -16,5 +16,5 @@ const GroupFriendItem = ({friendID, webIDString, group, friendName, imageSrc}) =
             <ListItemText primary={<Name src={friendID}/>}/>
         </ListItem>
     );
-}
+};
 export default GroupFriendItem; 

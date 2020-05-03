@@ -18,7 +18,7 @@ export default {
     },
 
     async setUpInboxFolder() {
-        //We create the app folder if it dowsn't exist, if it exists we return.
+        //We create the app folder if it dowsn"t exist, if it exists we return.
         fc = new FC(auth);
 
         let webIdUser = ((await auth.currentSession()).webId).toString();
@@ -36,7 +36,7 @@ export default {
      * the write and read on it.
      */
     async setUpSharedFolder() {
-        //We create the shared folder if it dowsn't exist, if it exists we return.
+        //We create the shared folder if it dowsn"t exist, if it exists we return.
         fc = new FC(auth);
 
         let webIdUser = ((await auth.currentSession()).webId).toString();
@@ -97,6 +97,7 @@ export default {
 
         for (var i = 0; i < route.images.length; i++) {
             var image = route.images[i];
+
             await fc.createFile(urlUser + "/" + idNoSpaces + "_" + i, image, image.type, { withAcl: false });
         }
 
@@ -133,7 +134,7 @@ export default {
 
     /**
      * Method that returns the route saved in the user"s pod, if exist. Null otherwise.
-     * This method only works for owned routes, the shared ones can't be search through this method.
+     * This method only works for owned routes, the shared ones can"t be search through this method.
      * @param {ID of the route to be showed.} idRoute 
      * @param {Privacy of the route to be showed. By default is private.} priv 
      */
@@ -142,6 +143,7 @@ export default {
 
         let tempUrlUser = ((await auth.currentSession()).webId).toString();
         var urlUser = "";
+
         var route;
         //Check if it is in shared folder
         urlUser = tempUrlUser.slice(0, -16) + "/shared/routes/" + idRoute + "/";
@@ -150,9 +152,9 @@ export default {
         }
         else {
             // If it is not in shared folder, we check the privacy of the local route
-            if (priv) { urlUser = tempUrlUser.slice(0, -16) + "/private/routes/" + idRoute + "/" }
-            else { urlUser = tempUrlUser.slice(0, -16) + "/public/routes/" + idRoute + "/" }
-            route = await fc.readFile(urlUser + idRoute + ".json").catch(err => "The was a problem searching the route.");
+            if (priv) { urlUser = tempUrlUser.slice(0, -16) + "/private/routes/" + idRoute + "/"; }
+            else { urlUser = tempUrlUser.slice(0, -16) + "/public/routes/" + idRoute + "/"; }
+            route = await fc.readFile(urlUser + idRoute + ".json").catch( (err) => "The was a problem searching the route.");
         }
 
         return JSON.parse(route);
@@ -166,7 +168,7 @@ export default {
 
         let tempUrlUser = ((await auth.currentSession()).webId).toString();
 
-        var urlUser = tempUrlUser.slice(0, -16) + "/shared/routes/"
+        var urlUser = tempUrlUser.slice(0, -16) + "/shared/routes/";
 
         var err = "";
         let folder = await fc.readFolder(urlUser).catch((error) => err = error);
@@ -313,7 +315,8 @@ export default {
     async saveGroup(group) {
         fc = new FC(auth);
 
-        var data = { id: group.id, name: group.name, members: group.members }
+        var data = {id: group.id, name: group.name, members: group.members};
+
         var groupJson = JSON.stringify(data);
         let idNoSpaces = group.id.replace(/\s/g, "_");
 
@@ -359,14 +362,14 @@ async function extractRoutesFromFile(folder, urlUser) {
         arrayRoutesFolders.push(routeFolder);
     }
     for (var j = 0; j < arrayRoutesFolders.length; j++) {
-        let gpx = await fc.readFile(urlUser + arrayRoutesFolders[j].name + "/" + arrayRoutesFolders[j].name + ".gpx");
-        let basicDataJson = await fc.readFile(urlUser + arrayRoutesFolders[j].name + "/" + arrayRoutesFolders[j].name + ".json");
+        let gpx = await fc.readFile(urlUser + arrayRoutesFolders[j].name + "/" + arrayRoutesFolders[j].name + ".gpx").catch(err => console.log(err));
+        let basicDataJson = await fc.readFile(urlUser + arrayRoutesFolders[j].name + "/" + arrayRoutesFolders[j].name + ".json").catch(err => console.log(err));
         let basicData = JSON.parse(basicDataJson);
-        let filesInFolder = (await fc.readFolder(arrayRoutesFolders[j].url)).files;
+        let filesInFolder = (await fc.readFolder(arrayRoutesFolders[j].url).catch(err => console.log(err))).files;
         var images = [];
         if (filesInFolder.length > 2) {
             for (var k = 0; k < filesInFolder.length - 2; k++) {
-                let image = await fc.readFile(urlUser + arrayRoutesFolders[j].name + "/" + arrayRoutesFolders[j].name + "_" + k);
+                let image = await fc.readFile(urlUser + arrayRoutesFolders[j].name + "/" + arrayRoutesFolders[j].name + "_" + k).catch(err => console.log(err));
                 images.push(image);
             }
         }

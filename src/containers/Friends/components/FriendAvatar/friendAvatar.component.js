@@ -8,5 +8,5 @@ const FriendAvatar = ({friendName, imageSrc, pending}) => {
         ? <CircularProgress/>
         : <Avatar alt={friendName} src={imageSrc} />
     );
-}
+};
 export default FriendAvatar; 
