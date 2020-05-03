@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import i18n from '../../../../i18n'
-import { Button, Select, MenuItem } from '@material-ui/core';
-import { useLDflexList, Value, useLDflexValue } from '@solid/react';
-import { ShareWrapper } from './ShareComponent.style';
+import React, { useState, useEffect } from "react";
+import i18n from "../../../../i18n";
+import { Button, Select, MenuItem } from "@material-ui/core";
+import { useLDflexList, Value, useLDflexValue } from "@solid/react";
+import { ShareWrapper } from "./ShareComponent.style";
 
 import { useNotification, NotificationTypes } from "@inrupt/solid-react-components";
 
@@ -36,13 +36,13 @@ const ShareButton = (props) => {
             const inboxUrl = await discoverInbox(arrayToIterate[i]);
 
             if (!inboxUrl) {
-                return console.log("Inbox not found");
+                toast.error(i18n.t("share.not_found"));
             }
 
             try {
                 const actor = "Viade_es2b";
                 const titleNotification = "New route!";
-                const summaryNotification = userName + " shared the route: '" + routeToShare.name + "' with you.";
+                const summaryNotification = userName + " shared the route: (" + routeToShare.name + ") with you.";
                 createNotification(
                     {
                         title: titleNotification,
@@ -53,7 +53,6 @@ const ShareButton = (props) => {
                     NotificationTypes.ANNOUNCE
                 );
             } catch (error) {
-                console.log(error);
                 toast.error(i18n.t("share.toast_error") + arrayToIterate[i]);
             }
         }
@@ -62,7 +61,7 @@ const ShareButton = (props) => {
     }
 
     return <Button data-testid="buttonShare" onClick={handleClickButtonShare} variant="contained" color="primary">{i18n.t('home.share_route')}</Button>
-}
+};
 
 function ListFriendsGroups(props) {
 
@@ -71,13 +70,13 @@ function ListFriendsGroups(props) {
 
     useEffect( 
         () => {
-            const asyncCall = () => gestorPOD.seeGroups().then(groups => setGroups(groups));
+            const asyncCall = () => gestorPOD.seeGroups().then( (groups) => setGroups(groups));
             asyncCall();
         }, [groups]
     );
 
     function getFriends() {
-        const friends = useLDflexList('user.friends');
+        const friends = useLDflexList("user.friends");
         return friends;
     };
 
@@ -86,7 +85,7 @@ function ListFriendsGroups(props) {
         if (event.target.value.members !== undefined) {
             setSelectValue(event.target.value.name);
             props.setSelectedFriend("");
-            props.setSelectedGroup(event.target.value.members)
+            props.setSelectedGroup(event.target.value.members);
         } else {
             setSelectValue(event.target.value);
             props.setSelectedFriend(event.target.value);
@@ -137,7 +136,7 @@ export default class ShareComponent extends React.Component {
     }
 
     setSelectedGroup(newSelectedGroup) {
-        this.setState({ selectedGroup: newSelectedGroup })
+        this.setState({ selectedGroup: newSelectedGroup });
     }
 
     render() {

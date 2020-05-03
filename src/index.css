@@ -86,7 +86,6 @@ Ends temporary react/fontawesome fix
   font-family: sans-serif, "Roboto", "Segoe UI";
 }
 
-
 .form-group:first-child {
   margin-top: 0;
 }
@@ -120,7 +119,7 @@ form-group .select-role {
   text-align: left;
 }
 
-.solid-provider-select 
+.solid-provider-select
 .option {
   padding-left: 10px;
 }
@@ -151,17 +150,19 @@ form-group .select-role {
   border-left: 1px solid rgba(8, 53, 117, 0.1);
 }
 
-/*boton notificaciones*/
+/* boton notificaciones */
 .fUwLnT:active,
 .fUwLnT:focus,
 .fUwLnT:hover,
-.fUwLnT.active{ 
-  background:rgba(7, 65, 102, 0.3);
-  outline:none;
+.fUwLnT
+.active { 
+  background: rgba(7, 65, 102, 0.3);
+  outline: none;
 }
-/* menu dropdown sobre el icono perfil*/
-.jOLVKi button:hover{
-  background:rgba(7, 65, 102, 0.3);
-  transition:all 0.5s ease-in-out;
-  color:#083575;
+
+/* menu dropdown sobre el icono perfil */
+.jOLVKi button:hover {
+  background: rgba(7, 65, 102, 0.3);
+  transition: all 0.5s ease-in-out;
+  color: #083575;
 }

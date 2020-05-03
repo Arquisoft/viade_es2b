@@ -20,7 +20,7 @@ function ListFriends() {
                 {`[${friend}]`}
             </option>)
     );
-};
+}
 
 export default class ModalGroupForm extends React.Component {
 

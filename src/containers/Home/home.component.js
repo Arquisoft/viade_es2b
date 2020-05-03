@@ -1,9 +1,9 @@
 import React, { Suspense } from "react";
 import { Button, ButtonGroup, Paper } from "@material-ui/core";
-import DeleteIcon from '@material-ui/icons/Delete';
-import AddIcon from '@material-ui/icons/Add';
+import DeleteIcon from "@material-ui/icons/Delete";
+import AddIcon from "@material-ui/icons/Add";
 import { useTranslation } from "react-i18next";
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 import manejadorPODs from "../../services/persistanceManagement";
 import RouteList from "./components/RouteList";
 import FormRoute from "./components/FormRoute/FormRoute";
@@ -104,7 +104,7 @@ export const HomePageContent = (props) => {
 // Styles for Material UI
 const useStyles = makeStyles(() => ({
   ButtonGroup: {
-    display: 'flex',
-    justifyContent: 'center'
+    display: "flex",
+    justifyContent: "center"
   },
 }));

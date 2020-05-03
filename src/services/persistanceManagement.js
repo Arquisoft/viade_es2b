@@ -3,6 +3,7 @@ import Route from "../Route";
 
 //Class Group
 import Group from "../Group";
+import { toast } from "react-toastify";
 
 //Library for authentication
 const auth = require("solid-auth-client");
@@ -10,6 +11,12 @@ const auth = require("solid-auth-client");
 //Library to manage files and data in PODs
 const FC = require("solid-file-client");
 var fc;
+
+
+toast.configure({
+    autoClose: 500,
+    draggable: true,
+});
 
 export default {
 
@@ -25,7 +32,9 @@ export default {
         let urlInboxFolder = webIdUser.slice(0, -16) + "/viade_es2b/inbox";
 
         //Check if it already exists.
-        if (await fc.itemExists(urlInboxFolder)) return;
+        if (await fc.itemExists(urlInboxFolder)){
+            return;
+        }
 
         //Create it if not
         await fc.createFolder(urlInboxFolder);
@@ -44,7 +53,9 @@ export default {
         let aclRoute = urlSharedFolder + ".acl";
 
         //Check if it already exists.
-        if (await fc.itemExists(urlSharedFolder)) return;
+        if (await fc.itemExists(urlSharedFolder)) {
+            return;
+        }
 
         //Create it if not
         await fc.createFolder(urlSharedFolder);
@@ -148,7 +159,7 @@ export default {
         //Check if it is in shared folder
         urlUser = tempUrlUser.slice(0, -16) + "/shared/routes/" + idRoute + "/";
         if (await fc.itemExists(urlUser + idRoute + ".json")) {
-            route = await fc.readFile(urlUser + idRoute + ".json").catch(err => "The was a problem searching the route.");
+            route = await fc.readFile(urlUser + idRoute + ".json").catch( (err) => "The was a problem searching the route.");
         }
         else {
             // If it is not in shared folder, we check the privacy of the local route
@@ -220,12 +231,18 @@ export default {
 
         // Here we check the privacy of the routes to be deleted.
         var urlUser = "";
-        if (priv === true) { urlUser = tempUrlUser.slice(0, -16) + "/private/routes/"; }
-        else { urlUser = tempUrlUser.slice(0, -16) + "/public/routes/"; }
+        if (priv === true) { 
+            urlUser = tempUrlUser.slice(0, -16) + "/private/routes/"; 
+        }else { 
+            urlUser = tempUrlUser.slice(0, -16) + "/public/routes/"; 
+        }
 
-        await fc.deleteFolder(urlUser).catch(err => console.log(err));
+        await fc.deleteFolder(urlUser).catch((err) => toast.error(err));
+        
 
-        if (shared === true) await fc.deleteFolder(tempUrlUser.slice(0, -16) + "/shared/routes/").catch(err => console.log(err));
+        if (shared === true){
+            await fc.deleteFolder(tempUrlUser.slice(0, -16) + "/shared/routes/").catch( (err) => toast.error(err));
+        } 
 
     },
 
@@ -243,7 +260,9 @@ export default {
 
         // Here we check the privacy of the route to be deleted.
         var urlUser = "";
-        if (shared) urlUser = tempUrlUser.slice(0, -16) + "/shared/routes/";            //Ruta compartida
+        if (shared){
+            urlUser = tempUrlUser.slice(0, -16) + "/shared/routes/";            //Ruta compartida
+        } 
         else if (priv) { urlUser = tempUrlUser.slice(0, -16) + "/private/routes/"; }    //Ruta privada
         else { urlUser = tempUrlUser.slice(0, -16) + "/public/routes/"; }               //Ruta pública
 
@@ -362,14 +381,14 @@ async function extractRoutesFromFile(folder, urlUser) {
         arrayRoutesFolders.push(routeFolder);
     }
     for (var j = 0; j < arrayRoutesFolders.length; j++) {
-        let gpx = await fc.readFile(urlUser + arrayRoutesFolders[j].name + "/" + arrayRoutesFolders[j].name + ".gpx").catch(err => console.log(err));
-        let basicDataJson = await fc.readFile(urlUser + arrayRoutesFolders[j].name + "/" + arrayRoutesFolders[j].name + ".json").catch(err => console.log(err));
+        let gpx = await fc.readFile(urlUser + arrayRoutesFolders[j].name + "/" + arrayRoutesFolders[j].name + ".gpx").catch( (err) => toast.error(err));
+        let basicDataJson = await fc.readFile(urlUser + arrayRoutesFolders[j].name + "/" + arrayRoutesFolders[j].name + ".json").catch((err) => toast.error(err));
         let basicData = JSON.parse(basicDataJson);
-        let filesInFolder = (await fc.readFolder(arrayRoutesFolders[j].url).catch(err => console.log(err))).files;
+        let filesInFolder = (await fc.readFolder(arrayRoutesFolders[j].url).catch((err) => toast.error(err))).files;
         var images = [];
         if (filesInFolder.length > 2) {
             for (var k = 0; k < filesInFolder.length - 2; k++) {
-                let image = await fc.readFile(urlUser + arrayRoutesFolders[j].name + "/" + arrayRoutesFolders[j].name + "_" + k).catch(err => console.log(err));
+                let image = await fc.readFile(urlUser + arrayRoutesFolders[j].name + "/" + arrayRoutesFolders[j].name + "_" + k).catch((err) => toast.error(err));
                 images.push(image);
             }
         }

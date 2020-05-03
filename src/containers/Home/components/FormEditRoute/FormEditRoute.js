@@ -18,10 +18,7 @@ export default class RouteForm extends React.Component {
     let fieldName = event.target.name;
     let fieldVal = event.target.value;
 
-    //In case is the switch from Material library
-    console.log(event.target)
-    console.log(event.target.checked)
-    if (fieldName === "priv") { fieldVal = event.target.checked }
+    if (fieldName === "priv") { fieldVal = event.target.checked; }
 
     this.setState({ form: { ...this.state.form, [fieldName]: fieldVal } });
   }
@@ -31,9 +28,13 @@ export default class RouteForm extends React.Component {
     event.preventDefault();
     let newRoute = this.state.route;
 
-    if (this.state.form.name !== "") newRoute.name = this.state.form.name;
+    if (this.state.form.name !== ""){
+      newRoute.name = this.state.form.name;
+    }
 
-    if (this.state.form.description !== "") newRoute.description = this.state.form.description;
+    if (this.state.form.description !== ""){
+      newRoute.description = this.state.form.description;
+    } 
 
     let privacyChanged = false;
     if (this.state.form.priv === this.state.route.priv) {

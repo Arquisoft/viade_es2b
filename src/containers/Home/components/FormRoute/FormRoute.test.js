@@ -2,7 +2,7 @@ import React from "react";
 import { render, fireEvent, cleanup, getByTestId } from "react-testing-library";
 import FormRoute from "./FormRoute";
 
-describe.only('FormRoute', () => {
+describe.only("FormRoute", () => {
     afterAll(cleanup);
     const { container } = render(
         <FormRoute>
@@ -13,13 +13,13 @@ describe.only('FormRoute', () => {
     expect(container).toBeTruthy();
   });
 
-  test('Testing new route form', () => {
+  test("Testing new route form", () => {
     const inputName = getByTestId(container, "formNameRouteControl");
-    const inputDescription = getByTestId(container, 'formDescriptionRouteControl');
-    const switchPriv = getByTestId(container, 'formSwitchRouteControl');
-    const inputGpx = getByTestId(container, 'formRouteGpx');
-    const inputImg = getByTestId(container, 'formRouteImages');
-    const buttonSave = getByTestId(container, 'formSendButton');
+    const inputDescription = getByTestId(container, "formDescriptionRouteControl");
+    const switchPriv = getByTestId(container, "formSwitchRouteControl");
+    const inputGpx = getByTestId(container, "formRouteGpx");
+    const inputImg = getByTestId(container, "formRouteImages");
+    const buttonSave = getByTestId(container, "formSendButton");
 
     fireEvent.change(inputName, {target: {value: "Test"}});
     fireEvent.change(inputDescription, {target: {value: "Description tests"}});
