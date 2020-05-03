@@ -59,6 +59,7 @@ const ShareButton = (props) => {
     }
 
     return <Button data-testid="buttonShare" onClick={handleClickButtonShare} variant="contained" color="primary">{i18n.t('home.share_route')}</Button>
+}
 
 function ListFriendsGroups(props) {
 
@@ -130,10 +131,6 @@ export default class ShareComponent extends React.Component {
 
     setSelectedFriend(newSelectedFriend) {
         this.setState({ selectedFriend: newSelectedFriend });
-    }
-
-    setSelectedGroup(newSelectedGroup) {
-        this.setState({ selectedGroup: newSelectedGroup })
     }
 
     setSelectedGroup(newSelectedGroup) {

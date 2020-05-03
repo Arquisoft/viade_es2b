@@ -68,8 +68,8 @@ export default class ModalGroupForm extends React.Component {
             return null;
         }
 		return (
-            <ModalContainer onClick={this.props.onClick}>
-                <ModalWrapper>
+            <ModalContainer className="modal-container" onClick={this.props.onClick}>
+                <ModalWrapper className="modal-wrapper">
                     <button id="close" onClick={this.props.closingFunction}>X</button>
                     <Form>
                         <Form.Group controlId="formGroupName">
