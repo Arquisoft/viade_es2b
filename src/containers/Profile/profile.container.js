@@ -33,24 +33,6 @@ const Profile = ({ webId }: Props) => {
   const [isLoading/*, setIsLoading*/] = useState(false);
   const email = useLDflexValue("user.inbox") || "unknown";
  
-/*
-  const onError = e => {
-    if (e.message.toString().indexOf("Validation failed") < 0) {
-      errorToaster(t("formLanguage.renderer.formNotLoaded"), t("notifications.error"), {
-        label: t("errorFormRender.link.label"),
-        href: t("errorFormRender.link.href")
-      });
-    }
-  };
-
-  const onDelete = () => {
-    successToaster(t("formLanguage.renderer.fieldDeleted"), t("notifications.success"));
-  };
-
-  const onAddNewField = () => {
-    successToaster(t("formLanguage.renderer.fieldAdded"), t("notifications.success"));
-  };
-*/
 
   return (
     <ProfileWrapper data-testid="profile-component">

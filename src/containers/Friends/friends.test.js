@@ -1,7 +1,7 @@
 import React from "react";
 import { render, cleanup } from "react-testing-library";
 import { BrowserRouter as Router } from "react-router-dom";
-import Friends from "./friends.component"
+import Friends from "./friends.component";
 
 describe("Friends", () => {
     afterAll(cleanup);

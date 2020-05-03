@@ -23,5 +23,5 @@ describe("Slider", () => {
     expect(document.querySelector(".image-container")).toBeTruthy();
     expect(document.querySelector(".image-wrapper")).toBeTruthy();
     expect(document.querySelector(".modal")).toBe(null);
-  })
+  });
 });

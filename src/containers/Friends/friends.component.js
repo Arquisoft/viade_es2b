@@ -44,7 +44,7 @@ const Friends = (props) => {
           <h3 name="friends">{t("friends.title")}</h3>
           <FriendsCard className="friends-list">
             <List src ="user.friends">
-            {(friend)=> 
+            { (friend)=> 
               <FriendItem className="friend-item" friendID={friend.value}/>
             }
             </List>
@@ -64,7 +64,7 @@ const Friends = (props) => {
               </List>
             </div>
           )}
-          <Button name="group_button" onClick={ (e) => {showModalForm();}} variant="contained" color="primary">{t("friends.createGroup")}</Button>
+          <Button name="group_button" onClick={ (e) => {showModalForm();}} variant="contained" color="primary">{t("groups.createGroup")}</Button>
         </FriendsCard>
         <ModalGroupForm show={modal} closingFunction={close}></ModalGroupForm>
         </Grid>

@@ -5,7 +5,7 @@ import { NavBar, Footer } from "@components";
 import { withWebId } from "@inrupt/solid-react-components";
 import {LanguageDropdown } from "@util-components";
 import styled from "styled-components";
-import { HashLink as Link } from 'react-router-hash-link';
+import { HashLink as Link } from "react-router-hash-link";
 
 const FooterContainer = styled.div`
   position: relative;

@@ -1,4 +1,4 @@
-import Group from "./Group"
+import Group from "./Group";
 
 it("Group constructor works", () => {
     const group = new Group(1, 2, 3);

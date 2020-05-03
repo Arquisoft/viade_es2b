@@ -3,7 +3,7 @@ import { render, fireEvent, cleanup, getByTestId, getByText } from "react-testin
 import ShareComponent from "./ShareComponent";
 import Route from "../../../../Route"
 
-describe.only('FormRoute', () => {
+describe.only("FormRoute", () => {
     afterAll(cleanup);
     const testRoute = new Route("test_ID", "Test route", "Test description", "Test gpx", ["img1", "img2"]);
     const { container } = render(
@@ -15,13 +15,13 @@ describe.only('FormRoute', () => {
     expect(container).toBeTruthy();
   });
 
-  test('Testing share button of ShareComponent', () => {
+  test("Testing share button of ShareComponent", () => {
     const button = getByTestId(container, "buttonShare");
 
     fireEvent.click(button);
 });
 
-test('Testing list of ShareComponent', () => {
+test("Testing list of ShareComponent", () => {
     const listFriends = getByText(container, "share.placeholder");
 
     fireEvent.click(listFriends);
@@ -29,8 +29,8 @@ test('Testing list of ShareComponent', () => {
     expect(listFriends).not.toBe(null);
 });
 
-test('render of styled component', () => {
-    const shareWrapper = getByTestId(container, 'shareWrapper');
+test("render of styled component", () => {
+    const shareWrapper = getByTestId(container, "shareWrapper");
     expect(shareWrapper).not.toBe(null);
 });
 
