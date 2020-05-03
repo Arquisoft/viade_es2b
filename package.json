@@ -26,6 +26,7 @@
     "bs-custom-file-input": "^1.3.4",
     "case-sensitive-paths-webpack-plugin": "2.1.2",
     "chalk": "2.4.1",
+    "cucumber": "^6.0.5",
     "dotenv": "6.0.0",
     "dotenv-expand": "4.2.0",
     "flag-icon-css": "^3.3.0",
@@ -76,7 +77,8 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "flow": "flow"
+    "flow": "flow",
+    "test:cucumber": "jest -c cucumber/jest-config.js"
   },
   "eslintConfig": {
     "extends": "react-app"

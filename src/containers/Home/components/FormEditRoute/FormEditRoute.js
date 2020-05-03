@@ -75,7 +75,7 @@ export default class RouteForm extends React.Component {
             />
           </Form.Group>
 
-          <Button variant="contained" type="submit">
+          <Button variant="contained" type="submit" name="submitEdit">
             {i18n.t("form.submit")}
           </Button>
         </Form>

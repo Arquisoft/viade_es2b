@@ -47,7 +47,7 @@
     },
     "ivan":{
       "rol":  "DESARROLLADOR BACKEND",
-      "description": "edita esto y escribe algo sobre ti"
+      "description": "Me dedico principalmente a la lógica, funcionalidad y en parte a los tests de las aplicaciones e intento ayudar en lo que se pueda. Dos siempre son mejor que uno."
     },
     "diego":{
       "rol":  "DESARROLLADOR BACKEND",
@@ -55,7 +55,7 @@
     },
     "noe":{
       "rol":  "DESARROLLADOR BACKEND",
-      "description": "Me gusta desarrollar la lógica de los proyectos. Al final, plasmamos una idea o concepto que no existía al mundo real."
+      "description": "Me gusta desarrollar la lógica de los proyectos. Trabajo mayoritariamente con la funcionalidad de la aplicación. Sin embargo, también he trabajo con componentes y aspectos gráficos, así como desarrollado test usando la herramienta Cucumber."
     }
   },
   "navBar": {

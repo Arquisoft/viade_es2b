@@ -41,7 +41,7 @@ export default class RouteComponent extends React.Component {
           </RouteMap>
           <RouteInfo>
             <h2> {t("home.information")} </h2>
-            <p>
+            <p id = {props.routeDescription}>
               {props.routeDescription}
             </p>
           </RouteInfo>

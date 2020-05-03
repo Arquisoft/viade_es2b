@@ -30,7 +30,8 @@ module.exports = {
       "!src/Group.js",
       "!src/Route.js",
       "!src/hocs/*",
-      "!src/utils/*"
+      "!src/utils/*",
+	  "!cucumber/*"
     ],
   
     // The directory where Jest should output its coverage files
