@@ -24,7 +24,7 @@ export default class RouteForm extends React.Component {
     let fieldVal = event.target.value;
 
     //In case is the switch from Material library
-    if (fieldName === "priv") {fieldVal = !event.target.checked}
+    if (fieldName === "priv") {fieldVal = !event.target.checked;}
 
     this.setState({ form: { ...this.state.form, [fieldName]: fieldVal } });
   }
@@ -67,23 +67,24 @@ export default class RouteForm extends React.Component {
   render() {
     return (
       <div className="RouteForm">
-        <Form onSubmit={this.handleSubmit} data-testid="form">
+        <Form onSubmit={this.handleSubmit}>
 
-          <Form.Group controlId="formNameRoute" data-testid="formNameRoute">
-            <Form.Label data-testid="formNameRouteLabel">{i18n.t("form.name")}</Form.Label>
+          <Form.Group controlId="formNameRoute">
+            <Form.Label>{i18n.t("form.name")}</Form.Label>
             <Form.Control data-testid="formNameRouteControl" type="text" name="name" placeholder={i18n.t("form.enter_name")}
               defaultValue={this.state.form.name} onChange={this.handleChange} />
           </Form.Group>
 
           <Form.Group controlId="formDescriptionRoute">
             <Form.Label>{i18n.t("form.description")}</Form.Label>
-            <Form.Control type="text" name="description" placeholder={i18n.t("form.enter_description")}
+            <Form.Control type="text" name="description" data-testid="formDescriptionRouteControl" placeholder={i18n.t("form.enter_description")}
               defaultValue={this.state.form.description} onChange={this.handleChange} />
           </Form.Group>
 
           <Form.Group controlId="formPrivacyRoute">
           <Form.Label>{i18n.t("form.publicRoute")}</Form.Label>
           <Switch
+            data-testid="formSwitchRouteControl"
             checked={this.state.priv}
             onChange={this.handleChange}
             name="priv"
@@ -94,6 +95,7 @@ export default class RouteForm extends React.Component {
           <Form.Group controlId="formGpxFile">
           <Form.Label>{i18n.t("form.gpx")}</Form.Label>
             <Form.File
+              data-testid="formRouteGpx"
               id="gpx-file"
               name="gpx"
               accept=".gpx"
@@ -105,6 +107,7 @@ export default class RouteForm extends React.Component {
           <Form.Group controlId="formImages">
           <Form.Label>{i18n.t("form.images")}</Form.Label>
             <Form.File
+              data-testid="formRouteImages"
               id="images-list"
               name="images"
               accept="image/*"
@@ -114,7 +117,7 @@ export default class RouteForm extends React.Component {
             </Form.File>
           </Form.Group>
 
-          <Button variant="contained" type="submit">
+          <Button data-testid="formSendButton" variant="contained" type="submit">
           {i18n.t("form.submit")}
         </Button>
         </Form>

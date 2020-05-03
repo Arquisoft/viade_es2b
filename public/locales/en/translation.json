@@ -115,7 +115,8 @@
     "notification_title": "New route!",
     "notification_content": "Someone shared a route with you",
     "notification_sended": "Route sended succesfully",
-    "toast_error": "There were an error trying to share the route with: "
+    "toast_error": "There were an error trying to share the route with: ",
+    "placeholder": "Select a friend or a group"
   },
   "form": {
     "name": "Route name",
@@ -236,13 +237,5 @@
       "fieldDeleted": "Form field successfully deleted",
       "fieldAdded": "New form field successfully added"
     }
-  },
-  "editor": {
-    "explanation": "This simple text editor enables you to create a plaintext file and save it in a Pod. To make this very clear for the demo you provide a URL as an absolute path to the file in the Pod. The Pod can be the one this App has been logged into or another person's Pod. To write, and read, into another person's Pod the owner will have had to provide you with write permission.",
-    "url": "URL",
-    "friend": "Co-editor's webid",
-    "load": "Load",
-    "save": "Save",
-    "grantAccess": "Grant Access"
   }
 }

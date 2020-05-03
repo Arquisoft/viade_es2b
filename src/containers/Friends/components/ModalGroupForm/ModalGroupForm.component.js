@@ -2,10 +2,10 @@ import React from "react";
 import Form from "react-bootstrap/Form";
 import i18n from "../../../../i18n";
 import { ModalContainer, ModalWrapper } from "./ModalGroupForm.style";
-import { useLDflexList } from '@solid/react';
+import { useLDflexList } from "@solid/react";
 import { Button } from "@material-ui/core";
 import gestorPOD from "../../../../services/persistanceManagement";
-import Group from "../../../../Group"
+import Group from "../../../../Group";
 
 function ListFriends() {
 

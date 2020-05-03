@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import i18n from '../../../../i18n'
 import { Button, Select, MenuItem } from '@material-ui/core';
 import { useLDflexList, Value } from '@solid/react';
 import { ShareWrapper } from './ShareComponent.style';
 
-import { useNotification, NotificationTypes } from '@inrupt/solid-react-components';
+import { useNotification, NotificationTypes } from "@inrupt/solid-react-components";
 
-import gestorPOD from '../../../../services/persistanceManagement';
-import { toast } from 'react-toastify';
+import gestorPOD from "../../../../services/persistanceManagement";
+import { toast } from "react-toastify";
 
 const ShareButton = (props) => {
 
     toast.configure({
         autoClose: 500,
         draggable: true,
-      });
+    });
 
     const [webID, setWebID] = useState("");
 
@@ -53,24 +53,27 @@ const ShareButton = (props) => {
                 console.log(error);
                 toast.error(i18n.t("share.toast_error") + arrayToIterate[i]);
             }
-
         }
-
         toast(i18n.t("share.notification_sended"));
 
     }
 
-    return <Button onClick={handleClickButtonShare} variant="contained" color="primary">{i18n.t('home.share_route')}</Button>
-}
+    return <Button data-testid="buttonShare" onClick={handleClickButtonShare} variant="contained" color="primary">{i18n.t('home.share_route')}</Button>
 
 function ListFriendsGroups(props) {
 
-    const [selectValue, setSelectValue] = useState("[]");
+    const [selectValue, setSelectValue] = useState(i18n.t("share.placeholder"));
     const [groups, setGroups] = useState([]);
+
+    useEffect( 
+        () => {
+            const asyncCall = () => gestorPOD.seeGroups().then(groups => setGroups(groups));
+            asyncCall();
+        }, [groups]
+    );
 
     function getFriends() {
         const friends = useLDflexList('user.friends');
-        gestorPOD.seeGroups().then(groups => setGroups(groups));
         return friends;
     };
 
@@ -88,7 +91,10 @@ function ListFriendsGroups(props) {
     };
 
     return (
-        <Select style={listFriendsStyle} renderValue={() => selectValue} onChange={handleChange}>
+        <Select displayEmpty={true} style={listFriendsStyle} renderValue={() => selectValue} onChange={handleChange}>
+            <MenuItem value="" disabled>
+                {i18n.t("share.placeholder")}
+            </MenuItem>
             {getFriends().map((friend) =>
                 <MenuItem key={friend} value={`${friend}`} >
                     <Value src={`[${friend}].name`}>{`${friend}`}</Value>
@@ -103,7 +109,7 @@ function ListFriendsGroups(props) {
 
 const listFriendsStyle = {
     minWidth: "200px",
-    marginRight: '10px',
+    marginRight: "10px",
 };
 
 export default class ShareComponent extends React.Component {
@@ -123,7 +129,11 @@ export default class ShareComponent extends React.Component {
     }
 
     setSelectedFriend(newSelectedFriend) {
-        this.setState({ selectedFriend: newSelectedFriend })
+        this.setState({ selectedFriend: newSelectedFriend });
+    }
+
+    setSelectedGroup(newSelectedGroup) {
+        this.setState({ selectedGroup: newSelectedGroup })
     }
 
     setSelectedGroup(newSelectedGroup) {
@@ -133,9 +143,10 @@ export default class ShareComponent extends React.Component {
     render() {
         return (
             this.props.route === undefined ? <ShareWrapper id="share"></ShareWrapper> :
-                <ShareWrapper id="share">
+                <ShareWrapper data-testid="shareWrapper" id="share">
                     <div>
-                        <p>{i18n.t('home.share_text')}</p>
+
+                        <p>{i18n.t("home.share_text")}</p>
                         <ListFriendsGroups setSelectedGroup={this.setSelectedGroup} setSelectedFriend={this.setSelectedFriend}></ListFriendsGroups>
                         <ShareButton route={this.props.route} selectedFriend={this.state.selectedFriend} selectedGroup={this.state.selectedGroup}></ShareButton>
                     </div>

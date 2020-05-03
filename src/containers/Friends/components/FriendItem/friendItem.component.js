@@ -1,9 +1,9 @@
 import React from "react";
-import {Name, Link, useLDflexList} from '@solid/react';
+import {Name, Link, useLDflexList} from "@solid/react";
 import { useTranslation } from "react-i18next";
-import {Avatar, CircularProgress, ListItemText, ListItemIcon, ListItem, ListItemAvatar} from '@material-ui/core';
-import AvatarGroup from '@material-ui/lab/AvatarGroup';
-import FriendAvatar from "../FriendAvatar"
+import {Avatar, CircularProgress, ListItemText, ListItemIcon, ListItem, ListItemAvatar} from "@material-ui/core";
+import AvatarGroup from "@material-ui/lab/AvatarGroup";
+import FriendAvatar from "../FriendAvatar";
 import { StylesProvider } from "@material-ui/core/styles";
 
 const FriendItem = ({friendID, friendName, imageSrc,friendKnows, pending}) => {
@@ -42,5 +42,5 @@ const FriendItem = ({friendID, friendName, imageSrc,friendKnows, pending}) => {
             />
         </ListItem>
     );
-}
+};
 export default FriendItem; 

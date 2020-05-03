@@ -12,7 +12,7 @@ const Slider = (props) => {
         if (count > 0) {
             setCount(count - 1);
         }
-    }
+    };
 
     const clickRight = () => {
         if (count < images.length - 5) {
@@ -22,12 +22,12 @@ const Slider = (props) => {
 
     const showModal = (x) => {
         setModal(true);
-        setActualImage(URL.createObjectURL(x))
-    }
+        setActualImage(URL.createObjectURL(x));
+    };
 
     const onclose = (e) => {
         setModal(false);
-    }
+    };
 
     return (images === undefined ? <SliderWrapper></SliderWrapper> :
         <SliderWrapper className="slider-wrapper">

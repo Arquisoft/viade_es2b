@@ -5,9 +5,9 @@ import { useTranslation } from "react-i18next";
 import { FriendsWrapper, FriendsCard} from "./friends.style";
 import { Grid} from "@material-ui/core";
 import {List} from "@solid/react";
-import { Button } from '@material-ui/core';
+import { Button } from "@material-ui/core";
 import ModalGroupForm from "./components/ModalGroupForm/ModalGroupForm.component";
-import gestorPOD from "../../services/persistanceManagement"
+import gestorPOD from "../../services/persistanceManagement";
 import FriendItem from "./components/FriendItem";
 import GroupFriendItem from "./components/GroupFriendItem";
 
@@ -26,7 +26,7 @@ const Friends = (props) => {
 
   const close = () => {
     setModal(false);
-  }
+  };
 
   useEffect(() => {
     async function getGroups() {
@@ -34,7 +34,7 @@ const Friends = (props) => {
       setGroups(groups);
     }
     getGroups();
-  }, [])
+  }, []);
 
   return (
     <FriendsWrapper>
@@ -64,7 +64,7 @@ const Friends = (props) => {
               </List>
             </div>
           )}
-          <Button onClick={e => {showModalForm()}} variant="contained" color="primary">{t('friends.createGroup')}</Button>
+          <Button onClick={ (e) => {showModalForm();}} variant="contained" color="primary">{t("friends.createGroup")}</Button>
         </FriendsCard>
         <ModalGroupForm show={modal} closingFunction={close}></ModalGroupForm>
         </Grid>
