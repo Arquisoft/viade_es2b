@@ -2,43 +2,60 @@
 == Design Decisions
 
 Brief description of all the decisions we took in order to develop the app.
+All our decisions can be found at https://github.com/Arquisoft/viade_es2b/wiki
 
-[cols=4*,options="header"]
+[cols=6*,options="header"]
 
 |===
+| Date
+| Participants
 | Our decisions
 | Description
 | Pros
 | Cons
 
+
+| 10/02/2020
+| Whole Team
 | Design Architecture
 | As Solid is a W3C endorsed linked data personal data store (PDS) that puts control into the hands of the user, we'll be using P2P (Peer to peer) design architecture. Also, we will be following MVC (model view controller) architectual pattern.
 | Already known code distribution.
 | 
 
+| 10/02/2020
+| Whole Team
 | Programming language
 | We are using JavaScript family language for building the app as it's the common way to develop some Solid app.
 | Easy to use with Solid
 | we are inexperienced working with JavaScript.
 
+| 16/03/2020
+| Whole Team
 | Front End 
-| We decided to use Bootstrap with React to be able to integrate a responsive design easily.
+| We decided to use Material UI with React to be able to integrate a responsive design easily.
 | Simpler to create a fancy interface.
 | First time using it.
 
+| 10/02/2020
+| Whole Team
 | Control System
 | We will be using Git as a control system and GitHub as source code manager to keep track of different app versions. We decided to create one main develop branch and subbranches per person. The main branch should only be updated before deliveries.
 | It's a great way to keep a backup of the code. It also allows us to work on the project at the same time without risk of overwriting the work
 | We are still not used to working with git and we do not know how to use all the commands yet.
 
+| 10/02/2020
+| Whole Team
 | Data Storage
 | There won't be any database in this project as we will be storing user data using private POD's.
 | The user will have control over his data.
 | It's the first time we work with data like that.
 
+
+| 23/03/2020
+| Whole Team
 | Testing
-|
-|
+| We decided to use Jest/Pupeteer/Cucumber for testing our app.
+| It ensures a proper functionality.
 |
 
 |===
