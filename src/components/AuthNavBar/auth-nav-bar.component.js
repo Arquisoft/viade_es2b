@@ -40,7 +40,6 @@ const AuthNavBar = React.memo((props: Props) => {
           href: t("noInboxUser.link.href")
         });
       }
-      // TODO comprobar si la lie aqui 
       setInbox(inboxes);
     } catch (error) {
       /**

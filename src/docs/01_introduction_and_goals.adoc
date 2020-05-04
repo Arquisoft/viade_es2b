@@ -27,15 +27,17 @@ Describes the relevant requirements and the driving forces that software archite
 
 === Quality Goals
 
-System objectives are as follows:
+System objectives are as follows, from most important to less:
 
 [options="header",cols="1,2,2"]
+
 |===
 |Priority|Objective|Detail
-| 1 | Performance | The system must be effective and fast, with short loading times for the users.
-| 2 | Security | System will be secure, being the data protected against malicious users.
-| 3 | Testability | Tests must be carried out to verify the correct operation of the system.
-| 4 | Usability | System will be intuitive for all kind of users, needing a short time for them to get acquainted with it.
+| 1 | Usability | System will be intuitive for all kind of users, needing a short time for them to get acquainted with it.
+| 2 | Performance | The system must be effective and fast, with short loading times for the users.
+| 3 | Security | System will be secure. Private data will only be shown if the user how owns it decides to share it.
+| 4 | Testability | Tests must be carried out to verify the correct operation of the system.
+
 |===
 
 === Stakeholders
@@ -45,7 +47,8 @@ The table below contains information about the potential users of the applicatio
 [options="header",cols="1,2,2"]
 |===
 |Role/Name|Contact|Expectations
-| End Users | The people expected to use the app in a daily basis. The app should be build in a way that they understand how the app works and their data is stored. | They will expect the app to be simple and efficient. They will also want their personal data to be stored wherever they want because the use of SOLID.
+| Basic users | New users to use the app. The app should be build in a way that they understand how the app works and their data is stored. | They will expect the app to be simple and intuitive. There are explanations about PODs for those users how don't know how it works.
+| Experienced users | Users who know about PODs and their usage. | They will expect the app to be simple and efficient. The POD management should be similar to other SOLID apps' usage.
 | Developers | These are the people in charge of the develop of the app, so they should understand all the components of the app and the technologies used. | They are expected to develop a secure, simple and usable application.
 | SOLID Developers | They are in charge of defining the SOLID standards. Therefore, they will have a great impact in the design and way of work of the application. | They will mark some constrains to the project but they will also help with the documenatation and guidelines of the SOLID standard. They will also provied the SOLID code.
 |===

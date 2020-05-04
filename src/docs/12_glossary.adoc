@@ -24,4 +24,12 @@
 
 |Git
 |Version control system used to *keep track* of different versions of the project and to improve teamwork.
+
+|Material UI
+|JavaScript framework that offers an *Android* look alike view.
+
+
+|MIT
+|*Permissive free software license* originating at the Massachusetts Institute of Technology
+
 |===

@@ -17,7 +17,7 @@ List of risks and thechnical debts we might face throughout the developing of th
 | *JavaScript* is _not our main_ programming field. Eventhough we used it in the past, it's still hard to us to adapt to it as we only know the basics.
 | Another list as the one mentioned above.
 
-|* *React* is the JS UI (User Interface) library chosen to develop this app. It's the _first time_ we are using this library and it can lead to having some mistakes.
+| *React* is the JS UI (User Interface) library chosen to develop this app. It's the _first time_ we are using this library and it can lead to having some mistakes.
 | Implement Bootstrap to ease this aspect, and investigate about other available libraries that might help the developing process.
 
 | *Libraries* might be used during the development of the app. As we do not own the code we might experience some trouble with the understanding of their use.
@@ -29,14 +29,20 @@ List of risks and thechnical debts we might face throughout the developing of th
 | *Security* and *condifentiality* are a main concern at a decentralized app. Data should be encrypted in order to ensure these criteria and we are not experts at security just yet.
 | As it's a complex task and we don't know much about it yet, we'll postpone it to a future version.
 
-| *Lack of time* to complete the project, as we are pretty busy
+| *Lack of time* to complete the project, as we are pretty busy.
 | Keep a constant workflow.
 
-| *Undocumented* project because of lack of time
+| *Undocumented* project because of lack of time.
 | Do a basic singleline comment where necessary.
 
 | Problems with *git*
 | Use subbranches and only pull request to main once it's been all tested at develop.
+
+| *Code cleaning*
+| Code might me refactored later on.
+
+| *Performance*
+| We improved our initial times but it could still be improved.
 
 |===
 
