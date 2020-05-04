@@ -47,6 +47,9 @@ export default class RouteMap extends React.Component {
         },
         marker_options: {
           wptIcons: {
+			  "": new L.Icon({
+                iconUrl: "img/pin.png"
+              }),
               "Triangle": new L.Icon({
                 iconUrl: "img/triangle.png"
               }),
