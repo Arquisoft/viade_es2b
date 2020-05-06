@@ -1,8 +1,6 @@
 [[section-solution-strategy]]
 == Solution Strategy
 
-****
-
 We've decided to use Github because of his easy-way for control versions. In adittion, users can do pull request from branches and 
 have a history of team actions.
 
@@ -35,7 +33,6 @@ In adittion, we have used a sort of libraries:
 Finally, about organizational schema, we have decided that all of us will get involved in all the project, either working directly
 in the assigned code or checking another's one.
 
-****
 
 
 
