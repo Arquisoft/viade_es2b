@@ -11,18 +11,17 @@ There are some constraints in the development of our application. These constrai
 |Constraint
 |Explanation
 
-|Descentralized architecture
+|Decentralized architecture
 |The project architecture will be descentralized, which means user data is separated from the application and users are the one who control the flow of information.In order to achieve that,we will use SOLID specifications.
 
-|Javascript libray 
+|React
 |The project interface will be develop with React. This library will desing and update effectively the proper components when the data changed. It's mandatory to have some knowdledge at HTML5, CSS3 and JavaScript for using React.
 
-|Programming language
-|JavaScript will be used to develop this project. This programming language is friendly to user experience.
+|JavaScript
+|JavaScript will be used to develop this project as it is the base language of React.
 
-|Compatibility and adaptability
-|This project can be used at any major web browser (Mozilla Firefox, Google Chrome, Opera, Safari...) and Operating Systems in
-order to fullfill maximum market coverage.
+|SOLID PODs
+|For the storage and management of the user data we will use the SOLID PODs, as it is required by the assignment and the SOLID specification.
 
 |===
 
@@ -68,11 +67,9 @@ All the contents included in the project should be Open Source published under t
 |AsciiDoctor
 |Our project will be using AsciiDoctor to convert AsciiDoc documentation into HTML5 content.
 
-|Project Development Language
+|Usage of English
 |This project will be entirely developed in English in order to achieve some international recognition.
 
-|IDE
-|All team members will be using Visual Studio Code to keep convenctions on point.
 |===
 
 
