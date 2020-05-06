@@ -1,20 +1,12 @@
 [[section-quality-scenarios]]
 == Quality Requirements
 
-****
-
 This section explains the quality requirements of our application using a quality tree and quality scenarios. 
 Quality goals are explained in section 1.2.
 
-****
-
 === Quality Tree
 
-****
-
 image::010_QualityTree.png[Quality tree diagram]
-
-****
 
 === Quality Scenarios
 
