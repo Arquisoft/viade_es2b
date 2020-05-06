@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { HomeComponent } from "./home.container";
-// import { Trans, useTranslation } from "react-i18next";
+import { SnackbarProvider } from "notistack";
 
 library.add(fas);
 
@@ -15,9 +15,11 @@ const props = {
 describe.only("Home", () => {
   afterAll(cleanup);
   const { container, getByTestId } = render(
-    <Router>
-      <HomeComponent {...{ ...props }} />
-    </Router>
+    <SnackbarProvider>
+      <Router>
+        <HomeComponent {...{ ...props }} />
+      </Router>
+    </SnackbarProvider>
   );
 
   test("renders without crashing", () => {

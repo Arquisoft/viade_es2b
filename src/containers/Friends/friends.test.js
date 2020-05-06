@@ -2,13 +2,16 @@ import React from "react";
 import { render, cleanup } from "react-testing-library";
 import { BrowserRouter as Router } from "react-router-dom";
 import Friends from "./friends.component";
+import { SnackbarProvider } from "notistack";
 
 describe("Friends", () => {
     afterAll(cleanup);
     const{ container } = render(
-        <Router>
-            <Friends />
-        </Router>
+        <SnackbarProvider>
+            <Router>
+                <Friends />
+            </Router>
+        </SnackbarProvider>
     );
 
     test("renders without crashing", () => {

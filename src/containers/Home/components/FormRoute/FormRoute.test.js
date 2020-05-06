@@ -1,12 +1,15 @@
 import React from "react";
 import { render, fireEvent, cleanup, getByTestId } from "react-testing-library";
 import FormRoute from "./FormRoute";
+import { SnackbarProvider } from "notistack";
 
 describe.only("FormRoute", () => {
     afterAll(cleanup);
     const { container } = render(
-        <FormRoute>
-        </FormRoute>
+        <SnackbarProvider>
+            <FormRoute>
+            </FormRoute>
+        </SnackbarProvider>
     );
 
   test("renders without crashing", () => {
