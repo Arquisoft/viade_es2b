@@ -39,3 +39,9 @@ We base our app on the MVC architectural pattern, which consists on separating t
 * Disaster recovery: the user's data are stored in his own POD, which is independent from the app, so they won't be at risk if something wrong happens with the app. As for the app itself, it depends on GitHub, so if GitHub is down, the app will be too until the problem is solved. However, the app can also be deployed using Docker, as explained in the repository readme.
 * High availability: once a new version of the app is finished, it is available for the user as soon as the changes included in the development branch are merged with the master branch, which is the branch from where the app is deployed.
 * Administration: as we are a team, we divide the administration of the project equally between all the team members, as well as we might help others with the problems they have.
+
+[scheme-prototypes]
+=== Scheme prototypes
+We have made some prototypes of our application. This point is not included in the arc42 standard, but we consider this as something helpfull to understand the design process we followed.
+
+image::PrototiposAppViade.jpg[Prototyes of the application]
