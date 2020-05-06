@@ -14,15 +14,29 @@ There are some constraints in the development of our application. These constrai
 |Descentralized architecture
 |The project architecture will be descentralized, which means user data is separated from the application and users are the one who control the flow of information.In order to achieve that,we will use SOLID specifications.
 
-|Javascript libray 
+|React 
 |The project interface will be develop with React. This library will desing and update effectively the proper components when the data changed. It's mandatory to have some knowdledge at HTML5, CSS3 and JavaScript for using React.
 
 |Programming language
 |JavaScript will be used to develop this project. This programming language is friendly to user experience.
 
+|Node.js
+|Node is used for making server side applicattions with Javascript. We'll be using it to generate our app.
+
+|Travis
+|Travis is a continuous integration platform that automatically tests and builds code changes on every push.
+
+|Codevoc
+|Codecov provides highly integrated tools to group, merge, archive, and compare coverage reports. 
+
+|Codacy
+|Codacy automatically identifies issues through static code review analysis. It's used for detecting duplicate code, security issues, code coverage and code complexity in every commit and pull request.
+
 |Compatibility and adaptability
-|This project can be used at any major web browser (Mozilla Firefox, Google Chrome, Opera, Safari...) and Operating Systems in
-order to fullfill maximum market coverage.
+|This project can be used at any major web browser (Mozilla Firefox, Google Chrome, Opera, Safari...) and Operating Systems in order to fullfill maximum market coverage.
+
+| Data Storage
+| There won't be any database in this project as we will be storing user data using private POD's.
 
 |===
 
@@ -49,6 +63,9 @@ It will allow us to lead a colaborative development and simplify the sharing and
 |This project will be developed by students without a source of income available to improve its development.
 For that reason only free development tools were used.
 
+|Meetings
+|We must keep track of every meeting at the poject's wiki to ensure everyone can follow up our workflow.
+
 |License
 |This is an Open Source project published under de MIT License.
 	
@@ -68,11 +85,8 @@ All the contents included in the project should be Open Source published under t
 |AsciiDoctor
 |Our project will be using AsciiDoctor to convert AsciiDoc documentation into HTML5 content.
 
-|Project Development Language
-|This project will be entirely developed in English in order to achieve some international recognition.
-
-|IDE
-|All team members will be using Visual Studio Code to keep convenctions on point.
+|Language
+|This project needs to be internationalized in order to make it accesible to the Inrupt community.
 |===
 
 
