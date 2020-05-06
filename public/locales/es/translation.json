@@ -9,6 +9,15 @@
   "notifications": {
     "success": "Éxito",
     "error": "Error"
+  },"snackbar" : {
+    "alert_delete": "Esta acción eliminará todas sus rutas. ¿Está seguro?",
+    "alert_delete_groups": "Esta acción eliminará todos sus grupos. ¿Está seguro?",
+    "yes": "Sí",
+    "no": "No",
+    "delete_process": "Borrado en progreso",
+    "adding_process": "Añadiendo ruta",
+    "editing_process": "Guardando cambios",
+    "download_complete": "Descarga completada"
   },
   "login": {
     "title": "Una aplicación de rutas descentralizada",

@@ -1,6 +1,7 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
 import { Button, Switch } from "@material-ui/core";
+import { withSnackbar } from 'notistack';
 import SendIcon from '@material-ui/icons/Send';
 
 import bsCustomFileInput from "bs-custom-file-input";
@@ -10,7 +11,7 @@ import i18n from "../../../../i18n";
 
 import gestorPOD from "../../../../services/persistanceManagement";
 
-export default class RouteForm extends React.Component {
+class RouteForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = { form: { name: "", description: "", gpx: null, images: [], priv: true } };
@@ -46,6 +47,8 @@ export default class RouteForm extends React.Component {
   async handleSubmit(event) {
 
     event.preventDefault();
+
+    this.props.enqueueSnackbar(i18n.t("snackbar.adding_process"), {variant: "info", persist: true});
 
     let name = this.state.form.name;
     let description = this.state.form.description;
@@ -131,3 +134,5 @@ export default class RouteForm extends React.Component {
     );
   }
 }
+
+export default withSnackbar(RouteForm);

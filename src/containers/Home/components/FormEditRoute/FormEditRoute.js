@@ -1,13 +1,14 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
 import { Button, Switch } from "@material-ui/core";
+import { withSnackbar } from 'notistack';
 import SendIcon from '@material-ui/icons/Send';
 
 import i18n from "../../../../i18n";
 
 import gestorPOD from "../../../../services/persistanceManagement";
 
-export default class RouteForm extends React.Component {
+class FormEditRoute extends React.Component {
   constructor(props) {
     super(props);
     this.state = { form: { name: "", description: "", priv: !props.route.priv }, route: props.route };
@@ -27,6 +28,9 @@ export default class RouteForm extends React.Component {
   async handleSubmit(event) {
 
     event.preventDefault();
+
+    this.props.enqueueSnackbar(i18n.t("snackbar.editing_process"), {variant: "info", persist: true});
+
     let newRoute = this.state.route;
 
     if (this.state.form.name !== ""){
@@ -84,3 +88,5 @@ export default class RouteForm extends React.Component {
     );
   }
 }
+
+export default withSnackbar(FormEditRoute);

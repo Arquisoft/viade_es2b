@@ -141,6 +141,8 @@ export default {
             await fc.createFile(urlUser + "/" + idNoSpaces + "_" + i, image, image.type);
         }
 
+        return 0;
+
     },
 
     /**
@@ -370,6 +372,7 @@ export default {
 
         fileLink.click();
 
+        return 0;
     },
 
     async saveGroup(group) {

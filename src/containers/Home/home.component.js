@@ -1,9 +1,10 @@
-import React, { Suspense, useState } from "react";
+import React, { Suspense, useState, Fragment } from "react";
 import { Button, ButtonGroup, Paper } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import AddIcon from "@material-ui/icons/Add";
 import { useTranslation } from "react-i18next";
 import { makeStyles } from "@material-ui/core/styles";
+import { useSnackbar } from 'notistack';
 import {useLDflexList} from "@solid/react";
 import manejadorPODs from "../../services/persistanceManagement";
 import RouteList from "./components/RouteList";
@@ -21,6 +22,7 @@ import Slider from "./components/Slider";
 import ShareComponent from "./components/ShareComponent/ShareComponent";
 
 const Map = React.lazy(() => import("../../Map"));
+const keySnackBar = Math.random();
 
 function loadMap(props, t) {
   return (
@@ -71,10 +73,12 @@ function loadEditForm(route) {
 export const HomePageContent = (props) => {
   const [friendsList, setFriendsList] = useState([]);
   const friends = useLDflexList("user.friends");
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   if (friends.length > 0 && friendsList !== friends)
     setFriendsList(friends)
   const classes = useStyles();
   const { t } = useTranslation();
+
   return (
     <HomeWrapper data-testid="home-wrapper">
       <Paper style={{width:"30%", minWidth:"fit-content", maxHeight:"100%", overflow: "auto"}}>
@@ -88,9 +92,13 @@ export const HomePageContent = (props) => {
           {t("home.add_route")}
           </Button>
           <Button name="delete_all_routes" color="secondary" startIcon={<DeleteIcon />} onClick={async () => {
-            await manejadorPODs.deleteRoutes(false, true);
-            await manejadorPODs.deleteRoutes(true);
-            window.location.reload();}}>
+            enqueueSnackbar(t("snackbar.alert_delete"), {
+              key: keySnackBar,
+              preventDuplicate: true,
+              variant: "warning",
+              autoHideDuration: 3000,
+              action: actionSnackbarDeleteAllRoutes(keySnackBar, closeSnackbar, enqueueSnackbar, t),
+            });}}>
             {t("home.delete_route")}
           </Button>
         </ButtonGroup>
@@ -102,6 +110,24 @@ export const HomePageContent = (props) => {
     </HomeWrapper>
   );
 };
+
+const actionSnackbarDeleteAllRoutes = (key, closeSnackbar, enqueueSnackbar, t) => (
+  <Fragment>
+      <Button onClick={async () => {
+            enqueueSnackbar(t("snackbar.delete_process"), {variant: "info", persist: true});
+            await manejadorPODs.deleteRoutes(false, true);
+            await manejadorPODs.deleteRoutes(true);
+            window.location.reload();
+            }}>
+          {t("snackbar.yes")}
+      </Button>
+      <Button onClick={async () => {
+            closeSnackbar(key);
+            }}>
+          {t("snackbar.no")}
+      </Button>
+  </Fragment>
+);
 
 // Styles for Material UI
 const useStyles = makeStyles(() => ({

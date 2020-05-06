@@ -1,16 +1,17 @@
 import React from "react";
-import { IconButton, CircularProgress} from "@material-ui/core";
+import { IconButton, CircularProgress } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import BorderColorIcon from "@material-ui/icons/BorderColor";
 import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 import i18n from "../../../i18n";
+import { withSnackbar } from 'notistack';
 
 import gestorPOD from "../../../services/persistanceManagement";
 
 import { List, ListSubheader, ListItem, ListItemText, Divider } from "@material-ui/core";
 
 
-export default class RouteList extends React.Component {
+class RouteList extends React.Component {
 
     constructor() {
         super();
@@ -94,6 +95,7 @@ export default class RouteList extends React.Component {
              : <ListItemText primary={route.name} secondary={route.description.slice(0, 40) === route.description ?
               route.description : route.description.slice(0, 40) + "..."} />}
             {!route.owner ? <IconButton name={"delete_" + route.name} onClick={async () => {
+                this.props.enqueueSnackbar(i18n.t("snackbar.delete_process"), { variant: "info", persist:true });
                 await gestorPOD.deleteRoute(route.id, route.priv, route.shared);
                 window.location.reload(false);
             }} aria-label="delete">
@@ -106,6 +108,7 @@ export default class RouteList extends React.Component {
             </IconButton> : null}
             {!route.owner ? <IconButton name={"download_" + route.name} onClick={async () => {
                 await gestorPOD.downloadRoute(route);
+                this.props.enqueueSnackbar(i18n.t("snackbar.download_complete"), { variant: "success" });
             } } aria-label="download">
                 <ArrowDownwardIcon fontSize="small" />
             </IconButton> : null}
@@ -139,3 +142,5 @@ export default class RouteList extends React.Component {
 
     }
 }
+
+export default withSnackbar(RouteList);

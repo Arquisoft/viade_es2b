@@ -1,7 +1,7 @@
 /* eslint-disable constructor-super */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { useTranslation } from "react-i18next";
-// import { Link } from "react-router-dom";
+import { useSnackbar } from 'notistack';
 import { FriendsWrapper, FriendsCard } from "./friends.style";
 import { Grid, ButtonGroup } from "@material-ui/core";
 import { List } from "@solid/react";
@@ -20,6 +20,8 @@ const Friends = (props) => {
   const { t } = useTranslation();
   const [modal, setModal] = useState(false);
   const [groups, setGroups] = useState([]);
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const keySnackBar = Math.random();
 
   const showModalForm = (x) => {
     setModal(true);
@@ -28,10 +30,32 @@ const Friends = (props) => {
   const close = () => {
     setModal(false);
   };
-
-  const deleteGroups = async (e) => {
-    await gestorPOD.deleteGroups().then(() => window.location.reload(false));
+  
+  const showAlertDeleteGroups = () => {
+    enqueueSnackbar(t("snackbar.alert_delete_groups"), {
+      key: keySnackBar,
+      preventDuplicate: true,
+      variant: "warning",
+      autoHideDuration: 3000,
+      action: actionSnackbarDeleteAllGroups(keySnackBar, closeSnackbar, enqueueSnackbar, t),
+    });
   }
+
+  const actionSnackbarDeleteAllGroups = (key, closeSnackbar, enqueueSnackbar, t) => (
+    <Fragment>
+        <Button onClick={async () => {
+              enqueueSnackbar(t("snackbar.delete_process"), {variant: "info", persist: true});
+              await gestorPOD.deleteGroups().then(() => window.location.reload(false));
+              }}>
+            {t("snackbar.yes")}
+        </Button>
+        <Button onClick={async () => {
+              closeSnackbar(key);
+              }}>
+            {t("snackbar.no")}
+        </Button>
+    </Fragment>
+  );
 
   useEffect(() => {
     async function getGroups() {
@@ -81,7 +105,7 @@ const Friends = (props) => {
             )}
             <ButtonGroup style={{ boxShadow: "none" }} className={classes.ButtonGroup}>
               <Button name="group_button" onClick={(e) => { showModalForm(); }} variant="contained" color="primary">{t("groups.createGroup")}</Button>
-              <Button name="group_button_delete" onClick={deleteGroups} variant="contained" color="secondary">{t("groups.deleteGroups")}</Button>
+              <Button name="group_button_delete" onClick={showAlertDeleteGroups} variant="contained" color="secondary">{t("groups.deleteGroups")}</Button>
             </ButtonGroup>
           </FriendsCard>
           <ModalGroupForm show={modal} closingFunction={close}></ModalGroupForm>

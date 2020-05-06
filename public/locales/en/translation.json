@@ -10,6 +10,16 @@
     "success": "Success",
     "error": "Error"
   },
+  "snackbar" : {
+    "alert_delete": "This action will delete all your routes. Are you sure?",
+    "alert_delete_groups": "This action will delete all your groups. Are you sure?",
+    "yes": "Yes",
+    "no": "No",
+    "delete_process": "Delete in process",
+    "adding_process": "Adding route",
+    "editing_process": "Saving changes",
+    "download_complete": "Download complete",
+  },
   "login": {
     "title": "A decentralized route application",
     "loginTitle": "Log in",
