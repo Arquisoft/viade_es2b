@@ -12,10 +12,10 @@ title Store & see routes information
 
 actor User
 participant ViadeApp
-database POD's_User
+database POD_User
 User -> ViadeApp: Send routes information (name, description, gpx file, ...)
-ViadeApp -> POD's_User: Store routes information in POD
-ViadeApp <- POD's_User: Retrieve routes
+ViadeApp -> POD_User: Store routes information in POD
+ViadeApp <- POD_User: Retrieve routes
 User <- ViadeApp: Display routes list
 ----
 
@@ -26,10 +26,10 @@ title Create & see groups
 
 actor User
 participant ViadeApp
-database POD's_User
+database POD_User
 User -> ViadeApp: Select friends & group's name and create it
-ViadeApp -> POD's_User: Send information for storing it in POD
-ViadeApp <- POD's_User: Retrieve groups
+ViadeApp -> POD_User: Send information for storing it in POD
+ViadeApp <- POD_User: Retrieve groups
 User <- ViadeApp: Display groups list
 ----
 
@@ -43,11 +43,11 @@ title Share routes
 actor User1
 actor User2
 participant ViadeApp
-database POD's_User1
-database POD's_User2
+database POD_User1
+database POD_User2
 User1 -> ViadeApp: Select route for share 
-ViadeApp -> POD's_User1: Request route information
-ViadeApp <- POD's_User1: Retrieve route
-ViadeApp -> POD's_User2: Store route in "shared" folder
+ViadeApp -> POD_User1: Request route information
+ViadeApp <- POD_User1: Retrieve route
+ViadeApp -> POD_User2: Store route in "shared" folder
 User2 <- ViadeApp: Send route information shared by User
 ----
