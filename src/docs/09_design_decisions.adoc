@@ -2,11 +2,13 @@
 == Design Decisions
 
 Brief description of all the decisions we took in order to develop the app.
-All our decisions can be found at https://github.com/Arquisoft/viade_es2b/wiki
+
+NOTE: All our decisions can be found at https://github.com/Arquisoft/viade_es2b/wiki[GitHub wiki]
 
 [cols=6*,options="header"]
 
 |===
+
 | Date
 | Participants
 | Our decisions
@@ -14,20 +16,54 @@ All our decisions can be found at https://github.com/Arquisoft/viade_es2b/wiki
 | Pros
 | Cons
 
+| 03/02/2020
+| Whole Team
+| IDE
+| We are all using Visual Studio Code as it's a very versatile IDE with numerous extensions which would make our work easier.
+| Easy to use. Some of us use this IDE on a daily basis so we can teach the other members where to find X option.
+| Some of the members never used this IDE before.
+
+| 10/02/2020
+| Whole Team
+| Control System
+| We will be using Git as a control system and GitHub as source code manager to keep track of different app versions. We decided to create one main develop branch and subbranches per person. The main branch should only be updated before deliveries.
+| It's a great way to keep a backup of the code. It also allows us to work on the project at the same time without risk of overwriting the work.
+| We are still not used to working with git and we do not know how to use all the commands yet.
+
+| 10/02/2020
+| Whole Team
+| Project's language
+| We will be using English as our main language for developing this project (commits, doc...) as we think this is the best option for persuing and international project.
+| Internationalization.
+| It's not our main language so we may experience some trouble redacting our texts.
 
 | 10/02/2020
 | Whole Team
 | Design Architecture
-| As Solid is a W3C endorsed linked data personal data store (PDS) that puts control into the hands of the user, we'll be using P2P (Peer to peer) design architecture. Also, we will be following MVC (model view controller) architectual pattern.
+| As Solid is a W3C endorsed linked data personal data store (PODS) that puts control into the hands of the user, we'll be using P2P (Peer to peer) design architecture. Also, we will be following MVC (model view controller) architectual pattern.
 | Already known code distribution.
 | 
 
-| 10/02/2020
+| 17/02/2020
 | Whole Team
-| Programming language
-| We are using JavaScript family language for building the app as it's the common way to develop some Solid app.
-| Easy to use with Solid
-| we are inexperienced working with JavaScript.
+| Code revision
+| Each pull request should be checked by at least 2 team members in order to avoid bugs.
+| It improves code quality.
+| It takes time to check every line of code.
+
+| 24/02/2020
+| Whole Team
+| Fixing issues
+| We decided to open an issue for every task we needed to solve.
+| It's a great way to keep track of our tasks.
+| We might forgot to open a new issue if the task itself is simple and can be solved quickly.
+
+| 09/03/2020
+| Whole Team
+| Meetings
+| We decided to meet at least 2 times (maybe 3) a week to talk about our weekly work.
+| We ensure everyone is doing their work.
+| Finding valid schedules could be tough.
 
 | 16/03/2020
 | Whole Team
@@ -36,26 +72,39 @@ All our decisions can be found at https://github.com/Arquisoft/viade_es2b/wiki
 | Simpler to create a fancy interface.
 | First time using it.
 
-| 10/02/2020
-| Whole Team
-| Control System
-| We will be using Git as a control system and GitHub as source code manager to keep track of different app versions. We decided to create one main develop branch and subbranches per person. The main branch should only be updated before deliveries.
-| It's a great way to keep a backup of the code. It also allows us to work on the project at the same time without risk of overwriting the work
-| We are still not used to working with git and we do not know how to use all the commands yet.
-
-| 10/02/2020
-| Whole Team
-| Data Storage
-| There won't be any database in this project as we will be storing user data using private POD's.
-| The user will have control over his data.
-| It's the first time we work with data like that.
-
-
 | 23/03/2020
 | Whole Team
 | Testing
 | We decided to use Jest/Pupeteer/Cucumber for testing our app.
 | It ensures a proper functionality.
-|
+| We are not used to work with those type of tests.
+
+| 23/03/2020
+| Whole Team
+| Map
+| We decided to use GPX as it's the standart most routing apps use.
+| Our app could load routes from other apps.
+| Our app would not support any other map format.
+
+| 30/03/2020
+| Whole Team
+| Template
+| We decided to use Inrupt's generator to make an app template
+| Easy to start out project.
+| The template is kind of complex and it has a lot of frameworks included that we might not end up using.
+
+| 14/04/2020
+| Whole Team
+| Template
+| We decided to use Inrupt's generator to make an app template
+| Easy to start out project.
+| The template is kind of complex and it has a lot of frameworks included that we might not end up using.
+
+| 29/04/2020
+| Whole Team
+| Material UI
+| We decided to swap to Material UI as it's components are well known by users worldwide.
+| Good looking and adaptable components
+| Lack of time to implement it everywhere.
 
 |===
