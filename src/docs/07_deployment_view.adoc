@@ -3,26 +3,24 @@
 
 == Deployment View
 
-Our application is a client side application which relies on SOLID specifications for the management of the user personal data.
-We are deploying the app in github pages, so we depend on this service in terms of avaibility and stability.
+Our application is a client side application which relies on SOLID specifications for the management of the user personal data. The fact os being a client-side application has repercussions in the performance of the app. But because the nature of the app, which doesn't do many calculations or resource demanding actions it shouldn't be a problem.
+
+We are deploying the app in GitHub Pages, so we depend on this service in terms of avaibility and stability.
+
+For the data, we relie entirely in the user's POD, so if the user's POD has some problem who falls out of our control, the app can fail. This is a constraint due of the use of the Solid specification, a constraint that make sense for a project like this one, where the users are who control their own data.
 
 We are developing this application using Google Chrome, so is the recommended web browser, but it should work in almost every modern browser due to the use of widely-used standards.
-
-
-=== Performance
-[performance]
-
-The app is a client side app so it relies on the user device to do all the calculations needed, mainly loading and showing the map, which is not resource demanding so it should work on almost every modern device, including tablets and smartphones.
-
-Also, the app follows the Solid specification so the internet connection and POD performance have a huge impact on the performance, specially when loading and uploding routes to the server, but also when listing friends or showing the user profile or avatar.
-
-So, in summary, the expected perfomance relies mainly in three things:
-
- * The user's device performance.
- * The SOLID server hosting the POD performance.
- * As well as the client internet connection speed.
 
 === Infrastructure
 [infrastructure]
 
-image::07_deployment_viade_es2b.png[Deployment view diagram]
+image::07_deployment_viade_es2b.svg[Deployment view diagram]
+
+In the diagram above we can see the three main systems involved in the use and deploy of the aplication.
+
+These systems are:
+[vertical]
+User's PC:: The system that hosts the app, more specifically, the web browser running on that PC. Will provide all the neccesary resources, including network resources to allow connection to GitHub Pages.
+GitHub Pages:: Host app and keeps it available for the user.
+Solid POD:: The Soild POD holding all the user data.
+
