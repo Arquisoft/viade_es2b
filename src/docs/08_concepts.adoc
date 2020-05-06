@@ -5,53 +5,37 @@ In this section we are going to explain the ideas, concepts and regulations on w
 
 [domain-concepts]
 === Domain Concepts
-****
 * Route: GPX file containing the user's routes, which can be stored and consulted by that user.
 * Pod: this is the repository, which follows the SOLID specification. This is where all the routes and other information such as friends are stored.
 * Client: this is the app that will run in the user's browser. It provides a friendly, intuitive interface and all the app's functionality, but it won't store the data (we use the POD for that)
-****
 
 [user-experience]
 === User experience
-****
 This is one of the most important parts in our application. Users need an intuitive, friendly, easy to understand interface in order to feel confident using the app and not getting overwhelmed by confusing, cryptic options.
 
 To achieve that, we are going to divide our app in two simple parts: the first one includes the functionality needed to upload and store a route file from the user's device, as well as editing, downloading, sharing, deleting and displaying those routes in the map; and the second one allows the user to see all his friends and groups of friends. He will also be able to create new groups. This division helps the most unexperienced users to understand the functioning of the app in a simple way.
-****
 
 [safety-security]
 === Safety and security concepts
-****
 By using the PODs, we make sure that all the user's data are decentralized and only stored in that user's POD, avoiding multiple security problems which could cause some difficulties in case of using a centralized system. With this storage system, users become the owners of their data, instead of letting third party companies collect all of it and use it for their own purposes.
-****
 
 [architecture-design-patterns]
 === Architecture and design patterns
-****
-We base our app on the MVC architectural pattern, which consists on separating the data and business logic of the app from the visual representation and the communication channels. 
-
-We are using the React framework as well, which lets us create user interfaces and implement the app's functionality by using React components. These components work as JavaScript functions, but they return HTML and can be reused in other parts of the code.
-****
+We base our app on the MVC architectural pattern, which consists on separating the data and business logic of the app from the visual representation and the communication channels.
 
 [under-hood]
 === "Under-the-hood"
-****
 * Session handling: we manage the session by using the SOLID session itself, which can be accessed using the SOLID credentials. Users can login with two different providers, Inrupt and Solid Community.
 * Persistence: as the data is stored in PODs, we don't need to use any other kind of databases or storages to save all the user's information. However, we use a self-made library to perform all the operations related with saving and retrieving information from the users POD.
 * Error handling: the main error on this app will occur in case of not having a good and stable internet connection, which could lead to lag or malfunctioning of the app. That's why we recommend using a good internet connection if possible, since it will improve user experience and response times.
-****
 
 [development-concepts]
 === Development concepts
-****
 * Building: we use the Node.js package manager, npm, to build the app by using different plugins or tools in order to accomplish the goals we want to reach and to provide the desired functionality. 
 * Testing: this is a key part in our app, and we put a lot of our efforts on ensuring that the app works the way it has to. For accomplishing this, we use several frameworks such as Cucumber.js, Jest and Gatling, as well as React's own testing library.
-****
 
 [operational-concepts]
 === Operational concepts
-****
 * Disaster recovery: the user's data are stored in his own POD, which is independent from the app, so they won't be at risk if something wrong happens with the app. As for the app itself, it depends on GitHub, so if GitHub is down, the app will be too until the problem is solved. However, the app can also be deployed using Docker, as explained in the repository readme.
 * High availability: once a new version of the app is finished, it is available for the user as soon as the changes included in the development branch are merged with the master branch, which is the branch from where the app is deployed.
 * Administration: as we are a team, we divide the administration of the project equally between all the team members, as well as we might help others with the problems they have.
-****

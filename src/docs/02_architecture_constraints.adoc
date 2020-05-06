@@ -1,7 +1,6 @@
 [[section-architecture-constraints]]
 == Architecture Constraints
 
-****
 .Introduction
 There are some constraints in the development of our application. These constraints are technical, organitazional and conventional. The following tables detail these constraints.
 
@@ -71,7 +70,3 @@ All the contents included in the project should be Open Source published under t
 |This project will be entirely developed in English in order to achieve some international recognition.
 
 |===
-
-
-
-****
