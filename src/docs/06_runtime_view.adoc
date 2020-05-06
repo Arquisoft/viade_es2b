@@ -1,49 +1,53 @@
 [[section-runtime-view]]
 == Runtime View
 
-Next image will show screen prototypes of our application, starting with Login screen, main screen and some information about how they will work: buttons, components, ...
+Here we include some diagrams representing different actions that can be done with our application.
 
-We will base our explanation in this prototypes.
+=== Store routes & groups
 
-image::PrototiposAppViade.jpg["Screen prototype of entire application"]
+[plantuml,"Sequence diagram",png]
 
-===  First Scenario: Login
+----
+title Store & see routes information
 
-When the user access to the webpage, there are to cases:
+actor User
+participant ViadeApp
+database POD's_User
+User -> ViadeApp: Send routes information (name, description, gpx file, ...)
+ViadeApp -> POD's_User: Store routes information in POD
+ViadeApp <- POD's_User: Retrieve routes
+User <- ViadeApp: Display routes list
+----
 
-    * User is logged in: 
-    
-In this case, the user can click the login button and start using the app.
+[plantuml,"Sequence diagram2",png]
 
-    * User is not logged in:
-    
-In this case, user will also click  the login button. A popup window will appeared asking for credentials.The user can either enter his Solid credentials or create an account.
+----
+title Create & see groups
 
-Once the user is logged in, the app will allow him to visualize routes, share rutes, images, videos or files with one or multiple friends.The app loads all the data necessary including the user’s friends, routes and notifications.
+actor User
+participant ViadeApp
+database POD's_User
+User -> ViadeApp: Select friends & group's name and create it
+ViadeApp -> POD's_User: Send information for storing it in POD
+ViadeApp <- POD's_User: Retrieve groups
+User <- ViadeApp: Display groups list
+----
 
-=== Second Scenario: Visualize routes
+=== Share routes
 
-Once the user is logged in, the app will allow the user to visualize routes.
+[plantuml,"Sequence diagram3",png]
 
-image::06_visualizeRoutes.PNG[Map and route list]
+----
+title Share routes
 
-=== Third Scenario: Add routes
-
-
-Once the user is logged in, the app will allow the user to load routes in .gpx format. 
-
-image::06_addRoutesForm.PNG[Form for adding routes to the POD]
-
-=== Fourth Scenario: Create group
-
-The user can create a group of friends to share routes or multimedia.
-
-User will click a create group button. A list of his friends will be displayed to add them and a textbox to enter the group name.
-
-image::06_viewGroups.png[View of the group form]
-
-=== Fifth Scenario: Sharing 
-
-The user can share routes or media with his friends.
-
-image::06_shareRoutesExample.png[Example of how to share a route]
+actor User1
+actor User2
+participant ViadeApp
+database POD's_User1
+database POD's_User2
+User1 -> ViadeApp: Select route for share 
+ViadeApp -> POD's_User1: Request route information
+ViadeApp <- POD's_User1: Retrieve route
+ViadeApp -> POD's_User2: Store route in "shared" folder
+User2 <- ViadeApp: Send route information shared by User
+----

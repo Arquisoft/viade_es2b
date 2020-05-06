@@ -3,12 +3,13 @@
 //
 // ====================================
 
-= image:favicon.png[arc42] ViaDe 2b
+= image:favicon.png[Viade es2b, 250, 250] Viade es2b
 // toc-title definition MUST follow document title without blank line!
 :toc: left
 :toc-title: Table of Contents
 :imagesdir: .
-
+:author: Ángela López López, Daniel Fernández Aller, Diego Fernández Suárez, Iván Fernández López, Noé Fernández Moro
+:revnumber: 2.0
 
 //additional style for arc42 help callouts
 ifdef::basebackend-html[]
@@ -21,6 +22,16 @@ ifdef::basebackend-html[]
 @media print {
 	.arc42help {display:hidden;}
 }
+/* Text styles */
+h1{color:#074166 !important;} 
+h2,h3,h4,h5,h6{color:#657988 !important;}
+.title{color:#074166 !important;}
+a{text-decoration: none;}
+#toc.toc2 a:link{color:#074166;}
+blockquote{color:#657988 !important}
+
+#toctitle{color:#074166; font-size: 200%;}
+
 </style>
 ++++
 endif::basebackend-html[]
@@ -77,6 +88,6 @@ include::11_technical_risks.adoc[]
 // 12. Glossary
 include::12_glossary.adoc[]
 
-//<<<<
+<<<<
 // About
-//include::about-arc42.adoc[]
+include::about-arc42.adoc[]
