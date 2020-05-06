@@ -1,29 +1,26 @@
 [[section-introduction-and-goals]]
 == Introduction and Goals
 
-****
-Describes the relevant requirements and the driving forces that software architects and development team must consider. These include
-
-* underlying business goals, essential features and functional requirements for the system
-* quality goals for the architecture
-* relevant stakeholders and their expectations
-****
+Viade 2b is an app for the management and display of routes, whith social functions such as sharing with friends or group of them.
+Is developed over React and follows the SOLID specification and is a client-side app.
 
 === Requirements Overview
 
-****
+.System requirements
 
 * System will use a descentralized architecture, being the data independent from the system.
 
 * System will let users to share info to other users, using a friendly-style. In addition, users can have a group of that "friends" for share instantly routes with them. 
 
-* Registred users can store their map routes in their own devices.
+* System will let users set a privacy for their routes, making them public or private.
 
-* Same way, registred users can see all routes on the entire available map.
+* Systems will show users the routes of their friends if that routes are public.
 
-* System will recognize routed stored by other programs.
+* System will let registred users download their routes in their own devices.
 
-****
+* Same way, registered users can display their routes on a map.
+
+* System will recognize routes files from other app or devices which follow the GPX standard.
 
 === Quality Goals
 
@@ -34,9 +31,10 @@ System objectives are as follows, from most important to less:
 |===
 |Priority|Objective|Detail
 | 1 | Usability | System will be intuitive for all kind of users, needing a short time for them to get acquainted with it.
-| 2 | Performance | The system must be effective and fast, with short loading times for the users.
-| 3 | Security | System will be secure. Private data will only be shown if the user how owns it decides to share it.
-| 4 | Testability | Tests must be carried out to verify the correct operation of the system.
+| 2 | Simple UI | The interface of the app should be clean and simple to make things easier for the users.
+| 3 | Performance | The system must be effective and fast, with short loading times for the users.
+| 4 | Security | System shall be secure. Privacy of data will be a central part of the development following SOLID specification.
+| 5 | Testability | Tests must be carried out to verify the correct operation of the system.
 
 |===
 
@@ -47,8 +45,10 @@ The table below contains information about the potential users of the applicatio
 [options="header",cols="1,2,2"]
 |===
 |Role/Name|Contact|Expectations
-| Basic users | New users to use the app. The app should be build in a way that they understand how the app works and their data is stored. | They will expect the app to be simple and intuitive. There are explanations about PODs for those users how don't know how it works.
+| Basic users | New users to use the app. The app should be build in a way that they are familiar with and with explanations when necessary. | They will expect the app to be simple and intuitive. They may expect explanations about PODs for those users how don't know how it works.
 | Experienced users | Users who know about PODs and their usage. | They will expect the app to be simple and efficient. The POD management should be similar to other SOLID apps' usage.
-| Developers | These are the people in charge of the develop of the app, so they should understand all the components of the app and the technologies used. | They are expected to develop a secure, simple and usable application.
-| SOLID Developers | They are in charge of defining the SOLID standards. Therefore, they will have a great impact in the design and way of work of the application. | They will mark some constrains to the project but they will also help with the documenatation and guidelines of the SOLID standard. They will also provied the SOLID code.
+| App Developers | People in charge of the develop of the app, so they should understand all the components of the app and the technologies used. | They are expected to develop a secure, simple and usable application.
+| SOLID Developers | People in charge of defining the SOLID standards. Therefore, they will have a great impact in the design and way of work of the application. | They will mark some constrains to the project but they will also help with the documenatation and guidelines of the SOLID standard.
+| SOLID Community | People following the project and helping others throught forums and social platforms. In some cases they're also SOLID developers | They help people new to the SOLID world through asvices and, in case of they are also developers, with libraries and technical suggestions.
+| Inrupt | Company founded by Tim Berners Lee supporting the development of SOLID related projects and providing POD host. | They provide libraries and project skeletons to make things easier for app developers..
 |===

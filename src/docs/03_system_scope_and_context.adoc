@@ -4,11 +4,13 @@
 
 ****
 .Contents
-The scope of our project, Viade, is to create an app where users can save their routes in order to see them later without this information going through an external server. To accomplish that, we are going to base our app on SOLID and, more specifically, in the use of PODs which will work as an internal private server, so each user will have his own POD and no one but that user will have access to the information stored there.
+The scope of our project, Viade, is to create an app where users can save their routes in order to see them later without this information going through an external server. To accomplish that, we are going to base our app on Solid and, more specifically, in the use of PODs which will work as an internal private server, so each user will have his own POD and no one but that user will have access to the information stored there.
 
-With Viade, users will be able to start and stop recording a route whenever they want. However, the route will only be saved if the recording is stopped and the user confirms that he wants to save that route into his POD. If that’s not the case, the data won’t be stored.
+With Viade, users will be able to upload their routes to a Solid POD, including name, description and images, as well as the privacity of the route (public or private). Once the user has any routes, he will be able to display the track associated to that route in a map and see all the information about that route. They will also be able to edit, download and delete their routes, as well as share them with friends or groups of friends.
 
-The stakeholders will be every person who wants to save some routes in order to repeat them any other day or just to have a log of his physical activity.
+Viade will also let users create groups containing some of their friends, which could be used to group them and share routes with all the members of an specific group, instead of doing it one by one.
+
+As the app is based on Solid, and more specifically on the concept of Solid PODs, every user should need a POD where the routes, groups and other important information used will be stored. Connection to the internet is mandatory too, as the POD cannot be accessed without it.
 
 ****
 
@@ -16,6 +18,7 @@ The stakeholders will be every person who wants to save some routes in order to 
 === Business and Technical Context
 
 ****
+As our technical and business diagrams in our app are pretty similar, we decided to put them together into a single diagram which represents both of them.
 
 image::03_technicalAndBusinessContext.png[Business and technical context diagram]
 
@@ -23,9 +26,10 @@ image::03_technicalAndBusinessContext.png[Business and technical context diagram
 |===
 |Entity|Context
 | User | It represents every potential user of our app, which will interact with it to perform the different options offered by Viade
-| Viade | It's our app, the center of the system. All the information and processes related with the routes will pass through it
-| SOLID Pod | There is one for each user and it's where they will keep all their routes and other information like friends, etc..
+| Viade | It's our app, the center of the system. All the information and processes related with the routes will go through it
+| SOLID Pod | There is one for each user and it's where they will keep all their routes and other information like friends, groups, etc..
 | Routes | GPX format files (which could be extended to KML or GeoJSON in a future) that users upload in order to see them later or share them with their friends
+| Leaflet | Viade uses a map to display the tracks contained in each route's gpx file. This map is provided by Leaflet, which takes that file and parses it into the map, showing the different points contained in it and the track itself
 |===
 
 ****

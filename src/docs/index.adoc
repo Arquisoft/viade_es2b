@@ -38,9 +38,6 @@ blockquote{color:#657988 !important}
 endif::basebackend-html[]
 
 
-// horizontal line
-***
-
 // numbering from here on
 :numbered:
 

@@ -4,15 +4,22 @@
 
 # VIADE ES2B
 
-This repository contains a skeleton of the VIADE project.
+This repository contains an app for the management of routes in a decentralized way, keeping the user the ownership of their data in all moment following the SOLID specification. More info about SOLID project in their [web page](https://solidproject.org/).
 
 This project is an assignment for the [Software Architecture course](https://arquisoft.github.io/) following [these requirements](https://labra.solid.community/public/SoftwareArchitecture/AssignmentDescription/).
 
 The app is deployed at [https://arquisoft.github.io/viade_es2b/](https://arquisoft.github.io/viade_es2b/) which also contains a [technical documentation](https://arquisoft.github.io/viade_es2b/docs).
 
-More information about how this project has been setup is available [in the wiki](https://github.com/Arquisoft/viade_es2b/wiki).
+More information about how we organized ourselves is available [in the wiki](https://github.com/Arquisoft/viade_es2b/wiki) (Spanish).
 
-## Docker
+
+## Deployment
+
+### GitHub Pages
+The app is deployed in GitHubPages and can be visited throught this [link](https://arquisoft.github.io/viade_es2b/).
+The branch in charge of the deployment is [gh-pages](https://github.com/Arquisoft/viade_es2b/tree/gh-pages).
+
+### Docker
 Our app can be deployed in docker, as you can see because the Dockerfile in the main directory. To deploy the app you should follow these instructions:
 
 1.  You should build the docker image first.
@@ -32,5 +39,8 @@ Once this is done you will be able to access the docker deployed app throguht **
 -   Diego Fernández Suárez [UO263662](https://github.com/UO263662)
 -   Iván Fernández López [UO265349](https://github.com/uo265349)
 -   Noé Fernández Moro [UO251683](https://github.com/UO251683)
+
+
+More info about our work and who made what available in the commits and in the [deployed app](https://arquisoft.github.io/viade_es2b/), about section.
 
 Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
