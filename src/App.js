@@ -1,5 +1,4 @@
 import React, { Fragment, Suspense } from "react";
-import { toast, Slide } from "react-toastify";
 import { Loader } from "@util-components";
 import { ThemeProvider } from "styled-components";
 import { library } from "@fortawesome/fontawesome-svg-core";

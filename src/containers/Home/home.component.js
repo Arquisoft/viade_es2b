@@ -71,11 +71,10 @@ function loadEditForm(route) {
  * @param props 
  */
 export const HomePageContent = (props) => {
-  const [friendsList, setFriendsList] = useState([]);
+  const [friendsList, setFriendsList] = useState(["No friends"]);
   const friends = useLDflexList("user.friends");
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
-  if (friends.length > 0 && friendsList !== friends)
-    setFriendsList(friends)
+  if (friends.length > 0 && friendsList !== friends) setFriendsList(friends);
   const classes = useStyles();
   const { t } = useTranslation();
 

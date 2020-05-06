@@ -260,6 +260,7 @@ export default {
 
             routes.push(routesUser);
         }
+
         return routes;
     },
 

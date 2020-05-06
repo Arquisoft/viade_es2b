@@ -15,7 +15,7 @@ class RouteList extends React.Component {
 
     constructor() {
         super();
-        this.state = { loadingPrivate: true, loadingPublic: true, loadingShared: true, loadingPublicFriends: true, routes: [], publicRoutes: [], publicFriendsRoutes: [], sharedRoutes: [] };
+        this.state = { loadingPrivate: true, loadingPublic: true, loadingShared: true, loadingPublicFriends: true, routes: [], publicRoutes: [], publicFriendsRoutes: [], sharedRoutes: [], controlChanges: 0};
 
         //Bind this to the methods of the class to allow access to props and state
         this.loadingPrivateFinished = this.loadingPrivateFinished.bind(this);
@@ -31,10 +31,11 @@ class RouteList extends React.Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (snapshot.changeRequired) {
+            if (this.props.friendsList.length === 1 && this.props.friendsList[0] === "No friends") this.setState({ loadingPublicFriends: false })
             this.setState({ loadingPublicFriends: true }, async () => {
                 gestorPOD.seeFriendsRoutes(this.props.friendsList).then((routes) => this.setState({ publicFriendsRoutes: Array.from(routes), loadingPublicFriends: false }));
             });
-        }
+        } else if ( this.props.friendsList.length === 1 && this.props.friendsList[0] === "No friends" && this.state.controlChanges === 0) this.setState({ loadingPublicFriends: false, controlChanges: 1 });
     }
 
     async componentDidMount() {
