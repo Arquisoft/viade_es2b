@@ -30,8 +30,7 @@ a{text-decoration: none;}
 #toc.toc2 a:link{color:#074166;}
 blockquote{color:#657988 !important}
 
-#toc.toc2{background-color:#cacaca;}
-#toctitle{color:#FFFFFF;}
+#toctitle{color:#074166; font-size: 200%;}
 
 </style>
 ++++
